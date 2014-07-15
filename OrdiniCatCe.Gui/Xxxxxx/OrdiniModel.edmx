@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OrdiniModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="OrdiniModelStoreContainer">
+          <EntitySet Name="Marche" EntityType="OrdiniModel.Store.Marche" store:Type="Tables" />
+          <EntitySet Name="RichiesteOrdine" EntityType="OrdiniModel.Store.RichiesteOrdine" store:Type="Tables" />
+          <AssociationSet Name="FK_Marca" Association="OrdiniModel.Store.FK_Marca">
+            <End Role="Marche" EntitySet="Marche" />
+            <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Marche">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="RichiesteOrdine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Cliente" Type="nvarchar" MaxLength="100" />
+          <Property Name="Indirizzo" Type="nvarchar" MaxLength="100" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="100" />
+          <Property Name="EMail" Type="nvarchar" MaxLength="100" />
+          <Property Name="Cellulare" Type="nvarchar" MaxLength="100" />
+          <Property Name="Codice" Type="nvarchar" MaxLength="100" />
+          <Property Name="Descrizione" Type="nvarchar" MaxLength="200" />
+          <Property Name="PrezzoAcquisto" Type="money" />
+          <Property Name="PrezzoVendita" Type="nvarchar" MaxLength="100" />
+          <Property Name="Avvisato" Type="bit" Nullable="false" />
+          <Property Name="DataAvvisato" Type="datetime" />
+          <Property Name="DataOrdinato" Type="datetime" />
+          <Property Name="DataArrivato" Type="datetime" />
+          <Property Name="ModalitàAvviso" Type="int" />
+          <Property Name="DataRitirato" Type="datetime" />
+          <Property Name="IdMarca" Type="int" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="FK_Marca">
+          <End Role="Marche" Type="OrdiniModel.Store.Marche" Multiplicity="0..1" />
+          <End Role="RichiesteOrdine" Type="OrdiniModel.Store.RichiesteOrdine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marche">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RichiesteOrdine">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OrdiniModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="OrdiniEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Marche" EntityType="OrdiniModel.Marche" />
+          <EntitySet Name="RichiesteOrdine" EntityType="OrdiniModel.RichiesteOrdine" />
+          <AssociationSet Name="FK_Marca" Association="OrdiniModel.FK_Marca">
+            <End Role="Marche" EntitySet="Marche" />
+            <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Marche">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="RichiesteOrdine" Relationship="OrdiniModel.FK_Marca" FromRole="Marche" ToRole="RichiesteOrdine" />
+        </EntityType>
+        <EntityType Name="RichiesteOrdine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="Cliente" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Indirizzo" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Telefono" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="EMail" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Cellulare" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Codice" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Descrizione" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="PrezzoAcquisto" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PrezzoVendita" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Avvisato" Type="Boolean" Nullable="false" />
+          <Property Name="DataAvvisato" Type="DateTime" Precision="3" />
+          <Property Name="DataOrdinato" Type="DateTime" Precision="3" />
+          <Property Name="DataArrivato" Type="DateTime" Precision="3" />
+          <Property Name="ModalitàAvviso" Type="OrdiniModel.ModalitaAvviso" />
+          <Property Name="DataRitirato" Type="DateTime" Precision="3" />
+          <Property Name="IdMarca" Type="Int32" />
+          <NavigationProperty Name="Marche" Relationship="OrdiniModel.FK_Marca" FromRole="RichiesteOrdine" ToRole="Marche" />
+        </EntityType>
+        <Association Name="FK_Marca">
+          <End Role="Marche" Type="OrdiniModel.Marche" Multiplicity="0..1" />
+          <End Role="RichiesteOrdine" Type="OrdiniModel.RichiesteOrdine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marche">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RichiesteOrdine">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="ModalitaAvviso">
+          <Member Name="Telefono" />
+          <Member Name="EMail" />
+          <Member Name="Segreteria" />
+        </EnumType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OrdiniModelStoreContainer" CdmEntityContainer="OrdiniEntities">
+          <EntitySetMapping Name="Marche">
+            <EntityTypeMapping TypeName="OrdiniModel.Marche">
+              <MappingFragment StoreEntitySet="Marche">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RichiesteOrdine">
+            <EntityTypeMapping TypeName="OrdiniModel.RichiesteOrdine">
+              <MappingFragment StoreEntitySet="RichiesteOrdine">
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Indirizzo" ColumnName="Indirizzo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Cellulare" ColumnName="Cellulare" />
+                <ScalarProperty Name="Codice" ColumnName="Codice" />
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="PrezzoAcquisto" ColumnName="PrezzoAcquisto" />
+                <ScalarProperty Name="PrezzoVendita" ColumnName="PrezzoVendita" />
+                <ScalarProperty Name="Avvisato" ColumnName="Avvisato" />
+                <ScalarProperty Name="DataAvvisato" ColumnName="DataAvvisato" />
+                <ScalarProperty Name="DataOrdinato" ColumnName="DataOrdinato" />
+                <ScalarProperty Name="DataArrivato" ColumnName="DataArrivato" />
+                <ScalarProperty Name="ModalitàAvviso" ColumnName="ModalitàAvviso" />
+                <ScalarProperty Name="DataRitirato" ColumnName="DataRitirato" />
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

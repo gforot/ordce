@@ -1,0 +1,11 @@
+bin
+obj
+*.suo
+*.sln.cache
+*_exp2eKrebs.zip
+*.csproj.ReSharper
+*.csproj.user
+*.ReSharper.user
+*.DotSettings.user
+*.DotSettings
+_ReSharper*
