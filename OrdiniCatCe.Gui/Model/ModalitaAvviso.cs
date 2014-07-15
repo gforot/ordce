@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OrdiniCatCe.Gui.Xxxxxx
+namespace OrdiniCatCe.Gui.Model
 {
     using System;
     

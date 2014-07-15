@@ -43,6 +43,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<DetailViewModel>();
         }
 
         public MainViewModel Main
@@ -50,6 +51,14 @@ namespace OrdiniCatCe.Gui.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
+            }
+        }
+
+        public DetailViewModel DetailViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<DetailViewModel>();
             }
         }
         

@@ -7,7 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OrdiniCatCe.Gui.Xxxxxx
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Documents;
+
+
+namespace OrdiniCatCe.Gui.Model
 {
     using System;
     using System.Data.Entity;
@@ -19,7 +24,7 @@ namespace OrdiniCatCe.Gui.Xxxxxx
             : base("name=OrdiniEntities")
         {
         }
-    
+   
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -27,5 +32,11 @@ namespace OrdiniCatCe.Gui.Xxxxxx
     
         public DbSet<Marche> Marche { get; set; }
         public DbSet<RichiesteOrdine> RichiesteOrdine { get; set; }
+
+
+        public List<Marche> GetMarche()
+        {
+            return Marche.ToList();
+        }
     }
 }
