@@ -7,7 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OrdiniCatCe.Gui.Xxxxxx
+using System.Collections.Generic;
+using System.Linq;
+
+
+namespace OrdiniCatCe.Gui.Model
 {
     using System;
     using System.Data.Entity;
@@ -27,5 +31,11 @@ namespace OrdiniCatCe.Gui.Xxxxxx
     
         public DbSet<Marche> Marche { get; set; }
         public DbSet<RichiesteOrdine> RichiesteOrdine { get; set; }
+        public DbSet<Fornitori> Fornitori { get; set; }
+
+        public List<Marche> GetMarche()
+        {
+            return Marche.ToList();
+        }
     }
 }

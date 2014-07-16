@@ -88,31 +88,42 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Messages\AddRigaOrdineMessage.cs" />
+    <Compile Include="Messages\DetailWindowMessage.cs" />
+    <Compile Include="Messages\MsgKeys.cs" />
+    <Compile Include="Messages\UpdateRigaOrdineMessage.cs" />
+    <Compile Include="Model\Fornitori.cs">
+      <DependentUpon>OrdiniModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\DetailViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="Xxxxxx\Marche.cs">
+    <Compile Include="Model\Marche.cs">
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Xxxxxx\ModalitaAvviso.cs">
+    <Compile Include="Model\ModalitaAvviso.cs">
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Xxxxxx\OrdiniModel.Context.cs">
+    <Compile Include="Model\OrdiniModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OrdiniModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Xxxxxx\OrdiniModel.cs">
+    <Compile Include="Model\OrdiniModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Xxxxxx\OrdiniModel.Designer.cs">
+    <Compile Include="Model\OrdiniModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OrdiniModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Xxxxxx\RichiesteOrdine.cs">
+    <Compile Include="Model\RichiesteOrdine.cs">
       <DependentUpon>OrdiniModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetailWindow.xaml.cs">
+      <DependentUpon>DetailWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -126,6 +137,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\DetailWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -151,19 +166,19 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <EntityDeploy Include="Xxxxxx\OrdiniModel.edmx">
+    <EntityDeploy Include="Model\OrdiniModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OrdiniModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Xxxxxx\OrdiniModel.Context.tt">
+    <None Include="Model\OrdiniModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OrdiniModel.edmx</DependentUpon>
       <LastGenOutput>OrdiniModel.Context.cs</LastGenOutput>
     </None>
-    <None Include="Xxxxxx\OrdiniModel.edmx.diagram">
+    <None Include="Model\OrdiniModel.edmx.diagram">
       <DependentUpon>OrdiniModel.edmx</DependentUpon>
     </None>
-    <None Include="Xxxxxx\OrdiniModel.tt">
+    <None Include="Model\OrdiniModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OrdiniModel.edmx</DependentUpon>
       <LastGenOutput>OrdiniModel.cs</LastGenOutput>
@@ -173,9 +188,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Datafile\Ordini.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Ordini.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -204,6 +216,9 @@
       <ProductName>SQL Server Compact 4.0 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

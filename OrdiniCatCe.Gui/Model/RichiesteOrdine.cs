@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OrdiniCatCe.Gui.Xxxxxx
+namespace OrdiniCatCe.Gui.Model
 {
     using System;
     using System.Collections.Generic;
@@ -31,7 +31,9 @@ namespace OrdiniCatCe.Gui.Xxxxxx
         public Nullable<ModalitaAvviso> ModalitàAvviso { get; set; }
         public Nullable<System.DateTime> DataRitirato { get; set; }
         public Nullable<int> IdMarca { get; set; }
+        public Nullable<int> IdFornitore { get; set; }
     
         public virtual Marche Marche { get; set; }
+        public virtual Fornitori Fornitori { get; set; }
     }
 }

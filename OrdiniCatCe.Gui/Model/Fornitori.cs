@@ -7,14 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OrdiniCatCe.Gui.Xxxxxx
+namespace OrdiniCatCe.Gui.Model
 {
     using System;
+    using System.Collections.Generic;
     
-    public enum ModalitaAvviso : int
+    public partial class Fornitori
     {
-        Telefono = 0,
-        EMail = 1,
-        Segreteria = 2
+        public Fornitori()
+        {
+            this.RichiesteOrdine = new HashSet<RichiesteOrdine>();
+        }
+    
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        public virtual ICollection<RichiesteOrdine> RichiesteOrdine { get; set; }
     }
 }

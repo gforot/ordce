@@ -4,15 +4,27 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OrdiniModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OrdiniModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="OrdiniModelStoreContainer">
+          <EntitySet Name="Fornitori" EntityType="OrdiniModel.Store.Fornitori" store:Type="Tables" />
           <EntitySet Name="Marche" EntityType="OrdiniModel.Store.Marche" store:Type="Tables" />
           <EntitySet Name="RichiesteOrdine" EntityType="OrdiniModel.Store.RichiesteOrdine" store:Type="Tables" />
+          <AssociationSet Name="FK_Fornitore" Association="OrdiniModel.Store.FK_Fornitore">
+            <End Role="Fornitori" EntitySet="Fornitori" />
+            <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
+          </AssociationSet>
           <AssociationSet Name="FK_Marca" Association="OrdiniModel.Store.FK_Marca">
             <End Role="Marche" EntitySet="Marche" />
             <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Fornitori">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Marche">
           <Key>
             <PropertyRef Name="Id" />
@@ -41,7 +53,20 @@
           <Property Name="DataRitirato" Type="datetime" />
           <Property Name="IdMarca" Type="int" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdFornitore" Type="int" />
         </EntityType>
+        <Association Name="FK_Fornitore">
+          <End Role="Fornitori" Type="OrdiniModel.Store.Fornitori" Multiplicity="0..1" />
+          <End Role="RichiesteOrdine" Type="OrdiniModel.Store.RichiesteOrdine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fornitori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RichiesteOrdine">
+              <PropertyRef Name="IdFornitore" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Marca">
           <End Role="Marche" Type="OrdiniModel.Store.Marche" Multiplicity="0..1" />
           <End Role="RichiesteOrdine" Type="OrdiniModel.Store.RichiesteOrdine" Multiplicity="*" />
@@ -54,8 +79,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OrdiniModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -64,6 +88,11 @@
           <EntitySet Name="RichiesteOrdine" EntityType="OrdiniModel.RichiesteOrdine" />
           <AssociationSet Name="FK_Marca" Association="OrdiniModel.FK_Marca">
             <End Role="Marche" EntitySet="Marche" />
+            <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
+          </AssociationSet>
+          <EntitySet Name="Fornitori" EntityType="OrdiniModel.Fornitori" />
+          <AssociationSet Name="FK_Fornitore" Association="OrdiniModel.FK_Fornitore">
+            <End Role="Fornitori" EntitySet="Fornitori" />
             <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
           </AssociationSet>
         </EntityContainer>
@@ -97,6 +126,8 @@
           <Property Name="DataRitirato" Type="DateTime" Precision="3" />
           <Property Name="IdMarca" Type="Int32" />
           <NavigationProperty Name="Marche" Relationship="OrdiniModel.FK_Marca" FromRole="RichiesteOrdine" ToRole="Marche" />
+          <Property Type="Int32" Name="IdFornitore" />
+          <NavigationProperty Name="Fornitori" Relationship="OrdiniModel.FK_Fornitore" FromRole="RichiesteOrdine" ToRole="Fornitori" />
         </EntityType>
         <Association Name="FK_Marca">
           <End Role="Marche" Type="OrdiniModel.Marche" Multiplicity="0..1" />
@@ -115,6 +146,26 @@
           <Member Name="EMail" />
           <Member Name="Segreteria" />
         </EnumType>
+        <EntityType Name="Fornitori">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RichiesteOrdine" Relationship="OrdiniModel.FK_Fornitore" FromRole="Fornitori" ToRole="RichiesteOrdine" />
+        </EntityType>
+        <Association Name="FK_Fornitore">
+          <End Type="OrdiniModel.Fornitori" Role="Fornitori" Multiplicity="0..1" />
+          <End Type="OrdiniModel.RichiesteOrdine" Role="RichiesteOrdine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fornitori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RichiesteOrdine">
+              <PropertyRef Name="IdFornitore" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -132,6 +183,7 @@
           <EntitySetMapping Name="RichiesteOrdine">
             <EntityTypeMapping TypeName="OrdiniModel.RichiesteOrdine">
               <MappingFragment StoreEntitySet="RichiesteOrdine">
+                <ScalarProperty Name="IdFornitore" ColumnName="IdFornitore" />
                 <ScalarProperty Name="Cliente" ColumnName="Cliente" />
                 <ScalarProperty Name="Indirizzo" ColumnName="Indirizzo" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
@@ -148,6 +200,14 @@
                 <ScalarProperty Name="ModalitàAvviso" ColumnName="ModalitàAvviso" />
                 <ScalarProperty Name="DataRitirato" ColumnName="DataRitirato" />
                 <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fornitori">
+            <EntityTypeMapping TypeName="OrdiniModel.Fornitori">
+              <MappingFragment StoreEntitySet="Fornitori">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
