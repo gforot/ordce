@@ -17,6 +17,7 @@ using OrdiniCatCe.Gui.Model;
 using OrdiniCatCe.Gui.ViewModel;
 
 
+
 namespace OrdiniCatCe.Gui.View
 {
     /// <summary>
@@ -24,14 +25,12 @@ namespace OrdiniCatCe.Gui.View
     /// </summary>
     public partial class DetailWindow : Window
     {
-
         public DetailWindow()
         {
             InitializeComponent();
 
             Messenger.Default.Register<MessageBase>(this, MsgKeys.CancelKey, OnCancelRequested);
             Messenger.Default.Register<MessageBase>(this, MsgKeys.ConfirmKey, OnConfirmRequested);
-
         }
 
         private void OnConfirmRequested(MessageBase obj)

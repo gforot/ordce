@@ -23,7 +23,7 @@ namespace OrdiniCatCe.Gui.Model
             : base("name=OrdiniEntities")
         {
         }
-    
+   
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

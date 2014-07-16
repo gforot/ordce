@@ -1,4 +1,4 @@
-﻿namespace OrdiniCatCe.Gui.Messages
+namespace OrdiniCatCe.Gui.Messages
 {
     class MsgKeys
     {
@@ -6,8 +6,7 @@
         public const string ConfirmKey = "Confirm";
         public const string AddRigaOrdineKey = "AddRigaOrdine";
         public const string AddRigaOrdineToDbKey = "AddRigaOrdineToDb";
+        public const string UpdateRigaOrdineKey = "UpdateRigaOrdine";
 
-
-        public static object UpdateRigaOrdineKey { get; set; }
     }
 }

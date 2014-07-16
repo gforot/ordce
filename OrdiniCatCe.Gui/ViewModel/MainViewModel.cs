@@ -8,6 +8,7 @@ using OrdiniCatCe.Gui.Model;
 using OrdiniCatCe.Gui.View;
 
 
+
 namespace OrdiniCatCe.Gui.ViewModel
 {
     public class MainViewModel : ViewModelBase

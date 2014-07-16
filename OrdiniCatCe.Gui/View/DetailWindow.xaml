@@ -5,7 +5,7 @@
         Title="DetailWindow" Height="300" Width="600">
     <StackPanel>
         <StackPanel.Resources>
-            
+           
             <Style TargetType="Border">
                 <Setter Property="CornerRadius" Value="5"></Setter>
                 <Setter Property="Margin" Value="4"></Setter>

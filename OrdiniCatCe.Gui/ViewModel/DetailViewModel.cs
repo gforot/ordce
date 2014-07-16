@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 using System.Data.Entity.Migrations.Model;
 using System.Windows.Media.TextFormatting;
 using GalaSoft.MvvmLight;
@@ -241,6 +241,7 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         
 
+
         public RelayCommand AnnullaCommand { get; private set; }
         public RelayCommand ConfermaCommand { get; private set; }
 
@@ -331,5 +332,4 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
     
     }
-
 }
