@@ -36,7 +36,6 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Cliente" Type="nvarchar" MaxLength="100" />
           <Property Name="Indirizzo" Type="nvarchar" MaxLength="100" />
           <Property Name="Telefono" Type="nvarchar" MaxLength="100" />
           <Property Name="EMail" Type="nvarchar" MaxLength="100" />
@@ -44,7 +43,6 @@
           <Property Name="Codice" Type="nvarchar" MaxLength="100" />
           <Property Name="Descrizione" Type="nvarchar" MaxLength="200" />
           <Property Name="PrezzoAcquisto" Type="money" />
-          <Property Name="PrezzoVendita" Type="nvarchar" MaxLength="100" />
           <Property Name="Avvisato" Type="bit" Nullable="false" />
           <Property Name="DataAvvisato" Type="datetime" />
           <Property Name="DataOrdinato" Type="datetime" />
@@ -54,6 +52,11 @@
           <Property Name="IdMarca" Type="int" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IdFornitore" Type="int" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="100" />
+          <Property Name="Cognome" Type="nvarchar" MaxLength="100" />
+          <Property Name="Localita" Type="nvarchar" MaxLength="100" />
+          <Property Name="NumeroCivico" Type="nvarchar" MaxLength="100" />
+          <Property Name="PrezzoVendita" Type="money" />
         </EntityType>
         <Association Name="FK_Fornitore">
           <End Role="Fornitori" Type="OrdiniModel.Store.Fornitori" Multiplicity="0..1" />
@@ -109,7 +112,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
-          <Property Name="Cliente" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="Indirizzo" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="Telefono" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="EMail" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
@@ -117,7 +119,6 @@
           <Property Name="Codice" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="Descrizione" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="PrezzoAcquisto" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="PrezzoVendita" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="Avvisato" Type="Boolean" Nullable="false" />
           <Property Name="DataAvvisato" Type="DateTime" Precision="3" />
           <Property Name="DataOrdinato" Type="DateTime" Precision="3" />
@@ -128,6 +129,11 @@
           <NavigationProperty Name="Marche" Relationship="OrdiniModel.FK_Marca" FromRole="RichiesteOrdine" ToRole="Marche" />
           <Property Type="Int32" Name="IdFornitore" />
           <NavigationProperty Name="Fornitori" Relationship="OrdiniModel.FK_Fornitore" FromRole="RichiesteOrdine" ToRole="Fornitori" />
+          <Property Type="String" Name="Nome" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Cognome" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Localita" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NumeroCivico" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="PrezzoVendita" Precision="19" Scale="4" />
         </EntityType>
         <Association Name="FK_Marca">
           <End Role="Marche" Type="OrdiniModel.Marche" Multiplicity="0..1" />
@@ -183,8 +189,12 @@
           <EntitySetMapping Name="RichiesteOrdine">
             <EntityTypeMapping TypeName="OrdiniModel.RichiesteOrdine">
               <MappingFragment StoreEntitySet="RichiesteOrdine">
+                <ScalarProperty Name="PrezzoVendita" ColumnName="PrezzoVendita" />
+                <ScalarProperty Name="NumeroCivico" ColumnName="NumeroCivico" />
+                <ScalarProperty Name="Localita" ColumnName="Localita" />
+                <ScalarProperty Name="Cognome" ColumnName="Cognome" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="IdFornitore" ColumnName="IdFornitore" />
-                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
                 <ScalarProperty Name="Indirizzo" ColumnName="Indirizzo" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="EMail" ColumnName="EMail" />
@@ -192,7 +202,6 @@
                 <ScalarProperty Name="Codice" ColumnName="Codice" />
                 <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
                 <ScalarProperty Name="PrezzoAcquisto" ColumnName="PrezzoAcquisto" />
-                <ScalarProperty Name="PrezzoVendita" ColumnName="PrezzoVendita" />
                 <ScalarProperty Name="Avvisato" ColumnName="Avvisato" />
                 <ScalarProperty Name="DataAvvisato" ColumnName="DataAvvisato" />
                 <ScalarProperty Name="DataOrdinato" ColumnName="DataOrdinato" />

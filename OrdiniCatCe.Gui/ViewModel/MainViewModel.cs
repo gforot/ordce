@@ -28,7 +28,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             // Code runs "for real"
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                Marches = db.GetMarche();
+                Marches = db.Marche.ToList();
                 RigheOrdine = db.RichiesteOrdine.ToList();
                 Fornitoris = db.Fornitori.ToList();
             }
@@ -54,11 +54,33 @@ namespace OrdiniCatCe.Gui.ViewModel
             using (OrdiniEntities db = new OrdiniEntities())
             {
                 RichiesteOrdine ro= db.RichiesteOrdine.First(r => r.Id == message.RigaOrdine.Id);
-
-                ro.Indirizzo = message.RigaOrdine.Indirizzo;
-
+                CopyAllProperties(message.RigaOrdine, ro);
                 int updated = db.SaveChanges();
             }
+        }
+
+        private static void CopyAllProperties(RichiesteOrdine source, RichiesteOrdine target)
+        {
+            target.Avvisato = source.Avvisato;
+            target.Cellulare = source.Cellulare;
+            target.Codice = source.Codice;
+            target.Cognome = source.Cognome;
+            target.DataArrivato = source.DataArrivato;
+            target.DataAvvisato = source.DataAvvisato;
+            target.DataOrdinato = source.DataOrdinato;
+            target.DataRitirato = source.DataRitirato;
+            target.Descrizione = source.Descrizione;
+            target.EMail = source.EMail;
+            target.IdFornitore = source.IdFornitore;
+            target.IdMarca = source.IdMarca;
+            target.Indirizzo = source.Indirizzo;
+            target.Localita = source.Localita;
+            target.Modalit‡Avviso = source.Modalit‡Avviso;
+            target.Nome = source.Nome;
+            target.NumeroCivico = source.NumeroCivico;
+            target.PrezzoAcquisto = source.PrezzoAcquisto;
+            target.Telefono = source.Telefono;
+            target.PrezzoVendita = source.PrezzoVendita;
         }
     }
 }

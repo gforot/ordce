@@ -15,7 +15,6 @@ namespace OrdiniCatCe.Gui.Model
     public partial class RichiesteOrdine
     {
         public int Id { get; set; }
-        public string Cliente { get; set; }
         public string Indirizzo { get; set; }
         public string Telefono { get; set; }
         public string EMail { get; set; }
@@ -23,7 +22,6 @@ namespace OrdiniCatCe.Gui.Model
         public string Codice { get; set; }
         public string Descrizione { get; set; }
         public Nullable<decimal> PrezzoAcquisto { get; set; }
-        public string PrezzoVendita { get; set; }
         public bool Avvisato { get; set; }
         public Nullable<System.DateTime> DataAvvisato { get; set; }
         public Nullable<System.DateTime> DataOrdinato { get; set; }
@@ -32,6 +30,11 @@ namespace OrdiniCatCe.Gui.Model
         public Nullable<System.DateTime> DataRitirato { get; set; }
         public Nullable<int> IdMarca { get; set; }
         public Nullable<int> IdFornitore { get; set; }
+        public string Nome { get; set; }
+        public string Cognome { get; set; }
+        public string Localita { get; set; }
+        public string NumeroCivico { get; set; }
+        public Nullable<decimal> PrezzoVendita { get; set; }
     
         public virtual Marche Marche { get; set; }
         public virtual Fornitori Fornitori { get; set; }

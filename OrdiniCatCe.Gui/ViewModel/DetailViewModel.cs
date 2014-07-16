@@ -14,19 +14,37 @@ namespace OrdiniCatCe.Gui.ViewModel
     {
         private int _id;
 
-        #region Cliente
-        private const string _clientePrpName = "Cliente";
-        private string _cliente;
-        public string Cliente
+        #region Nome
+        private const string _nomePrpName = "Nome";
+        private string _nome;
+        public string Nome
         {
             get
             {
-                return _cliente;
+                return _nome;
             }
             set
             {
-                _cliente = value;
-                RaisePropertyChanged(_clientePrpName);
+                _nome = value;
+                RaisePropertyChanged(_nomePrpName);
+            }
+        }
+
+        #endregion
+
+        #region Cognome
+        private const string _cognomePrpName = "Cognome";
+        private string _cognome;
+        public string Cognome
+        {
+            get
+            {
+                return _cognome;
+            }
+            set
+            {
+                _cognome = value;
+                RaisePropertyChanged(_cognomePrpName);
             }
         }
 
@@ -81,6 +99,42 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 _indirizzo = value;
                 RaisePropertyChanged(_indirizzoPrpName);
+            }
+        }
+
+        #endregion
+
+        #region Localita
+        private const string _localitaPrpName = "Localita";
+        private string _localita;
+        public string Localita
+        {
+            get
+            {
+                return _localita;
+            }
+            set
+            {
+                _localita = value;
+                RaisePropertyChanged(_localitaPrpName);
+            }
+        }
+
+        #endregion
+
+        #region NumeroCivico
+        private const string _numeroCivicoPrpName = "NumeroCivico";
+        private string _numeroCivico;
+        public string NumeroCivico
+        {
+            get
+            {
+                return _numeroCivico;
+            }
+            set
+            {
+                _numeroCivico = value;
+                RaisePropertyChanged(_numeroCivicoPrpName);
             }
         }
 
@@ -274,7 +328,8 @@ namespace OrdiniCatCe.Gui.ViewModel
             return new RichiesteOrdine()
                    {
                        Id = _id,
-                       Cliente = Cliente,
+                       Cognome = Cognome,
+                       Nome = Nome,
                        Cellulare = Cellulare,
                        Telefono = Telefono,
                        EMail = EMail,
@@ -283,7 +338,9 @@ namespace OrdiniCatCe.Gui.ViewModel
                        DataArrivato = DataArrivato,
                        DataAvvisato = DataAvvisato,
                        DataOrdinato = DataOrdinato,
-                       DataRitirato = DataRitirato
+                       DataRitirato = DataRitirato,
+                       Localita = Localita,
+                       NumeroCivico = NumeroCivico
                    };
         }
 
@@ -302,10 +359,13 @@ namespace OrdiniCatCe.Gui.ViewModel
         private void SetupDefaultValues()
         {
             _id = -1;
-            this.Cliente = string.Empty;
+            this.Nome = string.Empty;
+            this.Cognome = string.Empty;
             this.Telefono = string.Empty;
             this.EMail = string.Empty;
             this.Indirizzo = string.Empty;
+            this.Localita = string.Empty;
+            this.NumeroCivico = string.Empty;
             this.Cellulare = string.Empty;
             this.Codice = string.Empty;
             this.Avvisato = false;
@@ -318,10 +378,13 @@ namespace OrdiniCatCe.Gui.ViewModel
         private void SetupValuesFromRichiestaOrdine(RichiesteOrdine richiestaOrdine)
         {
             _id = richiestaOrdine.Id;
-            this.Cliente = richiestaOrdine.Cliente;
+            this.Cognome = richiestaOrdine.Cognome;
+            this.Nome = richiestaOrdine.Nome;
             this.Telefono = richiestaOrdine.Telefono;
             this.EMail = richiestaOrdine.EMail;
             this.Indirizzo = richiestaOrdine.Indirizzo;
+            this.Localita = richiestaOrdine.Localita;
+            this.NumeroCivico = richiestaOrdine.NumeroCivico;
             this.Cellulare  = richiestaOrdine.Cellulare;
             this.Avvisato = richiestaOrdine.Avvisato;
             this.Codice = richiestaOrdine.Codice;
@@ -329,6 +392,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.DataOrdinato = richiestaOrdine.DataOrdinato;
             this.DataAvvisato = richiestaOrdine.DataAvvisato;
             this.DataRitirato = richiestaOrdine.DataRitirato;
+
         }
     
     }
