@@ -21,6 +21,8 @@
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
@@ -28,20 +30,34 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="Cliente"></TextBlock>
-                <TextBox Text="{Binding Cliente, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
-                
-                <TextBlock Text="Indirizzo" Grid.Column="2"></TextBlock>
-                <TextBox Text="{Binding Indirizzo, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" />
-                
-                <TextBlock Text="Telefono" Grid.Row="1"></TextBlock>
-                <TextBox Text="{Binding Telefono, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" />
-                
-                <TextBlock Text="EMail" Grid.Row="1" Grid.Column="2"></TextBlock>
-                <TextBox Text="{Binding EMail, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3" />
+                <!-- Riga 1: NOME COGNOME -->
+                <TextBlock Text="Nome"></TextBlock>
+                <TextBox Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
 
-                <TextBlock Text="Cellulare" Grid.Row="2" ></TextBlock>
-                <TextBox Text="{Binding Cellulare, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" />
+                <TextBlock Text="Cognome" Grid.Column="2"></TextBlock>
+                <TextBox Text="{Binding Cognome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" />
+
+
+                <!-- Riga 2: indirizzo -->
+                <TextBlock Text="Indirizzo" Grid.Row="1" Grid.Column="0"></TextBlock>
+                <TextBox Text="{Binding Indirizzo, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" />
+                
+                <TextBlock Text="Località" Grid.Row="1" Grid.Column="2"></TextBlock>
+                <TextBox Text="{Binding Localita, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3" />
+                
+                <TextBlock Text="Civico" Grid.Row="1" Grid.Column="4"></TextBlock>
+                <TextBox Text="{Binding NumeroCivico, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="5" />
+
+
+                <!-- Riga 3: contatti -->
+                <TextBlock Text="Telefono" Grid.Row="2"></TextBlock>
+                <TextBox Text="{Binding Telefono, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" />
+                
+                <TextBlock Text="EMail" Grid.Row="2" Grid.Column="2"></TextBlock>
+                <TextBox Text="{Binding EMail, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="3" />
+
+                <TextBlock Text="Cellulare" Grid.Row="2" Grid.Column="4" ></TextBlock>
+                <TextBox Text="{Binding Cellulare, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="5" />
             </Grid>
         </Border>
         <Border x:Name="brdPezzo"></Border>
