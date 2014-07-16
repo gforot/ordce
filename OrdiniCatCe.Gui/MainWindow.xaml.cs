@@ -32,8 +32,12 @@ namespace OrdiniCatCe.Gui
             InitializeComponent();
 
             Messenger.Default.Register<MessageBase>(this, MsgKeys.AddRigaOrdineKey, OnAddRigaOrdineRequested);
-            
+           
         }
+
+
+
+
 
         private void OnAddRigaOrdineRequested(MessageBase obj)
         {
@@ -80,6 +84,11 @@ namespace OrdiniCatCe.Gui
                     break;
                 }
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //DialogResult = null;
         }
     }
 }

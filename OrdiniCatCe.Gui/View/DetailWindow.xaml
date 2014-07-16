@@ -1,20 +1,24 @@
 ﻿<Window x:Class="OrdiniCatCe.Gui.View.DetailWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding DetailViewModel, Source={StaticResource Locator}}"
-        Title="DetailWindow" Height="300" Width="600">
+        Title="DetailWindow" Height="650" Width="800">
     <StackPanel>
         <StackPanel.Resources>
-           
+            <converters:EnumBooleanConverter x:Key="enumBooleanConverter" ></converters:EnumBooleanConverter>
+            
             <Style TargetType="Border">
+                <Setter Property="BorderBrush" Value="Chartreuse" />
                 <Setter Property="CornerRadius" Value="5"></Setter>
                 <Setter Property="Margin" Value="4"></Setter>
+                <Setter Property="BorderThickness" Value="1"></Setter>
             </Style>
             <Style TargetType="Button">
                 <Setter Property="Margin" Value="4"></Setter>
             </Style>
         </StackPanel.Resources>
-        <Border x:Name="brdCliente" BorderThickness="1" BorderBrush="Chartreuse" >
+        <Border x:Name="brdCliente" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -60,10 +64,77 @@
                 <TextBox Text="{Binding Cellulare, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="5" />
             </Grid>
         </Border>
-        <Border x:Name="brdPezzo"></Border>
-        <Border x:Name="brdOrdine"></Border>
+        <Border x:Name="brdPezzo">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Marchio" Grid.Row="0" Grid.Column="0"></TextBlock>
+                <TextBlock Text="Codice" Grid.Row="1" Grid.Column="0"></TextBlock>
+                <TextBlock Text="Descrizione" Grid.Row="2" Grid.Column="0"></TextBlock>
+                <TextBlock Text="Prezzo di Costo" Grid.Row="3" Grid.Column="0"></TextBlock>
+                <TextBlock Text="Prezzo di Vendita" Grid.Row="4" Grid.Column="0"></TextBlock>
+                <TextBlock Text="Fornitore" Grid.Row="5" Grid.Column="0"></TextBlock>
+                <TextBlock Text="DataRichiesta" Grid.Row="6" Grid.Column="0"></TextBlock>
+                <TextBlock Text="DataArrivo" Grid.Row="7" Grid.Column="0"></TextBlock>
 
-        <Border x:Name="btnBorder">
+                <TextBox Text="??Marca???" Grid.Row="0" Grid.Column="1"></TextBox>
+                <TextBox Text="{Binding Codice}" Grid.Row="1" Grid.Column="1"></TextBox>
+                <TextBox Text="{Binding Descrizione}" Grid.Row="2" Grid.Column="1"></TextBox>
+                <TextBox Text="{Binding PrezzoCosto}" Grid.Row="3" Grid.Column="1"></TextBox>
+                <TextBox Text="{Binding PrezzoVendita}" Grid.Row="4" Grid.Column="1"></TextBox>
+                <TextBox Text=" ??FORNITORE??" Grid.Row="5" Grid.Column="1"></TextBox>
+                <TextBox Text="{Binding DataOrdinato}" Grid.Row="6" Grid.Column="1"></TextBox>
+                <TextBox Text="{Binding DataArrivato}" Grid.Row="7" Grid.Column="1"></TextBox>
+            </Grid>
+        </Border>
+        <Border x:Name="brdOrdine">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Cliente Avvisato" Grid.Row="0" Grid.Column="0"></TextBlock>
+                <CheckBox IsChecked="{Binding Avvisato, Mode=TwoWay}" Grid.Column="1" />
+                <TextBlock Text="Modalità Avviso" Grid.Row="1" Grid.Column="0"></TextBlock>
+
+                <RadioButton Grid.Row="2" Grid.Column="1" IsChecked="{Binding Path=ModalitaAvviso, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Telefono}">Telefono</RadioButton>
+                <RadioButton Grid.Row="2" Grid.Column="2" IsChecked="{Binding Path=ModalitaAvviso, Converter={StaticResource enumBooleanConverter}, ConverterParameter=EMail}">EMail</RadioButton>
+                <RadioButton Grid.Row="2" Grid.Column="3" IsChecked="{Binding Path=ModalitaAvviso, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Segreteria}">Segreteria</RadioButton>
+            </Grid>
+        </Border>
+
+        <Border x:Name="btnRitirato" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Ritirato il" Grid.Row="0" Grid.Column="0"></TextBlock>
+                <TextBox Text="{Binding DataRitirato}" Grid.Row="0" Grid.Column="1"></TextBox>
+            </Grid>
+        </Border>
+
+        <Border x:Name="btnBorder" >
             <StackPanel Orientation="Horizontal">
                 <Button Content="Annulla" Command="{Binding AnnullaCommand}"/>
                 <Button Content="Conferma" Command="{Binding ConfermaCommand}"/>

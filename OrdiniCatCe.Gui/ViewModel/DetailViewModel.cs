@@ -285,9 +285,62 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #endregion
 
+        #region PrezzoCosto
+        private const string _prezzoCostoPrpName = "PrezzoCosto";
+        private decimal? _prezzoCosto;
+        public decimal? PrezzoCosto
+        {
+            get
+            {
+                return _prezzoCosto;
+            }
+            set
+            {
+                _prezzoCosto = value;
+                RaisePropertyChanged(_prezzoCostoPrpName);
+            }
+        }
+
+        #endregion
+
+        #region PrezzoVendita
+        private const string _prezzoVenditaPrpName = "PrezzoVendita";
+        private decimal? _prezzoVendita;
+        public decimal? PrezzoVendita
+        {
+            get
+            {
+                return _prezzoVendita;
+            }
+            set
+            {
+                _prezzoVendita = value;
+                RaisePropertyChanged(_prezzoVenditaPrpName);
+            }
+        }
+
+        #endregion
+
+        #region ModalitaAvviso
+        private const string _modalitaAvvisoPrpName = "ModalitaAvviso";
+        private ModalitaAvviso? _modalitaAvviso;
+        public ModalitaAvviso? ModalitaAvviso
+        {
+            get
+            {
+                return _modalitaAvviso;
+            }
+            set
+            {
+                _modalitaAvviso = value;
+                RaisePropertyChanged(_modalitaAvvisoPrpName);
+            }
+        }
+
+        #endregion
+
         /*
-        public Nullable<decimal> PrezzoAcquisto { get; set; }
-        public string PrezzoVendita { get; set; }
+
         public Nullable<ModalitaAvviso> ModalitàAvviso { get; set; }
         public Nullable<int> IdMarca { get; set; }
         public Nullable<int> IdFornitore { get; set; }
