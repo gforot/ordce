@@ -285,19 +285,19 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #endregion
 
-        #region PrezzoCosto
-        private const string _prezzoCostoPrpName = "PrezzoCosto";
-        private decimal? _prezzoCosto;
-        public decimal? PrezzoCosto
+        #region PrezzoAcquisto
+        private const string _prezzoAcquistoPrpName = "PrezzoAcquisto";
+        private decimal? _prezzoAcquisto;
+        public decimal? PrezzoAcquisto
         {
             get
             {
-                return _prezzoCosto;
+                return _prezzoAcquisto;
             }
             set
             {
-                _prezzoCosto = value;
-                RaisePropertyChanged(_prezzoCostoPrpName);
+                _prezzoAcquisto = value;
+                RaisePropertyChanged(_prezzoAcquistoPrpName);
             }
         }
 
@@ -323,8 +323,8 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #region ModalitaAvviso
         private const string _modalitaAvvisoPrpName = "ModalitaAvviso";
-        private ModalitaAvviso? _modalitaAvviso;
-        public ModalitaAvviso? ModalitaAvviso
+        private ModalitaAvviso _modalitaAvviso;
+        public ModalitaAvviso ModalitaAvviso
         {
             get
             {
@@ -393,7 +393,13 @@ namespace OrdiniCatCe.Gui.ViewModel
                        DataOrdinato = DataOrdinato,
                        DataRitirato = DataRitirato,
                        Localita = Localita,
-                       NumeroCivico = NumeroCivico
+                       NumeroCivico = NumeroCivico,
+                       ModalitàAvviso = ModalitaAvviso,
+                       PrezzoAcquisto = PrezzoAcquisto,
+                       PrezzoVendita = PrezzoVendita,
+                       Codice = Codice,
+                       Descrizione = Descrizione,
+                       
                    };
         }
 
@@ -426,6 +432,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.DataOrdinato = null;
             this.DataAvvisato= null;
             this.DataRitirato = null;
+            this.ModalitaAvviso = ModalitaAvviso.Undefined;
         }
 
         private void SetupValuesFromRichiestaOrdine(RichiesteOrdine richiestaOrdine)
@@ -445,7 +452,9 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.DataOrdinato = richiestaOrdine.DataOrdinato;
             this.DataAvvisato = richiestaOrdine.DataAvvisato;
             this.DataRitirato = richiestaOrdine.DataRitirato;
-
+            this.ModalitaAvviso = richiestaOrdine.ModalitàAvviso;
+            this.PrezzoAcquisto = richiestaOrdine.PrezzoAcquisto;
+            this.PrezzoVendita = richiestaOrdine.PrezzoVendita;
         }
     
     }

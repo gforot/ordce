@@ -15,6 +15,7 @@ namespace OrdiniCatCe.Gui.Model
     {
         Telefono = 0,
         EMail = 1,
-        Segreteria = 2
+        Segreteria = 2,
+        Undefined = 3
     }
 }

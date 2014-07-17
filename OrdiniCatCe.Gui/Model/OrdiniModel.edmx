@@ -123,7 +123,7 @@
           <Property Name="DataAvvisato" Type="DateTime" Precision="3" />
           <Property Name="DataOrdinato" Type="DateTime" Precision="3" />
           <Property Name="DataArrivato" Type="DateTime" Precision="3" />
-          <Property Name="ModalitàAvviso" Type="OrdiniModel.ModalitaAvviso" />
+          <Property Name="ModalitàAvviso" Type="OrdiniModel.ModalitaAvviso" Nullable="false" />
           <Property Name="DataRitirato" Type="DateTime" Precision="3" />
           <Property Name="IdMarca" Type="Int32" />
           <NavigationProperty Name="Marche" Relationship="OrdiniModel.FK_Marca" FromRole="RichiesteOrdine" ToRole="Marche" />
@@ -151,6 +151,7 @@
           <Member Name="Telefono" />
           <Member Name="EMail" />
           <Member Name="Segreteria" />
+          <Member Name="Undefined" />
         </EnumType>
         <EntityType Name="Fornitori">
           <Key>
