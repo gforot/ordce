@@ -90,7 +90,8 @@
                 <TextBlock Text="DataRichiesta" Grid.Row="6" Grid.Column="0"></TextBlock>
                 <TextBlock Text="DataArrivo" Grid.Row="7" Grid.Column="0"></TextBlock>
 
-                <TextBox Text="??Marca???" Grid.Row="0" Grid.Column="1"></TextBox>
+                
+                <ComboBox SelectedValue="{Binding IdMarca}" DisplayMemberPath="Nome" ItemsSource="{Binding Marche}" Grid.Column="1" />
                 <TextBox Text="{Binding Codice}" Grid.Row="1" Grid.Column="1"></TextBox>
                 <TextBox Text="{Binding Descrizione}" Grid.Row="2" Grid.Column="1"></TextBox>
                 <TextBox Text="{Binding PrezzoAcquisto}" Grid.Row="3" Grid.Column="1"></TextBox>

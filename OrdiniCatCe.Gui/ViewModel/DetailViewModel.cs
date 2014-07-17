@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Migrations.Model;
+using System.Linq;
+using System.Windows.Documents;
 using System.Windows.Media.TextFormatting;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -268,8 +271,6 @@ namespace OrdiniCatCe.Gui.ViewModel
         #endregion
 
         #region Ritirato
-
-
         private const string _ritiratoPrpName = "Ritirato";
         private bool _ritirato;
         public bool Ritirato
@@ -358,9 +359,26 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #endregion
 
-        /*
+        #region IdMarca
+        private const string _idMarcaPrpName = "IdMarca";
+        private int _idMarca;
+        public int IdMarca
+        {
+            get
+            {
+                return _idMarca;
+            }
+            set
+            {
+                _idMarca = value;
+                RaisePropertyChanged(_idMarcaPrpName);
+            }
+        }
+        #endregion
 
-        public Nullable<ModalitaAvviso> ModalitàAvviso { get; set; }
+        public List<Marche> Marche { get; private set; }
+
+        /*
         public Nullable<int> IdMarca { get; set; }
         public Nullable<int> IdFornitore { get; set; }
          */
@@ -375,6 +393,19 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             AnnullaCommand = new RelayCommand(Annulla);
             ConfermaCommand = new RelayCommand(Conferma, () => CanConferma);
+
+            //todo: trasformarlo in message per inizializzare Marche
+            OnInitRequested(null);
+
+            Messenger.Default.Register<MessageBase>(this, MsgKeys.InitKey, OnInitRequested);
+        }
+
+        private void OnInitRequested(MessageBase message)
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                Marche = db.Marche.ToList();
+            }
         }
 
         private void Annulla()
@@ -418,7 +449,8 @@ namespace OrdiniCatCe.Gui.ViewModel
                        PrezzoVendita = PrezzoVendita,
                        Codice = Codice,
                        Descrizione = Descrizione,
-                       Ritirato = Ritirato
+                       Ritirato = Ritirato,
+                       IdMarca = IdMarca
                    };
         }
 
@@ -453,6 +485,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.DataRitirato = null;
             this.ModalitaAvviso = ModalitaAvviso.Undefined;
             this.Ritirato = false;
+            this.IdMarca = -1;
         }
 
         private void SetupValuesFromRichiestaOrdine(RichiesteOrdine richiestaOrdine)
@@ -476,6 +509,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.PrezzoAcquisto = richiestaOrdine.PrezzoAcquisto;
             this.PrezzoVendita = richiestaOrdine.PrezzoVendita;
             this.Ritirato = richiestaOrdine.Ritirato;
+            this.IdMarca = IdMarca;
         }
     
     }

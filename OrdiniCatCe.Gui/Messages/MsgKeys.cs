@@ -9,5 +9,6 @@ namespace OrdiniCatCe.Gui.Messages
         public const string UpdateRigaOrdineKey = "UpdateRigaOrdine";
         public const string SetAvvisatoKey = "SetAvvisato";
         public const string SetRitiratoKey = "SetRitirato";
+        public const string InitKey = "Init";
     }
 }
