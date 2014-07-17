@@ -1,3 +1,1 @@
-- grafica come da richiesta.
-- db: 	spezzare Cliente in Nome:Cognome
-		spezzare indirizzo in Via Località Numero Civico
+- filtro per Ritirato
