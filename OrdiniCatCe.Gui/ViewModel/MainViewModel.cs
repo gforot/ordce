@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -15,30 +18,102 @@ namespace OrdiniCatCe.Gui.ViewModel
     public class MainViewModel : ViewModelBase
     {
         public RelayCommand AddCommand { get; private set; }
+        public RelayCommand ClearFiltersCommand { get; private set; }
+        public RelayCommand ClearNomeFilterCommand { get; private set; }
+        public RelayCommand ClearCognomeFilterCommand { get; private set; }
 
+        private const string _nameFilterPrpName="NameFilter";
+        private string _nameFilter;
+        public string NameFilter
+        {
+            get
+            {
+                return _nameFilter;
+            }
+            set
+            {
+                _nameFilter = value;
+                RaisePropertyChanged(_nameFilterPrpName);
+                RigheOrdine.Refresh();
+            }
+        }
 
-        public List<Marche> Marches { get; private set; }
-        public List<RichiesteOrdine> RigheOrdine { get; private set; }
-        public List<Fornitori> Fornitoris { get; private set; } 
+        private const string _cognomeFilterPrpName = "CognomeFilter";
+        private string _cognomeFilter;
+        public string CognomeFilter
+        {
+            get
+            {
+                return _cognomeFilter;
+            }
+            set
+            {
+                _cognomeFilter = value;
+                RaisePropertyChanged(_cognomeFilterPrpName);
+                RigheOrdine.Refresh();
+            }
+        }
+
+        private readonly ObservableCollection<RichiesteOrdine> _righeOrdine;
+
+        public ICollectionView RigheOrdine { get; private set; }
 
         public MainViewModel()
         {
+            _nameFilter = string.Empty;
             AddCommand = new RelayCommand(Add);
+            ClearFiltersCommand = new RelayCommand(ClearFilters);
+            ClearNomeFilterCommand = new RelayCommand(ClearNameFilter);
+            ClearCognomeFilterCommand = new RelayCommand(ClearCognomeFilter);
             Messenger.Default.Register<AddRigaOrdineMessage>(this, MsgKeys.AddRigaOrdineToDbKey, OnAddRigaOrdineToDbRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.UpdateRigaOrdineKey, OnUpdateRigaOrdineToDbRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetAvvisatoKey, OnUpdateAvvisatoRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetRitiratoKey, OnUpdateRitiratoRequested);
+            
+            _righeOrdine = new ObservableCollection<RichiesteOrdine>();
+
             // Code runs "for real"
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                Marches = db.Marche.ToList();
-                RigheOrdine = db.RichiesteOrdine.ToList();
-                Fornitoris = db.Fornitori.ToList();
+                foreach (RichiesteOrdine ro in db.RichiesteOrdine.ToList())
+                {
+                    _righeOrdine.Add(ro);  
+                } 
             }
+
+            RigheOrdine = CollectionViewSource.GetDefaultView(_righeOrdine);
+            RigheOrdine.Filter = Filter;
         }
 
+        private void ClearFilters()
+        {
+            ClearNameFilter();
+            ClearCognomeFilter();
+        }
 
+        private void ClearCognomeFilter()
+        {
+            CognomeFilter = string.Empty;
+        }
 
+        private void ClearNameFilter()
+        {
+            NameFilter = string.Empty;
+        }
+
+        private void UpdateRigheOrdineFromDb()
+        {
+            _righeOrdine.Clear();
+
+            // Code runs "for real"
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                foreach (RichiesteOrdine ro in db.RichiesteOrdine.ToList())
+                {
+                    _righeOrdine.Add(ro);
+                }
+            }
+        }
 
         private void OnAddRigaOrdineToDbRequested(AddRigaOrdineMessage rigaOrdine)
         {
@@ -46,6 +121,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 db.RichiesteOrdine.Add(rigaOrdine.RigaOrdine);
                 db.SaveChanges();
+                UpdateRigheOrdineFromDb();
             }
         }
 
@@ -59,6 +135,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                     toUpdate.Avvisato = true;
                     toUpdate.DataAvvisato = DateTime.Now;
                     db.SaveChanges();
+                    UpdateRigheOrdineFromDb();
                 }
             }
         }
@@ -72,6 +149,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                     RichiesteOrdine toUpdate = db.RichiesteOrdine.First(ordine => ordine.Id == message.RigaOrdine.Id);
                     toUpdate.DataRitirato = DateTime.Now;
                     db.SaveChanges();
+                    UpdateRigheOrdineFromDb();
                 }
             }
         }
@@ -88,6 +166,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                 RichiesteOrdine ro= db.RichiesteOrdine.First(r => r.Id == message.RigaOrdine.Id);
                 CopyAllProperties(message.RigaOrdine, ro);
                 int updated = db.SaveChanges();
+                UpdateRigheOrdineFromDb();
             }
         }
 
@@ -113,6 +192,47 @@ namespace OrdiniCatCe.Gui.ViewModel
             target.PrezzoAcquisto = source.PrezzoAcquisto;
             target.Telefono = source.Telefono;
             target.PrezzoVendita = source.PrezzoVendita;
+        }
+
+        private bool Filter(object obj)
+        {
+            if (!(obj is RichiesteOrdine))
+            {
+                return true;
+            }
+
+            RichiesteOrdine rOrdine = obj as RichiesteOrdine;
+            return FilterByName(rOrdine) && FilterByCognome(rOrdine);
+        }
+
+        private bool FilterByName(RichiesteOrdine rOrdine)
+        {
+            if (string.IsNullOrEmpty(NameFilter))
+            {
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(rOrdine.Nome))
+            {
+                return false;
+            }
+
+            return rOrdine.Nome.Contains(NameFilter);
+        }
+
+        private bool FilterByCognome(RichiesteOrdine rOrdine)
+        {
+            if (string.IsNullOrEmpty(CognomeFilter))
+            {
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(rOrdine.Cognome))
+            {
+                return false;
+            }
+
+            return rOrdine.Cognome.Contains(CognomeFilter);
         }
     }
 }
