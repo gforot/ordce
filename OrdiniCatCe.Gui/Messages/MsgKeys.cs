@@ -7,6 +7,7 @@ namespace OrdiniCatCe.Gui.Messages
         public const string AddRigaOrdineKey = "AddRigaOrdine";
         public const string AddRigaOrdineToDbKey = "AddRigaOrdineToDb";
         public const string UpdateRigaOrdineKey = "UpdateRigaOrdine";
-
+        public const string SetAvvisatoKey = "SetAvvisato";
+        public const string SetRitiratoKey = "SetRitirato";
     }
 }

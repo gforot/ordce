@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using GalaSoft.MvvmLight;
@@ -25,6 +26,8 @@ namespace OrdiniCatCe.Gui.ViewModel
             AddCommand = new RelayCommand(Add);
             Messenger.Default.Register<AddRigaOrdineMessage>(this, MsgKeys.AddRigaOrdineToDbKey, OnAddRigaOrdineToDbRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.UpdateRigaOrdineKey, OnUpdateRigaOrdineToDbRequested);
+            Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetAvvisatoKey, OnUpdateAvvisatoRequested);
+            Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetRitiratoKey, OnUpdateRitiratoRequested);
             // Code runs "for real"
             using (OrdiniEntities db = new OrdiniEntities())
             {
@@ -35,12 +38,41 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
 
 
+
+
         private void OnAddRigaOrdineToDbRequested(AddRigaOrdineMessage rigaOrdine)
         {
             using (OrdiniEntities db = new OrdiniEntities())
             {
                 db.RichiesteOrdine.Add(rigaOrdine.RigaOrdine);
                 db.SaveChanges();
+            }
+        }
+
+        private void OnUpdateAvvisatoRequested(UpdateRigaOrdineMessage message)
+        {
+            if (message.RigaOrdine != null)
+            {
+                using (OrdiniEntities db = new OrdiniEntities())
+                {
+                    RichiesteOrdine toUpdate = db.RichiesteOrdine.First(ordine => ordine.Id == message.RigaOrdine.Id);
+                    toUpdate.Avvisato = true;
+                    toUpdate.DataAvvisato = DateTime.Now;
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        private void OnUpdateRitiratoRequested(UpdateRigaOrdineMessage message)
+        {
+            if (message.RigaOrdine != null)
+            {
+                using (OrdiniEntities db = new OrdiniEntities())
+                {
+                    RichiesteOrdine toUpdate = db.RichiesteOrdine.First(ordine => ordine.Id == message.RigaOrdine.Id);
+                    toUpdate.DataRitirato = DateTime.Now;
+                    db.SaveChanges();
+                }
             }
         }
 

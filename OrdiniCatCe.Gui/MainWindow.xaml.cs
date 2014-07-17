@@ -32,7 +32,7 @@ namespace OrdiniCatCe.Gui
             InitializeComponent();
 
             Messenger.Default.Register<MessageBase>(this, MsgKeys.AddRigaOrdineKey, OnAddRigaOrdineRequested);
-           
+
         }
 
 
@@ -50,12 +50,91 @@ namespace OrdiniCatCe.Gui
                 Messenger.Default.Send<AddRigaOrdineMessage>(new AddRigaOrdineMessage
                                                              {
                                                                  RigaOrdine = wnd.CreateRigaOrdine()
-                                                             }, 
-                    MsgKeys.AddRigaOrdineToDbKey);
+                                                             },
+                                                             MsgKeys.AddRigaOrdineToDbKey);
             }
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        //private void Aggiorna_OnClick(object sender, RoutedEventArgs e)
+        //{
+        //    for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
+        //    {
+        //        if (vis is DataGridRow)
+        //        {
+        //            var row = (DataGridRow)vis;
+
+        //            if (row.DataContext is RichiesteOrdine)
+        //            {
+        //                RichiesteOrdine toUpdate = row.DataContext as RichiesteOrdine;
+        //                ServiceLocator.Current.GetInstance<DetailViewModel>().Setup(toUpdate);
+
+        //                DetailWindow wnd = new DetailWindow();
+        //                bool? dialogResult = wnd.ShowDialog();
+
+        //                if (dialogResult.HasValue && dialogResult.Value)
+        //                {
+        //                    //update
+        //                    Messenger.Default.Send<UpdateRigaOrdineMessage>(
+        //                                                                    new UpdateRigaOrdineMessage(wnd.CreateRigaOrdine()),
+        //                                                                    MsgKeys.UpdateRigaOrdineKey);
+        //                }
+
+        //            }
+
+        //            break;
+        //        }
+        //    }
+        //}
+
+        private void Aggiorna_OnClick(object sender, RoutedEventArgs e)
+        {
+            RichiesteOrdine toUpdate = GetRichiestaOrdineFromSenderOfButtonClick(sender);
+            if (toUpdate == null)
+            {
+                return;
+            }
+
+            ServiceLocator.Current.GetInstance<DetailViewModel>().Setup(toUpdate);
+
+            DetailWindow wnd = new DetailWindow();
+            bool? dialogResult = wnd.ShowDialog();
+
+            if (dialogResult.HasValue && dialogResult.Value)
+            {
+                //update
+                Messenger.Default.Send<UpdateRigaOrdineMessage>(
+                                                                new UpdateRigaOrdineMessage(wnd.CreateRigaOrdine()),
+                                                                MsgKeys.UpdateRigaOrdineKey);
+            }
+
+        }
+
+        private void SetAvvisato_OnClick(object sender, RoutedEventArgs e)
+        {
+            RichiesteOrdine richiestaOrdine = GetRichiestaOrdineFromSenderOfButtonClick(sender);
+            if (richiestaOrdine == null)
+            {
+                return;
+            }
+            Messenger.Default.Send<UpdateRigaOrdineMessage>(
+                                                new UpdateRigaOrdineMessage(richiestaOrdine),
+                                                MsgKeys.SetAvvisatoKey);
+
+        }
+
+        private void SetRitirato_OnClick(object sender, RoutedEventArgs e)
+        {
+            RichiesteOrdine richiestaOrdine = GetRichiestaOrdineFromSenderOfButtonClick(sender);
+            if (richiestaOrdine == null)
+            {
+                return;
+            }
+            Messenger.Default.Send<UpdateRigaOrdineMessage>(
+                                                new UpdateRigaOrdineMessage(richiestaOrdine),
+                                                MsgKeys.SetRitiratoKey);
+        }
+
+        private RichiesteOrdine GetRichiestaOrdineFromSenderOfButtonClick(object sender)
         {
             for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
             {
@@ -65,30 +144,12 @@ namespace OrdiniCatCe.Gui
 
                     if (row.DataContext is RichiesteOrdine)
                     {
-                        RichiesteOrdine toUpdate = row.DataContext as RichiesteOrdine;
-                        ServiceLocator.Current.GetInstance<DetailViewModel>().Setup(toUpdate);
-
-                        DetailWindow wnd = new DetailWindow();
-                        bool? dialogResult = wnd.ShowDialog();
-
-                        if (dialogResult.HasValue && dialogResult.Value)
-                        {
-                            //update
-                            Messenger.Default.Send<UpdateRigaOrdineMessage>(
-                                new UpdateRigaOrdineMessage(wnd.CreateRigaOrdine()),
-                                MsgKeys.UpdateRigaOrdineKey);
-                        }
-                        
+                        return row.DataContext as RichiesteOrdine;
                     }
-
                     break;
                 }
             }
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //DialogResult = null;
+            return null;
         }
     }
 }
