@@ -147,6 +147,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                 using (OrdiniEntities db = new OrdiniEntities())
                 {
                     RichiesteOrdine toUpdate = db.RichiesteOrdine.First(ordine => ordine.Id == message.RigaOrdine.Id);
+                    toUpdate.Ritirato = true;
                     toUpdate.DataRitirato = DateTime.Now;
                     db.SaveChanges();
                     UpdateRigheOrdineFromDb();
@@ -190,6 +191,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             target.Nome = source.Nome;
             target.NumeroCivico = source.NumeroCivico;
             target.PrezzoAcquisto = source.PrezzoAcquisto;
+            target.Ritirato = source.Ritirato;
             target.Telefono = source.Telefono;
             target.PrezzoVendita = source.PrezzoVendita;
         }

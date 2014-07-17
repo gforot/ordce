@@ -129,8 +129,16 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Ritirato il" Grid.Row="0" Grid.Column="0"></TextBlock>
-                <DatePicker DisplayDate="{Binding DataRitirato}" Grid.Row="0" Grid.Column="1" />
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Ritirato" Grid.Row="1" Grid.Column="0"></TextBlock>
+                <CheckBox IsChecked="{Binding DataRitirato}" Grid.Row="1" Grid.Column="1" />
+
+                <TextBlock Text="Ritirato il" Grid.Row="1" Grid.Column="0"></TextBlock>
+                <DatePicker DisplayDate="{Binding DataRitirato}" Grid.Row="1" Grid.Column="1" />
             </Grid>
         </Border>
 

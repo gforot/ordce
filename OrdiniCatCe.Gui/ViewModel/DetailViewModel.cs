@@ -267,6 +267,25 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #endregion
 
+        #region Ritirato
+
+
+        private const string _ritiratoPrpName = "Ritirato";
+        private bool _ritirato;
+        public bool Ritirato
+        {
+            get
+            {
+                return _ritirato;
+            }
+            set
+            {
+                _ritirato = value;
+                RaisePropertyChanged(_ritiratoPrpName);
+            }
+        }
+        #endregion
+
         #region DataRitirato
         private const string _dataRitiratoPrpName = "DataRitirato";
         private System.DateTime? _dataRitirato;
@@ -399,7 +418,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                        PrezzoVendita = PrezzoVendita,
                        Codice = Codice,
                        Descrizione = Descrizione,
-                       
+                       Ritirato = Ritirato
                    };
         }
 
@@ -433,6 +452,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.DataAvvisato= null;
             this.DataRitirato = null;
             this.ModalitaAvviso = ModalitaAvviso.Undefined;
+            this.Ritirato = false;
         }
 
         private void SetupValuesFromRichiestaOrdine(RichiesteOrdine richiestaOrdine)
@@ -455,6 +475,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.ModalitaAvviso = richiestaOrdine.ModalitàAvviso;
             this.PrezzoAcquisto = richiestaOrdine.PrezzoAcquisto;
             this.PrezzoVendita = richiestaOrdine.PrezzoVendita;
+            this.Ritirato = richiestaOrdine.Ritirato;
         }
     
     }

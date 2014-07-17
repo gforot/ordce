@@ -16,7 +16,11 @@ namespace OrdiniCatCe.Gui.Converters
 
                 if (ro.Avvisato)
                 {
-                    return new SolidColorBrush(Colors.GreenYellow);
+                    return new SolidColorBrush(Colors.LightGreen);
+                }
+                if (ro.Ritirato)
+                {
+                    return new SolidColorBrush(Colors.Green);
                 }
             }
 
