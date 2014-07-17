@@ -42,6 +42,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         public void Setup(AnagraficaElementType element)
         {
             _type = element;
+            _name = string.Empty;
         }
 
         private void Annulla()
@@ -53,7 +54,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             get
             {
-                return true;
+                return !string.IsNullOrEmpty(Name);
             }
         }
 

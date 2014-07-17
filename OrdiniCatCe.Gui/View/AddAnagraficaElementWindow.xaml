@@ -10,7 +10,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Nome" />
-            <TextBox Text="{Binding Name}" Width="255" />
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="255" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <Button Content="Annulla" Command="{Binding AnnullaCommand}"/>
