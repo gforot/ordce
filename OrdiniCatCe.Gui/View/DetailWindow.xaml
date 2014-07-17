@@ -91,7 +91,7 @@
                 <TextBlock Text="DataArrivo" Grid.Row="7" Grid.Column="0"></TextBlock>
 
                 
-                <ComboBox SelectedValue="{Binding IdMarca}" DisplayMemberPath="Nome" ItemsSource="{Binding Marche}" Grid.Column="1" />
+                <ComboBox SelectedValue="{Binding Marca}" DisplayMemberPath="Nome" ItemsSource="{Binding Marche}" Grid.Column="1" />
                 <TextBox Text="{Binding Codice}" Grid.Row="1" Grid.Column="1"></TextBox>
                 <TextBox Text="{Binding Descrizione}" Grid.Row="2" Grid.Column="1"></TextBox>
                 <TextBox Text="{Binding PrezzoAcquisto}" Grid.Row="3" Grid.Column="1"></TextBox>
@@ -136,7 +136,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Ritirato" Grid.Row="1" Grid.Column="0"></TextBlock>
-                <CheckBox IsChecked="{Binding DataRitirato}" Grid.Row="1" Grid.Column="1" />
+                <CheckBox IsChecked="{Binding Ritirato}" Grid.Row="1" Grid.Column="1" />
 
                 <TextBlock Text="Ritirato il" Grid.Row="1" Grid.Column="0"></TextBlock>
                 <DatePicker DisplayDate="{Binding DataRitirato}" Grid.Row="1" Grid.Column="1" />

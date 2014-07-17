@@ -25,23 +25,26 @@ namespace OrdiniCatCe.Gui.View
     /// </summary>
     public partial class DetailWindow : Window
     {
+        public bool MyDialogResult { get; private set; }
+
         public DetailWindow()
         {
             InitializeComponent();
 
             Messenger.Default.Register<MessageBase>(this, MsgKeys.CancelKey, OnCancelRequested);
             Messenger.Default.Register<MessageBase>(this, MsgKeys.ConfirmKey, OnConfirmRequested);
+
+            MyDialogResult = false;
         }
 
         private void OnConfirmRequested(MessageBase obj)
         {
-            DialogResult = true;
+            MyDialogResult = true;
             this.Close();
         }
 
         private void OnCancelRequested(MessageBase obj)
         {
-            DialogResult = false;
             this.Close();
         }
 

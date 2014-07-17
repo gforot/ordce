@@ -43,9 +43,9 @@ namespace OrdiniCatCe.Gui
         {
             ServiceLocator.Current.GetInstance<DetailViewModel>().Setup(null);
             DetailWindow wnd = new DetailWindow();
-            bool? dialogResult = wnd.ShowDialog();
+            wnd.ShowDialog();
 
-            if (dialogResult.HasValue && dialogResult.Value)
+            if (wnd.MyDialogResult)
             {
                 Messenger.Default.Send<AddRigaOrdineMessage>(new AddRigaOrdineMessage
                                                              {
@@ -97,9 +97,9 @@ namespace OrdiniCatCe.Gui
             ServiceLocator.Current.GetInstance<DetailViewModel>().Setup(toUpdate);
 
             DetailWindow wnd = new DetailWindow();
-            bool? dialogResult = wnd.ShowDialog();
+            wnd.ShowDialog();
 
-            if (dialogResult.HasValue && dialogResult.Value)
+            if (wnd.MyDialogResult)
             {
                 //update
                 Messenger.Default.Send<UpdateRigaOrdineMessage>(

@@ -75,7 +75,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             // Code runs "for real"
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                foreach (RichiesteOrdine ro in db.RichiesteOrdine.ToList())
+                foreach (RichiesteOrdine ro in db.RichiesteOrdine.Include("Marche").ToList())
                 {
                     _righeOrdine.Add(ro);  
                 } 
@@ -108,7 +108,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             // Code runs "for real"
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                foreach (RichiesteOrdine ro in db.RichiesteOrdine.ToList())
+                foreach (RichiesteOrdine ro in db.RichiesteOrdine.Include("Marche").ToList())
                 {
                     _righeOrdine.Add(ro);
                 }
@@ -164,7 +164,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                RichiesteOrdine ro= db.RichiesteOrdine.First(r => r.Id == message.RigaOrdine.Id);
+                RichiesteOrdine ro = db.RichiesteOrdine.First(r => r.Id == message.RigaOrdine.Id);
                 CopyAllProperties(message.RigaOrdine, ro);
                 int updated = db.SaveChanges();
                 UpdateRigheOrdineFromDb();

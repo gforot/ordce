@@ -376,6 +376,25 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
         #endregion
 
+        #region Marca
+        private const string _marcaPrpName = "Marca";
+        private Marche _marca;
+        public Marche Marca
+        {
+            get
+            {
+                return _marca;
+            }
+            set
+            {
+                _marca = value;
+                RaisePropertyChanged(_marcaPrpName);
+            }
+        }
+        #endregion
+
+
+
         public List<Marche> Marche { get; private set; }
 
         /*
@@ -450,7 +469,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                        Codice = Codice,
                        Descrizione = Descrizione,
                        Ritirato = Ritirato,
-                       IdMarca = IdMarca
+                       IdMarca = Marca.Id
                    };
         }
 
@@ -485,7 +504,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.DataRitirato = null;
             this.ModalitaAvviso = ModalitaAvviso.Undefined;
             this.Ritirato = false;
-            this.IdMarca = -1;
+            this.Marca = null;
         }
 
         private void SetupValuesFromRichiestaOrdine(RichiesteOrdine richiestaOrdine)
@@ -509,7 +528,10 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.PrezzoAcquisto = richiestaOrdine.PrezzoAcquisto;
             this.PrezzoVendita = richiestaOrdine.PrezzoVendita;
             this.Ritirato = richiestaOrdine.Ritirato;
-            this.IdMarca = IdMarca;
+
+
+
+            this.Marca = this.Marche.FirstOrDefault(m => richiestaOrdine.Marche.Id == m.Id);
         }
     
     }
