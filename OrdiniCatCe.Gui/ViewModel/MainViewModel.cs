@@ -17,7 +17,9 @@ namespace OrdiniCatCe.Gui.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        public RelayCommand AddCommand { get; private set; }
+        public RelayCommand AddOrdineCommand { get; private set; }
+        public RelayCommand AddMarcaCommand { get; private set; }
+        public RelayCommand AddFornitoreCommand { get; private set; }
         public RelayCommand ClearFiltersCommand { get; private set; }
         public RelayCommand ClearNomeFilterCommand { get; private set; }
         public RelayCommand ClearCognomeFilterCommand { get; private set; }
@@ -61,7 +63,9 @@ namespace OrdiniCatCe.Gui.ViewModel
         public MainViewModel()
         {
             _nameFilter = string.Empty;
-            AddCommand = new RelayCommand(Add);
+            AddOrdineCommand = new RelayCommand(AddOrdine);
+            AddMarcaCommand = new RelayCommand(AddMarca);
+            AddFornitoreCommand = new RelayCommand(AddFornitore);
             ClearFiltersCommand = new RelayCommand(ClearFilters);
             ClearNomeFilterCommand = new RelayCommand(ClearNameFilter);
             ClearCognomeFilterCommand = new RelayCommand(ClearCognomeFilter);
@@ -155,9 +159,19 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
-        private void Add()
+        private void AddOrdine()
         {
             Messenger.Default.Send(new MessageBase(), MsgKeys.AddRigaOrdineKey);
+        }
+
+        private void AddMarca()
+        {
+
+        }
+
+        private void AddFornitore()
+        {
+
         }
 
         private void OnUpdateRigaOrdineToDbRequested(UpdateRigaOrdineMessage message)

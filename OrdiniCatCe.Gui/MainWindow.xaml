@@ -79,7 +79,9 @@
         </DataGrid>
 
         <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="3">
-            <Button Command="{Binding AddCommand}" Content="Nuovo Ordine" />
+            <Button Command="{Binding AddOrdineCommand}" Content="Nuovo Ordine" />
+            <Button Command="{Binding AddMarcaCommand}" Content="Aggiungi Marca" />
+            <Button Command="{Binding AddFornitoreCommand}" Content="Aggiungi Fornitore" />
         </StackPanel>
     </Grid>
 </Window>
