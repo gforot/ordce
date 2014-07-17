@@ -4,12 +4,18 @@
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="MainWindow" Height="300" Width="800" >
-    <StackPanel>
-        <StackPanel.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
             <converters:BackgroundConverter x:Key="backgroundConverter" />
-        </StackPanel.Resources>
+        </Grid.Resources>
         <TextBlock Text="Gestione Ordini" HorizontalAlignment="Center" FontSize="24"  Padding="0,5,0,8"></TextBlock>
-        <StackPanel x:Name="FiltersPanel" Orientation="Horizontal">
+        <StackPanel x:Name="FiltersPanel" Orientation="Horizontal" Grid.Row="1">
             <TextBlock Text="Nome" Margin="2"></TextBlock>
             <TextBox Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
             <Button Margin="2"  Command="{Binding ClearNomeFilterCommand}" >
@@ -25,7 +31,7 @@
             </Button>
         </StackPanel>
         <DataGrid x:Name="grid" CanUserAddRows="false" CanUserDeleteRows="False" AutoGenerateColumns="False"
-                  ItemsSource="{Binding RigheOrdine}"
+                  ItemsSource="{Binding RigheOrdine}" Grid.Row="2"
                   >
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
@@ -71,9 +77,9 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
-        <StackPanel Margin="5" Orientation="Horizontal">
-            <Button Command="{Binding AddCommand}" Content="Add" />
+
+        <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="3">
+            <Button Command="{Binding AddCommand}" Content="Nuovo Ordine" />
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </Window>
