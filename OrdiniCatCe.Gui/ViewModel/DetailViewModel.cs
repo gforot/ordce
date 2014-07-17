@@ -393,9 +393,25 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
         #endregion
 
-
+        #region Fornitore
+        private const string _fornitorePrpName = "Fornitore";
+        private Fornitori _fornitore;
+        public Fornitori Fornitore
+        {
+            get
+            {
+                return _fornitore;
+            }
+            set
+            {
+                _fornitore = value;
+                RaisePropertyChanged(_fornitorePrpName);
+            }
+        }
+        #endregion
 
         public List<Marche> Marche { get; private set; }
+        public List<Fornitori> Fornitori { get; private set; }
 
         /*
         public Nullable<int> IdMarca { get; set; }
@@ -424,6 +440,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             using (OrdiniEntities db = new OrdiniEntities())
             {
                 Marche = db.Marche.ToList();
+                Fornitori = db.Fornitori.ToList();
             }
         }
 
@@ -469,7 +486,8 @@ namespace OrdiniCatCe.Gui.ViewModel
                        Codice = Codice,
                        Descrizione = Descrizione,
                        Ritirato = Ritirato,
-                       IdMarca = Marca.Id
+                       IdMarca = Marca.Id,
+                       IdFornitore = Fornitore.Id,
                    };
         }
 
@@ -505,6 +523,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.ModalitaAvviso = ModalitaAvviso.Undefined;
             this.Ritirato = false;
             this.Marca = null;
+            this.Fornitore = null;
         }
 
         private void SetupValuesFromRichiestaOrdine(RichiesteOrdine richiestaOrdine)
@@ -532,6 +551,7 @@ namespace OrdiniCatCe.Gui.ViewModel
 
 
             this.Marca = this.Marche.FirstOrDefault(m => richiestaOrdine.Marche.Id == m.Id);
+            this.Fornitore = this.Fornitori.FirstOrDefault(m => richiestaOrdine.Fornitori.Id == m.Id);
         }
     
     }

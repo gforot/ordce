@@ -96,7 +96,7 @@
                 <TextBox Text="{Binding Descrizione}" Grid.Row="2" Grid.Column="1"></TextBox>
                 <TextBox Text="{Binding PrezzoAcquisto}" Grid.Row="3" Grid.Column="1"></TextBox>
                 <TextBox Text="{Binding PrezzoVendita}" Grid.Row="4" Grid.Column="1"></TextBox>
-                <TextBox Text=" ??FORNITORE??" Grid.Row="5" Grid.Column="1"></TextBox>
+                <ComboBox SelectedValue="{Binding Fornitore}" DisplayMemberPath="Name" ItemsSource="{Binding Fornitori}" Grid.Row="5" Grid.Column="1" />
                 <DatePicker DisplayDate="{Binding DataOrdinato}" Grid.Row="6" Grid.Column="1" />
                 <DatePicker DisplayDate="{Binding DataArrivato}" Grid.Row="7" Grid.Column="1" />
             </Grid>
