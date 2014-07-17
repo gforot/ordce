@@ -32,11 +32,44 @@ namespace OrdiniCatCe.Gui
             InitializeComponent();
 
             Messenger.Default.Register<MessageBase>(this, MsgKeys.AddRigaOrdineKey, OnAddRigaOrdineRequested);
-
+            Messenger.Default.Register<MessageBase>(this, MsgKeys.AddMarcaKey, OnAddMarcaRequested);
+            Messenger.Default.Register<MessageBase>(this, MsgKeys.AddFornitoreKey, OnAddFornitoreRequested);
         }
 
 
+        private void OnAddMarcaRequested(MessageBase obj)
+        {
+            ServiceLocator.Current.GetInstance<AddAnagraficaViewModel>().Setup(AnagraficaElementType.Marchio);
+            AddAnagraficaElementWindow wnd = new AddAnagraficaElementWindow();
+            wnd.ShowDialog();
 
+            if (wnd.MyDialogResult)
+            {
+                Messenger.Default.Send<AddMarcaMessage>(new AddMarcaMessage
+                {
+                    Name = wnd.GetName()
+                },
+                                             MsgKeys.AddMarcaToDbKey);
+            }
+        }
+
+
+        private void OnAddFornitoreRequested(MessageBase obj)
+        {
+            ServiceLocator.Current.GetInstance<AddAnagraficaViewModel>().Setup(AnagraficaElementType.Fornitore);
+            AddAnagraficaElementWindow wnd = new AddAnagraficaElementWindow();
+            wnd.ShowDialog();
+
+            if (wnd.MyDialogResult)
+            {
+                Messenger.Default.Send<AddFornitoreMessage>(new AddFornitoreMessage
+
+                {
+                    Name = wnd.GetName()
+                },
+                                             MsgKeys.AddFornitoreToDbKey);
+            }
+        }
 
 
         private void OnAddRigaOrdineRequested(MessageBase obj)

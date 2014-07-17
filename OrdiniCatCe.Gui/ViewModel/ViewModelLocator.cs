@@ -44,6 +44,7 @@ namespace OrdiniCatCe.Gui.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<DetailViewModel>();
+            SimpleIoc.Default.Register<AddAnagraficaViewModel>();
         }
 
         public MainViewModel Main
@@ -59,6 +60,14 @@ namespace OrdiniCatCe.Gui.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<DetailViewModel>();
+            }
+        }
+
+        public AddAnagraficaViewModel AddAnagraficaViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AddAnagraficaViewModel>();
             }
         }
         

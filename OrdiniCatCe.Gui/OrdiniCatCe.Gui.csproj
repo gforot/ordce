@@ -90,13 +90,17 @@
     </ApplicationDefinition>
     <Compile Include="Converters\BackgroundConverter.cs" />
     <Compile Include="Converters\EnumBooleanConverter.cs" />
+    <Compile Include="Messages\AddFornitoreMessage.cs" />
+    <Compile Include="Messages\AddMarcaMessage.cs" />
     <Compile Include="Messages\AddRigaOrdineMessage.cs" />
     <Compile Include="Messages\DetailWindowMessage.cs" />
     <Compile Include="Messages\MsgKeys.cs" />
     <Compile Include="Messages\UpdateRigaOrdineMessage.cs" />
+    <Compile Include="Model\AnagraficaElementType.cs" />
     <Compile Include="Model\Fornitori.cs">
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AddAnagraficaViewModel.cs" />
     <Compile Include="ViewModel\DetailViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -124,6 +128,9 @@
     <Compile Include="Model\RichiesteOrdine.cs">
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="View\AddAnagraficaElementWindow.xaml.cs">
+      <DependentUpon>AddAnagraficaElementWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DetailWindow.xaml.cs">
       <DependentUpon>DetailWindow.xaml</DependentUpon>
     </Compile>
@@ -139,6 +146,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AddAnagraficaElementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DetailWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

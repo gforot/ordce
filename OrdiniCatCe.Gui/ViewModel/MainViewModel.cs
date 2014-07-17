@@ -70,6 +70,10 @@ namespace OrdiniCatCe.Gui.ViewModel
             ClearNomeFilterCommand = new RelayCommand(ClearNameFilter);
             ClearCognomeFilterCommand = new RelayCommand(ClearCognomeFilter);
             Messenger.Default.Register<AddRigaOrdineMessage>(this, MsgKeys.AddRigaOrdineToDbKey, OnAddRigaOrdineToDbRequested);
+            Messenger.Default.Register<AddMarcaMessage>(this, MsgKeys.AddMarcaToDbKey, OnAddMarcaToDbRequested);
+            Messenger.Default.Register<AddFornitoreMessage>(this, MsgKeys.AddFornitoreToDbKey, OnAddFornitoreToDbRequested);
+
+
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.UpdateRigaOrdineKey, OnUpdateRigaOrdineToDbRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetAvvisatoKey, OnUpdateAvvisatoRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetRitiratoKey, OnUpdateRitiratoRequested);
@@ -129,6 +133,24 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
+        private void OnAddMarcaToDbRequested(AddMarcaMessage message)
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                db.Marche.Add(new Marche() { Nome = message.Name});
+                db.SaveChanges();
+            }
+        }
+
+        private void OnAddFornitoreToDbRequested(AddFornitoreMessage message)
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                db.Fornitori.Add(new Fornitori() { Name = message.Name });
+                db.SaveChanges();
+            }
+        }
+
         private void OnUpdateAvvisatoRequested(UpdateRigaOrdineMessage message)
         {
             if (message.RigaOrdine != null)
@@ -166,12 +188,12 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         private void AddMarca()
         {
-
+            Messenger.Default.Send(new MessageBase(), MsgKeys.AddMarcaKey);
         }
 
         private void AddFornitore()
         {
-
+            Messenger.Default.Send(new MessageBase(), MsgKeys.AddFornitoreKey);
         }
 
         private void OnUpdateRigaOrdineToDbRequested(UpdateRigaOrdineMessage message)
