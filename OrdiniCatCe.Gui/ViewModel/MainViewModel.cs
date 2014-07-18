@@ -69,6 +69,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 _viewRitirati = value;
                 RaisePropertyChanged(_viewRitiratiPrpName);
+                RigheOrdine.Refresh();
             }
         }
 
@@ -262,7 +263,7 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         private bool FilterByRitirati(RichiesteOrdine rOrdine)
         {
-            return ViewRitirati || rOrdine.Ritirato;
+            return ViewRitirati || !rOrdine.Ritirato;
         }
 
         private bool FilterByName(RichiesteOrdine rOrdine)
