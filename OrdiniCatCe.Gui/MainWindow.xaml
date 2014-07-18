@@ -14,7 +14,7 @@
         <Grid.Resources>
             <converters:BackgroundConverter x:Key="backgroundConverter" />
         </Grid.Resources>
-        <TextBlock Text="Gestione Ordini" HorizontalAlignment="Center" FontSize="24"  Padding="0,5,0,8"></TextBlock>
+        <TextBlock Text="Gestione Ordini" HorizontalAlignment="Center" FontSize="26"  Padding="0,5,0,5"></TextBlock>
         <StackPanel x:Name="FiltersPanel" Orientation="Horizontal" Grid.Row="1">
             <TextBlock Text="Nome" Margin="2"></TextBlock>
             <TextBox Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
@@ -27,6 +27,7 @@
                 <Image Source="Images/eraser2.png" Width="16" Height="16"  />
             </Button>
 
+            <TextBlock Margin="10,2,2,2" Text="Fornitore"/>
             <TextBox Text="{Binding FornitoreFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
             <Button Command="{Binding ClearFornitoreFilterCommand}" >
                 <Image Source="Images/eraser2.png" Width="16" Height="16"  />

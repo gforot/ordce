@@ -316,7 +316,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                 return false;
             }
 
-            return rOrdine.Fornitori.Name.Contains(FornitoreFilter);
+            return rOrdine.Fornitori.Name.ToLower().Contains(FornitoreFilter.ToLower());
         }
 
         private bool FilterByRitirati(RichiesteOrdine rOrdine)
@@ -336,7 +336,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                 return false;
             }
 
-            return rOrdine.Nome.Contains(NameFilter);
+            return rOrdine.Nome.ToLower().Contains(NameFilter.ToLower());
         }
 
         private bool FilterByCognome(RichiesteOrdine rOrdine)
@@ -351,7 +351,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                 return false;
             }
 
-            return rOrdine.Cognome.Contains(CognomeFilter);
+            return rOrdine.Cognome.ToLower().Contains(CognomeFilter.ToLower());
         }
     }
 }
