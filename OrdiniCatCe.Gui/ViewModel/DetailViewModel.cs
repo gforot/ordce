@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Migrations.Model;
@@ -453,7 +454,9 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             get
             {
-                return true;
+                return !string.IsNullOrEmpty(this.Nome) &&
+                    !string.IsNullOrEmpty(this.Cognome) &&
+                    !string.IsNullOrEmpty(this.Descrizione);
             }
         }
 
@@ -517,7 +520,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.Codice = string.Empty;
             this.Avvisato = false;
             this.DataArrivato = null;
-            this.DataOrdinato = null;
+            this.DataOrdinato = DateTime.Now;
             this.DataAvvisato= null;
             this.DataRitirato = null;
             this.ModalitaAvviso = ModalitaAvviso.Undefined;

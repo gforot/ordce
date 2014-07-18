@@ -18,20 +18,28 @@
         <StackPanel x:Name="FiltersPanel" Orientation="Horizontal" Grid.Row="1">
             <TextBlock Text="Nome" Margin="2"></TextBlock>
             <TextBox Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
-            <Button Margin="2"  Command="{Binding ClearNomeFilterCommand}" >
+            <Button Command="{Binding ClearNomeFilterCommand}" >
                 <Image Source="Images/eraser2.png" Width="16" Height="16"  />
             </Button>
-            <TextBlock Margin="10,2,2,2" Text="Cognome"></TextBlock>
+            <TextBlock Margin="10,2,2,2" Text="Cognome"/>
             <TextBox Text="{Binding CognomeFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
-            <Button Margin="2"  Command="{Binding ClearCognomeFilterCommand}" >
+            <Button Command="{Binding ClearCognomeFilterCommand}" >
                 <Image Source="Images/eraser2.png" Width="16" Height="16"  />
             </Button>
-            <Button Margin="20,2"  Command="{Binding ClearFiltersCommand}" >
+
+            <TextBox Text="{Binding FornitoreFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
+            <Button Command="{Binding ClearFornitoreFilterCommand}" >
+                <Image Source="Images/eraser2.png" Width="16" Height="16"  />
+            </Button>
+            
+            <Button Margin="20,5"  Command="{Binding ClearFiltersCommand}" >
                 <Image Source="Images/eraser2.png" Width="16" Height="16"  />
             </Button>
             
             <TextBlock Text="Visualizza Ritirati"></TextBlock>
             <CheckBox IsChecked="{Binding ViewRitirati}"></CheckBox>
+            
+            
         </StackPanel>
         <DataGrid x:Name="grid" CanUserAddRows="false" CanUserDeleteRows="False" AutoGenerateColumns="False"
                   ItemsSource="{Binding RigheOrdine}" Grid.Row="2"
@@ -67,6 +75,14 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Click="SetRitirato_OnClick">Ritirato</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="SetArrivato_OnClick">Arrivato</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

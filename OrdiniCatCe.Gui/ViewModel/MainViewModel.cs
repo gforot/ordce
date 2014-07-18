@@ -23,6 +23,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         public RelayCommand ClearFiltersCommand { get; private set; }
         public RelayCommand ClearNomeFilterCommand { get; private set; }
         public RelayCommand ClearCognomeFilterCommand { get; private set; }
+        public RelayCommand ClearFornitoreFilterCommand { get; private set; }
 
         private const string _nameFilterPrpName="NameFilter";
         private string _nameFilter;
@@ -52,6 +53,22 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 _cognomeFilter = value;
                 RaisePropertyChanged(_cognomeFilterPrpName);
+                RigheOrdine.Refresh();
+            }
+        }
+
+        private const string _fornitoreFilterPrpName = "FornitoreFilter";
+        private string _fornitoreFilter;
+        public string FornitoreFilter
+        {
+            get
+            {
+                return _fornitoreFilter;
+            }
+            set
+            {
+                _fornitoreFilter = value;
+                RaisePropertyChanged(_fornitoreFilterPrpName);
                 RigheOrdine.Refresh();
             }
         }
@@ -87,6 +104,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             ClearFiltersCommand = new RelayCommand(ClearFilters);
             ClearNomeFilterCommand = new RelayCommand(ClearNameFilter);
             ClearCognomeFilterCommand = new RelayCommand(ClearCognomeFilter);
+            ClearFornitoreFilterCommand = new RelayCommand(ClearFornitoreFilter);
             Messenger.Default.Register<AddRigaOrdineMessage>(this, MsgKeys.AddRigaOrdineToDbKey, OnAddRigaOrdineToDbRequested);
             Messenger.Default.Register<AddMarcaMessage>(this, MsgKeys.AddMarcaToDbKey, OnAddMarcaToDbRequested);
             Messenger.Default.Register<AddFornitoreMessage>(this, MsgKeys.AddFornitoreToDbKey, OnAddFornitoreToDbRequested);
@@ -95,6 +113,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.UpdateRigaOrdineKey, OnUpdateRigaOrdineToDbRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetAvvisatoKey, OnUpdateAvvisatoRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetRitiratoKey, OnUpdateRitiratoRequested);
+            Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetArrivatoKey, OnUpdateArrivatoRequested);
             
             _righeOrdine = new ObservableCollection<RichiesteOrdine>();
 
@@ -115,6 +134,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             ClearNameFilter();
             ClearCognomeFilter();
+            ClearFornitoreFilter();
         }
 
         private void ClearCognomeFilter()
@@ -125,6 +145,11 @@ namespace OrdiniCatCe.Gui.ViewModel
         private void ClearNameFilter()
         {
             NameFilter = string.Empty;
+        }
+
+        private void ClearFornitoreFilter()
+        {
+            FornitoreFilter = string.Empty;
         }
 
         private void UpdateRigheOrdineFromDb()
@@ -166,6 +191,21 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 db.Fornitori.Add(new Fornitori() { Name = message.Name });
                 db.SaveChanges();
+            }
+        }
+
+        private void OnUpdateArrivatoRequested(UpdateRigaOrdineMessage message)
+        {
+            if (message.RigaOrdine != null)
+            {
+                using (OrdiniEntities db = new OrdiniEntities())
+                {
+                    RichiesteOrdine toUpdate = db.RichiesteOrdine.First(ordine => ordine.Id == message.RigaOrdine.Id);
+                    //toUpdate.Arrivato = true;
+                    toUpdate.DataArrivato = DateTime.Now;
+                    db.SaveChanges();
+                    UpdateRigheOrdineFromDb();
+                }
             }
         }
 
@@ -258,7 +298,25 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
 
             RichiesteOrdine rOrdine = obj as RichiesteOrdine;
-            return FilterByName(rOrdine) && FilterByCognome(rOrdine) && FilterByRitirati(rOrdine);
+            return FilterByName(rOrdine) && 
+                FilterByCognome(rOrdine) && 
+                FilterByRitirati(rOrdine) &&
+                FilterByFornitore(rOrdine);
+        }
+
+        private bool FilterByFornitore(RichiesteOrdine rOrdine)
+        {
+            if (string.IsNullOrEmpty(FornitoreFilter))
+            {
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(rOrdine.Fornitori.Name))
+            {
+                return false;
+            }
+
+            return rOrdine.Fornitori.Name.Contains(FornitoreFilter);
         }
 
         private bool FilterByRitirati(RichiesteOrdine rOrdine)

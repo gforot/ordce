@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding DetailViewModel, Source={StaticResource Locator}}"
-        Title="DetailWindow" Height="650" Width="800">
+        Title="DetailWindow" Height="500" Width="800">
     <StackPanel>
         <StackPanel.Resources>
             <converters:EnumBooleanConverter x:Key="enumBooleanConverter" ></converters:EnumBooleanConverter>
@@ -79,7 +79,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="4*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Marchio" Grid.Row="0" Grid.Column="0"></TextBlock>
                 <TextBlock Text="Codice" Grid.Row="1" Grid.Column="0"></TextBlock>
@@ -93,12 +93,12 @@
                 
                 <ComboBox SelectedValue="{Binding Marca}" DisplayMemberPath="Nome" ItemsSource="{Binding Marche}" Grid.Column="1" />
                 <TextBox Text="{Binding Codice}" Grid.Row="1" Grid.Column="1"></TextBox>
-                <TextBox Text="{Binding Descrizione}" Grid.Row="2" Grid.Column="1"></TextBox>
+                <TextBox Text="{Binding Descrizione, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1"></TextBox>
                 <TextBox Text="{Binding PrezzoAcquisto}" Grid.Row="3" Grid.Column="1"></TextBox>
                 <TextBox Text="{Binding PrezzoVendita}" Grid.Row="4" Grid.Column="1"></TextBox>
                 <ComboBox SelectedValue="{Binding Fornitore}" DisplayMemberPath="Name" ItemsSource="{Binding Fornitori}" Grid.Row="5" Grid.Column="1" />
-                <DatePicker DisplayDate="{Binding DataOrdinato}" Grid.Row="6" Grid.Column="1" />
-                <DatePicker DisplayDate="{Binding DataArrivato}" Grid.Row="7" Grid.Column="1" />
+                <DatePicker SelectedDate="{Binding DataOrdinato}" Grid.Row="6" Grid.Column="1" />
+                <DatePicker SelectedDate="{Binding DataArrivato}" Grid.Row="7" Grid.Column="1" />
             </Grid>
         </Border>
         <Border x:Name="brdOrdine">
@@ -139,7 +139,7 @@
                 <CheckBox IsChecked="{Binding Ritirato}" Grid.Row="1" Grid.Column="1" />
 
                 <TextBlock Text="Ritirato il" Grid.Row="1" Grid.Column="0"></TextBlock>
-                <DatePicker DisplayDate="{Binding DataRitirato}" Grid.Row="1" Grid.Column="1" />
+                <DatePicker SelectedDate="{Binding DataRitirato}" Grid.Row="1" Grid.Column="1" />
             </Grid>
         </Border>
 

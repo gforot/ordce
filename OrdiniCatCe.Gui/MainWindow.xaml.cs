@@ -167,6 +167,18 @@ namespace OrdiniCatCe.Gui
                                                 MsgKeys.SetRitiratoKey);
         }
 
+        private void SetArrivato_OnClick(object sender, RoutedEventArgs e)
+        {
+            RichiesteOrdine richiestaOrdine = GetRichiestaOrdineFromSenderOfButtonClick(sender);
+            if (richiestaOrdine == null)
+            {
+                return;
+            }
+            Messenger.Default.Send<UpdateRigaOrdineMessage>(
+                                                new UpdateRigaOrdineMessage(richiestaOrdine),
+                                                MsgKeys.SetArrivatoKey);
+        }
+
         private RichiesteOrdine GetRichiestaOrdineFromSenderOfButtonClick(object sender)
         {
             for (var vis = sender as Visual; vis != null; vis = VisualTreeHelper.GetParent(vis) as Visual)
