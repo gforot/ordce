@@ -29,6 +29,9 @@
             <Button Margin="20,2"  Command="{Binding ClearFiltersCommand}" >
                 <Image Source="Images/eraser2.png" Width="16" Height="16"  />
             </Button>
+            
+            <TextBlock Text="Visualizza Ritirati"></TextBlock>
+            <CheckBox IsChecked="{Binding ViewRitirati}"></CheckBox>
         </StackPanel>
         <DataGrid x:Name="grid" CanUserAddRows="false" CanUserDeleteRows="False" AutoGenerateColumns="False"
                   ItemsSource="{Binding RigheOrdine}" Grid.Row="2"

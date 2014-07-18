@@ -56,12 +56,29 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
+        private const string _viewRitiratiPrpName = "ViewRitirati";
+        private bool _viewRitirati;
+
+        public bool ViewRitirati
+        {
+            get
+            {
+                return _viewRitirati;
+            }
+            set
+            {
+                _viewRitirati = value;
+                RaisePropertyChanged(_viewRitiratiPrpName);
+            }
+        }
+
         private readonly ObservableCollection<RichiesteOrdine> _righeOrdine;
 
         public ICollectionView RigheOrdine { get; private set; }
 
         public MainViewModel()
         {
+            _viewRitirati = false;
             _nameFilter = string.Empty;
             AddOrdineCommand = new RelayCommand(AddOrdine);
             AddMarcaCommand = new RelayCommand(AddMarca);
@@ -240,7 +257,12 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
 
             RichiesteOrdine rOrdine = obj as RichiesteOrdine;
-            return FilterByName(rOrdine) && FilterByCognome(rOrdine);
+            return FilterByName(rOrdine) && FilterByCognome(rOrdine) && FilterByRitirati(rOrdine);
+        }
+
+        private bool FilterByRitirati(RichiesteOrdine rOrdine)
+        {
+            return ViewRitirati || rOrdine.Ritirato;
         }
 
         private bool FilterByName(RichiesteOrdine rOrdine)
