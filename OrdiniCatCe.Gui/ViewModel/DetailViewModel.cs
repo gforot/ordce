@@ -306,6 +306,24 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #endregion
 
+        #region DataRichiesta
+        private const string _dataRichiestaPrpName = "DataRichiesta";
+        private System.DateTime? _dataRichiesta;
+        public System.DateTime? DataRichiesta
+        {
+            get
+            {
+                return _dataRichiesta;
+            }
+            set
+            {
+                _dataRichiesta = value;
+                RaisePropertyChanged(_dataRichiestaPrpName);
+            }
+        }
+
+        #endregion
+
         #region PrezzoAcquisto
         private const string _prezzoAcquistoPrpName = "PrezzoAcquisto";
         private decimal? _prezzoAcquisto;
@@ -481,6 +499,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                        DataAvvisato = DataAvvisato,
                        DataOrdinato = DataOrdinato,
                        DataRitirato = DataRitirato,
+                       DataRichiesta = DataRichiesta,
                        Localita = Localita,
                        NumeroCivico = NumeroCivico,
                        ModalitàAvviso = ModalitaAvviso,
@@ -520,7 +539,8 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.Codice = string.Empty;
             this.Avvisato = false;
             this.DataArrivato = null;
-            this.DataOrdinato = DateTime.Now;
+            this.DataOrdinato = null;
+            this.DataRichiesta = DateTime.Now;
             this.DataAvvisato= null;
             this.DataRitirato = null;
             this.ModalitaAvviso = ModalitaAvviso.Undefined;
@@ -545,6 +565,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.DataArrivato = richiestaOrdine.DataArrivato;
             this.DataOrdinato = richiestaOrdine.DataOrdinato;
             this.DataAvvisato = richiestaOrdine.DataAvvisato;
+            this.DataRichiesta = richiestaOrdine.DataRichiesta;
             this.DataRitirato = richiestaOrdine.DataRitirato;
             this.ModalitaAvviso = richiestaOrdine.ModalitàAvviso;
             this.PrezzoAcquisto = richiestaOrdine.PrezzoAcquisto;

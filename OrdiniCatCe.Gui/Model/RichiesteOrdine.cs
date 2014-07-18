@@ -36,6 +36,7 @@ namespace OrdiniCatCe.Gui.Model
         public string NumeroCivico { get; set; }
         public Nullable<decimal> PrezzoVendita { get; set; }
         public bool Ritirato { get; set; }
+        public Nullable<System.DateTime> DataRichiesta { get; set; }
     
         public virtual Marche Marche { get; set; }
         public virtual Fornitori Fornitori { get; set; }

@@ -58,6 +58,7 @@
           <Property Name="NumeroCivico" Type="nvarchar" MaxLength="100" />
           <Property Name="PrezzoVendita" Type="money" />
           <Property Name="Ritirato" Type="bit" Nullable="false" />
+          <Property Name="DataRichiesta" Type="datetime" />
         </EntityType>
         <Association Name="FK_Fornitore">
           <End Role="Fornitori" Type="OrdiniModel.Store.Fornitori" Multiplicity="0..1" />
@@ -136,6 +137,7 @@
           <Property Type="String" Name="NumeroCivico" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="PrezzoVendita" Precision="19" Scale="4" />
           <Property Type="Boolean" Name="Ritirato" Nullable="false" />
+          <Property Type="DateTime" Name="DataRichiesta" Precision="3" />
         </EntityType>
         <Association Name="FK_Marca">
           <End Role="Marche" Type="OrdiniModel.Marche" Multiplicity="0..1" />
@@ -192,6 +194,7 @@
           <EntitySetMapping Name="RichiesteOrdine">
             <EntityTypeMapping TypeName="OrdiniModel.RichiesteOrdine">
               <MappingFragment StoreEntitySet="RichiesteOrdine">
+                <ScalarProperty Name="DataRichiesta" ColumnName="DataRichiesta" />
                 <ScalarProperty Name="Ritirato" ColumnName="Ritirato" />
                 <ScalarProperty Name="PrezzoVendita" ColumnName="PrezzoVendita" />
                 <ScalarProperty Name="NumeroCivico" ColumnName="NumeroCivico" />

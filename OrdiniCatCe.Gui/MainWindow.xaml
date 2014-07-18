@@ -60,9 +60,30 @@
                 <DataGridTextColumn Header="Telefono" Binding="{Binding Telefono}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Modalita" Binding="{Binding ModalitàAvviso}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Fornitore" Binding="{Binding Fornitori.Name}"  IsReadOnly="True" />
+                <DataGridTextColumn Header="Data Richiesta" Binding="{Binding DataRichiesta}"  IsReadOnly="True" />
+                
                 <DataGridCheckBoxColumn Header="Avvisato" Binding="{Binding Avvisato}" />
                 <DataGridCheckBoxColumn Header="Ritirato" Binding="{Binding Ritirato}" />
 
+                <!-- Ordinato -->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="SetOrdinato_OnClick">Arrivato</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Arrivato -->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="SetArrivato_OnClick">Arrivato</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Avvisato -->
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -71,7 +92,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-
+                <!-- Ritirato -->
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -80,13 +101,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Click="SetArrivato_OnClick">Arrivato</Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+
 
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>

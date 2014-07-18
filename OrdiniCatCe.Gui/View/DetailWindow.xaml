@@ -76,6 +76,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -87,8 +88,9 @@
                 <TextBlock Text="Prezzo di Costo" Grid.Row="3" Grid.Column="0"></TextBlock>
                 <TextBlock Text="Prezzo di Vendita" Grid.Row="4" Grid.Column="0"></TextBlock>
                 <TextBlock Text="Fornitore" Grid.Row="5" Grid.Column="0"></TextBlock>
-                <TextBlock Text="DataRichiesta" Grid.Row="6" Grid.Column="0"></TextBlock>
-                <TextBlock Text="DataArrivo" Grid.Row="7" Grid.Column="0"></TextBlock>
+                <TextBlock Text="Data Richiesta" Grid.Row="6" Grid.Column="0"></TextBlock>
+                <TextBlock Text="Data Ordine" Grid.Row="7" Grid.Column="0"></TextBlock>
+                <TextBlock Text="Data Arrivo" Grid.Row="8" Grid.Column="0"></TextBlock>
 
                 
                 <ComboBox SelectedValue="{Binding Marca}" DisplayMemberPath="Nome" ItemsSource="{Binding Marche}" Grid.Column="1" />
@@ -97,14 +99,14 @@
                 <TextBox Text="{Binding PrezzoAcquisto}" Grid.Row="3" Grid.Column="1"></TextBox>
                 <TextBox Text="{Binding PrezzoVendita}" Grid.Row="4" Grid.Column="1"></TextBox>
                 <ComboBox SelectedValue="{Binding Fornitore}" DisplayMemberPath="Name" ItemsSource="{Binding Fornitori}" Grid.Row="5" Grid.Column="1" />
-                <DatePicker SelectedDate="{Binding DataOrdinato}" Grid.Row="6" Grid.Column="1" />
-                <DatePicker SelectedDate="{Binding DataArrivato}" Grid.Row="7" Grid.Column="1" />
+                <DatePicker SelectedDate="{Binding DataRichiesta}" Grid.Row="6" Grid.Column="1" />
+                <DatePicker SelectedDate="{Binding DataOrdinato}" Grid.Row="7" Grid.Column="1" />
+                <DatePicker SelectedDate="{Binding DataArrivato}" Grid.Row="8" Grid.Column="1" />
             </Grid>
         </Border>
         <Border x:Name="brdOrdine">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
@@ -116,11 +118,14 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Cliente Avvisato" Grid.Row="0" Grid.Column="0"></TextBlock>
                 <CheckBox IsChecked="{Binding Avvisato, Mode=TwoWay}" Grid.Column="1" />
-                <TextBlock Text="Modalità Avviso" Grid.Row="1" Grid.Column="0"></TextBlock>
 
-                <RadioButton Grid.Row="2" Grid.Column="1" IsChecked="{Binding Path=ModalitaAvviso, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Telefono}">Telefono</RadioButton>
-                <RadioButton Grid.Row="2" Grid.Column="2" IsChecked="{Binding Path=ModalitaAvviso, Converter={StaticResource enumBooleanConverter}, ConverterParameter=EMail}">EMail</RadioButton>
-                <RadioButton Grid.Row="2" Grid.Column="3" IsChecked="{Binding Path=ModalitaAvviso, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Segreteria}">Segreteria</RadioButton>
+                <TextBlock Text="Avvisato Il" Grid.Row="0" Grid.Column="2"></TextBlock>
+                <DatePicker SelectedDate="{Binding DataAvvisato}" Grid.Row="0" Grid.Column="3" />
+
+                <TextBlock Text="Modalità Avviso" Grid.Row="1" Grid.Column="0"></TextBlock>
+                <RadioButton Grid.Row="1" Grid.Column="1" IsChecked="{Binding Path=ModalitaAvviso, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Telefono}">Telefono</RadioButton>
+                <RadioButton Grid.Row="1" Grid.Column="2" IsChecked="{Binding Path=ModalitaAvviso, Converter={StaticResource enumBooleanConverter}, ConverterParameter=EMail}">EMail</RadioButton>
+                <RadioButton Grid.Row="1" Grid.Column="3" IsChecked="{Binding Path=ModalitaAvviso, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Segreteria}">Segreteria</RadioButton>
             </Grid>
         </Border>
 
