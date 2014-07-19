@@ -475,6 +475,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                 return !string.IsNullOrEmpty(this.Nome) &&
                     !string.IsNullOrEmpty(this.Cognome) &&
                     !string.IsNullOrEmpty(this.Descrizione);
+                //&&                    (Marca!=null) && (Fornitore!=null);
             }
         }
 
@@ -485,6 +486,17 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         internal Model.RichiesteOrdine CreateRigaOrdine()
         {
+            int? idMarca = null;
+            if (Marca != null)
+            {
+                idMarca = Marca.Id;
+            }
+
+            int? idFornitore = null;
+            if (Fornitore != null)
+            {
+                idFornitore = Fornitore.Id;
+            }
             return new RichiesteOrdine()
                    {
                        Id = _id,
@@ -508,8 +520,8 @@ namespace OrdiniCatCe.Gui.ViewModel
                        Codice = Codice,
                        Descrizione = Descrizione,
                        Ritirato = Ritirato,
-                       IdMarca = Marca.Id,
-                       IdFornitore = Fornitore.Id,
+                       IdMarca = idMarca,
+                       IdFornitore = idFornitore,
                    };
         }
 
