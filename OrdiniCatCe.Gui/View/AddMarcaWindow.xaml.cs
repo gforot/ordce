@@ -1,7 +1,4 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using OrdiniCatCe.Gui.Messages;
-using OrdiniCatCe.Gui.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,22 +11,32 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GalaSoft.MvvmLight.Messaging;
+using OrdiniCatCe.Gui.Messages;
+using OrdiniCatCe.Gui.Model;
+using OrdiniCatCe.Gui.ViewModel;
+
 
 namespace OrdiniCatCe.Gui.View
 {
     /// <summary>
-    /// Interaction logic for AddAnagraficaElementWindow.xaml
+    /// Interaction logic for AddMarcaWindow.xaml
     /// </summary>
-    public partial class AddAnagraficaElementWindow : Window
+    public partial class AddMarcaWindow : Window
     {
         public bool MyDialogResult { get; private set; }
 
-        public AddAnagraficaElementWindow()
+        public AddMarcaWindow()
         {
             InitializeComponent();
 
-            Messenger.Default.Register<MessageBase>(this, MsgKeys.CancelAnagraficaKey, OnCancelRequested);
-            Messenger.Default.Register<MessageBase>(this, MsgKeys.ConfirmAnagraficaKey, OnConfirmRequested);
+            Messenger.Default.Register<MessageBase>(this, MsgKeys.CancelAddMarcaKey, OnCancelRequested);
+            Messenger.Default.Register<MessageBase>(this, MsgKeys.ConfirmAddMarcaKey, OnConfirmRequested);
+
+        }
+
+        public void Setup()
+        {
             MyDialogResult = false;
         }
 
@@ -44,9 +51,11 @@ namespace OrdiniCatCe.Gui.View
             this.Close();
         }
 
-        internal string GetName()
+        internal Marche GetMarca()
         {
-            return (DataContext as AddAnagraficaViewModel).Name;
+            AddMarcaViewModel vm = DataContext as AddMarcaViewModel;
+
+            return vm == null ? null : vm.GetMarca();
         }
     }
 }

@@ -181,7 +181,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                db.Marche.Add(new Marche() { Nome = message.Name});
+                db.Marche.Add(message.Marca);
                 db.SaveChanges();
             }
         }
@@ -190,7 +190,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                db.Fornitori.Add(new Fornitori() { Name = message.Name });
+                db.Fornitori.Add(message.Fornitore);
                 db.SaveChanges();
             }
         }

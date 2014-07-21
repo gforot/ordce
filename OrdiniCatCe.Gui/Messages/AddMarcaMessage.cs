@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OrdiniCatCe.Gui.Model;
+
 
 namespace OrdiniCatCe.Gui.Messages
 {
     public class AddMarcaMessage
     {
-        public string Name { get; set; }
+        public Marche Marca { get; set; }
     }
 }

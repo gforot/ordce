@@ -21,6 +21,8 @@ namespace OrdiniCatCe.Gui.Model
     
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Email { get; set; }
+        public string Telefono { get; set; }
     
         public virtual ICollection<RichiesteOrdine> RichiesteOrdine { get; set; }
     }

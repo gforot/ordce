@@ -39,15 +39,15 @@ namespace OrdiniCatCe.Gui
 
         private void OnAddMarcaRequested(MessageBase obj)
         {
-            ServiceLocator.Current.GetInstance<AddAnagraficaViewModel>().Setup(AnagraficaElementType.Marchio);
-            AddAnagraficaElementWindow wnd = new AddAnagraficaElementWindow();
+            ServiceLocator.Current.GetInstance<AddMarcaViewModel>().Setup();
+            AddMarcaWindow wnd = new AddMarcaWindow();
             wnd.ShowDialog();
 
             if (wnd.MyDialogResult)
             {
                 Messenger.Default.Send<AddMarcaMessage>(new AddMarcaMessage
                 {
-                    Name = wnd.GetName()
+                    Marca = wnd.GetMarca()
                 },
                                              MsgKeys.AddMarcaToDbKey);
             }
@@ -56,8 +56,8 @@ namespace OrdiniCatCe.Gui
 
         private void OnAddFornitoreRequested(MessageBase obj)
         {
-            ServiceLocator.Current.GetInstance<AddAnagraficaViewModel>().Setup(AnagraficaElementType.Fornitore);
-            AddAnagraficaElementWindow wnd = new AddAnagraficaElementWindow();
+            ServiceLocator.Current.GetInstance<AddFornitoreViewModel>().Setup();
+            AddFornitoreWindow wnd = new AddFornitoreWindow();
             wnd.ShowDialog();
 
             if (wnd.MyDialogResult)
@@ -65,7 +65,7 @@ namespace OrdiniCatCe.Gui
                 Messenger.Default.Send<AddFornitoreMessage>(new AddFornitoreMessage
 
                 {
-                    Name = wnd.GetName()
+                    Fornitore = wnd.GetFornitore()
                 },
                                              MsgKeys.AddFornitoreToDbKey);
             }

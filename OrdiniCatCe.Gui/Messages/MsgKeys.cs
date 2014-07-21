@@ -18,5 +18,9 @@ namespace OrdiniCatCe.Gui.Messages
         public const string CancelAnagraficaKey = "CancelAnagrafica";
         public const string ConfirmAnagraficaKey = "ConfirmAnagrafica";
         public const string SetOrdinatoKey = "SetOrdinato";
+        public const string CancelAddFornitoreKey = "CancelAddFornitore";
+        public const string ConfirmAddFornitoreKey = "ConfirmAddFornitore";
+        public const string CancelAddMarcaKey = "CancelAddMarca";
+        public const string ConfirmAddMarcaKey = "ConfirmAddMarca";
     }
 }

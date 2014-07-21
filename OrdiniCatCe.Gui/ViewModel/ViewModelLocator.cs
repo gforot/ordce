@@ -44,7 +44,8 @@ namespace OrdiniCatCe.Gui.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<DetailViewModel>();
-            SimpleIoc.Default.Register<AddAnagraficaViewModel>();
+            SimpleIoc.Default.Register<AddMarcaViewModel>();
+            SimpleIoc.Default.Register<AddFornitoreViewModel>();
         }
 
         public MainViewModel Main
@@ -63,11 +64,19 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
-        public AddAnagraficaViewModel AddAnagraficaViewModel
+        public AddFornitoreViewModel AddFornitoreViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<AddAnagraficaViewModel>();
+                return ServiceLocator.Current.GetInstance<AddFornitoreViewModel>();
+            }
+        }
+
+        public AddMarcaViewModel AddMarcaViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AddMarcaViewModel>();
             }
         }
         

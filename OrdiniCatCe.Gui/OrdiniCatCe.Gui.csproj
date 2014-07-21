@@ -103,7 +103,12 @@
     <Compile Include="Model\Fornitori.cs">
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\AddAnagraficaViewModel.cs" />
+    <Compile Include="ViewModel\AddAnagraficaItemViewModelBase.cs" />
+    <Compile Include="ViewModel\AddFornitoreViewModel.cs" />
+    <Compile Include="ViewModel\AddMarcaViewModel.cs" />
+    <Compile Include="View\AddFornitoreWindow.xaml.cs">
+      <DependentUpon>AddFornitoreWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\DetailViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -131,8 +136,8 @@
     <Compile Include="Model\RichiesteOrdine.cs">
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\AddAnagraficaElementWindow.xaml.cs">
-      <DependentUpon>AddAnagraficaElementWindow.xaml</DependentUpon>
+    <Compile Include="View\AddMarcaWindow.xaml.cs">
+      <DependentUpon>AddMarcaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DetailWindow.xaml.cs">
       <DependentUpon>DetailWindow.xaml</DependentUpon>
@@ -149,7 +154,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\AddAnagraficaElementWindow.xaml">
+    <Page Include="View\AddFornitoreWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddMarcaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
