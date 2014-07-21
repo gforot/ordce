@@ -7,7 +7,7 @@ namespace OrdiniCatCe.Gui.Converters
 {
     public class TextboxBackgroundConverter : IValueConverter
     {
-        private readonly SolidColorBrush _errorColor = new SolidColorBrush(Colors.AntiqueWhite);
+        private readonly SolidColorBrush _errorColor = new SolidColorBrush(Colors.Red);
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
@@ -19,7 +19,7 @@ namespace OrdiniCatCe.Gui.Converters
             {
                 return _errorColor;
             }
-            return new SolidColorBrush(Colors.Transparent);
+            return new SolidColorBrush(Colors.Black);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
