@@ -93,6 +93,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\BackgroundConverter.cs" />
     <Compile Include="Converters\EnumBooleanConverter.cs" />
+    <Compile Include="Converters\TextboxBackgroundConverter.cs" />
     <Compile Include="Messages\AddFornitoreMessage.cs" />
     <Compile Include="Messages\AddMarcaMessage.cs" />
     <Compile Include="Messages\AddRigaOrdineMessage.cs" />

@@ -6,8 +6,8 @@
         Title="DetailWindow" Height="500" Width="800">
     <StackPanel>
         <StackPanel.Resources>
+            <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
             <converters:EnumBooleanConverter x:Key="enumBooleanConverter" ></converters:EnumBooleanConverter>
-            
             <Style TargetType="Border">
                 <Setter Property="BorderBrush" Value="Chartreuse" />
                 <Setter Property="CornerRadius" Value="5"></Setter>
@@ -36,10 +36,12 @@
 
                 <!-- Riga 1: NOME COGNOME -->
                 <TextBlock Text="Nome"></TextBlock>
-                <TextBox Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
+                <TextBox Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" 
+                         Background="{Binding Nome, Converter={StaticResource textboxBackgroundConverter}}"
+                         />
 
                 <TextBlock Text="Cognome" Grid.Column="2"></TextBlock>
-                <TextBox Text="{Binding Cognome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" />
+                <TextBox Background="{Binding Cognome, Converter={StaticResource textboxBackgroundConverter}}" Text="{Binding Cognome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" />
 
 
                 <!-- Riga 2: indirizzo -->
@@ -84,7 +86,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Marchio" Grid.Row="0" Grid.Column="0"></TextBlock>
                 <TextBlock Text="Codice" Grid.Row="1" Grid.Column="0"></TextBlock>
-                <TextBlock Text="Descrizione" Grid.Row="2" Grid.Column="0"></TextBlock>
+                <TextBlock Background="{Binding Descrizione, Converter={StaticResource textboxBackgroundConverter}}" Text="Descrizione" Grid.Row="2" Grid.Column="0"></TextBlock>
                 <TextBlock Text="Prezzo di Costo" Grid.Row="3" Grid.Column="0"></TextBlock>
                 <TextBlock Text="Prezzo di Vendita" Grid.Row="4" Grid.Column="0"></TextBlock>
                 <TextBlock Text="Fornitore" Grid.Row="5" Grid.Column="0"></TextBlock>
@@ -92,13 +94,13 @@
                 <TextBlock Text="Data Ordine" Grid.Row="7" Grid.Column="0"></TextBlock>
                 <TextBlock Text="Data Arrivo" Grid.Row="8" Grid.Column="0"></TextBlock>
 
-                
-                <ComboBox SelectedValue="{Binding Marca}" DisplayMemberPath="Nome" ItemsSource="{Binding Marche}" Grid.Column="1" />
+
+                <ComboBox Background="{Binding Marca, Converter={StaticResource textboxBackgroundConverter}}" SelectedValue="{Binding Marca}" DisplayMemberPath="Nome" ItemsSource="{Binding Marche}" Grid.Column="1" OpacityMask="Black" />
                 <TextBox Text="{Binding Codice}" Grid.Row="1" Grid.Column="1"></TextBox>
                 <TextBox Text="{Binding Descrizione, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1"></TextBox>
                 <TextBox Text="{Binding PrezzoAcquisto}" Grid.Row="3" Grid.Column="1"></TextBox>
                 <TextBox Text="{Binding PrezzoVendita}" Grid.Row="4" Grid.Column="1"></TextBox>
-                <ComboBox SelectedValue="{Binding Fornitore}" DisplayMemberPath="Name" ItemsSource="{Binding Fornitori}" Grid.Row="5" Grid.Column="1" />
+                <ComboBox Background="{Binding Fornitore, Converter={StaticResource textboxBackgroundConverter}}" SelectedValue="{Binding Fornitore}" DisplayMemberPath="Name" ItemsSource="{Binding Fornitori}" Grid.Row="5" Grid.Column="1" />
                 <DatePicker SelectedDate="{Binding DataRichiesta}" Grid.Row="6" Grid.Column="1" />
                 <DatePicker SelectedDate="{Binding DataOrdinato}" Grid.Row="7" Grid.Column="1" />
                 <DatePicker SelectedDate="{Binding DataArrivato}" Grid.Row="8" Grid.Column="1" />

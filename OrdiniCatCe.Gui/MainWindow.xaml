@@ -57,7 +57,7 @@
                 <DataGridTextColumn Header="Indirizzo" Binding="{Binding Indirizzo}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Marca" Binding="{Binding Marche.Nome}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Descrizione" Binding="{Binding Descrizione}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Telefono" Binding="{Binding Telefono}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Telefono"  Binding="{Binding Telefono}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Modalita" Binding="{Binding ModalitàAvviso}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Fornitore" Binding="{Binding Fornitori.Name}"  IsReadOnly="True" />
                 <DataGridTextColumn Header="Data Richiesta" Binding="{Binding DataRichiesta}"  IsReadOnly="True" />

@@ -474,8 +474,9 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 return !string.IsNullOrEmpty(this.Nome) &&
                     !string.IsNullOrEmpty(this.Cognome) &&
-                    !string.IsNullOrEmpty(this.Descrizione);
-                //&&                    (Marca!=null) && (Fornitore!=null);
+                    !string.IsNullOrEmpty(this.Descrizione) &&
+                    (Marca!=null) && 
+                    (Fornitore!=null);
             }
         }
 
