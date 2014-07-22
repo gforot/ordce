@@ -37,6 +37,8 @@ namespace OrdiniCatCe.Gui.Model
         public Nullable<decimal> PrezzoVendita { get; set; }
         public bool Ritirato { get; set; }
         public Nullable<System.DateTime> DataRichiesta { get; set; }
+        public bool Ordinato { get; set; }
+        public bool Arrivato { get; set; }
     
         public virtual Marche Marche { get; set; }
         public virtual Fornitori Fornitori { get; set; }

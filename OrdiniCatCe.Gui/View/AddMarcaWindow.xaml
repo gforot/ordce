@@ -1,10 +1,12 @@
 ﻿<Window x:Class="OrdiniCatCe.Gui.View.AddMarcaWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding AddMarcaViewModel, Source={StaticResource Locator}}"
-        Title="Nuova Marca" Height="150" Width="600">
+        Title="Nuova Marca" Height="150" Width="600" Style="{StaticResource wndStyle}">
 	<Grid>
         <Grid.Resources>
+            <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
             <Style TargetType="StackPanel">
                 <Setter Property="Margin" Value="3"></Setter>
             </Style>
@@ -28,7 +30,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Nome" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Foreground="{Binding Nome, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <TextBox Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  />
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">

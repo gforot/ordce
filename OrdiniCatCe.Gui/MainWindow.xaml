@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
-        Title="MainWindow" Height="300" Width="800" >
-    <Grid>
+        Title="MainWindow" Height="300" Width="800" Style="{StaticResource wndStyle}">
+    <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>

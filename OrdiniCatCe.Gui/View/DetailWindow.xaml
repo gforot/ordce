@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding DetailViewModel, Source={StaticResource Locator}}"
-        Title="DetailWindow" Height="500" Width="800">
+        Title="DetailWindow" Style="{StaticResource wndStyle}">
     <StackPanel>
         <StackPanel.Resources>
             <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
@@ -79,6 +79,8 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -91,8 +93,10 @@
                 <TextBlock Text="Prezzo di Vendita" Grid.Row="4" Grid.Column="0"></TextBlock>
                 <TextBlock Foreground="{Binding Fornitore, Converter={StaticResource textboxBackgroundConverter}}" Text="Fornitore" Grid.Row="5" Grid.Column="0"></TextBlock>
                 <TextBlock Text="Data Richiesta" Grid.Row="6" Grid.Column="0"></TextBlock>
-                <TextBlock Text="Data Ordine" Grid.Row="7" Grid.Column="0"></TextBlock>
-                <TextBlock Text="Data Arrivo" Grid.Row="8" Grid.Column="0"></TextBlock>
+                <TextBlock Text="Ordinato" Grid.Row="7" Grid.Column="0"></TextBlock>
+                <TextBlock Text="Data Ordine" Grid.Row="8" Grid.Column="0"></TextBlock>
+                <TextBlock Text="Arrivato" Grid.Row="9" Grid.Column="0"></TextBlock>
+                <TextBlock Text="Data Arrivo" Grid.Row="10" Grid.Column="0"></TextBlock>
 
 
                 <ComboBox SelectedValue="{Binding Marca}" DisplayMemberPath="Nome" ItemsSource="{Binding Marche}" Grid.Column="1" OpacityMask="Black" />
@@ -102,8 +106,10 @@
                 <TextBox Text="{Binding PrezzoVendita}" Grid.Row="4" Grid.Column="1"></TextBox>
                 <ComboBox SelectedValue="{Binding Fornitore}" DisplayMemberPath="Name" ItemsSource="{Binding Fornitori}" Grid.Row="5" Grid.Column="1" />
                 <DatePicker SelectedDate="{Binding DataRichiesta}" Grid.Row="6" Grid.Column="1" />
-                <DatePicker SelectedDate="{Binding DataOrdinato}" Grid.Row="7" Grid.Column="1" />
-                <DatePicker SelectedDate="{Binding DataArrivato}" Grid.Row="8" Grid.Column="1" />
+                <CheckBox IsChecked="{Binding Ordinato, Mode=TwoWay}" Grid.Row="7" Grid.Column="1" />
+                <DatePicker SelectedDate="{Binding DataOrdinato}" Grid.Row="8" Grid.Column="1" />
+                <CheckBox IsChecked="{Binding Arrivato, Mode=TwoWay}" Grid.Row="9" Grid.Column="1" />
+                <DatePicker SelectedDate="{Binding DataArrivato}" Grid.Row="10" Grid.Column="1" />
             </Grid>
         </Border>
         <Border x:Name="brdOrdine">

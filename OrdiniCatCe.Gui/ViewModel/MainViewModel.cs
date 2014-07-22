@@ -202,7 +202,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                 using (OrdiniEntities db = new OrdiniEntities())
                 {
                     RichiesteOrdine toUpdate = db.RichiesteOrdine.First(ordine => ordine.Id == message.RigaOrdine.Id);
-                    //toUpdate.Arrivato = true;
+                    toUpdate.Arrivato = true;
                     toUpdate.DataArrivato = DateTime.Now;
                     db.SaveChanges();
                     UpdateRigheOrdineFromDb();
@@ -217,7 +217,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                 using (OrdiniEntities db = new OrdiniEntities())
                 {
                     RichiesteOrdine toUpdate = db.RichiesteOrdine.First(ordine => ordine.Id == message.RigaOrdine.Id);
-                    //toUpdate.Arrivato = true;
+                    toUpdate.Ordinato = true;
                     toUpdate.DataOrdinato = DateTime.Now;
                     db.SaveChanges();
                     UpdateRigheOrdineFromDb();

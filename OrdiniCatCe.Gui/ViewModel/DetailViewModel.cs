@@ -429,6 +429,40 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
         #endregion
 
+        #region Arrivato
+        private const string _arrivatoPrpName = "Arrivato";
+        private bool _arrivato;
+        public bool Arrivato
+        {
+            get
+            {
+                return _arrivato;
+            }
+            set
+            {
+                _arrivato = value;
+                RaisePropertyChanged(_arrivatoPrpName);
+            }
+        }
+        #endregion
+
+        #region Ordinato
+        private const string _ordinatoPrpName = "Ordinato";
+        private bool _ordinato;
+        public bool Ordinato
+        {
+            get
+            {
+                return _ordinato;
+            }
+            set
+            {
+                _ordinato = value;
+                RaisePropertyChanged(_ordinatoPrpName);
+            }
+        }
+        #endregion
+
         public List<Marche> Marche { get; private set; }
         public List<Fornitori> Fornitori { get; private set; }
 
@@ -523,6 +557,8 @@ namespace OrdiniCatCe.Gui.ViewModel
                        Ritirato = Ritirato,
                        IdMarca = idMarca,
                        IdFornitore = idFornitore,
+                       Arrivato = Arrivato,
+                       Ordinato = Ordinato
                    };
         }
 
@@ -560,6 +596,8 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.Ritirato = false;
             this.Marca = null;
             this.Fornitore = null;
+            this.Ordinato = false;
+            this.Arrivato = false;
         }
 
         private void SetupValuesFromRichiestaOrdine(RichiesteOrdine richiestaOrdine)
@@ -584,7 +622,8 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.PrezzoAcquisto = richiestaOrdine.PrezzoAcquisto;
             this.PrezzoVendita = richiestaOrdine.PrezzoVendita;
             this.Ritirato = richiestaOrdine.Ritirato;
-
+            this.Ordinato = richiestaOrdine.Ordinato;
+            this.Arrivato = richiestaOrdine.Arrivato;
 
 
             this.Marca = this.Marche.FirstOrDefault(m => richiestaOrdine.Marche.Id == m.Id);

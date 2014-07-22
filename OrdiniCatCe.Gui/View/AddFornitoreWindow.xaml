@@ -1,10 +1,12 @@
 ﻿<Window x:Class="OrdiniCatCe.Gui.View.AddFornitoreWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding AddFornitoreViewModel, Source={StaticResource Locator}}"
-        Title="Nuovo Fornitore" Height="200" Width="600">
+        Title="Nuovo Fornitore" Height="200" Width="600" Style="{StaticResource wndStyle}">
     <Grid>
         <Grid.Resources>
+            <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
             <Style TargetType="StackPanel">
                 <Setter Property="Margin" Value="3"></Setter>
             </Style>
@@ -31,7 +33,7 @@
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Nome"  Grid.Row="0" Grid.Column="0" />
+        <TextBlock Foreground="{Binding Nome, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome"  Grid.Row="0" Grid.Column="0" />
         <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" />
 
         <TextBlock Text="EMail" Grid.Row="1" Grid.Column="0" />

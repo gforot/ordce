@@ -14,13 +14,22 @@ namespace OrdiniCatCe.Gui.Converters
             {
                 RichiesteOrdine ro = value as RichiesteOrdine;
 
+                if (!ro.Ordinato)
+                {
+                    return new SolidColorBrush(Colors.Orange);                  
+                }
                 if (ro.Avvisato)
                 {
                     return new SolidColorBrush(Colors.LightGreen);
                 }
+                else if (ro.Arrivato)
+                {
+                    //arrivato e non avvisato
+                    return new SolidColorBrush(Colors.Red);
+                }
                 if (ro.Ritirato)
                 {
-                    return new SolidColorBrush(Colors.Green);
+                    return new SolidColorBrush(Colors.Turquoise);
                 }
             }
 
