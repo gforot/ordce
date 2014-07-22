@@ -104,6 +104,7 @@
     <Compile Include="Model\Fornitori.cs">
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Validation\EMailValidator.cs" />
     <Compile Include="ViewModel\AddAnagraficaItemViewModelBase.cs" />
     <Compile Include="ViewModel\AddFornitoreViewModel.cs" />
     <Compile Include="ViewModel\AddMarcaViewModel.cs" />
