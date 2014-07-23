@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Data;
 using System.Windows.Media;
+using OrdiniCatCe.Gui.Constants;
 using OrdiniCatCe.Gui.Model;
 
 
@@ -16,20 +17,20 @@ namespace OrdiniCatCe.Gui.Converters
 
                 if (!ro.Ordinato)
                 {
-                    return new SolidColorBrush(Colors.Orange);                  
+                    return new SolidColorBrush(AppColors.OrdinatoRowBackground);                  
                 }
                 if (ro.Avvisato)
                 {
-                    return new SolidColorBrush(Colors.LightGreen);
+                    return new SolidColorBrush(AppColors.AvvisatoRowBackground);
                 }
                 else if (ro.Arrivato)
                 {
                     //arrivato e non avvisato
-                    return new SolidColorBrush(Colors.Red);
+                    return new SolidColorBrush(AppColors.ArrivatoRowBackground);
                 }
                 if (ro.Ritirato)
                 {
-                    return new SolidColorBrush(Colors.Turquoise);
+                    return new SolidColorBrush(AppColors.RitiratoRowBackground);
                 }
             }
 
