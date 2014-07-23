@@ -216,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\eraser2.png" />
+    <Resource Include="Images\information2.png" />
     <Content Include="Ordini.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

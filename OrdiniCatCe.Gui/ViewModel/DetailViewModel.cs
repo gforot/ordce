@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity.Migrations.Model;
 using System.Linq;
@@ -10,6 +11,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
+using OrdiniCatCe.Gui.Validation;
 
 
 namespace OrdiniCatCe.Gui.ViewModel
@@ -463,6 +465,22 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
         #endregion
 
+
+        private const string _errorMessagePrpName = "";
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get
+            {
+                return _errorMessage;
+            }
+            set
+            {
+                _errorMessage = value;
+                RaisePropertyChanged(_errorMessagePrpName);
+            }
+        }
+
         public List<Marche> Marche { get; private set; }
         public List<Fornitori> Fornitori { get; private set; }
 
@@ -516,7 +534,80 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         private void Conferma()
         {
+            string errorMessage;
+            if (!Check(out errorMessage))
+            {
+                ErrorMessage = errorMessage;
+                return;
+            }
+
+
             Messenger.Default.Send<MessageBase>(new MessageBase(), MsgKeys.ConfirmKey);
+        }
+
+        private bool Check(out string errorMessage)
+        {
+            errorMessage = null;
+
+            if (!CheckEmail(EMail))
+            {
+                errorMessage = "Il campo EMail non è corretto";
+                return false;
+            }
+
+            if ((string.IsNullOrEmpty(Telefono)) &&
+                (string.IsNullOrEmpty(Cellulare)) &&
+                (string.IsNullOrEmpty(EMail)))
+            {
+                errorMessage = "Inserire almeno uno fra telefono, email e cellulare";
+                return false;
+            }
+
+
+            if (Arrivato && DataArrivato == null)
+            {
+                errorMessage = "Pezzo arrivato ma data di arrivo non impostata";
+                return false;
+            }
+
+            if (!Arrivato && DataArrivato != null)
+            {
+                errorMessage = "Pezzo non arrivato ma data di arrivo impostata";
+                return false;
+            }
+
+            if (Ritirato && DataRitirato == null)
+            {
+                errorMessage = "Pezzo ritirato ma data di ritiro non impostata";
+                return false;
+            }
+
+            if (!Ritirato && DataRitirato != null)
+            {
+                errorMessage = "Pezzo non ritirato ma data di ritiro impostata";
+                return false;
+            }
+
+            if (Ordinato && DataOrdinato == null)
+            {
+                errorMessage = "Pezzo ordinato ma data di ordine non impostata";
+                return false;
+            }
+
+            if (!Ordinato && DataOrdinato != null)
+            {
+                errorMessage = "Pezzo non ordinato ma data di ordine impostata";
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool CheckEmail(string email)
+        {
+            EMailValidator validator = new EMailValidator();
+            var res = validator.Validate(email, null);
+            return res.IsValid;
         }
 
         internal Model.RichiesteOrdine CreateRigaOrdine()
@@ -572,6 +663,8 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 SetupValuesFromRichiestaOrdine(richiesteOrdine);
             }
+
+            ErrorMessage = string.Empty;
         }
 
         private void SetupDefaultValues()

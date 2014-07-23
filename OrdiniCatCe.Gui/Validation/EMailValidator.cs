@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mail;
 using System.Windows.Controls;
 
 
@@ -10,10 +11,17 @@ namespace OrdiniCatCe.Gui.Validation
         {
             if (string.IsNullOrEmpty((string)value))
             {
-                return new ValidationResult(false, "Non può essere vuoto");
+                return ValidationResult.ValidResult;
             }
-
-            return ValidationResult.ValidResult;
+            try
+            {
+                MailAddress address = new MailAddress((string)value);
+                return ValidationResult.ValidResult;
+            }
+            catch (FormatException)
+            {
+                return new ValidationResult(false, "Inserire una email valida");
+            }
         }
     }
 }
