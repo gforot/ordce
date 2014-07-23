@@ -91,8 +91,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Constants\AppColors.cs" />
+    <Compile Include="Converters\ArrivatoBackgroundConverter.cs" />
+    <Compile Include="Converters\AvvisatoBackgroundConverter.cs" />
     <Compile Include="Converters\BackgroundConverter.cs" />
+    <Compile Include="Converters\ButtonEnabledConverter.cs" />
     <Compile Include="Converters\EnumBooleanConverter.cs" />
+    <Compile Include="Converters\OrdinatoBackgroundConverter.cs" />
+    <Compile Include="Converters\RitiratoBackgroundConverter.cs" />
     <Compile Include="Converters\TextboxBackgroundConverter.cs" />
     <Compile Include="Messages\AddFornitoreMessage.cs" />
     <Compile Include="Messages\AddMarcaMessage.cs" />

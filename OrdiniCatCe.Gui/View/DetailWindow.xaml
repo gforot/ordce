@@ -193,10 +193,15 @@
         <Border x:Name="brdHelp">
             <StackPanel Orientation="Horizontal">
                 <Image Margin="4"  Width="24" Height="24" Source="../Images/information2.png"></Image>
-                <TextBlock TextWrapping="Wrap" Width="667" HorizontalAlignment="Center" Margin="5" FontWeight="Bold" >
+                <StackPanel Orientation="Vertical">
+                    <TextBlock TextWrapping="Wrap" Width="667" HorizontalAlignment="Center" Margin="5,0,5,0" FontWeight="Bold" >
                     I campi contrassegnati con * sono obbligatori. Se non vengono valorizzati non sarà
                     possibile confermare l'inserimento/modifica.
-                </TextBlock>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" Width="667" HorizontalAlignment="Center" Margin="1" FontWeight="Bold" >
+                    Dei campi contrassegnati con + ne va inserito almeno uno.
+                    </TextBlock>
+                </StackPanel>
             </StackPanel>
         </Border>
     </StackPanel>

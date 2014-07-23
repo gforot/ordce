@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
-        Title="MainWindow" Height="300" Width="800" Style="{StaticResource wndStyle}">
+        Title="MainWindow" Height="800" Width="800" Style="{StaticResource wndStyle}">
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,6 +13,13 @@
         </Grid.RowDefinitions>
         <Grid.Resources>
             <converters:BackgroundConverter x:Key="backgroundConverter" />
+            <converters:ButtonEnabledConverter x:Key="buttonEnabledConverter" />
+
+            <converters:AvvisatoBackgroundConverter x:Key="avvisatoBackgroundConverter" />
+            <converters:ArrivatoBackgroundConverter x:Key="arrivatoBackgroundConverter" />
+            <converters:RitiratoBackgroundConverter x:Key="ritiratoBackgroundConverter" />
+            <converters:OrdinatoBackgroundConverter x:Key="ordinatoBackgroundConverter" />
+
         </Grid.Resources>
         <TextBlock Text="Gestione Ordini" HorizontalAlignment="Center" FontSize="26"  Padding="0,5,0,5"></TextBlock>
         <StackPanel x:Name="FiltersPanel" Orientation="Horizontal" Grid.Row="1">
@@ -69,7 +76,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="SetOrdinato_OnClick">Ordinato</Button>
+                            <Button Background="{Binding Converter={StaticResource ordinatoBackgroundConverter}}" IsEnabled="{Binding Ordinato, Converter={StaticResource buttonEnabledConverter}}" Click="SetOrdinato_OnClick">Ordinato</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -78,7 +85,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="SetArrivato_OnClick">Arrivato</Button>
+                            <Button Background="{Binding Converter={StaticResource arrivatoBackgroundConverter}}" IsEnabled="{Binding Arrivato, Converter={StaticResource buttonEnabledConverter}}" Click="SetArrivato_OnClick">Arrivato</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -87,7 +94,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="SetAvvisato_OnClick">Avvisato</Button>
+                            <Button Background="{Binding Converter={StaticResource avvisatoBackgroundConverter}}" IsEnabled="{Binding Avvisato, Converter={StaticResource buttonEnabledConverter}}" Click="SetAvvisato_OnClick">Avvisato</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -96,7 +103,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="SetRitirato_OnClick">Ritirato</Button>
+                            <Button Background="{Binding Converter={StaticResource ritiratoBackgroundConverter}}" IsEnabled="{Binding Ritirato, Converter={StaticResource buttonEnabledConverter}}" Click="SetRitirato_OnClick">Ritirato</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -106,7 +113,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="Aggiorna_OnClick">Aggiorna</Button>
+                            <Button Click="Aggiorna_OnClick">Modifica</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
