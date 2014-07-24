@@ -109,6 +109,17 @@
                 </DataGridTemplateColumn>
 
 
+                <!-- Cancella -->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Delete_OnClick">
+                                <Image Source="Images/eraser2.png" Width="16" Height="16"  />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
 
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>

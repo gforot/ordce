@@ -182,6 +182,12 @@ namespace OrdiniCatCe.Gui
 
         private void SetArrivato_OnClick(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult res = MessageBox.Show(this, "Sei sicuro di voler cancellare la riga?", "?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (res != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
             RichiesteOrdine richiestaOrdine = GetRichiestaOrdineFromSenderOfButtonClick(sender);
             if (richiestaOrdine == null)
             {
@@ -208,6 +214,18 @@ namespace OrdiniCatCe.Gui
                 }
             }
             return null;
+        }
+
+        private void Delete_OnClick(object sender, RoutedEventArgs e)
+        {
+            RichiesteOrdine richiestaOrdine = GetRichiestaOrdineFromSenderOfButtonClick(sender);
+            if (richiestaOrdine == null)
+            {
+                return;
+            }
+            Messenger.Default.Send<UpdateRigaOrdineMessage>(
+                                                new UpdateRigaOrdineMessage(richiestaOrdine),
+                                                MsgKeys.DeleteKey);
         }
     }
 }
