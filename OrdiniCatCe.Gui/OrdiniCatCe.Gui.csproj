@@ -223,6 +223,11 @@
   <ItemGroup>
     <Resource Include="Images\eraser2.png" />
     <Resource Include="Images\information2.png" />
+    <Resource Include="Images\edit.png" />
+    <Resource Include="Images\fax_machine.png" />
+    <Resource Include="Images\moneybag_euro.png" />
+    <Resource Include="Images\user_mobilephone.png" />
+    <Resource Include="Images\package.png" />
     <Content Include="Ordini.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
