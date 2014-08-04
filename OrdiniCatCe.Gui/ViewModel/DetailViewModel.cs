@@ -680,6 +680,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.Cellulare = string.Empty;
             this.Codice = string.Empty;
             this.Avvisato = false;
+            this.Descrizione = string.Empty;
             this.DataArrivato = null;
             this.DataOrdinato = null;
             this.DataRichiesta = DateTime.Now;
@@ -717,7 +718,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.Ritirato = richiestaOrdine.Ritirato;
             this.Ordinato = richiestaOrdine.Ordinato;
             this.Arrivato = richiestaOrdine.Arrivato;
-
+            this.Descrizione = richiestaOrdine.Descrizione;
 
             this.Marca = this.Marche.FirstOrDefault(m => richiestaOrdine.Marche.Id == m.Id);
             this.Fornitore = this.Fornitori.FirstOrDefault(m => richiestaOrdine.Fornitori.Id == m.Id);

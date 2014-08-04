@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Web.UI;
 using System.Windows.Data;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -24,6 +26,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         public RelayCommand ClearNomeFilterCommand { get; private set; }
         public RelayCommand ClearCognomeFilterCommand { get; private set; }
         public RelayCommand ClearFornitoreFilterCommand { get; private set; }
+        public RelayCommand OrdinaCommand { get; private set; }
 
         private const string _nameFilterPrpName="NameFilter";
         private string _nameFilter;
@@ -105,6 +108,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             ClearNomeFilterCommand = new RelayCommand(ClearNameFilter);
             ClearCognomeFilterCommand = new RelayCommand(ClearCognomeFilter);
             ClearFornitoreFilterCommand = new RelayCommand(ClearFornitoreFilter);
+            OrdinaCommand = new RelayCommand(Ordina);
             Messenger.Default.Register<AddRigaOrdineMessage>(this, MsgKeys.AddRigaOrdineToDbKey, OnAddRigaOrdineToDbRequested);
             Messenger.Default.Register<AddMarcaMessage>(this, MsgKeys.AddMarcaToDbKey, OnAddMarcaToDbRequested);
             Messenger.Default.Register<AddFornitoreMessage>(this, MsgKeys.AddFornitoreToDbKey, OnAddFornitoreToDbRequested);
@@ -152,6 +156,61 @@ namespace OrdiniCatCe.Gui.ViewModel
         private void ClearFornitoreFilter()
         {
             FornitoreFilter = string.Empty;
+        }
+
+        private void Ordina()
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                IQueryable<IGrouping<int?, RichiesteOrdine>> daOrdinare = db.GetProdottiDaOrdinare();
+
+                foreach (IGrouping<int?, RichiesteOrdine> ordines in daOrdinare)
+                {
+                    if (ordines.Key.HasValue)
+                    {
+                        Fornitori f = db.GetFornitore(ordines.Key.Value);
+                        System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                        const string subject = "Ordine";
+
+                        //scrivere il body in HTML
+
+
+                        #region Creazione Body
+
+                        StringWriter stringWriter = new StringWriter();
+                        using (HtmlTextWriter writer = new HtmlTextWriter(stringWriter))
+                        {
+                            //writer.AddAttribute(HtmlTextWriterAttribute.Class, classValue);
+                            
+
+                            foreach (RichiesteOrdine richiesteOrdine in ordines)
+                            {
+                                writer.RenderBeginTag(HtmlTextWriterTag.Div);
+                                writer.Write(richiesteOrdine.Descrizione);
+                                writer.RenderEndTag();
+                            }
+
+                            
+                        }
+                        string body1 = stringWriter.ToString();
+                        #endregion
+
+                        string body = string.Empty;
+
+                        foreach (RichiesteOrdine richiesteOrdine in ordines)
+                        {
+                            body = string.IsNullOrEmpty(body) ? richiesteOrdine.Descrizione : 
+                                string.Format("{0}{2}{1}", body, richiesteOrdine.Descrizione, Environment.NewLine);
+                        }
+
+                        string email = f.Email;
+                        email = "rotandrea@gmail.com";
+
+                        proc.StartInfo.FileName = string.Format("mailto:{0}?subject={1}&body={2}", email, subject, body1);
+                        proc.Start();
+                    }
+                }
+            }
         }
 
         private void UpdateRigheOrdineFromDb()

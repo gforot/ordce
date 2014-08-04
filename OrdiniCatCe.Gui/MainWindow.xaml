@@ -145,6 +145,8 @@
             <Button Command="{Binding AddOrdineCommand}" Content="Nuovo Ordine" />
             <Button Command="{Binding AddMarcaCommand}" Content="Aggiungi Marca" />
             <Button Command="{Binding AddFornitoreCommand}" Content="Aggiungi Fornitore" />
+
+            <Button Command="{Binding OrdinaCommand}" Content="Ordina" />
         </StackPanel>
     </Grid>
 </Window>
