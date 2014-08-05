@@ -111,10 +111,12 @@
     <Compile Include="Model\Fornitori.cs">
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\FornitoriCollection.cs" />
     <Compile Include="Validation\EMailValidator.cs" />
     <Compile Include="ViewModel\AddAnagraficaItemViewModelBase.cs" />
     <Compile Include="ViewModel\AddFornitoreViewModel.cs" />
     <Compile Include="ViewModel\AddMarcaViewModel.cs" />
+    <Compile Include="ViewModel\AnagraficaFornitoreWiewModel.cs" />
     <Compile Include="View\AddFornitoreWindow.xaml.cs">
       <DependentUpon>AddFornitoreWindow.xaml</DependentUpon>
     </Compile>
@@ -148,6 +150,9 @@
     <Compile Include="View\AddMarcaWindow.xaml.cs">
       <DependentUpon>AddMarcaWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AnagraficaFornitoreWindow.xaml.cs">
+      <DependentUpon>AnagraficaFornitoreWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DetailWindow.xaml.cs">
       <DependentUpon>DetailWindow.xaml</DependentUpon>
     </Compile>
@@ -168,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddMarcaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AnagraficaFornitoreWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
