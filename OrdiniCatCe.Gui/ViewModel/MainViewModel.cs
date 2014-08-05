@@ -181,16 +181,16 @@ namespace OrdiniCatCe.Gui.ViewModel
                         using (HtmlTextWriter writer = new HtmlTextWriter(stringWriter))
                         {
                             //writer.AddAttribute(HtmlTextWriterAttribute.Class, classValue);
-                            
-
+                            writer.RenderBeginTag(HtmlTextWriterTag.Html);
+                            writer.RenderBeginTag(HtmlTextWriterTag.Body);
                             foreach (RichiesteOrdine richiesteOrdine in ordines)
                             {
                                 writer.RenderBeginTag(HtmlTextWriterTag.Div);
                                 writer.Write(richiesteOrdine.Descrizione);
                                 writer.RenderEndTag();
                             }
-
-                            
+                            writer.RenderEndTag();
+                            writer.RenderEndTag();
                         }
                         string body1 = stringWriter.ToString();
                         #endregion
