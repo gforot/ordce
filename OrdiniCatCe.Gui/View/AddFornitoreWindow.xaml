@@ -33,11 +33,11 @@
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Foreground="{Binding Nome, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome"  Grid.Row="0" Grid.Column="0" />
+        <TextBlock Foreground="{Binding Name, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome"  Grid.Row="0" Grid.Column="0" />
         <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" />
 
         <TextBlock Text="EMail" Grid.Row="1" Grid.Column="0" />
-        <TextBox Text="{Binding EMail, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" />
+        <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" />
 
         <TextBlock Text="Telefono" Grid.Row="2" Grid.Column="0" />
         <TextBox Text="{Binding Telefono, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" />
