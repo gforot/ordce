@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding AddFornitoreViewModel, Source={StaticResource Locator}}"
-        Title="Nuovo Fornitore" Height="200" Width="600" Style="{StaticResource wndStyle}">
+        Title="Nuovo Fornitore" MinHeight="180" MaxHeight="250" MinWidth="280" MaxWidth="650" Height="200.611" Width="467.175" Style="{StaticResource wndStyle}">
     <Grid>
         <Grid.Resources>
             <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
@@ -26,7 +26,7 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -42,7 +42,7 @@
         <TextBlock Text="Telefono" Grid.Row="2" Grid.Column="0" />
         <TextBox Text="{Binding Telefono, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" />
 
-        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
+        <StackPanel HorizontalAlignment="Center"  Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
             <Button Content="Annulla" Command="{Binding AnnullaCommand}"/>
             <Button Content="Conferma" Command="{Binding ConfermaCommand}"/>
         </StackPanel>
