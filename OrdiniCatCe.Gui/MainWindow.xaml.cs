@@ -182,12 +182,6 @@ namespace OrdiniCatCe.Gui
 
         private void SetArrivato_OnClick(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult res = MessageBox.Show(this, "Sei sicuro di voler cancellare la riga?", "?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (res != MessageBoxResult.Yes)
-            {
-                return;
-            }
-
             RichiesteOrdine richiestaOrdine = GetRichiestaOrdineFromSenderOfButtonClick(sender);
             if (richiestaOrdine == null)
             {
