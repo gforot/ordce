@@ -391,6 +391,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             target.Modalit‡Avviso = source.Modalit‡Avviso;
             target.Nome = source.Nome;
             target.NumeroCivico = source.NumeroCivico;
+            target.Ordinato = source.Ordinato;
             target.PrezzoAcquisto = source.PrezzoAcquisto;
             target.Ritirato = source.Ritirato;
             target.Telefono = source.Telefono;
