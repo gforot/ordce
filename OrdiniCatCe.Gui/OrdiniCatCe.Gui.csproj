@@ -92,6 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Checks.cs" />
     <Compile Include="Constants\AppColors.cs" />
     <Compile Include="Converters\ArrivatoBackgroundConverter.cs" />
     <Compile Include="Converters\AvvisatoBackgroundConverter.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Converters\OrdinatoBackgroundConverter.cs" />
     <Compile Include="Converters\RitiratoBackgroundConverter.cs" />
     <Compile Include="Converters\TextboxBackgroundConverter.cs" />
+    <Compile Include="Converters\ValidEMailConverter.cs" />
     <Compile Include="Messages\AddFornitoreMessage.cs" />
     <Compile Include="Messages\AddMarcaMessage.cs" />
     <Compile Include="Messages\AddRigaOrdineMessage.cs" />
@@ -238,6 +240,7 @@
     <Resource Include="Images\moneybag_euro.png" />
     <Resource Include="Images\user_mobilephone.png" />
     <Resource Include="Images\package.png" />
+    <Resource Include="Images\mail_out.png" />
     <Content Include="Ordini.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

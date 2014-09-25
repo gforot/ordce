@@ -208,7 +208,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                         string email = f.Email;
                         email = "rotandrea@gmail.com";
 
-                        proc.StartInfo.FileName = string.Format("mailto:{0}?subject={1}&body={2}", email, subject, body1);
+                        proc.StartInfo.FileName = string.Format("mailto:{0}?subject={1}&body={2}", email, subject, body);
                         proc.Start();
                     }
                 }

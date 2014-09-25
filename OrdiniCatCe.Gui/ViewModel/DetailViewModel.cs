@@ -549,7 +549,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             errorMessage = null;
 
-            if (!CheckEmail(EMail))
+            if (!Checks.CheckEmail(EMail))
             {
                 errorMessage = "Il campo EMail non è corretto";
                 return false;
@@ -603,12 +603,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             return true;
         }
 
-        private bool CheckEmail(string email)
-        {
-            EMailValidator validator = new EMailValidator();
-            var res = validator.Validate(email, null);
-            return res.IsValid;
-        }
+
 
         internal Model.RichiesteOrdine CreateRigaOrdine()
         {

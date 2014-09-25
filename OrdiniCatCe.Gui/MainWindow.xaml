@@ -14,7 +14,7 @@
         <Grid.Resources>
             <converters:BackgroundConverter x:Key="backgroundConverter" />
             <converters:ButtonEnabledConverter x:Key="buttonEnabledConverter" />
-
+            <converters:ValidEMailConverter x:Key="validEMailConverter" />
             <converters:AvvisatoBackgroundConverter x:Key="avvisatoBackgroundConverter" />
             <converters:ArrivatoBackgroundConverter x:Key="arrivatoBackgroundConverter" />
             <converters:RitiratoBackgroundConverter x:Key="ritiratoBackgroundConverter" />
@@ -127,7 +127,18 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
+
+                <!-- Avvisa via EMail -->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="AvvisaViaEMail_OnClick" IsEnabled="{Binding EMail, Converter={StaticResource validEMailConverter}}">
+                                <Image ToolTip="Avvisa via EMail" Source="Images/mail_out.png" Width="16" Height="16"  />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
 
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
@@ -147,7 +158,7 @@
             <Button Command="{Binding AddFornitoreCommand}" Content="Aggiungi Fornitore" />
             <Button Command="{Binding AnagraficaFornitoriCommand}" Content="Anagrafica Fornitori" />
 
-            <Button Command="{Binding OrdinaCommand}" Content="Ordina" Visibility="Collapsed" />
+            <Button Command="{Binding OrdinaCommand}" Content="Ordina" Visibility="Visible" />
         </StackPanel>
     </Grid>
 </Window>

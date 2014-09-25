@@ -221,5 +221,23 @@ namespace OrdiniCatCe.Gui
                                                 new UpdateRigaOrdineMessage(richiestaOrdine),
                                                 MsgKeys.DeleteKey);
         }
+
+        private const string _avvisoText = "Avviso di arrivo pezzo ordinato";
+
+        private void AvvisaViaEMail_OnClick(object sender, RoutedEventArgs e)
+        {
+            RichiesteOrdine richiestaOrdine = GetRichiestaOrdineFromSenderOfButtonClick(sender);
+            if (richiestaOrdine == null)
+            {
+                return;
+            }
+
+            string email = richiestaOrdine.EMail;
+            string subject = _avvisoText;
+            string body = string.Format("Buongiorno, il ricambio {0} da Lei richiesto è ora presente nel nostro magazzino. Rota Angelo di Molteni Simona-0341369364", richiestaOrdine.Descrizione);
+            System.Diagnostics.Process proc = new System.Diagnostics.Process();
+            proc.StartInfo.FileName = string.Format("mailto:{0}?subject={1}&body={2}", email, subject, body);
+            proc.Start();
+        }
     }
 }
