@@ -1,24 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
 using OrdiniCatCe.Gui.View;
 using OrdiniCatCe.Gui.ViewModel;
-
 
 namespace OrdiniCatCe.Gui
 {
@@ -234,7 +222,7 @@ namespace OrdiniCatCe.Gui
 
             string email = richiestaOrdine.EMail;
             string subject = _avvisoText;
-            string body = string.Format("Buongiorno, il ricambio {0} da Lei richiesto è ora presente nel nostro magazzino. Rota Angelo di Molteni Simona-0341369364", richiestaOrdine.Descrizione);
+            string body = string.Format("Buongiorno, il ricambio '{0}' da Lei richiesto è ora presente nel nostro magazzino. Rota Angelo di Molteni Simona(0341369364)", richiestaOrdine.Descrizione);
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
             proc.StartInfo.FileName = string.Format("mailto:{0}?subject={1}&body={2}", email, subject, body);
             proc.Start();

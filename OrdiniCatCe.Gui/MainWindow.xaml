@@ -21,7 +21,7 @@
             <converters:OrdinatoBackgroundConverter x:Key="ordinatoBackgroundConverter" />
 
         </Grid.Resources>
-        <TextBlock Text="Gestione Ordini" HorizontalAlignment="Center" FontSize="26"  Padding="0,5,0,5"></TextBlock>
+        <TextBlock Text="Gestione Ordini" HorizontalAlignment="Center" FontSize="24"  Padding="0,5,0,5"></TextBlock>
         <StackPanel x:Name="FiltersPanel" Orientation="Horizontal" Grid.Row="1">
             <TextBlock Text="Nome" Margin="2"></TextBlock>
             <TextBox Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
@@ -56,6 +56,7 @@
                 <Style TargetType="DataGridRow">
                     <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self},
                 Path=Item, Converter={StaticResource backgroundConverter}}"/>
+                    <Setter Property="Height" Value="22"></Setter>
                 </Style>
             </DataGrid.RowStyle>
             <DataGrid.Columns>
