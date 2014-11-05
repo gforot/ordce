@@ -1,0 +1,2 @@
+! provata installazione su macchina Windows 8.1 di casa papà. Per il corretto funzionamento ho dovuto installare qualcosa che però non ricordo.
+Capire se necessario installare probabilmente EntityFramework o SQLite.

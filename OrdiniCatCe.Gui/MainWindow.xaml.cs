@@ -33,11 +33,11 @@ namespace OrdiniCatCe.Gui
 
             if (wnd.MyDialogResult)
             {
-                Messenger.Default.Send<AddMarcaMessage>(new AddMarcaMessage
+                Messenger.Default.Send(new AddMarcaMessage
                 {
                     Marca = wnd.GetMarca()
                 },
-                                             MsgKeys.AddMarcaToDbKey);
+                MsgKeys.AddMarcaToDbKey);
             }
         }
 

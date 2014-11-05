@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
-        Title="MainWindow" Height="800" Width="1000" Style="{StaticResource wndStyle}">
+        Title="Gestione Ordini" Height="800" Width="1000" Style="{StaticResource wndStyle}">
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -56,7 +56,6 @@
                 <Style TargetType="DataGridRow">
                     <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self},
                 Path=Item, Converter={StaticResource backgroundConverter}}"/>
-                    <Setter Property="Height" Value="22"></Setter>
                 </Style>
             </DataGrid.RowStyle>
             <DataGrid.Columns>
@@ -158,7 +157,6 @@
             <Button Command="{Binding AddMarcaCommand}" Content="Aggiungi Marca" />
             <Button Command="{Binding AddFornitoreCommand}" Content="Aggiungi Fornitore" />
             <Button Command="{Binding AnagraficaFornitoriCommand}" Content="Anagrafica Fornitori" />
-
             <Button Command="{Binding OrdinaCommand}" Content="Ordina" Visibility="Visible" />
         </StackPanel>
     </Grid>
