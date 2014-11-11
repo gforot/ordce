@@ -1,2 +1,8 @@
 ! provata installazione su macchina Windows 8.1 di casa papà. Per il corretto funzionamento ho dovuto installare qualcosa che però non ricordo.
 Capire se necessario installare probabilmente EntityFramework o SQLite.
+
+
+LINK per creazione e distribuzione di applicazioni che usino SQL Server Compact
+
+http://technet.microsoft.com/it-it/library/ms173298(v=sql.110).aspx
+http://technet.microsoft.com/it-it/library/gg213826(v=sql.110).aspx
