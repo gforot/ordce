@@ -3,6 +3,9 @@
         <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:OrdiniCatCe.Gui.ViewModel" />
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Background" Value="LightGray"></Setter>
+            <Setter Property="BorderThickness" Value="2"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="5"></Setter>

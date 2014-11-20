@@ -4,8 +4,13 @@
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="Gestione Ordini" Height="800" Width="1000" Style="{StaticResource wndStyle}">
+
     <Grid Background="Transparent">
+
+
+
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -21,8 +26,16 @@
             <converters:OrdinatoBackgroundConverter x:Key="ordinatoBackgroundConverter" />
 
         </Grid.Resources>
-        <TextBlock Text="Gestione Ordini" HorizontalAlignment="Center" FontSize="24"  Padding="0,5,0,5"></TextBlock>
-        <StackPanel x:Name="FiltersPanel" Orientation="Horizontal" Grid.Row="1">
+
+        <Menu>
+            <MenuItem Header="_Anagrafica">
+                <MenuItem Header="Nuovo Fornitore" Command="{Binding AddFornitoreCommand}"></MenuItem>
+                <MenuItem Header="Nuova Marca" Command="{Binding AddMarcaCommand}"></MenuItem>
+                <MenuItem Header="Fornitori" Command="{Binding AnagraficaFornitoriCommand}"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <TextBlock Grid.Row="1"  Text="Gestione Ordini" HorizontalAlignment="Center" FontSize="24"  Padding="0,5,0,5"></TextBlock>
+        <StackPanel x:Name="FiltersPanel" Orientation="Horizontal" Grid.Row="2">
             <TextBlock Text="Nome" Margin="2"></TextBlock>
             <TextBox Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
             <Button Command="{Binding ClearNomeFilterCommand}" >
@@ -50,7 +63,7 @@
             
         </StackPanel>
         <DataGrid x:Name="grid" CanUserAddRows="false" CanUserDeleteRows="False" AutoGenerateColumns="False"
-                  ItemsSource="{Binding RigheOrdine}" Grid.Row="2"
+                  ItemsSource="{Binding RigheOrdine}" Grid.Row="3"
                   >
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
@@ -152,12 +165,9 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="3">
-            <Button Command="{Binding AddOrdineCommand}" Content="Nuovo Ordine" />
-            <Button Command="{Binding AddMarcaCommand}" Content="Aggiungi Marca" />
-            <Button Command="{Binding AddFornitoreCommand}" Content="Aggiungi Fornitore" />
-            <Button Command="{Binding AnagraficaFornitoriCommand}" Content="Anagrafica Fornitori" />
-            <Button Command="{Binding OrdinaCommand}" Content="Ordina" Visibility="Visible" />
+        <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="4">
+            <Button Command="{Binding AddOrdineCommand}" Content="Nuovo Ordine"/>
+            <Button Command="{Binding OrdinaCommand}" Content="Ordina" Visibility="Collapsed" />
         </StackPanel>
     </Grid>
 </Window>
