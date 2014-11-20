@@ -29,7 +29,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition ></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
             <TextBlock Foreground="{Binding Name, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome"  Grid.Row="0" Grid.Column="0" />
@@ -41,11 +42,11 @@
             <TextBlock Text="Telefono" Grid.Row="2" Grid.Column="0" />
             <TextBox Text="{Binding Telefono, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" />
 
-
+            <StackPanel HorizontalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="10">
+                <Button x:Name="previousCommand" Command="{Binding PreviousCommand}">Precedente</Button>
+                <Button x:Name="nextCommand" Command="{Binding NextCommand}">Successivo</Button>
+            </StackPanel>
         </Grid>
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
-            <Button x:Name="previousCommand" Command="{Binding PreviousCommand}">Precedente</Button>
-            <Button x:Name="nextCommand" Command="{Binding NextCommand}">Successivo</Button>
-        </StackPanel>
+
     </StackPanel>
 </Window>
