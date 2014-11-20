@@ -27,7 +27,7 @@
 
         </Grid.Resources>
 
-        <Menu>
+        <Menu IsMainMenu="True">
             <MenuItem Header="_Anagrafica">
                 <MenuItem Header="Nuovo Fornitore" Command="{Binding AddFornitoreCommand}"></MenuItem>
                 <MenuItem Header="Nuova Marca" Command="{Binding AddMarcaCommand}"></MenuItem>
