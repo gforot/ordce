@@ -34,7 +34,7 @@
                 <MenuItem Header="Fornitori" Command="{Binding AnagraficaFornitoriCommand}"></MenuItem>
             </MenuItem>
         </Menu>
-        <TextBlock Grid.Row="1"  Text="Gestione Ordini" HorizontalAlignment="Center" FontSize="24"  Padding="0,5,0,5"></TextBlock>
+        <TextBlock Grid.Row="1"  Text="Gestione Ordini" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="22"  Padding="0,5,0,5"></TextBlock>
         <StackPanel x:Name="FiltersPanel" Orientation="Horizontal" Grid.Row="2">
             <TextBlock Text="Nome" Margin="2"></TextBlock>
             <TextBox Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>

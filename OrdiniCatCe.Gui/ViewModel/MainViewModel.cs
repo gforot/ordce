@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Web.UI;
+using System.Windows;
 using System.Windows.Data;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -175,6 +177,9 @@ namespace OrdiniCatCe.Gui.ViewModel
                         const string subject = "Ordine";
 
                         //scrivere il body in HTML
+                        MailMessage message=new MailMessage();
+                        message.IsBodyHtml = true;
+                        
 
 
                         #region Creazione Body
@@ -206,7 +211,31 @@ namespace OrdiniCatCe.Gui.ViewModel
                         }
 
                         string email = f.Email;
+                        //per ora invio tutto al mio indirizzo
+                        //TODO: togliere questo assegnamento.
                         email = "rotandrea@gmail.com";
+                        message.From = new MailAddress(email);
+                        message.To.Add(new MailAddress(email));
+                        message.Body = body1;
+
+                        SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
+                        smtpServer.Port = 587;
+                        smtpServer.Credentials = new System.Net.NetworkCredential("rotandrea@gmail.com", "St3f@n01113");
+                        smtpServer.EnableSsl = true;
+
+                        try
+                        {
+                            smtpServer.Send(message);
+                        }
+                        catch (SmtpException smtpExc)
+                        {
+                            MessageBox.Show("SMTP Exception: " + smtpExc.Message);
+                        }
+                        catch (Exception exc)
+                        {
+                            MessageBox.Show("SMTP Exception: " + exc.Message);
+                        }
+
 
                         proc.StartInfo.FileName = string.Format("mailto:{0}?subject={1}&body={2}", email, subject, body);
                         proc.Start();
