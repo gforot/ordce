@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding DetailViewModel, Source={StaticResource Locator}}"
-        Title="DetailWindow" Style="{StaticResource wndStyle}" MinWidth="800" Width="819.463" Height="648.739" WindowStartupLocation="CenterScreen">
+        Title="Dettaglio Ordine" Style="{StaticResource wndStyle}" MinWidth="800" Width="819.463" Height="648.739" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="6"></Setter>
