@@ -45,6 +45,40 @@ namespace OrdiniCatCe.Gui.Model
         {
             return Fornitori.First(f => f.Id == idFornitore);
         }
+
+        public Marche GetMarca(int idMarca)
+        {
+            return Marche.First(f => f.Id == idMarca);
+        }
+
+        public Marche GetMarca(string name)
+        {
+            return Marche.First(f => f.Nome == name);
+        }
+
+        public bool RemoveMarca(string name)
+        {
+            Marche m = GetMarca(name);
+            if (m == null)
+            {
+                return false;
+            }
+            this.Marche.Remove(m);
+            SaveChanges();
+            return true;
+        }
+
+        public bool RemoveFornitore(int id)
+        {
+            Fornitori f = GetFornitore(id);
+            if (f == null)
+            {
+                return false;
+            }
+            this.Fornitori.Remove(f);
+            SaveChanges();
+            return true;
+        }
     
         public DbSet<Marche> Marche { get; set; }
         public DbSet<RichiesteOrdine> RichiesteOrdine { get; set; }

@@ -46,6 +46,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             SimpleIoc.Default.Register<DetailViewModel>();
             SimpleIoc.Default.Register<AddMarcaViewModel>();
             SimpleIoc.Default.Register<AddFornitoreViewModel>();
+            SimpleIoc.Default.Register<AddFornitoreViewModel>();
         }
 
         public MainViewModel Main

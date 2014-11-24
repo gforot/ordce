@@ -18,18 +18,15 @@ using OrdiniCatCe.Gui.ViewModel;
 namespace OrdiniCatCe.Gui.View
 {
     /// <summary>
-    /// Interaction logic for AnagraficaFornitoreWindow.xaml
+    /// Interaction logic for AnagraficaMarcheWindow.xaml
     /// </summary>
-    public partial class AnagraficaFornitoreWindow : Window
+    public partial class AnagraficaMarcheWindow : Window
     {
-        private AnagraficaFornitoreViewModel _vm;
-
-        public AnagraficaFornitoreWindow(List<Fornitori> fornitori)
+        public AnagraficaMarcheWindow(List<Marche> marche)
         {
             InitializeComponent();
 
-            _vm = new AnagraficaFornitoreViewModel(fornitori);
-            this.DataContext = _vm;
+            DataContext = new AnagraficaMarcheViewModel(marche);
         }
     }
 }

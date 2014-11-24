@@ -1,8 +1,8 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
+using System.Xml.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using OrdiniCatCe.Gui.Model;
@@ -10,20 +10,21 @@ using OrdiniCatCe.Gui.Model;
 
 namespace OrdiniCatCe.Gui.ViewModel
 {
-    public class AnagraficaFornitoreWiewModel : ViewModelBase
+    public class AnagraficaMarcheViewModel : ViewModelBase
     {
         private ICollectionView _view;
 
-        public FornitoriCollection Fornitori { get; set; }
+        public MarcheCollection Marche   { get; set; }
 
         public RelayCommand PreviousCommand { get; private set; }
         public RelayCommand NextCommand { get; private set; }
+        public RelayCommand DeleteCommand { get; private set; }
 
-        public Fornitori CurrentFornitore
+        public Marche CurrentMarca
         {
             get
             {
-                return _view.CurrentItem as Fornitori;
+                return _view.CurrentItem as Marche;
             }
         }
 
@@ -31,44 +32,21 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             get
             {
-                return CurrentFornitore.Name;
+                return CurrentMarca.Nome;
             }
             set
             {
-                CurrentFornitore.Name = value;
+                CurrentMarca.Nome = value;
             }
         }
 
-        public string Telefono
+        public AnagraficaMarcheViewModel(List<Marche> marche)
         {
-            get
-            {
-                return CurrentFornitore.Telefono;
-            }
-            set
-            {
-                CurrentFornitore.Telefono = value;
-            }
-        }
-
-        public string EMail
-        {
-            get
-            {
-                return CurrentFornitore.Email;
-            }
-            set
-            {
-                CurrentFornitore.Email = value;
-            }
-        }
-
-        public AnagraficaFornitoreWiewModel(IEnumerable<Fornitori> fornitori)
-        {
-            _view = CollectionViewSource.GetDefaultView(fornitori);
+            _view = CollectionViewSource.GetDefaultView(marche);
 
             PreviousCommand = new RelayCommand(MovePrevious,() => CanMovePrevoious);
             NextCommand = new RelayCommand(MoveNext, () => CanMoveNext);
+            DeleteCommand = new RelayCommand(Delete, () => CanDelete);
         }
 
         private void MoveNext()
@@ -89,11 +67,28 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
+        private void Delete()
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                db.RemoveMarca(CurrentMarca.Nome);
+
+            }
+        }
+
+        private bool CanDelete
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         private bool CanMoveNext
         {
             get
             {
-                int total = (_view.SourceCollection as IEnumerable<Fornitori>).Count();
+                int total = (_view.SourceCollection as IEnumerable<Marche>).Count();
                 return _view.CurrentPosition < total - 1;
             }
         }

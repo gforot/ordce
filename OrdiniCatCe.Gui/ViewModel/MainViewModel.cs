@@ -29,6 +29,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         public RelayCommand ClearCognomeFilterCommand { get; private set; }
         public RelayCommand ClearFornitoreFilterCommand { get; private set; }
         public RelayCommand AnagraficaFornitoriCommand { get; private set; }
+        public RelayCommand AnagraficaMarcheCommand { get; private set; }
         public RelayCommand OrdinaCommand { get; private set; }
 
         private const string _nameFilterPrpName="NameFilter";
@@ -112,6 +113,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             ClearCognomeFilterCommand = new RelayCommand(ClearCognomeFilter);
             ClearFornitoreFilterCommand = new RelayCommand(ClearFornitoreFilter);
             AnagraficaFornitoriCommand = new RelayCommand(AnagraficaFornitori);
+            AnagraficaMarcheCommand = new RelayCommand(AnagraficaMarche);
             OrdinaCommand = new RelayCommand(Ordina);
             Messenger.Default.Register<AddRigaOrdineMessage>(this, MsgKeys.AddRigaOrdineToDbKey, OnAddRigaOrdineToDbRequested);
             Messenger.Default.Register<AddMarcaMessage>(this, MsgKeys.AddMarcaToDbKey, OnAddMarcaToDbRequested);
@@ -384,7 +386,18 @@ namespace OrdiniCatCe.Gui.ViewModel
 
                 //aggiorno DB?
                 db.SaveChanges();
+            }
+        }
 
+        private void AnagraficaMarche()
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                AnagraficaMarcheWindow wnd = new AnagraficaMarcheWindow(db.Marche.ToList());
+                wnd.ShowDialog();
+
+                //aggiorno DB?
+                db.SaveChanges();
             }
         }
 

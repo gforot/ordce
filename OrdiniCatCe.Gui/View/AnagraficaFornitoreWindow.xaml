@@ -45,6 +45,7 @@
             <StackPanel HorizontalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5">
                 <Button x:Name="previousCommand" Command="{Binding PreviousCommand}">Precedente</Button>
                 <Button x:Name="nextCommand" Command="{Binding NextCommand}">Successivo</Button>
+                <Button x:Name="deleteCommand" Command="{Binding DeleteCommand}">Elimina</Button>
             </StackPanel>
         </Grid>
 

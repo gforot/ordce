@@ -32,6 +32,7 @@
                 <MenuItem Header="Nuovo Fornitore" Command="{Binding AddFornitoreCommand}"></MenuItem>
                 <MenuItem Header="Nuova Marca" Command="{Binding AddMarcaCommand}"></MenuItem>
                 <MenuItem Header="Fornitori" Command="{Binding AnagraficaFornitoriCommand}"></MenuItem>
+                <MenuItem Header="Marche" Command="{Binding AnagraficaMarcheCommand}"></MenuItem>
             </MenuItem>
         </Menu>
         <TextBlock Grid.Row="1"  Text="Gestione Ordini" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="22"  Padding="0,5,0,5"></TextBlock>
