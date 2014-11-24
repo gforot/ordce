@@ -80,7 +80,8 @@
                 <DataGridTextColumn Header="Telefono"  Binding="{Binding Telefono}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Modalita" Binding="{Binding ModalitàAvviso}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Fornitore" Binding="{Binding Fornitori.Name}"  IsReadOnly="True" />
-                <DataGridTextColumn Header="Data Richiesta" Binding="{Binding DataRichiesta, StringFormat={}{0:dd/MM/yyyy hh:mm tt}, ConverterCulture=it-IT}"  IsReadOnly="True" />
+                <!--<DataGridTextColumn Header="Data Richiesta" Binding="{Binding DataRichiesta, StringFormat={}{0:dd/MM/yyyy hh:mm tt}, ConverterCulture=it-IT}"  IsReadOnly="True" />-->
+                <DataGridTextColumn Header="Data Richiesta" Binding="{Binding DataRichiesta, StringFormat={}{0:dd/MM/yyyy}, ConverterCulture=it-IT}"  IsReadOnly="True" />
                 <DataGridCheckBoxColumn Header="Avvisato" Binding="{Binding Avvisato}" IsReadOnly="True"/>
                 <DataGridCheckBoxColumn Header="Ritirato" Binding="{Binding Ritirato}" IsReadOnly="True" />
 
