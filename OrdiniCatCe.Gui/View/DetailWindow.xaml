@@ -63,13 +63,13 @@
                 </Grid.RowDefinitions>
 
                 <!-- Riga 1: NOME COGNOME -->
-                <TextBlock Foreground="{Binding Nome, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome *"></TextBlock>
-                <TextBox  Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" 
-                         
-                         />
+                <TextBlock Foreground="{Binding Cognome, Converter={StaticResource textboxBackgroundConverter}}" Text="Cognome *" Grid.Column="0" Grid.Row="0" />
+                <TextBox Text="{Binding Cognome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" />
 
-                <TextBlock Foreground="{Binding Cognome, Converter={StaticResource textboxBackgroundConverter}}" Text="Cognome *" Grid.Column="2"></TextBlock>
-                <TextBox Text="{Binding Cognome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" />
+                <TextBlock Foreground="{Binding Nome, Converter={StaticResource textboxBackgroundConverter}}" Grid.Row="0" Grid.Column="2" Text="Nome *" />
+                <TextBox  Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="0" />
+
+
 
 
                 <!-- Riga 2: indirizzo -->

@@ -72,8 +72,8 @@
                 </Style>
             </DataGrid.RowStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nome"  Binding="{Binding Nome}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Cognome"  Binding="{Binding Cognome}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Nome"  Binding="{Binding Nome}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Indirizzo" Binding="{Binding Indirizzo}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Marca" Binding="{Binding Marche.Nome}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Descrizione" Binding="{Binding Descrizione}" IsReadOnly="True" />
