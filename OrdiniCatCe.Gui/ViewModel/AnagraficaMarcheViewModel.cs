@@ -71,8 +71,15 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                db.RemoveMarca(CurrentMarca.Nome);
-
+                db.RemoveMarca(CurrentMarca.Id);
+                if (CanMovePrevoious)
+                {
+                    MovePrevious();
+                }
+                else if (CanMoveNext)
+                {
+                    MoveNext();
+                }
             }
         }
 

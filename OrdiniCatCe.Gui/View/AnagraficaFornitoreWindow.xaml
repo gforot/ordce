@@ -3,8 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         Title="Anagrafica Fornitori" Height="195" Width="601" Style="{StaticResource wndStyle}">
-
-        <Grid>
+    <Window.Resources>
+        <converters:ObjectToEnabledConverter x:Key="objToEnabledConverter" />
+    </Window.Resources>
+    <Grid IsEnabled="{Binding CurrentFornitore, Converter={StaticResource objToEnabledConverter}}">
             <Grid.Resources>
                 <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
                 <Style TargetType="StackPanel">

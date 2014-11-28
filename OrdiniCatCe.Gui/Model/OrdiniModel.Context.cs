@@ -56,28 +56,26 @@ namespace OrdiniCatCe.Gui.Model
             return Marche.First(f => f.Nome == name);
         }
 
-        public bool RemoveMarca(string name)
-        {
-            Marche m = GetMarca(name);
-            if (m == null)
-            {
-                return false;
-            }
-            this.Marche.Remove(m);
-            SaveChanges();
-            return true;
-        }
-
-        public bool RemoveFornitore(int id)
+        public void RemoveFornitore(int id)
         {
             Fornitori f = GetFornitore(id);
             if (f == null)
             {
-                return false;
+                return;
             }
             this.Fornitori.Remove(f);
             SaveChanges();
-            return true;
+        }
+
+        public void RemoveMarca(int id)
+        {
+            Marche m = GetMarca(id);
+            if (m == null)
+            {
+                return;
+            }
+            this.Marche.Remove(m);
+            this.SaveChanges();
         }
     
         public DbSet<Marche> Marche { get; set; }
