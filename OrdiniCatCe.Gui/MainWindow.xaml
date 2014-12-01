@@ -37,14 +37,16 @@
         </Menu>
         <TextBlock Grid.Row="1"  Text="Gestione Ordini" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="22"  Padding="0,5,0,5"></TextBlock>
         <StackPanel x:Name="FiltersPanel" Orientation="Horizontal" Grid.Row="2">
-            <TextBlock Text="Nome" Margin="2"></TextBlock>
-            <TextBox Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
-            <Button Command="{Binding ClearNomeFilterCommand}" >
-                <Image Source="Images/eraser2.png" Width="16" Height="16"  />
-            </Button>
-            <TextBlock Margin="10,2,2,2" Text="Cognome"/>
+
+            <TextBlock Margin="2" Text="Cognome"/>
             <TextBox Text="{Binding CognomeFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
             <Button Command="{Binding ClearCognomeFilterCommand}" >
+                <Image Source="Images/eraser2.png" Width="16" Height="16"  />
+            </Button>
+
+            <TextBlock Text="Nome" Margin="10,2,2,2"></TextBlock>
+            <TextBox Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
+            <Button Command="{Binding ClearNomeFilterCommand}" >
                 <Image Source="Images/eraser2.png" Width="16" Height="16"  />
             </Button>
 
