@@ -9,9 +9,11 @@ using System.Windows.Media.TextFormatting;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Practices.ServiceLocation;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
 using OrdiniCatCe.Gui.Validation;
+using OrdiniCatCe.Gui.View;
 
 
 namespace OrdiniCatCe.Gui.ViewModel
@@ -495,10 +497,16 @@ namespace OrdiniCatCe.Gui.ViewModel
         public RelayCommand AnnullaCommand { get; private set; }
         public RelayCommand ConfermaCommand { get; private set; }
 
+        //nuovi comandi per creazione Marca e Fornitore
+        public RelayCommand CreaMarcaCommand { get; private set; }
+        public RelayCommand CreaFornitoreCommand { get; private set; }
+
         public DetailViewModel()
         {
             AnnullaCommand = new RelayCommand(Annulla);
             ConfermaCommand = new RelayCommand(Conferma, () => CanConferma);
+            CreaFornitoreCommand = new RelayCommand(CreaFornitore);
+            CreaMarcaCommand = new RelayCommand(CreaMarca);
 
             //todo: trasformarlo in message per inizializzare Marche
             OnInitRequested(null);
@@ -543,6 +551,33 @@ namespace OrdiniCatCe.Gui.ViewModel
 
 
             Messenger.Default.Send<MessageBase>(new MessageBase(), MsgKeys.ConfirmKey);
+        }
+
+        private void CreaFornitore()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CreaMarca()
+        {
+            ServiceLocator.Current.GetInstance<AddMarcaViewModel>().Setup();
+            AddMarcaWindow wnd = new AddMarcaWindow();
+            wnd.ShowDialog();
+
+            if (wnd.MyDialogResult)
+            {
+                Messenger.Default.Send(new AddMarcaMessage
+                {
+                    Marca = wnd.GetMarca()
+                },
+                MsgKeys.AddMarcaToDbKey);
+            }
+
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                Marche = db.Marche.ToList();
+                Fornitori = db.Fornitori.ToList();
+            }
         }
 
         private bool Check(out string errorMessage)

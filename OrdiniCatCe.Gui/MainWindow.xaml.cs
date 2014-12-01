@@ -39,6 +39,11 @@ namespace OrdiniCatCe.Gui
                 },
                 MsgKeys.AddMarcaToDbKey);
             }
+            //marca aggiunta.
+            //devo aggiornare il DetailViewModel
+
+            Messenger.Default.Send(new AddMarcaMessage(),MsgKeys.InitKey);
+
         }
 
 
@@ -57,6 +62,10 @@ namespace OrdiniCatCe.Gui
                 },
                                              MsgKeys.AddFornitoreToDbKey);
             }
+
+            //fornitore aggiunto.
+            //devo aggiornare il DetailViewModel
+            Messenger.Default.Send(new AddMarcaMessage(), MsgKeys.InitKey);
         }
 
 
