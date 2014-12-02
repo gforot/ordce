@@ -42,7 +42,7 @@ namespace OrdiniCatCe.Gui
             //marca aggiunta.
             //devo aggiornare il DetailViewModel
 
-            Messenger.Default.Send(new AddMarcaMessage(),MsgKeys.InitKey);
+            Messenger.Default.Send(new MessageBase(),MsgKeys.InitKey);
 
         }
 
