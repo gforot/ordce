@@ -1,4 +1,6 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using System.Windows;
+using GalaSoft.MvvmLight.Messaging;
+using OrdiniCatCe.Gui.Db;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
 
@@ -78,7 +80,21 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         public override void Conferma()
         {
-            Messenger.Default.Send<MessageBase>(new MessageBase(), MsgKeys.ConfirmAddFornitoreKey);
+            string errorMessage;
+            if (!DbManager.AddFornitore(new Fornitori()
+                                        {
+                                            Name = Name,
+                                            Email = Email,
+                                            Telefono = Telefono
+                                        }, 
+                                        out errorMessage))
+            {
+                MessageBox.Show(errorMessage);
+            }
+            else//se tutto va bene mando messaggio di Conferma
+            {
+                Messenger.Default.Send(new MessageBase(), MsgKeys.ConfirmAddFornitoreKey);
+            }
         }
 
 

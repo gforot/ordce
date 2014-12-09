@@ -51,11 +51,5 @@ namespace OrdiniCatCe.Gui.View
             this.Close();
         }
 
-        internal Marche GetMarca()
-        {
-            AddMarcaViewModel vm = DataContext as AddMarcaViewModel;
-
-            return vm == null ? null : vm.GetMarca();
-        }
     }
 }

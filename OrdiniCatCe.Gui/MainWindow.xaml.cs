@@ -30,20 +30,6 @@ namespace OrdiniCatCe.Gui
             ServiceLocator.Current.GetInstance<AddMarcaViewModel>().Setup();
             AddMarcaWindow wnd = new AddMarcaWindow();
             wnd.ShowDialog();
-
-            if (wnd.MyDialogResult)
-            {
-                Messenger.Default.Send(new AddMarcaMessage
-                {
-                    Marca = wnd.GetMarca()
-                },
-                MsgKeys.AddMarcaToDbKey);
-            }
-            //marca aggiunta.
-            //devo aggiornare il DetailViewModel
-
-            Messenger.Default.Send(new MessageBase(),MsgKeys.InitKey);
-
         }
 
 
@@ -52,20 +38,6 @@ namespace OrdiniCatCe.Gui
             ServiceLocator.Current.GetInstance<AddFornitoreViewModel>().Setup();
             AddFornitoreWindow wnd = new AddFornitoreWindow();
             wnd.ShowDialog();
-
-            if (wnd.MyDialogResult)
-            {
-                Messenger.Default.Send<AddFornitoreMessage>(new AddFornitoreMessage
-
-                {
-                    Fornitore = wnd.GetFornitore()
-                },
-                                             MsgKeys.AddFornitoreToDbKey);
-            }
-
-            //fornitore aggiunto.
-            //devo aggiornare il DetailViewModel
-            Messenger.Default.Send(new AddMarcaMessage(), MsgKeys.InitKey);
         }
 
 

@@ -1,0 +1,74 @@
+﻿using System.Linq;
+using GalaSoft.MvvmLight.Messaging;
+using OrdiniCatCe.Gui.Messages;
+using OrdiniCatCe.Gui.Model;
+
+
+namespace OrdiniCatCe.Gui.Db
+{
+    public class DbManager
+    {
+        /// <summary>
+        /// Aggiunge una marca nel Database
+        /// Controlla l'esistenza della marca. Se esiste, non permette l'aggiunta e torna false.
+        /// Per qualsiasi problema deve tornare un messaggio contenente l'errore da visualizzare all'utente.
+        /// </summary>
+        /// <param name="marca">La marca da aggiungere.</param>
+        /// <param name="errorMessage">Il messaggio di errore(ha un valore significativo solamente se il metodo torna false).</param>
+        /// <returns>True se l'inserimento è andato a buon fine, altrimenti torna false.</returns>
+        public static bool AddMarca(Marche marca, out string errorMessage)
+        {
+            errorMessage = null;
+            bool addOk = false;
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                if (db.Marche.Any(m => m.Nome.ToLower().Equals(marca.Nome.ToLower())))
+                {
+                    errorMessage = string.Format("La marca {0} è già presente in anagrafica.", marca.Nome);
+                }
+                else
+                {
+                    db.Marche.Add(marca);
+                    db.SaveChanges();
+                    addOk = true;
+                    //se viene aggiunta la marca correttamente, mando messaggio di Marca Added
+                    Messenger.Default.Send(new AddMarcaMessage(marca), MsgKeys.MarcaAddedKey);
+                }
+            }
+
+            return addOk;
+        }
+
+
+        /// <summary>
+        /// Aggiunge un fornitore nel Database
+        /// Controlla l'esistenza del fornitore. Se esiste, non permette l'aggiunta e torna false.
+        /// Per qualsiasi problema deve tornare un messaggio contenente l'errore da visualizzare all'utente.
+        /// </summary>
+        /// <param name="fornitore">Il fornitore da aggiungere.</param>
+        /// <param name="errorMessage">Il messaggio di errore(ha un valore significativo solamente se il metodo torna false).</param>
+        /// <returns>True se l'inserimento è andato a buon fine, altrimenti torna false.</returns>
+        public static bool AddFornitore(Fornitori fornitore, out string errorMessage)
+        {
+            errorMessage = null;
+            bool addOk = false;
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                if (db.Fornitori.Any(f => f.Name.ToLower().Equals(fornitore.Name.ToLower())))
+                {
+                    errorMessage = string.Format("Il fornitore {0} è già presente in anagrafica.", fornitore.Name);
+                }
+                else
+                {
+                    db.Fornitori.Add(fornitore);
+                    db.SaveChanges();
+                    addOk = true;
+                    //se viene aggiunta la marca correttamente, mando messaggio di Marca Added
+                    Messenger.Default.Send(new AddFornitoreMessage(fornitore), MsgKeys.FornitoreAddedKey);
+                }
+            }
+
+            return addOk;
+        }
+    }
+}

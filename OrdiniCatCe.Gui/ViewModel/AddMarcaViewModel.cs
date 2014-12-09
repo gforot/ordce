@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
+using OrdiniCatCe.Gui.Db;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
 
@@ -46,23 +47,16 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         public override void Conferma()
         {
-            //controllare l'esistenza della marca
-            //Se esiste già, evitarne l'inserimento.
-            using (OrdiniEntities db = new OrdiniEntities())
+            string errorMessage;
+            if (!DbManager.AddMarca(new Marche {Nome = Name}, out errorMessage))
             {
-                if (db.Marche.Any(m => m.Nome.ToLower().Equals(Name.ToLower())))
-                {
-                    MessageBox.Show(string.Format("La marca {0} è già presente in anagrafica.", Name));
-                    return;
-                }
+                MessageBox.Show(errorMessage);
             }
-
-            Messenger.Default.Send<MessageBase>(new MessageBase(), MsgKeys.ConfirmAddMarcaKey);
+            else//se tutto va bene mando messaggio di Conferma
+            {
+                Messenger.Default.Send(new MessageBase(), MsgKeys.ConfirmAddMarcaKey);
+            }
         }
 
-        internal Marche GetMarca()
-        {
-            return new Marche {Nome = Name};
-        }
     }
 }

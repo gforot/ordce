@@ -23,5 +23,7 @@ namespace OrdiniCatCe.Gui.Messages
         public const string CancelAddMarcaKey = "CancelAddMarca";
         public const string ConfirmAddMarcaKey = "ConfirmAddMarca";
         public const string DeleteKey = "Delete";
+        public const string MarcaAddedKey = "MarcaAdded";
+        public const string FornitoreAddedKey = "FornitoreAdded";
     }
 }

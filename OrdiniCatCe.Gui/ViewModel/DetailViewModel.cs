@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity.Migrations.Model;
@@ -483,8 +484,8 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
-        public List<Marche> Marche { get; private set; }
-        public List<Fornitori> Fornitori { get; private set; }
+        public ObservableCollection<Marche> Marche { get; private set; }
+        public ObservableCollection<Fornitori> Fornitori { get; private set; }
 
         /*
         public Nullable<int> IdMarca { get; set; }
@@ -509,18 +510,31 @@ namespace OrdiniCatCe.Gui.ViewModel
             CreaMarcaCommand = new RelayCommand(CreaMarca);
 
             //todo: trasformarlo in message per inizializzare Marche
-            OnInitRequested(null);
+            Init();
 
-            Messenger.Default.Register<MessageBase>(this, MsgKeys.InitKey, OnInitRequested);
+            Messenger.Default.Register<AddMarcaMessage>(this, MsgKeys.MarcaAddedKey, OnMarcaAdded);
+            Messenger.Default.Register<AddFornitoreMessage>(this, MsgKeys.FornitoreAddedKey, OnFornitoreAdded);
         }
 
-        private void OnInitRequested(MessageBase message)
+        private void Init()
         {
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                Marche = db.Marche.ToList();
-                Fornitori = db.Fornitori.ToList();
+                Marche = new ObservableCollection<Marche>(db.Marche.ToList());
+                Fornitori = new ObservableCollection<Fornitori>(db.Fornitori.ToList());
             }
+        }
+
+        private void OnMarcaAdded(AddMarcaMessage message)
+        {
+            Marche.Add(message.Marca);
+            Marca = message.Marca;
+        }
+
+        private void OnFornitoreAdded(AddFornitoreMessage message)
+        {
+            Fornitori.Add(message.Fornitore);
+            Fornitore = message.Fornitore;
         }
 
         private void Annulla()
@@ -555,7 +569,9 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         private void CreaFornitore()
         {
-            throw new NotImplementedException();
+            ServiceLocator.Current.GetInstance<AddFornitoreViewModel>().Setup();
+            AddFornitoreWindow wnd = new AddFornitoreWindow();
+            wnd.ShowDialog();
         }
 
         private void CreaMarca()
@@ -563,21 +579,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             ServiceLocator.Current.GetInstance<AddMarcaViewModel>().Setup();
             AddMarcaWindow wnd = new AddMarcaWindow();
             wnd.ShowDialog();
-
-            if (wnd.MyDialogResult)
-            {
-                Messenger.Default.Send(new AddMarcaMessage
-                {
-                    Marca = wnd.GetMarca()
-                },
-                MsgKeys.AddMarcaToDbKey);
-            }
-
-            using (OrdiniEntities db = new OrdiniEntities())
-            {
-                Marche = db.Marche.ToList();
-                Fornitori = db.Fornitori.ToList();
-            }
         }
 
         private bool Check(out string errorMessage)
