@@ -8,6 +8,7 @@
         <EntityContainer Name="OrdiniModelStoreContainer">
           <EntitySet Name="Fornitori" EntityType="OrdiniModel.Store.Fornitori" store:Type="Tables" />
           <EntitySet Name="Marche" EntityType="OrdiniModel.Store.Marche" store:Type="Tables" />
+          <EntitySet Name="PezziInOrdine" EntityType="OrdiniModel.Store.PezziInOrdine" store:Type="Tables" />
           <EntitySet Name="RichiesteOrdine" EntityType="OrdiniModel.Store.RichiesteOrdine" store:Type="Tables" />
           <AssociationSet Name="FK_Fornitore" Association="OrdiniModel.Store.FK_Fornitore">
             <End Role="Fornitori" EntitySet="Fornitori" />
@@ -16,6 +17,10 @@
           <AssociationSet Name="FK_Marca" Association="OrdiniModel.Store.FK_Marca">
             <End Role="Marche" EntitySet="Marche" />
             <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RichiesteOrdine" Association="OrdiniModel.Store.FK_RichiesteOrdine">
+            <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
+            <End Role="PezziInOrdine" EntitySet="PezziInOrdine" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Fornitori">
@@ -33,6 +38,16 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PezziInOrdine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Arrivato" Type="bit" />
+          <Property Name="Mancante" Type="bit" />
+          <Property Name="IdRichiestaOrdine" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RichiesteOrdine">
           <Key>
@@ -91,6 +106,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RichiesteOrdine">
+          <End Role="RichiesteOrdine" Type="OrdiniModel.Store.RichiesteOrdine" Multiplicity="1" />
+          <End Role="PezziInOrdine" Type="OrdiniModel.Store.PezziInOrdine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RichiesteOrdine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PezziInOrdine">
+              <PropertyRef Name="IdRichiestaOrdine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -106,6 +133,11 @@
           <AssociationSet Name="FK_Fornitore" Association="OrdiniModel.FK_Fornitore">
             <End Role="Fornitori" EntitySet="Fornitori" />
             <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
+          </AssociationSet>
+          <EntitySet Name="PezziInOrdine" EntityType="OrdiniModel.PezziInOrdine" />
+          <AssociationSet Name="FK_RichiesteOrdine" Association="OrdiniModel.FK_RichiesteOrdine">
+            <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
+            <End Role="PezziInOrdine" EntitySet="PezziInOrdine" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Marche">
@@ -150,6 +182,7 @@
           <Property Type="Boolean" Name="RicevutaCaparra" Nullable="false" />
           <Property Type="Decimal" Name="Caparra" Precision="19" Scale="4" />
           <Property Type="DateTime" Name="DataCaparra" Precision="3" />
+          <NavigationProperty Name="PezziInOrdine" Relationship="OrdiniModel.FK_RichiesteOrdine" FromRole="RichiesteOrdine" ToRole="PezziInOrdine" />
         </EntityType>
         <Association Name="FK_Marca">
           <End Role="Marche" Type="OrdiniModel.Marche" Multiplicity="0..1" />
@@ -188,6 +221,29 @@
             </Principal>
             <Dependent Role="RichiesteOrdine">
               <PropertyRef Name="IdFornitore" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PezziInOrdine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Arrivato" />
+          <Property Type="Boolean" Name="Mancante" />
+          <Property Type="Int32" Name="IdRichiestaOrdine" Nullable="false" />
+          <NavigationProperty Name="RichiesteOrdine" Relationship="OrdiniModel.FK_RichiesteOrdine" FromRole="PezziInOrdine" ToRole="RichiesteOrdine" />
+        </EntityType>
+        <Association Name="FK_RichiesteOrdine">
+          <End Type="OrdiniModel.RichiesteOrdine" Role="RichiesteOrdine" Multiplicity="1" />
+          <End Type="OrdiniModel.PezziInOrdine" Role="PezziInOrdine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RichiesteOrdine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PezziInOrdine">
+              <PropertyRef Name="IdRichiestaOrdine" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -245,6 +301,17 @@
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PezziInOrdine">
+            <EntityTypeMapping TypeName="OrdiniModel.PezziInOrdine">
+              <MappingFragment StoreEntitySet="PezziInOrdine">
+                <ScalarProperty Name="IdRichiestaOrdine" ColumnName="IdRichiestaOrdine" />
+                <ScalarProperty Name="Mancante" ColumnName="Mancante" />
+                <ScalarProperty Name="Arrivato" ColumnName="Arrivato" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

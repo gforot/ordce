@@ -10,6 +10,8 @@
         <AssociationConnector Association="OrdiniModel.FK_Marca" ManuallyRouted="false" />
         <EntityTypeShape EntityType="OrdiniModel.Fornitori" Width="1.5" PointX="5.75" PointY="1.625" />
         <AssociationConnector Association="OrdiniModel.FK_Fornitore" />
+        <EntityTypeShape EntityType="OrdiniModel.PezziInOrdine" Width="1.5" PointX="5.71476969947795" PointY="18.719265499487179" />
+        <AssociationConnector Association="OrdiniModel.FK_RichiesteOrdine" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

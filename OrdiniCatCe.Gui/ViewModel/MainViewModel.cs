@@ -231,11 +231,11 @@ namespace OrdiniCatCe.Gui.ViewModel
                     }
                     catch (SmtpException smtpExc)
                     {
-                        MessageBox.Show("SMTP Exception: " + smtpExc.Message);
+                        Xceed.Wpf.Toolkit.MessageBox.Show("SMTP Exception: " + smtpExc.Message);
                     }
                     catch (Exception exc)
                     {
-                        MessageBox.Show("SMTP Exception: " + exc.Message);
+                        Xceed.Wpf.Toolkit.MessageBox.Show("SMTP Exception: " + exc.Message);
                     }
 
 

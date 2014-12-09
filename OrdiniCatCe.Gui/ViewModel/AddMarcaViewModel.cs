@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
+using OrdiniCatCe.Gui.Constants;
 using OrdiniCatCe.Gui.Db;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
@@ -10,7 +10,6 @@ namespace OrdiniCatCe.Gui.ViewModel
 {
     public class AddMarcaViewModel : AddAnagraficaItemViewModelBase
     {
-
         private const string _namePrpName = "Name";
         private string _name;
 
@@ -50,7 +49,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             string errorMessage;
             if (!DbManager.AddMarca(new Marche {Nome = Name}, out errorMessage))
             {
-                MessageBox.Show(errorMessage);
+                Messenger.Default.Send(new ErrorMessageMessage(errorMessage), MsgKeys.ShowErrorMessageOnAddMarcaKey);
             }
             else//se tutto va bene mando messaggio di Conferma
             {

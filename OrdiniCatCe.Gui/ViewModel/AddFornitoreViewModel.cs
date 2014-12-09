@@ -89,7 +89,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                                         }, 
                                         out errorMessage))
             {
-                MessageBox.Show(errorMessage);
+                Messenger.Default.Send(new ErrorMessageMessage(errorMessage), MsgKeys.ShowErrorMessageOnAddFornitoreKey);
             }
             else//se tutto va bene mando messaggio di Conferma
             {

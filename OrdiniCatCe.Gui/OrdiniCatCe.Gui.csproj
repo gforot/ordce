@@ -123,6 +123,7 @@
     </ApplicationDefinition>
     <Compile Include="Checks.cs" />
     <Compile Include="Constants\AppColors.cs" />
+    <Compile Include="Constants\AppConstants.cs" />
     <Compile Include="Converters\ArrivatoBackgroundConverter.cs" />
     <Compile Include="Converters\AvvisatoBackgroundConverter.cs" />
     <Compile Include="Converters\BackgroundConverter.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Messages\AddMarcaMessage.cs" />
     <Compile Include="Messages\AddRigaOrdineMessage.cs" />
     <Compile Include="Messages\DetailWindowMessage.cs" />
+    <Compile Include="Messages\ErrorMessageMessage.cs" />
     <Compile Include="Messages\MsgKeys.cs" />
     <Compile Include="Messages\UpdateRigaOrdineMessage.cs" />
     <Compile Include="Model\AnagraficaElementType.cs" />
@@ -146,6 +148,9 @@
     </Compile>
     <Compile Include="Model\FornitoriCollection.cs" />
     <Compile Include="Model\MarcheCollection.cs" />
+    <Compile Include="Model\PezziInOrdine.cs">
+      <DependentUpon>OrdiniModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Validation\EMailValidator.cs" />
     <Compile Include="ViewModel\AddAnagraficaItemViewModelBase.cs" />
     <Compile Include="ViewModel\AddFornitoreViewModel.cs" />

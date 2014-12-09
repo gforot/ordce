@@ -14,6 +14,11 @@ namespace OrdiniCatCe.Gui.Model
     
     public partial class RichiesteOrdine
     {
+        public RichiesteOrdine()
+        {
+            this.PezziInOrdine = new HashSet<PezziInOrdine>();
+        }
+    
         public int Id { get; set; }
         public string Indirizzo { get; set; }
         public string Telefono { get; set; }
@@ -45,5 +50,6 @@ namespace OrdiniCatCe.Gui.Model
     
         public virtual Marche Marche { get; set; }
         public virtual Fornitori Fornitori { get; set; }
+        public virtual ICollection<PezziInOrdine> PezziInOrdine { get; set; }
     }
 }

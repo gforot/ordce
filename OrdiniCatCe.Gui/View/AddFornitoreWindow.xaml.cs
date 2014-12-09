@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Messaging;
+using OrdiniCatCe.Gui.Constants;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
 using OrdiniCatCe.Gui.ViewModel;
@@ -32,7 +33,12 @@ namespace OrdiniCatCe.Gui.View
 
             Messenger.Default.Register<MessageBase>(this, MsgKeys.CancelAddFornitoreKey, OnCancelRequested);
             Messenger.Default.Register<MessageBase>(this, MsgKeys.ConfirmAddFornitoreKey, OnConfirmRequested);
+            Messenger.Default.Register<ErrorMessageMessage>(this, MsgKeys.ShowErrorMessageOnAddFornitoreKey, OnShowErrorMessageRequested);
+        }
 
+        private void OnShowErrorMessageRequested(ErrorMessageMessage err)
+        {
+            Xceed.Wpf.Toolkit.MessageBox.Show(null, err.Message, AppConstants.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Stop);
         }
 
         public void Setup()
