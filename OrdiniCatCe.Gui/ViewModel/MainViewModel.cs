@@ -11,6 +11,7 @@ using System.Windows.Data;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using OrdiniCatCe.Gui.Db;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
 using OrdiniCatCe.Gui.View;
@@ -166,84 +167,83 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         private void Ordina()
         {
-            using (OrdiniEntities db = new OrdiniEntities())
+            
+            IQueryable<IGrouping<int?, RichiesteOrdine>> daOrdinare = DbManager.GetProdottiDaOrdinare();
+
+            foreach (IGrouping<int?, RichiesteOrdine> ordines in daOrdinare)
             {
-                IQueryable<IGrouping<int?, RichiesteOrdine>> daOrdinare = db.GetProdottiDaOrdinare();
-
-                foreach (IGrouping<int?, RichiesteOrdine> ordines in daOrdinare)
+                if (ordines.Key.HasValue)
                 {
-                    if (ordines.Key.HasValue)
-                    {
-                        Fornitori f = db.GetFornitore(ordines.Key.Value);
-                        System.Diagnostics.Process proc = new System.Diagnostics.Process();
-                        const string subject = "Ordine";
+                    Fornitori f = DbManager.GetFornitore(ordines.Key.Value);
+                    System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                    const string subject = "Ordine";
 
-                        //scrivere il body in HTML
-                        MailMessage message=new MailMessage();
-                        message.IsBodyHtml = true;
+                    //scrivere il body in HTML
+                    MailMessage message=new MailMessage();
+                    message.IsBodyHtml = true;
                         
 
 
-                        #region Creazione Body
+                    #region Creazione Body
 
-                        StringWriter stringWriter = new StringWriter();
-                        using (HtmlTextWriter writer = new HtmlTextWriter(stringWriter))
-                        {
-                            //writer.AddAttribute(HtmlTextWriterAttribute.Class, classValue);
-                            writer.RenderBeginTag(HtmlTextWriterTag.Html);
-                            writer.RenderBeginTag(HtmlTextWriterTag.Body);
-                            foreach (RichiesteOrdine richiesteOrdine in ordines)
-                            {
-                                writer.RenderBeginTag(HtmlTextWriterTag.Div);
-                                writer.Write(richiesteOrdine.Descrizione);
-                                writer.RenderEndTag();
-                            }
-                            writer.RenderEndTag();
-                            writer.RenderEndTag();
-                        }
-                        string body1 = stringWriter.ToString();
-                        #endregion
-
-                        string body = string.Empty;
-
+                    StringWriter stringWriter = new StringWriter();
+                    using (HtmlTextWriter writer = new HtmlTextWriter(stringWriter))
+                    {
+                        //writer.AddAttribute(HtmlTextWriterAttribute.Class, classValue);
+                        writer.RenderBeginTag(HtmlTextWriterTag.Html);
+                        writer.RenderBeginTag(HtmlTextWriterTag.Body);
                         foreach (RichiesteOrdine richiesteOrdine in ordines)
                         {
-                            body = string.IsNullOrEmpty(body) ? richiesteOrdine.Descrizione : 
-                                string.Format("{0}{2}{1}", body, richiesteOrdine.Descrizione, Environment.NewLine);
+                            writer.RenderBeginTag(HtmlTextWriterTag.Div);
+                            writer.Write(richiesteOrdine.Descrizione);
+                            writer.RenderEndTag();
                         }
-
-                        string email = f.Email;
-                        //per ora invio tutto al mio indirizzo
-                        //TODO: togliere questo assegnamento.
-                        email = "rotandrea@gmail.com";
-                        message.From = new MailAddress(email);
-                        message.To.Add(new MailAddress(email));
-                        message.Body = body1;
-
-                        SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
-                        smtpServer.Port = 587;
-                        smtpServer.Credentials = new System.Net.NetworkCredential("rotandrea@gmail.com", "St3f@n01113");
-                        smtpServer.EnableSsl = true;
-
-                        try
-                        {
-                            smtpServer.Send(message);
-                        }
-                        catch (SmtpException smtpExc)
-                        {
-                            MessageBox.Show("SMTP Exception: " + smtpExc.Message);
-                        }
-                        catch (Exception exc)
-                        {
-                            MessageBox.Show("SMTP Exception: " + exc.Message);
-                        }
-
-
-                        proc.StartInfo.FileName = string.Format("mailto:{0}?subject={1}&body={2}", email, subject, body);
-                        proc.Start();
+                        writer.RenderEndTag();
+                        writer.RenderEndTag();
                     }
+                    string body1 = stringWriter.ToString();
+                    #endregion
+
+                    string body = string.Empty;
+
+                    foreach (RichiesteOrdine richiesteOrdine in ordines)
+                    {
+                        body = string.IsNullOrEmpty(body) ? richiesteOrdine.Descrizione : 
+                            string.Format("{0}{2}{1}", body, richiesteOrdine.Descrizione, Environment.NewLine);
+                    }
+
+                    string email = f.Email;
+                    //per ora invio tutto al mio indirizzo
+                    //TODO: togliere questo assegnamento.
+                    email = "rotandrea@gmail.com";
+                    message.From = new MailAddress(email);
+                    message.To.Add(new MailAddress(email));
+                    message.Body = body1;
+
+                    SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
+                    smtpServer.Port = 587;
+                    smtpServer.Credentials = new System.Net.NetworkCredential("rotandrea@gmail.com", "St3f@n01113");
+                    smtpServer.EnableSsl = true;
+
+                    try
+                    {
+                        smtpServer.Send(message);
+                    }
+                    catch (SmtpException smtpExc)
+                    {
+                        MessageBox.Show("SMTP Exception: " + smtpExc.Message);
+                    }
+                    catch (Exception exc)
+                    {
+                        MessageBox.Show("SMTP Exception: " + exc.Message);
+                    }
+
+
+                    proc.StartInfo.FileName = string.Format("mailto:{0}?subject={1}&body={2}", email, subject, body);
+                    proc.Start();
                 }
             }
+            
         }
 
         private void UpdateRigheOrdineFromDb()
@@ -438,6 +438,9 @@ namespace OrdiniCatCe.Gui.ViewModel
             target.Ritirato = source.Ritirato;
             target.Telefono = source.Telefono;
             target.PrezzoVendita = source.PrezzoVendita;
+            target.Caparra = source.Caparra;
+            target.DataCaparra = source.DataCaparra;
+            target.RicevutaCaparra = source.RicevutaCaparra;
         }
 
         private bool Filter(object obj)

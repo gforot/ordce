@@ -5,6 +5,7 @@ using System.Windows.Data;
 using System.Xml.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using OrdiniCatCe.Gui.Db;
 using OrdiniCatCe.Gui.Model;
 
 
@@ -69,17 +70,14 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         private void Delete()
         {
-            using (OrdiniEntities db = new OrdiniEntities())
+            DbManager.RemoveMarca(CurrentMarca.Id);
+            if (CanMovePrevoious)
             {
-                db.RemoveMarca(CurrentMarca.Id);
-                if (CanMovePrevoious)
-                {
-                    MovePrevious();
-                }
-                else if (CanMoveNext)
-                {
-                    MoveNext();
-                }
+                MovePrevious();
+            }
+            else if (CanMoveNext)
+            {
+                MoveNext();
             }
         }
 

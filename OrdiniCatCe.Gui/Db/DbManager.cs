@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight.Messaging;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
 
-
+//http://stackoverflow.com/questions/15336248/entity-framework-5-updating-a-record
 namespace OrdiniCatCe.Gui.Db
 {
     public class DbManager
@@ -70,5 +70,61 @@ namespace OrdiniCatCe.Gui.Db
 
             return addOk;
         }
+
+
+        public static IQueryable<IGrouping<int?, RichiesteOrdine>> GetProdottiDaOrdinare()
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                return db.RichiesteOrdine.Where(ro => (!ro.Ordinato)).GroupBy(ro => ro.IdFornitore);
+            }
+        }
+
+        public static void RemoveFornitore(int id)
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                Fornitori f = GetFornitore(id);
+                if (f == null)
+                {
+                    return;
+                }
+                db.Fornitori.Remove(f);
+                db.SaveChanges();
+            }
+        }
+
+        public static void RemoveMarca(int id)
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                Marche m = GetMarca(id);
+                if (m == null)
+                {
+                    return;
+                }
+                db.Marche.Remove(m);
+                db.SaveChanges();
+            }
+        }
+
+        public static Fornitori GetFornitore(int idFornitore)
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                return db.Fornitori.First(f => f.Id == idFornitore);
+            }
+        }
+
+        public static Marche GetMarca(int idMarca)
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                return db.Marche.First(f => f.Id == idMarca);
+            }
+        }
+
+
+
     }
 }

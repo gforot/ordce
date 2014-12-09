@@ -468,6 +468,66 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
         #endregion
 
+        #region RicevutoAcconto
+        private const string _ricevutoCaparraPrpName = "RicevutoCaparra";
+        private bool _ricevutoCaparra;
+        public bool RicevutoCaparra
+        {
+            get
+            {
+                return _ricevutoCaparra;
+            }
+            set
+            {
+                _ricevutoCaparra = value;
+
+                //se flaggo NON RICEVUTO ACCONTO annullo i campi annessi.
+                if (!_ricevutoCaparra)
+                {
+                    Caparra = null;
+                    DataCaparra = null;
+                }
+
+                RaisePropertyChanged(_ricevutoCaparraPrpName);
+            }
+        }
+        #endregion
+
+        #region Caparra
+        private const string _caparraPrpName = "Caparra";
+        private decimal? _caparra;
+        public decimal? Caparra
+        {
+            get
+            {
+                return _caparra;
+            }
+            set
+            {
+                _caparra = value;
+                RaisePropertyChanged(_caparraPrpName);
+            }
+        }
+        #endregion
+
+        #region DataCaparra
+        private const string _dataCaparraPrpName = "DataCaparra";
+        private System.DateTime? _dataCaparra;
+        public System.DateTime? DataCaparra
+        {
+            get
+            {
+                return _dataCaparra;
+            }
+            set
+            {
+                _dataCaparra = value;
+                RaisePropertyChanged(_dataCaparraPrpName);
+            }
+        }
+
+        #endregion
+
 
         private const string _errorMessagePrpName = "";
         private string _errorMessage;
@@ -680,7 +740,10 @@ namespace OrdiniCatCe.Gui.ViewModel
                        IdMarca = idMarca,
                        IdFornitore = idFornitore,
                        Arrivato = Arrivato,
-                       Ordinato = Ordinato
+                       Ordinato = Ordinato,
+                       DataCaparra = DataCaparra,
+                       Caparra = Caparra,
+                       RicevutaCaparra = RicevutoCaparra
                    };
         }
 
@@ -723,6 +786,9 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.Fornitore = null;
             this.Ordinato = false;
             this.Arrivato = false;
+            this.DataCaparra = null;
+            this.Caparra = null;
+            this.RicevutoCaparra = false;
         }
 
         private void SetupValuesFromRichiestaOrdine(RichiesteOrdine richiestaOrdine)
@@ -750,6 +816,9 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.Ordinato = richiestaOrdine.Ordinato;
             this.Arrivato = richiestaOrdine.Arrivato;
             this.Descrizione = richiestaOrdine.Descrizione;
+            this.DataCaparra = richiestaOrdine.DataCaparra;
+            this.Caparra = richiestaOrdine.Caparra;
+            this.RicevutoCaparra = richiestaOrdine.RicevutaCaparra;
 
             this.Marca = this.Marche.FirstOrDefault(m => richiestaOrdine.Marche.Id == m.Id);
             this.Fornitore = this.Fornitori.FirstOrDefault(m => richiestaOrdine.Fornitori.Id == m.Id);

@@ -7,11 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Documents;
-
-
 namespace OrdiniCatCe.Gui.Model
 {
     using System;
@@ -28,54 +23,6 @@ namespace OrdiniCatCe.Gui.Model
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
-        }
-
-        public List<RichiesteOrdine> GetOrdiniByFornitore(Fornitori fornitore)
-        {
-            IQueryable<RichiesteOrdine> richiesteToFornitore = this.RichiesteOrdine.Where(ro => (ro.IdFornitore == fornitore.Id) && (!ro.Ordinato));
-            return richiesteToFornitore.ToList();
-        }
-
-        public IQueryable<IGrouping<int?, RichiesteOrdine>> GetProdottiDaOrdinare()
-        {
-            return this.RichiesteOrdine.Where(ro => (!ro.Ordinato)).GroupBy(ro => ro.IdFornitore);
-        }
-
-        public Fornitori GetFornitore(int idFornitore)
-        {
-            return Fornitori.First(f => f.Id == idFornitore);
-        }
-
-        public Marche GetMarca(int idMarca)
-        {
-            return Marche.First(f => f.Id == idMarca);
-        }
-
-        public Marche GetMarca(string name)
-        {
-            return Marche.First(f => f.Nome == name);
-        }
-
-        public void RemoveFornitore(int id)
-        {
-            Fornitori f = GetFornitore(id);
-            if (f == null)
-            {
-                return;
-            }
-            this.Fornitori.Remove(f);
-            SaveChanges();
-        }
-
-        public void RemoveMarca(int id)
-        {
-            Marche m = GetMarca(id);
-            if (m == null)
-            {
-                return;
-            }
-            this.Marche.Remove(m);
-            this.SaveChanges();
         }
     
         public DbSet<Marche> Marche { get; set; }
