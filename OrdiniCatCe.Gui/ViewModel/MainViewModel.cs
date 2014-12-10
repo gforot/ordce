@@ -11,6 +11,7 @@ using System.Windows.Data;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Practices.ServiceLocation;
 using OrdiniCatCe.Gui.Db;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
@@ -263,6 +264,11 @@ namespace OrdiniCatCe.Gui.ViewModel
         private void OnRigaOrdineAddedToDb(AddRigaOrdineMessage msg)
         {
             this._righeOrdine.Add(msg.RigaOrdine);
+
+            //apertura dettaglio
+            DetailWindow detailWindow = new DetailWindow();
+            ServiceLocator.Current.GetInstance<DetailViewModel>().Setup(msg.RigaOrdine);
+            detailWindow.ShowDialog();
         }
 
         private void OnAddMarcaToDbRequested(AddMarcaMessage message)

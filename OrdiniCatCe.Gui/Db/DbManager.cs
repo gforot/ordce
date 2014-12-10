@@ -41,13 +41,12 @@ namespace OrdiniCatCe.Gui.Db
         }
 
 
-        public static bool AddRigaOrdine(RichiesteOrdine richiestaOrdine)
+        public static void AddRigaOrdine(RichiesteOrdine richiestaOrdine)
         {
             using (OrdiniEntities db = new OrdiniEntities())
             {
                 db.RichiesteOrdine.Add(richiestaOrdine);
                 db.SaveChanges();
-                return true;
             }
         }
 

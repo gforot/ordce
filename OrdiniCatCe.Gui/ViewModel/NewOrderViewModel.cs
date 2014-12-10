@@ -210,6 +210,8 @@ namespace OrdiniCatCe.Gui.ViewModel
             ro.Telefono = Telefono;
             ro.DataRichiesta = DateTime.Now;
             DbManager.AddRigaOrdine(ro);
+            //riga aggiunta nel DB
+            //ora bisogna aprire il dettaglio ordine per l'inserimento dei pezzi.
 
             Messenger.Default.Send(new AddRigaOrdineMessage(ro), MsgKeys.NewOrderWindowConfirmKey);
         }

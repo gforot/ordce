@@ -712,6 +712,12 @@ namespace OrdiniCatCe.Gui.ViewModel
                 return false;
             }
 
+            if (this.Pezzi.Count <= 0)
+            {
+                errorMessage = "Inserire almeno un pezzo da ordinare";
+                return false;
+            }
+
             return true;
         }
 

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding NewOrderViewModel, Source={StaticResource Locator}}"
-        Title="Nuovo Ordine" Height="250.746" Width="908.955" Style="{StaticResource wndStyle}">
+        Title="Nuovo Ordine - Testata" Height="250.746" Width="908.955" Style="{StaticResource wndStyle}">
     <Window.Resources>
         <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
     </Window.Resources>
@@ -72,8 +72,8 @@
         </Border>
         <Border x:Name="brdButtons" Margin="10">
             <StackPanel Orientation="Horizontal">
-                <Button Content="Annulla" Command="{Binding AnnullaCommand}"/>
-                <Button Content="Conferma" Command="{Binding ConfermaCommand}"/>
+                <Button Content="Annulla" ToolTip="Annulla l'inserimento." Command="{Binding AnnullaCommand}"/>
+                <Button Content="Conferma e Continua" ToolTip="Conferma i dati della testata e continua ad inserire i dettagli." Command="{Binding ConfermaCommand}"/>
                 <TextBlock Text="{Binding ErrorMessage}" FontWeight="Bold" FontSize="14" Foreground="#FFEE0E0E" ></TextBlock>
             </StackPanel>
         </Border>
