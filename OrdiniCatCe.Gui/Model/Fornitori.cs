@@ -17,6 +17,7 @@ namespace OrdiniCatCe.Gui.Model
         public Fornitori()
         {
             this.RichiesteOrdine = new HashSet<RichiesteOrdine>();
+            this.PezziInOrdine = new HashSet<PezziInOrdine>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,6 @@ namespace OrdiniCatCe.Gui.Model
         public string Telefono { get; set; }
     
         public virtual ICollection<RichiesteOrdine> RichiesteOrdine { get; set; }
+        public virtual ICollection<PezziInOrdine> PezziInOrdine { get; set; }
     }
 }

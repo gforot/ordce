@@ -17,11 +17,13 @@ namespace OrdiniCatCe.Gui.Model
         public Marche()
         {
             this.RichiesteOrdine = new HashSet<RichiesteOrdine>();
+            this.PezziInOrdine = new HashSet<PezziInOrdine>();
         }
     
         public int Id { get; set; }
         public string Nome { get; set; }
     
         public virtual ICollection<RichiesteOrdine> RichiesteOrdine { get; set; }
+        public virtual ICollection<PezziInOrdine> PezziInOrdine { get; set; }
     }
 }

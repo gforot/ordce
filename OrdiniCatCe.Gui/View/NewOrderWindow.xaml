@@ -1,0 +1,81 @@
+﻿<Window x:Class="OrdiniCatCe.Gui.View.NewOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
+        DataContext="{Binding NewOrderViewModel, Source={StaticResource Locator}}"
+        Title="Nuovo Ordine" Height="250.746" Width="908.955" Style="{StaticResource wndStyle}">
+    <Window.Resources>
+        <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
+    </Window.Resources>
+    <StackPanel Orientation="Vertical">
+        <Border x:Name="brdCliente" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!-- Riga 1: NOME COGNOME -->
+                <TextBlock Foreground="{Binding Cognome, Converter={StaticResource textboxBackgroundConverter}}" Text="Cognome *" Grid.Column="0" Grid.Row="0" />
+                <TextBox Text="{Binding Cognome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" />
+
+                <TextBlock Foreground="{Binding Nome, Converter={StaticResource textboxBackgroundConverter}}" Grid.Row="0" Grid.Column="2" Text="Nome *" />
+                <TextBox  Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="0" />
+
+
+
+
+                <!-- Riga 2: indirizzo -->
+                <TextBlock Text="Indirizzo" Grid.Row="1" Grid.Column="0"></TextBlock>
+                <TextBox Text="{Binding Indirizzo, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" />
+
+                <TextBlock Text="Località" Grid.Row="1" Grid.Column="2"></TextBlock>
+                <TextBox Text="{Binding Localita, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3" />
+
+                <TextBlock Text="Civico" Grid.Row="1" Grid.Column="4"></TextBlock>
+                <TextBox Text="{Binding NumeroCivico, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="5" />
+
+
+                <!-- Riga 3: contatti -->
+                <TextBlock Text="Telefono +" Grid.Row="2" Grid.Column="0"></TextBlock>
+                <TextBox Text="{Binding Telefono, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" />
+
+                <TextBlock Text="EMail +" Grid.Row="2" Grid.Column="2"></TextBlock>
+                <TextBox Text="{Binding EMail, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="3" />
+
+                <TextBlock Text="Cellulare +" Grid.Row="2" Grid.Column="4" ></TextBlock>
+                <TextBox Text="{Binding Cellulare, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="5" />
+            </Grid>
+        </Border>
+        <Border x:Name="brdHelp" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <Image Margin="4"  Width="24" Height="24" Source="../Images/information2.png"></Image>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock TextWrapping="Wrap" Width="667" HorizontalAlignment="Center" Margin="5,0,5,0" FontWeight="Bold" >
+                    I campi contrassegnati con * sono obbligatori. Se non vengono valorizzati non sarà
+                    possibile confermare l'inserimento/modifica.
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Width="667" HorizontalAlignment="Center" Margin="1" FontWeight="Bold" >
+                    Dei campi contrassegnati con + ne va inserito almeno uno.
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border x:Name="brdButtons" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Annulla" Command="{Binding AnnullaCommand}"/>
+                <Button Content="Conferma" Command="{Binding ConfermaCommand}"/>
+                <TextBlock Text="{Binding ErrorMessage}" FontWeight="Bold" FontSize="14" Foreground="#FFEE0E0E" ></TextBlock>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Window>

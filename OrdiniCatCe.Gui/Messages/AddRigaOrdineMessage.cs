@@ -8,9 +8,9 @@ namespace OrdiniCatCe.Gui.Messages
     {
         public RichiesteOrdine RigaOrdine { get; set; }
 
-        public AddRigaOrdineMessage()
+        public AddRigaOrdineMessage(RichiesteOrdine rigaOrdine)
         {
-            
+            this.RigaOrdine = rigaOrdine;
         }
     }
 }

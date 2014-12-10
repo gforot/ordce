@@ -14,6 +14,14 @@
             <End Role="Fornitori" EntitySet="Fornitori" />
             <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
           </AssociationSet>
+          <AssociationSet Name="FK_IdFornitore" Association="OrdiniModel.Store.FK_IdFornitore">
+            <End Role="Fornitori" EntitySet="Fornitori" />
+            <End Role="PezziInOrdine" EntitySet="PezziInOrdine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdMarca" Association="OrdiniModel.Store.FK_IdMarca">
+            <End Role="Marche" EntitySet="Marche" />
+            <End Role="PezziInOrdine" EntitySet="PezziInOrdine" />
+          </AssociationSet>
           <AssociationSet Name="FK_Marca" Association="OrdiniModel.Store.FK_Marca">
             <End Role="Marche" EntitySet="Marche" />
             <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
@@ -48,6 +56,13 @@
           <Property Name="Arrivato" Type="bit" />
           <Property Name="Mancante" Type="bit" />
           <Property Name="IdRichiestaOrdine" Type="int" Nullable="false" />
+          <Property Name="Codice" Type="nvarchar" MaxLength="100" />
+          <Property Name="PrezzoAcquisto" Type="money" />
+          <Property Name="PrezzoVendita" Type="money" />
+          <Property Name="Ordinato" Type="bit" />
+          <Property Name="Ritirato" Type="bit" />
+          <Property Name="IdMarca" Type="int" />
+          <Property Name="IdFornitore" Type="int" />
         </EntityType>
         <EntityType Name="RichiesteOrdine">
           <Key>
@@ -91,6 +106,30 @@
             </Principal>
             <Dependent Role="RichiesteOrdine">
               <PropertyRef Name="IdFornitore" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdFornitore">
+          <End Role="Fornitori" Type="OrdiniModel.Store.Fornitori" Multiplicity="0..1" />
+          <End Role="PezziInOrdine" Type="OrdiniModel.Store.PezziInOrdine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fornitori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PezziInOrdine">
+              <PropertyRef Name="IdFornitore" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdMarca">
+          <End Role="Marche" Type="OrdiniModel.Store.Marche" Multiplicity="0..1" />
+          <End Role="PezziInOrdine" Type="OrdiniModel.Store.PezziInOrdine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marche">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PezziInOrdine">
+              <PropertyRef Name="IdMarca" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -139,6 +178,14 @@
             <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
             <End Role="PezziInOrdine" EntitySet="PezziInOrdine" />
           </AssociationSet>
+          <AssociationSet Name="FK_IdFornitore" Association="OrdiniModel.FK_IdFornitore">
+            <End Role="Fornitori" EntitySet="Fornitori" />
+            <End Role="PezziInOrdine" EntitySet="PezziInOrdine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdMarca" Association="OrdiniModel.FK_IdMarca">
+            <End Role="Marche" EntitySet="Marche" />
+            <End Role="PezziInOrdine" EntitySet="PezziInOrdine" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Marche">
           <Key>
@@ -147,6 +194,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="RichiesteOrdine" Relationship="OrdiniModel.FK_Marca" FromRole="Marche" ToRole="RichiesteOrdine" />
+          <NavigationProperty Name="PezziInOrdine" Relationship="OrdiniModel.FK_IdMarca" FromRole="Marche" ToRole="PezziInOrdine" />
         </EntityType>
         <EntityType Name="RichiesteOrdine">
           <Key>
@@ -211,6 +259,7 @@
           <NavigationProperty Name="RichiesteOrdine" Relationship="OrdiniModel.FK_Fornitore" FromRole="Fornitori" ToRole="RichiesteOrdine" />
           <Property Type="String" Name="Email" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Telefono" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PezziInOrdine" Relationship="OrdiniModel.FK_IdFornitore" FromRole="Fornitori" ToRole="PezziInOrdine" />
         </EntityType>
         <Association Name="FK_Fornitore">
           <End Type="OrdiniModel.Fornitori" Role="Fornitori" Multiplicity="0..1" />
@@ -234,6 +283,15 @@
           <Property Type="Boolean" Name="Mancante" />
           <Property Type="Int32" Name="IdRichiestaOrdine" Nullable="false" />
           <NavigationProperty Name="RichiesteOrdine" Relationship="OrdiniModel.FK_RichiesteOrdine" FromRole="PezziInOrdine" ToRole="RichiesteOrdine" />
+          <Property Type="String" Name="Codice" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="PrezzoAcquisto" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="PrezzoVendita" Precision="19" Scale="4" />
+          <Property Type="Boolean" Name="Ordinato" />
+          <Property Type="Boolean" Name="Ritirato" />
+          <Property Type="Int32" Name="IdMarca" />
+          <Property Type="Int32" Name="IdFornitore" />
+          <NavigationProperty Name="Fornitori" Relationship="OrdiniModel.FK_IdFornitore" FromRole="PezziInOrdine" ToRole="Fornitori" />
+          <NavigationProperty Name="Marche" Relationship="OrdiniModel.FK_IdMarca" FromRole="PezziInOrdine" ToRole="Marche" />
         </EntityType>
         <Association Name="FK_RichiesteOrdine">
           <End Type="OrdiniModel.RichiesteOrdine" Role="RichiesteOrdine" Multiplicity="1" />
@@ -244,6 +302,30 @@
             </Principal>
             <Dependent Role="PezziInOrdine">
               <PropertyRef Name="IdRichiestaOrdine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdFornitore">
+          <End Type="OrdiniModel.Fornitori" Role="Fornitori" Multiplicity="0..1" />
+          <End Type="OrdiniModel.PezziInOrdine" Role="PezziInOrdine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fornitori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PezziInOrdine">
+              <PropertyRef Name="IdFornitore" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdMarca">
+          <End Type="OrdiniModel.Marche" Role="Marche" Multiplicity="0..1" />
+          <End Type="OrdiniModel.PezziInOrdine" Role="PezziInOrdine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marche">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PezziInOrdine">
+              <PropertyRef Name="IdMarca" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -308,6 +390,13 @@
           <EntitySetMapping Name="PezziInOrdine">
             <EntityTypeMapping TypeName="OrdiniModel.PezziInOrdine">
               <MappingFragment StoreEntitySet="PezziInOrdine">
+                <ScalarProperty Name="IdFornitore" ColumnName="IdFornitore" />
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+                <ScalarProperty Name="Ritirato" ColumnName="Ritirato" />
+                <ScalarProperty Name="Ordinato" ColumnName="Ordinato" />
+                <ScalarProperty Name="PrezzoVendita" ColumnName="PrezzoVendita" />
+                <ScalarProperty Name="PrezzoAcquisto" ColumnName="PrezzoAcquisto" />
+                <ScalarProperty Name="Codice" ColumnName="Codice" />
                 <ScalarProperty Name="IdRichiestaOrdine" ColumnName="IdRichiestaOrdine" />
                 <ScalarProperty Name="Mancante" ColumnName="Mancante" />
                 <ScalarProperty Name="Arrivato" ColumnName="Arrivato" />

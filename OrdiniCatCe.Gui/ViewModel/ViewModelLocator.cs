@@ -46,7 +46,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             SimpleIoc.Default.Register<DetailViewModel>();
             SimpleIoc.Default.Register<AddMarcaViewModel>();
             SimpleIoc.Default.Register<AddFornitoreViewModel>();
-            SimpleIoc.Default.Register<AddFornitoreViewModel>();
+            SimpleIoc.Default.Register<NewOrderViewModel>();
         }
 
         public MainViewModel Main
@@ -78,6 +78,14 @@ namespace OrdiniCatCe.Gui.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<AddMarcaViewModel>();
+            }
+        }
+
+        public NewOrderViewModel NewOrderViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<NewOrderViewModel>();
             }
         }
         

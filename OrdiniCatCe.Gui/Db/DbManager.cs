@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Web.UI.WebControls;
 using GalaSoft.MvvmLight.Messaging;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
@@ -39,6 +40,16 @@ namespace OrdiniCatCe.Gui.Db
             return addOk;
         }
 
+
+        public static bool AddRigaOrdine(RichiesteOrdine richiestaOrdine)
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                db.RichiesteOrdine.Add(richiestaOrdine);
+                db.SaveChanges();
+                return true;
+            }
+        }
 
         /// <summary>
         /// Aggiunge un fornitore nel Database
@@ -124,7 +135,16 @@ namespace OrdiniCatCe.Gui.Db
             }
         }
 
-
+        public static bool AddPezzo(PezziInOrdine pezzo)
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                //TODO: Controllare esistenza dell'ordine.
+                db.PezziInOrdine.Add(pezzo);
+                db.SaveChanges();
+                return true;
+            }
+        }
 
     }
 }

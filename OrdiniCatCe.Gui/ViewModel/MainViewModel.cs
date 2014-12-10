@@ -116,7 +116,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             AnagraficaFornitoriCommand = new RelayCommand(AnagraficaFornitori);
             AnagraficaMarcheCommand = new RelayCommand(AnagraficaMarche);
             OrdinaCommand = new RelayCommand(Ordina);
-            Messenger.Default.Register<AddRigaOrdineMessage>(this, MsgKeys.AddRigaOrdineToDbKey, OnAddRigaOrdineToDbRequested);
             Messenger.Default.Register<AddMarcaMessage>(this, MsgKeys.AddMarcaToDbKey, OnAddMarcaToDbRequested);
             Messenger.Default.Register<AddFornitoreMessage>(this, MsgKeys.AddFornitoreToDbKey, OnAddFornitoreToDbRequested);
 
@@ -127,6 +126,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetArrivatoKey, OnUpdateArrivatoRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetOrdinatoKey, OnUpdateOrdinatoRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.DeleteKey, OnDeleteRequested);
+            Messenger.Default.Register<AddRigaOrdineMessage>(this, MsgKeys.NewOrderWindowConfirmKey, OnRigaOrdineAddedToDb);
 
             _righeOrdine = new ObservableCollection<RichiesteOrdine>();
 
@@ -260,14 +260,9 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
-        private void OnAddRigaOrdineToDbRequested(AddRigaOrdineMessage rigaOrdine)
+        private void OnRigaOrdineAddedToDb(AddRigaOrdineMessage msg)
         {
-            using (OrdiniEntities db = new OrdiniEntities())
-            {
-                db.RichiesteOrdine.Add(rigaOrdine.RigaOrdine);
-                db.SaveChanges();
-                UpdateRigheOrdineFromDb();
-            }
+            this._righeOrdine.Add(msg.RigaOrdine);
         }
 
         private void OnAddMarcaToDbRequested(AddMarcaMessage message)

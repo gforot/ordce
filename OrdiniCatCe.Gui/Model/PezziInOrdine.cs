@@ -19,7 +19,16 @@ namespace OrdiniCatCe.Gui.Model
         public Nullable<bool> Arrivato { get; set; }
         public Nullable<bool> Mancante { get; set; }
         public int IdRichiestaOrdine { get; set; }
+        public string Codice { get; set; }
+        public Nullable<decimal> PrezzoAcquisto { get; set; }
+        public Nullable<decimal> PrezzoVendita { get; set; }
+        public Nullable<bool> Ordinato { get; set; }
+        public Nullable<bool> Ritirato { get; set; }
+        public Nullable<int> IdMarca { get; set; }
+        public Nullable<int> IdFornitore { get; set; }
     
         public virtual RichiesteOrdine RichiesteOrdine { get; set; }
+        public virtual Fornitori Fornitori { get; set; }
+        public virtual Marche Marche { get; set; }
     }
 }

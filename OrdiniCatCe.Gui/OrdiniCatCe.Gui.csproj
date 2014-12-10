@@ -157,6 +157,7 @@
     <Compile Include="ViewModel\AddMarcaViewModel.cs" />
     <Compile Include="ViewModel\AnagraficaFornitoreViewModel.cs" />
     <Compile Include="ViewModel\AnagraficaMarcheViewModel.cs" />
+    <Compile Include="ViewModel\NewOrderViewModel.cs" />
     <Compile Include="View\AddFornitoreWindow.xaml.cs">
       <DependentUpon>AddFornitoreWindow.xaml</DependentUpon>
     </Compile>
@@ -199,6 +200,9 @@
     <Compile Include="View\DetailWindow.xaml.cs">
       <DependentUpon>DetailWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\NewOrderWindow.xaml.cs">
+      <DependentUpon>NewOrderWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -228,6 +232,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DetailWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NewOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

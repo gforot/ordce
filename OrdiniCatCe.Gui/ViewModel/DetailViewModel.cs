@@ -11,6 +11,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
+using OrdiniCatCe.Gui.Db;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
 using OrdiniCatCe.Gui.Validation;
@@ -22,6 +23,8 @@ namespace OrdiniCatCe.Gui.ViewModel
     public class DetailViewModel : ViewModelBase
     {
         private int _id;
+
+        public ObservableCollection<PezziInOrdine> Pezzi { get; set; }
 
         #region Nome
         private const string _nomePrpName = "Nome";
@@ -529,7 +532,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         #endregion
 
 
-        private const string _errorMessagePrpName = "";
+        private const string _errorMessagePrpName = "ErrorMessage";
         private string _errorMessage;
         public string ErrorMessage
         {
@@ -562,12 +565,15 @@ namespace OrdiniCatCe.Gui.ViewModel
         public RelayCommand CreaMarcaCommand { get; private set; }
         public RelayCommand CreaFornitoreCommand { get; private set; }
 
+        public RelayCommand AddPezzoCommand { get; private set; }
+
         public DetailViewModel()
         {
             AnnullaCommand = new RelayCommand(Annulla);
             ConfermaCommand = new RelayCommand(Conferma, () => CanConferma);
             CreaFornitoreCommand = new RelayCommand(CreaFornitore);
             CreaMarcaCommand = new RelayCommand(CreaMarca);
+            AddPezzoCommand = new RelayCommand(AddPezzo);
 
             //todo: trasformarlo in message per inizializzare Marche
             Init();
@@ -612,6 +618,16 @@ namespace OrdiniCatCe.Gui.ViewModel
                     (Marca!=null) && 
                     (Fornitore!=null);
             }
+        }
+
+        private void AddPezzo()
+        {
+            PezziInOrdine daAggiungere = new PezziInOrdine();
+            daAggiungere.Arrivato = false;
+            daAggiungere.Mancante = false;
+            daAggiungere.IdRichiestaOrdine = _id;
+            daAggiungere.Description = "Nuovo pezzo";
+            DbManager.AddPezzo(daAggiungere);
         }
 
         private void Conferma()
@@ -789,6 +805,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.DataCaparra = null;
             this.Caparra = null;
             this.RicevutoCaparra = false;
+            this.Pezzi = new ObservableCollection<PezziInOrdine>();
         }
 
         private void SetupValuesFromRichiestaOrdine(RichiesteOrdine richiestaOrdine)
@@ -822,6 +839,8 @@ namespace OrdiniCatCe.Gui.ViewModel
 
             this.Marca = this.Marche.FirstOrDefault(m => richiestaOrdine.Marche.Id == m.Id);
             this.Fornitore = this.Fornitori.FirstOrDefault(m => richiestaOrdine.Fornitori.Id == m.Id);
+
+            this.Pezzi = new ObservableCollection<PezziInOrdine>(richiestaOrdine.PezziInOrdine);
         }
     
     }

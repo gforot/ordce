@@ -12,6 +12,8 @@
         <AssociationConnector Association="OrdiniModel.FK_Fornitore" />
         <EntityTypeShape EntityType="OrdiniModel.PezziInOrdine" Width="1.5" PointX="5.71476969947795" PointY="18.719265499487179" />
         <AssociationConnector Association="OrdiniModel.FK_RichiesteOrdine" />
+        <AssociationConnector Association="OrdiniModel.FK_IdFornitore" />
+        <AssociationConnector Association="OrdiniModel.FK_IdMarca" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -43,18 +43,10 @@ namespace OrdiniCatCe.Gui
 
         private void OnAddRigaOrdineRequested(MessageBase obj)
         {
-            ServiceLocator.Current.GetInstance<DetailViewModel>().Setup(null);
-            DetailWindow wnd = new DetailWindow();
+            //apertura finestra di inserimento riga ordine
+            ServiceLocator.Current.GetInstance<NewOrderViewModel>().Setup();
+            NewOrderWindow wnd = new NewOrderWindow();
             wnd.ShowDialog();
-
-            if (wnd.MyDialogResult)
-            {
-                Messenger.Default.Send<AddRigaOrdineMessage>(new AddRigaOrdineMessage
-                                                             {
-                                                                 RigaOrdine = wnd.CreateRigaOrdine()
-                                                             },
-                                                             MsgKeys.AddRigaOrdineToDbKey);
-            }
         }
 
         //private void Aggiorna_OnClick(object sender, RoutedEventArgs e)
