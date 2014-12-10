@@ -1,1 +1,2 @@
-- filtro per Ritirato
+Gestire aggiunta di almeno un pezzo in un ordine dalla maschera Nuovo Ordine.
+Modificare DB togliendo da tabella di testata i dati delle righe.
