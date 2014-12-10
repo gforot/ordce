@@ -403,40 +403,6 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
         #endregion
 
-        #region Marca
-        private const string _marcaPrpName = "Marca";
-        private Marche _marca;
-        public Marche Marca
-        {
-            get
-            {
-                return _marca;
-            }
-            set
-            {
-                _marca = value;
-                RaisePropertyChanged(_marcaPrpName);
-            }
-        }
-        #endregion
-
-        #region Fornitore
-        private const string _fornitorePrpName = "Fornitore";
-        private Fornitori _fornitore;
-        public Fornitori Fornitore
-        {
-            get
-            {
-                return _fornitore;
-            }
-            set
-            {
-                _fornitore = value;
-                RaisePropertyChanged(_fornitorePrpName);
-            }
-        }
-        #endregion
-
         #region Arrivato
         private const string _arrivatoPrpName = "Arrivato";
         private bool _arrivato;
@@ -550,14 +516,6 @@ namespace OrdiniCatCe.Gui.ViewModel
         public ObservableCollection<Marche> Marche { get; private set; }
         public ObservableCollection<Fornitori> Fornitori { get; private set; }
 
-        /*
-        public Nullable<int> IdMarca { get; set; }
-        public Nullable<int> IdFornitore { get; set; }
-         */
-
-        
-
-
         public RelayCommand AnnullaCommand { get; private set; }
         public RelayCommand ConfermaCommand { get; private set; }
 
@@ -594,13 +552,11 @@ namespace OrdiniCatCe.Gui.ViewModel
         private void OnMarcaAdded(AddMarcaMessage message)
         {
             Marche.Add(message.Marca);
-            Marca = message.Marca;
         }
 
         private void OnFornitoreAdded(AddFornitoreMessage message)
         {
             Fornitori.Add(message.Fornitore);
-            Fornitore = message.Fornitore;
         }
 
         private void Annulla()
@@ -615,8 +571,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                 return !string.IsNullOrEmpty(this.Nome) &&
                     !string.IsNullOrEmpty(this.Cognome) &&
                     !string.IsNullOrEmpty(this.Descrizione) &&
-                    (Marca!=null) && 
-                    (Fornitore!=null);
+                    Pezzi.Count>0;
             }
         }
 
@@ -725,17 +680,7 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         internal Model.RichiesteOrdine CreateRigaOrdine()
         {
-            int? idMarca = null;
-            if (Marca != null)
-            {
-                idMarca = Marca.Id;
-            }
-
-            int? idFornitore = null;
-            if (Fornitore != null)
-            {
-                idFornitore = Fornitore.Id;
-            }
+            //la riga è già stata creata
             return new RichiesteOrdine()
                    {
                        Id = _id,
@@ -759,8 +704,6 @@ namespace OrdiniCatCe.Gui.ViewModel
                        Codice = Codice,
                        Descrizione = Descrizione,
                        Ritirato = Ritirato,
-                       IdMarca = idMarca,
-                       IdFornitore = idFornitore,
                        Arrivato = Arrivato,
                        Ordinato = Ordinato,
                        DataCaparra = DataCaparra,
@@ -804,8 +747,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.DataRitirato = null;
             this.ModalitaAvviso = ModalitaAvviso.Undefined;
             this.Ritirato = false;
-            this.Marca = null;
-            this.Fornitore = null;
             this.Ordinato = false;
             this.Arrivato = false;
             this.DataCaparra = null;
@@ -842,9 +783,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.DataCaparra = richiestaOrdine.DataCaparra;
             this.Caparra = richiestaOrdine.Caparra;
             this.RicevutoCaparra = richiestaOrdine.RicevutaCaparra;
-
-            this.Marca = this.Marche.FirstOrDefault(m => richiestaOrdine.Marche.Id == m.Id);
-            this.Fornitore = this.Fornitori.FirstOrDefault(m => richiestaOrdine.Fornitori.Id == m.Id);
 
             this.Pezzi = new ObservableCollection<PezziInOrdine>(richiestaOrdine.PezziInOrdine);
         }
