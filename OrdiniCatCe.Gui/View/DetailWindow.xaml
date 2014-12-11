@@ -6,7 +6,7 @@
         DataContext="{Binding DetailViewModel, Source={StaticResource Locator}}"
         Title="Dettaglio Ordine" Style="{StaticResource wndStyle}" MinWidth="800" Width="819.463" Height="648.739" WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <DataTemplate x:Key="orderedItemTemplate" DataType="model:PezziInOrdine">
+        <DataTemplate x:Key="orderedItemTemplate" >
             <StackPanel>
                 <TextBlock Text="{Binding Description}"></TextBlock>
             </StackPanel>
@@ -103,7 +103,9 @@
         <!-- Contiene la Listbox con tutti i pezzi ordinati -->
         <Border x:Name="brdPezzi">
             <StackPanel Orientation="Vertical">
-                <ListBox x:Name="lbOrderedItems" ItemsSource="{Binding Pezzi}" ItemTemplate="{StaticResource orderedItemTemplate}" />
+                <ListBox Background="LawnGreen" Height="200" x:Name="lbOrderedItems" ItemsSource="{Binding Pezzi}" ItemTemplate="{StaticResource orderedItemTemplate}" />
+                <TextBlock Background="LightBlue" Text="{Binding Pezzi.Count, Mode=OneWay}"></TextBlock>
+
                 <Button Content="Aggiungi Pezzo" Command="{Binding AddPezzoCommand}" />
             </StackPanel>
         </Border>
@@ -130,18 +132,18 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                <!--<StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
                     <TextBlock Foreground="{Binding Marca, Converter={StaticResource textboxBackgroundConverter}}" Text="Marca *" />
                     <Button Content="Nuova Marca" Command="{Binding CreaMarcaCommand}" />
-                </StackPanel>
-                <TextBlock Text="Codice" Grid.Column="2" Grid.Row="0" />
+                </StackPanel>-->
+                <!--<TextBlock Text="Codice" Grid.Column="2" Grid.Row="0" />
                 <TextBlock Foreground="{Binding Descrizione, Converter={StaticResource textboxBackgroundConverter}}" Text="Descrizione *" Grid.Row="1" Grid.Column="0"></TextBlock>
                 <TextBlock Text="Prezzo di Costo" Grid.Row="2" Grid.Column="0"></TextBlock>
-                <TextBlock Text="Prezzo di Vendita" Grid.Row="2" Grid.Column="2"></TextBlock>
-                <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                <TextBlock Text="Prezzo di Vendita" Grid.Row="2" Grid.Column="2"></TextBlock>-->
+                <!--<StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
                     <TextBlock Foreground="{Binding Fornitore, Converter={StaticResource textboxBackgroundConverter}}" Text="Fornitore *" />
                     <Button Content="Nuovo Fornitore" Command="{Binding CreaFornitoreCommand}" />
-                </StackPanel>
+                </StackPanel>-->
                 <TextBlock Text="Data Richiesta" Grid.Row="4" Grid.Column="0"></TextBlock>
                 <!--StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="4"-->
                     <TextBlock Text="Cauzione" Grid.Row="5" Grid.Column="0"></TextBlock>
@@ -155,12 +157,12 @@
                 <TextBlock Text="Arrivato il" Grid.Row="7" Grid.Column="2"></TextBlock>
 
 
-                <ComboBox SelectedValue="{Binding Marca}" DisplayMemberPath="Nome" ItemsSource="{Binding Marche}" Grid.Row="0" Grid.Column="1" OpacityMask="Black" />
-                <TextBox  Text="{Binding Codice}" Grid.Row="0" Grid.Column="3"></TextBox>
-                <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Descrizione, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="6"/>
+                <!--<ComboBox SelectedValue="{Binding Marca}" DisplayMemberPath="Nome" ItemsSource="{Binding Marche}" Grid.Row="0" Grid.Column="1" OpacityMask="Black" />-->
+                <!--<TextBox  Text="{Binding Codice}" Grid.Row="0" Grid.Column="3"></TextBox>-->
+                <!--<TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Descrizione, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="6"/>
                 <TextBox Text="{Binding PrezzoAcquisto}" Grid.Row="2" Grid.Column="1"></TextBox>
-                <TextBox Text="{Binding PrezzoVendita}" Grid.Row="2" Grid.Column="3"></TextBox>
-                <ComboBox SelectedValue="{Binding Fornitore}" DisplayMemberPath="Name" ItemsSource="{Binding Fornitori}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" />
+                <TextBox Text="{Binding PrezzoVendita}" Grid.Row="2" Grid.Column="3"></TextBox>-->
+                <!--<ComboBox SelectedValue="{Binding Fornitore}" DisplayMemberPath="Name" ItemsSource="{Binding Fornitori}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" />-->
                 <DatePicker SelectedDate="{Binding DataRichiesta}" Grid.Row="4" Grid.Column="1" />
                 <CheckBox IsChecked="{Binding Ordinato, Mode=TwoWay}" Grid.Row="6" Grid.Column="1" />
                 <DatePicker SelectedDate="{Binding DataOrdinato}" Grid.Row="6" Grid.Column="3" />

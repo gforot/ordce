@@ -134,9 +134,13 @@ namespace OrdiniCatCe.Gui.ViewModel
             // Code runs "for real"
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                foreach (RichiesteOrdine ro in db.RichiesteOrdine.Include("Fornitori").Include("Marche").ToList())
+                //foreach (RichiesteOrdine ro in db.RichiesteOrdine.Include("Fornitori").Include("Marche").ToList())
+                //{
+                //    _righeOrdine.Add(ro);  
+                //} 
+                foreach (RichiesteOrdine ro in db.RichiesteOrdine.ToList())
                 {
-                    _righeOrdine.Add(ro);  
+                    _righeOrdine.Add(ro);
                 } 
             }
 

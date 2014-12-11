@@ -25,8 +25,8 @@ namespace OrdiniCatCe.Gui.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Marche> Marche { get; set; }
         public DbSet<Fornitori> Fornitori { get; set; }
+        public DbSet<Marche> Marche { get; set; }
         public DbSet<PezziInOrdine> PezziInOrdine { get; set; }
         public DbSet<RichiesteOrdine> RichiesteOrdine { get; set; }
     }

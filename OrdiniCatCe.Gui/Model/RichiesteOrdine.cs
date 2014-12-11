@@ -27,7 +27,7 @@ namespace OrdiniCatCe.Gui.Model
         public Nullable<System.DateTime> DataAvvisato { get; set; }
         public Nullable<System.DateTime> DataOrdinato { get; set; }
         public Nullable<System.DateTime> DataArrivato { get; set; }
-        public ModalitaAvviso ModalitàAvviso { get; set; }
+        public Nullable<ModalitaDiAvviso> ModalitàAvviso { get; set; }
         public Nullable<System.DateTime> DataRitirato { get; set; }
         public int Id { get; set; }
         public string Nome { get; set; }

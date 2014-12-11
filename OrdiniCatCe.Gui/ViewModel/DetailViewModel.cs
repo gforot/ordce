@@ -298,8 +298,8 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #region ModalitaAvviso
         private const string _modalitaAvvisoPrpName = "ModalitaAvviso";
-        private ModalitaAvviso _modalitaAvviso;
-        public ModalitaAvviso ModalitaAvviso
+        private ModalitaDiAvviso? _modalitaAvviso;
+        public ModalitaDiAvviso? ModalitaAvviso
         {
             get
             {
@@ -509,7 +509,10 @@ namespace OrdiniCatCe.Gui.ViewModel
             daAggiungere.Mancante = false;
             daAggiungere.IdRichiestaOrdine = _id;
             daAggiungere.Description = "Nuovo pezzo";
-            DbManager.AddPezzo(daAggiungere);
+            if (DbManager.AddPezzo(daAggiungere))
+            {
+                Pezzi.Add(daAggiungere);
+            }
         }
 
         private void Conferma()
@@ -666,7 +669,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.DataRichiesta = DateTime.Now;
             this.DataAvvisato= null;
             this.DataRitirato = null;
-            this.ModalitaAvviso = ModalitaAvviso.Undefined;
+            this.ModalitaAvviso = ModalitaDiAvviso.NonDefinito;
             this.Ritirato = false;
             this.Ordinato = false;
             this.Arrivato = false;
@@ -701,7 +704,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.Caparra = richiestaOrdine.Caparra;
             this.RicevutoCaparra = richiestaOrdine.RicevutaCaparra;
 
-            this.Pezzi = new ObservableCollection<PezziInOrdine>(richiestaOrdine.PezziInOrdine);
+            this.Pezzi = new ObservableCollection<PezziInOrdine>();
         }
     
     }

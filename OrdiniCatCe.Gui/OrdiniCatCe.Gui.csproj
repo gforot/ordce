@@ -148,6 +148,9 @@
     </Compile>
     <Compile Include="Model\FornitoriCollection.cs" />
     <Compile Include="Model\MarcheCollection.cs" />
+    <Compile Include="Model\ModalitaDiAvviso.cs">
+      <DependentUpon>OrdiniModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\PezziInOrdine.cs">
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
@@ -165,9 +168,6 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Model\Marche.cs">
-      <DependentUpon>OrdiniModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ModalitaAvviso.cs">
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\OrdiniModel.Context.cs">

@@ -11,11 +11,11 @@ namespace OrdiniCatCe.Gui.Model
 {
     using System;
     
-    public enum ModalitaAvviso : int
+    public enum ModalitaDiAvviso : int
     {
+        NonDefinito = -1,
         Telefono = 0,
         EMail = 1,
-        Segreteria = 2,
-        Undefined = 3
+        Cellulare = 2
     }
 }
