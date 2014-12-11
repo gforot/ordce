@@ -51,6 +51,14 @@ namespace OrdiniCatCe.Gui.Db
             }
         }
 
+        public static RichiesteOrdine GetRichiestaOrdine(int id)
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                return db.RichiesteOrdine.Include("PezziInOrdine").FirstOrDefault(ro => ro.Id == id);
+            }
+        }
+
         /// <summary>
         /// Aggiunge un fornitore nel Database
         /// Controlla l'esistenza del fornitore. Se esiste, non permette l'aggiunta e torna false.

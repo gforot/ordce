@@ -7,6 +7,7 @@ using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
 using OrdiniCatCe.Gui.View;
 using OrdiniCatCe.Gui.ViewModel;
+using OrdiniCatCe.Gui.Db;
 
 namespace OrdiniCatCe.Gui
 {
@@ -89,8 +90,12 @@ namespace OrdiniCatCe.Gui
             {
                 return;
             }
-
-            ServiceLocator.Current.GetInstance<DetailViewModel>().Setup(toUpdate);
+            RichiesteOrdine ro = DbManager.GetRichiestaOrdine(toUpdate.Id);
+            if (ro == null)
+            {
+                return;
+            }
+            ServiceLocator.Current.GetInstance<DetailViewModel>().Setup(ro);
 
             DetailWindow wnd = new DetailWindow();
             wnd.ShowDialog();
