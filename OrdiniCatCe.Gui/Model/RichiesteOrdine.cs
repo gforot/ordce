@@ -19,27 +19,21 @@ namespace OrdiniCatCe.Gui.Model
             this.PezziInOrdine = new HashSet<PezziInOrdine>();
         }
     
-        public int Id { get; set; }
         public string Indirizzo { get; set; }
         public string Telefono { get; set; }
         public string EMail { get; set; }
         public string Cellulare { get; set; }
-        public string Codice { get; set; }
-        public string Descrizione { get; set; }
-        public Nullable<decimal> PrezzoAcquisto { get; set; }
         public bool Avvisato { get; set; }
         public Nullable<System.DateTime> DataAvvisato { get; set; }
         public Nullable<System.DateTime> DataOrdinato { get; set; }
         public Nullable<System.DateTime> DataArrivato { get; set; }
         public ModalitaAvviso ModalitàAvviso { get; set; }
         public Nullable<System.DateTime> DataRitirato { get; set; }
-        public Nullable<int> IdMarca { get; set; }
-        public Nullable<int> IdFornitore { get; set; }
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string Cognome { get; set; }
         public string Localita { get; set; }
         public string NumeroCivico { get; set; }
-        public Nullable<decimal> PrezzoVendita { get; set; }
         public bool Ritirato { get; set; }
         public Nullable<System.DateTime> DataRichiesta { get; set; }
         public bool Ordinato { get; set; }
@@ -48,8 +42,6 @@ namespace OrdiniCatCe.Gui.Model
         public Nullable<decimal> Caparra { get; set; }
         public Nullable<System.DateTime> DataCaparra { get; set; }
     
-        public virtual Marche Marche { get; set; }
-        public virtual Fornitori Fornitori { get; set; }
         public virtual ICollection<PezziInOrdine> PezziInOrdine { get; set; }
     }
 }

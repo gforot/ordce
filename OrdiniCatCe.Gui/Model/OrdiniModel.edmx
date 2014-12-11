@@ -10,10 +10,6 @@
           <EntitySet Name="Marche" EntityType="OrdiniModel.Store.Marche" store:Type="Tables" />
           <EntitySet Name="PezziInOrdine" EntityType="OrdiniModel.Store.PezziInOrdine" store:Type="Tables" />
           <EntitySet Name="RichiesteOrdine" EntityType="OrdiniModel.Store.RichiesteOrdine" store:Type="Tables" />
-          <AssociationSet Name="FK_Fornitore" Association="OrdiniModel.Store.FK_Fornitore">
-            <End Role="Fornitori" EntitySet="Fornitori" />
-            <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
-          </AssociationSet>
           <AssociationSet Name="FK_IdFornitore" Association="OrdiniModel.Store.FK_IdFornitore">
             <End Role="Fornitori" EntitySet="Fornitori" />
             <End Role="PezziInOrdine" EntitySet="PezziInOrdine" />
@@ -21,10 +17,6 @@
           <AssociationSet Name="FK_IdMarca" Association="OrdiniModel.Store.FK_IdMarca">
             <End Role="Marche" EntitySet="Marche" />
             <End Role="PezziInOrdine" EntitySet="PezziInOrdine" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Marca" Association="OrdiniModel.Store.FK_Marca">
-            <End Role="Marche" EntitySet="Marche" />
-            <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
           </AssociationSet>
           <AssociationSet Name="FK_RichiesteOrdine" Association="OrdiniModel.Store.FK_RichiesteOrdine">
             <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
@@ -72,23 +64,17 @@
           <Property Name="Telefono" Type="nvarchar" MaxLength="100" />
           <Property Name="EMail" Type="nvarchar" MaxLength="100" />
           <Property Name="Cellulare" Type="nvarchar" MaxLength="100" />
-          <Property Name="Codice" Type="nvarchar" MaxLength="100" />
-          <Property Name="Descrizione" Type="nvarchar" MaxLength="200" />
-          <Property Name="PrezzoAcquisto" Type="money" />
           <Property Name="Avvisato" Type="bit" Nullable="false" />
           <Property Name="DataAvvisato" Type="datetime" />
           <Property Name="DataOrdinato" Type="datetime" />
           <Property Name="DataArrivato" Type="datetime" />
           <Property Name="ModalitàAvviso" Type="int" />
           <Property Name="DataRitirato" Type="datetime" />
-          <Property Name="IdMarca" Type="int" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="IdFornitore" Type="int" />
           <Property Name="Nome" Type="nvarchar" MaxLength="100" />
           <Property Name="Cognome" Type="nvarchar" MaxLength="100" />
           <Property Name="Localita" Type="nvarchar" MaxLength="100" />
           <Property Name="NumeroCivico" Type="nvarchar" MaxLength="100" />
-          <Property Name="PrezzoVendita" Type="money" />
           <Property Name="Ritirato" Type="bit" Nullable="false" />
           <Property Name="DataRichiesta" Type="datetime" />
           <Property Name="Ordinato" Type="bit" Nullable="false" />
@@ -97,18 +83,6 @@
           <Property Name="Caparra" Type="money" />
           <Property Name="DataCaparra" Type="datetime" />
         </EntityType>
-        <Association Name="FK_Fornitore">
-          <End Role="Fornitori" Type="OrdiniModel.Store.Fornitori" Multiplicity="0..1" />
-          <End Role="RichiesteOrdine" Type="OrdiniModel.Store.RichiesteOrdine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Fornitori">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RichiesteOrdine">
-              <PropertyRef Name="IdFornitore" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_IdFornitore">
           <End Role="Fornitori" Type="OrdiniModel.Store.Fornitori" Multiplicity="0..1" />
           <End Role="PezziInOrdine" Type="OrdiniModel.Store.PezziInOrdine" Multiplicity="*" />
@@ -133,18 +107,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Marca">
-          <End Role="Marche" Type="OrdiniModel.Store.Marche" Multiplicity="0..1" />
-          <End Role="RichiesteOrdine" Type="OrdiniModel.Store.RichiesteOrdine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Marche">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RichiesteOrdine">
-              <PropertyRef Name="IdMarca" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RichiesteOrdine">
           <End Role="RichiesteOrdine" Type="OrdiniModel.Store.RichiesteOrdine" Multiplicity="1" />
           <End Role="PezziInOrdine" Type="OrdiniModel.Store.PezziInOrdine" Multiplicity="*" />
@@ -163,27 +125,19 @@
       <Schema Namespace="OrdiniModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityContainer Name="OrdiniEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Marche" EntityType="OrdiniModel.Marche" />
-          <EntitySet Name="RichiesteOrdine" EntityType="OrdiniModel.RichiesteOrdine" />
-          <AssociationSet Name="FK_Marca" Association="OrdiniModel.FK_Marca">
-            <End Role="Marche" EntitySet="Marche" />
-            <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
-          </AssociationSet>
           <EntitySet Name="Fornitori" EntityType="OrdiniModel.Fornitori" />
-          <AssociationSet Name="FK_Fornitore" Association="OrdiniModel.FK_Fornitore">
-            <End Role="Fornitori" EntitySet="Fornitori" />
-            <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
-          </AssociationSet>
           <EntitySet Name="PezziInOrdine" EntityType="OrdiniModel.PezziInOrdine" />
-          <AssociationSet Name="FK_RichiesteOrdine" Association="OrdiniModel.FK_RichiesteOrdine">
-            <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
-            <End Role="PezziInOrdine" EntitySet="PezziInOrdine" />
-          </AssociationSet>
           <AssociationSet Name="FK_IdFornitore" Association="OrdiniModel.FK_IdFornitore">
             <End Role="Fornitori" EntitySet="Fornitori" />
             <End Role="PezziInOrdine" EntitySet="PezziInOrdine" />
           </AssociationSet>
           <AssociationSet Name="FK_IdMarca" Association="OrdiniModel.FK_IdMarca">
             <End Role="Marche" EntitySet="Marche" />
+            <End Role="PezziInOrdine" EntitySet="PezziInOrdine" />
+          </AssociationSet>
+          <EntitySet Name="RichiesteOrdine" EntityType="OrdiniModel.RichiesteOrdine" />
+          <AssociationSet Name="FK_RichiesteOrdine" Association="OrdiniModel.FK_RichiesteOrdine">
+            <End Role="RichiesteOrdine" EntitySet="RichiesteOrdine" />
             <End Role="PezziInOrdine" EntitySet="PezziInOrdine" />
           </AssociationSet>
         </EntityContainer>
@@ -193,57 +147,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="RichiesteOrdine" Relationship="OrdiniModel.FK_Marca" FromRole="Marche" ToRole="RichiesteOrdine" />
           <NavigationProperty Name="PezziInOrdine" Relationship="OrdiniModel.FK_IdMarca" FromRole="Marche" ToRole="PezziInOrdine" />
         </EntityType>
-        <EntityType Name="RichiesteOrdine">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Name="Indirizzo" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Telefono" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="EMail" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Cellulare" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Codice" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Descrizione" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="PrezzoAcquisto" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Avvisato" Type="Boolean" Nullable="false" />
-          <Property Name="DataAvvisato" Type="DateTime" Precision="3" />
-          <Property Name="DataOrdinato" Type="DateTime" Precision="3" />
-          <Property Name="DataArrivato" Type="DateTime" Precision="3" />
-          <Property Name="ModalitàAvviso" Type="OrdiniModel.ModalitaAvviso" Nullable="false" />
-          <Property Name="DataRitirato" Type="DateTime" Precision="3" />
-          <Property Name="IdMarca" Type="Int32" />
-          <NavigationProperty Name="Marche" Relationship="OrdiniModel.FK_Marca" FromRole="RichiesteOrdine" ToRole="Marche" />
-          <Property Type="Int32" Name="IdFornitore" />
-          <NavigationProperty Name="Fornitori" Relationship="OrdiniModel.FK_Fornitore" FromRole="RichiesteOrdine" ToRole="Fornitori" />
-          <Property Type="String" Name="Nome" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Cognome" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Localita" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="NumeroCivico" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="PrezzoVendita" Precision="19" Scale="4" />
-          <Property Type="Boolean" Name="Ritirato" Nullable="false" />
-          <Property Type="DateTime" Name="DataRichiesta" Precision="3" />
-          <Property Type="Boolean" Name="Ordinato" Nullable="false" />
-          <Property Type="Boolean" Name="Arrivato" Nullable="false" />
-          <Property Type="Boolean" Name="RicevutaCaparra" Nullable="false" />
-          <Property Type="Decimal" Name="Caparra" Precision="19" Scale="4" />
-          <Property Type="DateTime" Name="DataCaparra" Precision="3" />
-          <NavigationProperty Name="PezziInOrdine" Relationship="OrdiniModel.FK_RichiesteOrdine" FromRole="RichiesteOrdine" ToRole="PezziInOrdine" />
-        </EntityType>
-        <Association Name="FK_Marca">
-          <End Role="Marche" Type="OrdiniModel.Marche" Multiplicity="0..1" />
-          <End Role="RichiesteOrdine" Type="OrdiniModel.RichiesteOrdine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Marche">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RichiesteOrdine">
-              <PropertyRef Name="IdMarca" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EnumType Name="ModalitaAvviso">
           <Member Name="Telefono" />
           <Member Name="EMail" />
@@ -256,23 +161,10 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="RichiesteOrdine" Relationship="OrdiniModel.FK_Fornitore" FromRole="Fornitori" ToRole="RichiesteOrdine" />
           <Property Type="String" Name="Email" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Telefono" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PezziInOrdine" Relationship="OrdiniModel.FK_IdFornitore" FromRole="Fornitori" ToRole="PezziInOrdine" />
         </EntityType>
-        <Association Name="FK_Fornitore">
-          <End Type="OrdiniModel.Fornitori" Role="Fornitori" Multiplicity="0..1" />
-          <End Type="OrdiniModel.RichiesteOrdine" Role="RichiesteOrdine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Fornitori">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RichiesteOrdine">
-              <PropertyRef Name="IdFornitore" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="PezziInOrdine">
           <Key>
             <PropertyRef Name="Id" />
@@ -282,7 +174,6 @@
           <Property Type="Boolean" Name="Arrivato" />
           <Property Type="Boolean" Name="Mancante" />
           <Property Type="Int32" Name="IdRichiestaOrdine" Nullable="false" />
-          <NavigationProperty Name="RichiesteOrdine" Relationship="OrdiniModel.FK_RichiesteOrdine" FromRole="PezziInOrdine" ToRole="RichiesteOrdine" />
           <Property Type="String" Name="Codice" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="PrezzoAcquisto" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="PrezzoVendita" Precision="19" Scale="4" />
@@ -292,19 +183,8 @@
           <Property Type="Int32" Name="IdFornitore" />
           <NavigationProperty Name="Fornitori" Relationship="OrdiniModel.FK_IdFornitore" FromRole="PezziInOrdine" ToRole="Fornitori" />
           <NavigationProperty Name="Marche" Relationship="OrdiniModel.FK_IdMarca" FromRole="PezziInOrdine" ToRole="Marche" />
+          <NavigationProperty Name="RichiesteOrdine" Relationship="OrdiniModel.FK_RichiesteOrdine" FromRole="PezziInOrdine" ToRole="RichiesteOrdine" />
         </EntityType>
-        <Association Name="FK_RichiesteOrdine">
-          <End Type="OrdiniModel.RichiesteOrdine" Role="RichiesteOrdine" Multiplicity="1" />
-          <End Type="OrdiniModel.PezziInOrdine" Role="PezziInOrdine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RichiesteOrdine">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PezziInOrdine">
-              <PropertyRef Name="IdRichiestaOrdine" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_IdFornitore">
           <End Type="OrdiniModel.Fornitori" Role="Fornitori" Multiplicity="0..1" />
           <End Type="OrdiniModel.PezziInOrdine" Role="PezziInOrdine" Multiplicity="*" />
@@ -329,6 +209,46 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="RichiesteOrdine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Indirizzo" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Telefono" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EMail" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Cellulare" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Avvisato" Nullable="false" />
+          <Property Type="DateTime" Name="DataAvvisato" Precision="3" />
+          <Property Type="DateTime" Name="DataOrdinato" Precision="3" />
+          <Property Type="DateTime" Name="DataArrivato" Precision="3" />
+          <Property Type="Int32" Name="ModalitàAvviso" />
+          <Property Type="DateTime" Name="DataRitirato" Precision="3" />
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nome" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Cognome" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Localita" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NumeroCivico" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Ritirato" Nullable="false" />
+          <Property Type="DateTime" Name="DataRichiesta" Precision="3" />
+          <Property Type="Boolean" Name="Ordinato" Nullable="false" />
+          <Property Type="Boolean" Name="Arrivato" Nullable="false" />
+          <Property Type="Boolean" Name="RicevutaCaparra" Nullable="false" />
+          <Property Type="Decimal" Name="Caparra" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="DataCaparra" Precision="3" />
+          <NavigationProperty Name="PezziInOrdine" Relationship="OrdiniModel.FK_RichiesteOrdine" FromRole="RichiesteOrdine" ToRole="PezziInOrdine" />
+        </EntityType>
+        <Association Name="FK_RichiesteOrdine">
+          <End Type="OrdiniModel.RichiesteOrdine" Role="RichiesteOrdine" Multiplicity="1" />
+          <End Type="OrdiniModel.PezziInOrdine" Role="PezziInOrdine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RichiesteOrdine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PezziInOrdine">
+              <PropertyRef Name="IdRichiestaOrdine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -340,40 +260,6 @@
               <MappingFragment StoreEntitySet="Marche">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RichiesteOrdine">
-            <EntityTypeMapping TypeName="OrdiniModel.RichiesteOrdine">
-              <MappingFragment StoreEntitySet="RichiesteOrdine">
-                <ScalarProperty Name="DataCaparra" ColumnName="DataCaparra" />
-                <ScalarProperty Name="Caparra" ColumnName="Caparra" />
-                <ScalarProperty Name="RicevutaCaparra" ColumnName="RicevutaCaparra" />
-                <ScalarProperty Name="Arrivato" ColumnName="Arrivato" />
-                <ScalarProperty Name="Ordinato" ColumnName="Ordinato" />
-                <ScalarProperty Name="DataRichiesta" ColumnName="DataRichiesta" />
-                <ScalarProperty Name="Ritirato" ColumnName="Ritirato" />
-                <ScalarProperty Name="PrezzoVendita" ColumnName="PrezzoVendita" />
-                <ScalarProperty Name="NumeroCivico" ColumnName="NumeroCivico" />
-                <ScalarProperty Name="Localita" ColumnName="Localita" />
-                <ScalarProperty Name="Cognome" ColumnName="Cognome" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
-                <ScalarProperty Name="IdFornitore" ColumnName="IdFornitore" />
-                <ScalarProperty Name="Indirizzo" ColumnName="Indirizzo" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="EMail" ColumnName="EMail" />
-                <ScalarProperty Name="Cellulare" ColumnName="Cellulare" />
-                <ScalarProperty Name="Codice" ColumnName="Codice" />
-                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
-                <ScalarProperty Name="PrezzoAcquisto" ColumnName="PrezzoAcquisto" />
-                <ScalarProperty Name="Avvisato" ColumnName="Avvisato" />
-                <ScalarProperty Name="DataAvvisato" ColumnName="DataAvvisato" />
-                <ScalarProperty Name="DataOrdinato" ColumnName="DataOrdinato" />
-                <ScalarProperty Name="DataArrivato" ColumnName="DataArrivato" />
-                <ScalarProperty Name="ModalitàAvviso" ColumnName="ModalitàAvviso" />
-                <ScalarProperty Name="DataRitirato" ColumnName="DataRitirato" />
-                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -402,6 +288,34 @@
                 <ScalarProperty Name="Arrivato" ColumnName="Arrivato" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RichiesteOrdine">
+            <EntityTypeMapping TypeName="OrdiniModel.RichiesteOrdine">
+              <MappingFragment StoreEntitySet="RichiesteOrdine">
+                <ScalarProperty Name="DataCaparra" ColumnName="DataCaparra" />
+                <ScalarProperty Name="Caparra" ColumnName="Caparra" />
+                <ScalarProperty Name="RicevutaCaparra" ColumnName="RicevutaCaparra" />
+                <ScalarProperty Name="Arrivato" ColumnName="Arrivato" />
+                <ScalarProperty Name="Ordinato" ColumnName="Ordinato" />
+                <ScalarProperty Name="DataRichiesta" ColumnName="DataRichiesta" />
+                <ScalarProperty Name="Ritirato" ColumnName="Ritirato" />
+                <ScalarProperty Name="NumeroCivico" ColumnName="NumeroCivico" />
+                <ScalarProperty Name="Localita" ColumnName="Localita" />
+                <ScalarProperty Name="Cognome" ColumnName="Cognome" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DataRitirato" ColumnName="DataRitirato" />
+                <ScalarProperty Name="ModalitàAvviso" ColumnName="ModalitàAvviso" />
+                <ScalarProperty Name="DataArrivato" ColumnName="DataArrivato" />
+                <ScalarProperty Name="DataOrdinato" ColumnName="DataOrdinato" />
+                <ScalarProperty Name="DataAvvisato" ColumnName="DataAvvisato" />
+                <ScalarProperty Name="Avvisato" ColumnName="Avvisato" />
+                <ScalarProperty Name="Cellulare" ColumnName="Cellulare" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Indirizzo" ColumnName="Indirizzo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -189,42 +189,6 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
         #endregion
 
-        #region Codice
-        private const string _codicePrpName = "Codice";
-        private string _codice;
-        public string Codice
-        {
-            get
-            {
-                return _codice;
-            }
-            set
-            {
-                _codice = value;
-                RaisePropertyChanged(_codicePrpName);
-            }
-        }
-
-        #endregion
-
-        #region Descrizione
-        private const string _descrizionePrpName = "Descrizione";
-        private string _descrizione;
-        public string Descrizione
-        {
-            get
-            {
-                return _descrizione;
-            }
-            set
-            {
-                _descrizione = value;
-                RaisePropertyChanged(_descrizionePrpName);
-            }
-        }
-
-        #endregion
-
         #region DataAvvisato
         private const string _dataAvvisatoPrpName = "DataAvvisato";
         private System.DateTime? _dataAvvisato;
@@ -327,42 +291,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 _dataRichiesta = value;
                 RaisePropertyChanged(_dataRichiestaPrpName);
-            }
-        }
-
-        #endregion
-
-        #region PrezzoAcquisto
-        private const string _prezzoAcquistoPrpName = "PrezzoAcquisto";
-        private decimal? _prezzoAcquisto;
-        public decimal? PrezzoAcquisto
-        {
-            get
-            {
-                return _prezzoAcquisto;
-            }
-            set
-            {
-                _prezzoAcquisto = value;
-                RaisePropertyChanged(_prezzoAcquistoPrpName);
-            }
-        }
-
-        #endregion
-
-        #region PrezzoVendita
-        private const string _prezzoVenditaPrpName = "PrezzoVendita";
-        private decimal? _prezzoVendita;
-        public decimal? PrezzoVendita
-        {
-            get
-            {
-                return _prezzoVendita;
-            }
-            set
-            {
-                _prezzoVendita = value;
-                RaisePropertyChanged(_prezzoVenditaPrpName);
             }
         }
 
@@ -570,7 +498,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 return !string.IsNullOrEmpty(this.Nome) &&
                     !string.IsNullOrEmpty(this.Cognome) &&
-                    !string.IsNullOrEmpty(this.Descrizione) &&
                     Pezzi.Count>0;
             }
         }
@@ -699,10 +626,6 @@ namespace OrdiniCatCe.Gui.ViewModel
                        Localita = Localita,
                        NumeroCivico = NumeroCivico,
                        ModalitàAvviso = ModalitaAvviso,
-                       PrezzoAcquisto = PrezzoAcquisto,
-                       PrezzoVendita = PrezzoVendita,
-                       Codice = Codice,
-                       Descrizione = Descrizione,
                        Ritirato = Ritirato,
                        Arrivato = Arrivato,
                        Ordinato = Ordinato,
@@ -737,9 +660,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.Localita = string.Empty;
             this.NumeroCivico = string.Empty;
             this.Cellulare = string.Empty;
-            this.Codice = string.Empty;
             this.Avvisato = false;
-            this.Descrizione = string.Empty;
             this.DataArrivato = null;
             this.DataOrdinato = null;
             this.DataRichiesta = DateTime.Now;
@@ -767,19 +688,15 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.NumeroCivico = richiestaOrdine.NumeroCivico;
             this.Cellulare  = richiestaOrdine.Cellulare;
             this.Avvisato = richiestaOrdine.Avvisato;
-            this.Codice = richiestaOrdine.Codice;
             this.DataArrivato = richiestaOrdine.DataArrivato;
             this.DataOrdinato = richiestaOrdine.DataOrdinato;
             this.DataAvvisato = richiestaOrdine.DataAvvisato;
             this.DataRichiesta = richiestaOrdine.DataRichiesta;
             this.DataRitirato = richiestaOrdine.DataRitirato;
             this.ModalitaAvviso = richiestaOrdine.ModalitàAvviso;
-            this.PrezzoAcquisto = richiestaOrdine.PrezzoAcquisto;
-            this.PrezzoVendita = richiestaOrdine.PrezzoVendita;
             this.Ritirato = richiestaOrdine.Ritirato;
             this.Ordinato = richiestaOrdine.Ordinato;
             this.Arrivato = richiestaOrdine.Arrivato;
-            this.Descrizione = richiestaOrdine.Descrizione;
             this.DataCaparra = richiestaOrdine.DataCaparra;
             this.Caparra = richiestaOrdine.Caparra;
             this.RicevutoCaparra = richiestaOrdine.RicevutaCaparra;

@@ -27,8 +27,8 @@ namespace OrdiniCatCe.Gui.Model
         public Nullable<int> IdMarca { get; set; }
         public Nullable<int> IdFornitore { get; set; }
     
-        public virtual RichiesteOrdine RichiesteOrdine { get; set; }
         public virtual Fornitori Fornitori { get; set; }
         public virtual Marche Marche { get; set; }
+        public virtual RichiesteOrdine RichiesteOrdine { get; set; }
     }
 }

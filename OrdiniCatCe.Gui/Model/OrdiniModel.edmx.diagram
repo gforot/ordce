@@ -6,14 +6,12 @@
     <edmx:Diagrams>
       <Diagram DiagramId="0710e10116734472b320390011d7610e" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="OrdiniModel.Marche" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrdiniModel.RichiesteOrdine" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="OrdiniModel.FK_Marca" ManuallyRouted="false" />
         <EntityTypeShape EntityType="OrdiniModel.Fornitori" Width="1.5" PointX="5.75" PointY="1.625" />
-        <AssociationConnector Association="OrdiniModel.FK_Fornitore" />
         <EntityTypeShape EntityType="OrdiniModel.PezziInOrdine" Width="1.5" PointX="5.71476969947795" PointY="18.719265499487179" />
-        <AssociationConnector Association="OrdiniModel.FK_RichiesteOrdine" />
         <AssociationConnector Association="OrdiniModel.FK_IdFornitore" />
         <AssociationConnector Association="OrdiniModel.FK_IdMarca" />
+        <EntityTypeShape EntityType="OrdiniModel.RichiesteOrdine" Width="1.5" PointX="5.6567388166006367" PointY="27.738658217591539" />
+        <AssociationConnector Association="OrdiniModel.FK_RichiesteOrdine" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

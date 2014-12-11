@@ -196,7 +196,6 @@ namespace OrdiniCatCe.Gui.ViewModel
                         foreach (RichiesteOrdine richiesteOrdine in ordines)
                         {
                             writer.RenderBeginTag(HtmlTextWriterTag.Div);
-                            writer.Write(richiesteOrdine.Descrizione);
                             writer.RenderEndTag();
                         }
                         writer.RenderEndTag();
@@ -209,8 +208,8 @@ namespace OrdiniCatCe.Gui.ViewModel
 
                     foreach (RichiesteOrdine richiesteOrdine in ordines)
                     {
-                        body = string.IsNullOrEmpty(body) ? richiesteOrdine.Descrizione : 
-                            string.Format("{0}{2}{1}", body, richiesteOrdine.Descrizione, Environment.NewLine);
+                        //body = string.IsNullOrEmpty(body) ? richiesteOrdine.Descrizione : 
+                        //    string.Format("{0}{2}{1}", body, richiesteOrdine.Descrizione, Environment.NewLine);
                     }
 
                     string email = f.Email;
@@ -419,26 +418,20 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             target.Avvisato = source.Avvisato;
             target.Cellulare = source.Cellulare;
-            target.Codice = source.Codice;
             target.Cognome = source.Cognome;
             target.DataArrivato = source.DataArrivato;
             target.DataAvvisato = source.DataAvvisato;
             target.DataOrdinato = source.DataOrdinato;
             target.DataRitirato = source.DataRitirato;
-            target.Descrizione = source.Descrizione;
             target.EMail = source.EMail;
-            target.IdFornitore = source.IdFornitore;
-            target.IdMarca = source.IdMarca;
             target.Indirizzo = source.Indirizzo;
             target.Localita = source.Localita;
             target.Modalit‡Avviso = source.Modalit‡Avviso;
             target.Nome = source.Nome;
             target.NumeroCivico = source.NumeroCivico;
             target.Ordinato = source.Ordinato;
-            target.PrezzoAcquisto = source.PrezzoAcquisto;
             target.Ritirato = source.Ritirato;
             target.Telefono = source.Telefono;
-            target.PrezzoVendita = source.PrezzoVendita;
             target.Caparra = source.Caparra;
             target.DataCaparra = source.DataCaparra;
             target.RicevutaCaparra = source.RicevutaCaparra;
@@ -464,13 +457,14 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 return true;
             }
+            return true;
+            //[TODO] tradurre usando nuova struttura DB
+            //if (string.IsNullOrEmpty(rOrdine.Fornitori.Name))
+            //{
+            //    return false;
+            //}
 
-            if (string.IsNullOrEmpty(rOrdine.Fornitori.Name))
-            {
-                return false;
-            }
-
-            return rOrdine.Fornitori.Name.ToLower().Contains(FornitoreFilter.ToLower());
+            //return rOrdine.Fornitori.Name.ToLower().Contains(FornitoreFilter.ToLower());
         }
 
         private bool FilterByRitirati(RichiesteOrdine rOrdine)

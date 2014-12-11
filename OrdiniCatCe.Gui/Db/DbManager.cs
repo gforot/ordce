@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.UI.WebControls;
 using GalaSoft.MvvmLight.Messaging;
 using OrdiniCatCe.Gui.Messages;
@@ -84,10 +85,12 @@ namespace OrdiniCatCe.Gui.Db
 
         public static IQueryable<IGrouping<int?, RichiesteOrdine>> GetProdottiDaOrdinare()
         {
-            using (OrdiniEntities db = new OrdiniEntities())
-            {
-                return db.RichiesteOrdine.Where(ro => (!ro.Ordinato)).GroupBy(ro => ro.IdFornitore);
-            }
+            //[TODO] Usare la nuova tabella PezziInOrdine
+            throw new NotImplementedException();
+            //using (OrdiniEntities db = new OrdiniEntities())
+            //{
+            //    return db.RichiesteOrdine.Where(ro => (!ro.Ordinato)).GroupBy(ro => ro.IdFornitore);
+            //}
         }
 
         public static void RemoveFornitore(int id)
