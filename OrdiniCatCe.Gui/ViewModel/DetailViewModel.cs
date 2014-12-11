@@ -466,6 +466,8 @@ namespace OrdiniCatCe.Gui.ViewModel
 
             Messenger.Default.Register<AddMarcaMessage>(this, MsgKeys.MarcaAddedKey, OnMarcaAdded);
             Messenger.Default.Register<AddFornitoreMessage>(this, MsgKeys.FornitoreAddedKey, OnFornitoreAdded);
+
+            Pezzi = new ObservableCollection<PezziInOrdine>();
         }
 
         private void Init()
@@ -676,7 +678,8 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.DataCaparra = null;
             this.Caparra = null;
             this.RicevutoCaparra = false;
-            this.Pezzi = new ObservableCollection<PezziInOrdine>();
+
+            this.Pezzi.Clear();
         }
 
         private void SetupValuesFromRichiestaOrdine(RichiesteOrdine richiestaOrdine)
@@ -704,7 +707,11 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.Caparra = richiestaOrdine.Caparra;
             this.RicevutoCaparra = richiestaOrdine.RicevutaCaparra;
 
-            this.Pezzi = new ObservableCollection<PezziInOrdine>();
+            this.Pezzi.Clear();
+            foreach (var p in richiestaOrdine.PezziInOrdine)
+            {
+                this.Pezzi.Add(p);
+            }
         }
     
     }

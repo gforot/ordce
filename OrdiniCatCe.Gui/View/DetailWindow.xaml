@@ -103,9 +103,7 @@
         <!-- Contiene la Listbox con tutti i pezzi ordinati -->
         <Border x:Name="brdPezzi">
             <StackPanel Orientation="Vertical">
-                <ListBox Background="LawnGreen" Height="200" x:Name="lbOrderedItems" ItemsSource="{Binding Pezzi}" ItemTemplate="{StaticResource orderedItemTemplate}" />
-                <TextBlock Background="LightBlue" Text="{Binding Pezzi.Count, Mode=OneWay}"></TextBlock>
-
+                <ListBox Height="140" x:Name="lbOrderedItems" ItemsSource="{Binding Pezzi}" ItemTemplate="{StaticResource orderedItemTemplate}" />
                 <Button Content="Aggiungi Pezzo" Command="{Binding AddPezzoCommand}" />
             </StackPanel>
         </Border>

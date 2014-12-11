@@ -82,6 +82,8 @@ namespace OrdiniCatCe.Gui
 
         private void Aggiorna_OnClick(object sender, RoutedEventArgs e)
         {
+
+            //TODO: Recuperare da DB con informazioni relative a Pezzi.
             RichiesteOrdine toUpdate = GetRichiestaOrdineFromSenderOfButtonClick(sender);
             if (toUpdate == null)
             {
