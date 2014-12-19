@@ -1,16 +1,22 @@
 ﻿<Window x:Class="OrdiniCatCe.Gui.View.AddPezzoInOrdineWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Aggiungi Pezzo" Height="146" Width="792" Style="{StaticResource wndStyle}"
+        Title="Aggiungi Pezzo" Height="215" Width="693" Style="{StaticResource wndStyle}"
         DataContext="{Binding AddPezzoInOrdineViewModel, Source={StaticResource Locator}}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -18,25 +24,33 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Codice" Grid.Row="0" Grid.Column="0" />
-        <TextBox Text="{Binding Codice, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" />
+        <TextBox Text="{Binding Codice, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" />
+        <TextBlock Text="Descrizione" Grid.Row="0" Grid.Column="4" />
+        <TextBox Text="{Binding Descrizione, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="3" />
 
-        <TextBlock Text="Descrizione" Grid.Row="0" Grid.Column="2" />
-        <TextBox Text="{Binding Descrizione, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="3" />
+        <TextBlock Text="Marca" Grid.Row="1" Grid.Column="0" />
+        <ComboBox SelectedValue="{Binding Marca}" DisplayMemberPath="Nome" ItemsSource="{Binding Marche}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" OpacityMask="Black" />
+        <TextBlock Text="Fornitore" Grid.Row="1" Grid.Column="4" />
+        <ComboBox SelectedValue="{Binding Fornitore}" DisplayMemberPath="Name" ItemsSource="{Binding Fornitori}" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="3" OpacityMask="Black" />
 
-        <TextBlock Text="Prezzo Acquisto" Grid.Row="1" Grid.Column="0" />
-        <TextBox Text="{Binding PrezzoAcquisto, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" />
+        <TextBlock Text="Prezzo Acquisto" Grid.Row="2" Grid.Column="0" />
+        <TextBox Text="{Binding PrezzoAcquisto, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" />
+        <TextBlock Text="Prezzo Vendita" Grid.Row="2" Grid.Column="4" />
+        <TextBox Text="{Binding PrezzoVendita, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="3" />
 
-        <TextBlock Text="Prezzo Vendita" Grid.Row="1" Grid.Column="2" />
-        <TextBox Text="{Binding PrezzoVendita, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3" />
+        <TextBlock Text="Ordinato" Grid.Row="3" Grid.Column="0" />
+        <CheckBox IsChecked="{Binding Ordinato}" Grid.Row="3" Grid.Column="1" />
+        <TextBlock Text="Arrivato" Grid.Row="3" Grid.Column="2" />
+        <CheckBox IsChecked="{Binding Arrivato}"  Grid.Row="3" Grid.Column="3" />
 
-        <TextBlock Text="Marca" Grid.Row="2" Grid.Column="0" />
-        <ComboBox SelectedValue="{Binding Marca}" DisplayMemberPath="Nome" ItemsSource="{Binding Marche}" Grid.Row="2" Grid.Column="1" OpacityMask="Black" />
-        <TextBlock Text="Fornitore" Grid.Row="2" Grid.Column="2" />
-        <ComboBox SelectedValue="{Binding Fornitore}" DisplayMemberPath="Name" ItemsSource="{Binding Fornitori}" Grid.Row="2" Grid.Column="3" OpacityMask="Black" />
+        <TextBlock Text="Mancante" Grid.Row="3" Grid.Column="4" />
+        <CheckBox IsChecked="{Binding Mancante}" Grid.Row="3" Grid.Column="5" />
+        <TextBlock Text="Ritirato" Grid.Row="3" Grid.Column="6" />
+        <CheckBox IsChecked="{Binding Ritirato}"  Grid.Row="3" Grid.Column="7" />
 
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4">
-            <Button Content="Esci" Command="{Binding AnnullaCommand}"/>
-            <Button Content="Inserisci" Command="{Binding ConfermaCommand}"/>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="8">
+            <Button Style="{StaticResource 75ButtonsStyle}" Content="Esci" Command="{Binding AnnullaCommand}"/>
+            <Button Style="{StaticResource 75ButtonsStyle}" Content="Inserisci" Command="{Binding ConfermaCommand}"/>
         </StackPanel>
     </Grid>
 </Window>

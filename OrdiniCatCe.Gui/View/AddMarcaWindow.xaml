@@ -34,8 +34,8 @@
         <TextBox Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  />
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
-            <Button Content="Esci" Command="{Binding AnnullaCommand}"/>
-            <Button Content="Inserisci" Command="{Binding ConfermaCommand}"/>
+            <Button Style="{StaticResource 75ButtonsStyle}" Content="Esci" Command="{Binding AnnullaCommand}"/>
+            <Button Style="{StaticResource 75ButtonsStyle}" Content="Inserisci" Command="{Binding ConfermaCommand}"/>
         </StackPanel>
     </Grid>
 </Window>

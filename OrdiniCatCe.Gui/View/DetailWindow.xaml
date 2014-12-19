@@ -118,7 +118,7 @@
         <Border x:Name="brdPezzi">
             <StackPanel Orientation="Vertical">
                 <ListBox Height="140" x:Name="lbOrderedItems" ItemsSource="{Binding Pezzi}" ItemTemplate="{StaticResource orderedItemTemplate}" />
-                <Button Content="Aggiungi Pezzo" Command="{Binding AddPezzoCommand}" />
+                <Button Content="Aggiungi Pezzo" Command="{Binding AddPezzoCommand}" Style="{StaticResource 150ButtonsStyle}"/>
             </StackPanel>
         </Border>
         <Border x:Name="brdPezzo">
@@ -224,8 +224,8 @@
         </Border>
         <Border x:Name="brdButtons" >
             <StackPanel Orientation="Horizontal">
-                <Button Content="Annulla" Command="{Binding AnnullaCommand}"/>
-                <Button Content="Conferma" Command="{Binding ConfermaCommand}"/>
+                <Button Style="{StaticResource 75ButtonsStyle}" Content="Annulla" Command="{Binding AnnullaCommand}"/>
+                <Button Style="{StaticResource 75ButtonsStyle}" Content="Conferma" Command="{Binding ConfermaCommand}"/>
                 <TextBlock Text="{Binding ErrorMessage}" FontWeight="Bold" FontSize="14" Foreground="#FFEE0E0E" ></TextBlock>
             </StackPanel>
         </Border>

@@ -38,9 +38,9 @@
         <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" />
 
         <StackPanel HorizontalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5">
-            <Button x:Name="previousCommand" Command="{Binding PreviousCommand}">Precedente</Button>
-            <Button x:Name="nextCommand" Command="{Binding NextCommand}">Successivo</Button>
-            <Button x:Name="deleteCommand" Command="{Binding DeleteCommand}">Elimina</Button>
+            <Button x:Name="previousCommand" Command="{Binding PreviousCommand}" Style="{StaticResource 75ButtonsStyle}">Precedente</Button>
+            <Button x:Name="nextCommand" Command="{Binding NextCommand}" Style="{StaticResource 75ButtonsStyle}">Successivo</Button>
+            <Button x:Name="deleteCommand" Command="{Binding DeleteCommand}" Style="{StaticResource 75ButtonsStyle}">Elimina</Button>
         </StackPanel>
     </Grid>
 </Window>

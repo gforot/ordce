@@ -43,8 +43,8 @@
         <TextBox Text="{Binding Telefono, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" />
 
         <StackPanel HorizontalAlignment="Center"  Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
-            <Button Content="Annulla" Command="{Binding AnnullaCommand}"/>
-            <Button Content="Conferma" Command="{Binding ConfermaCommand}"/>
+            <Button Style="{StaticResource 75ButtonsStyle}" Content="Annulla" Command="{Binding AnnullaCommand}"/>
+            <Button Style="{StaticResource 75ButtonsStyle}" Content="Conferma" Command="{Binding ConfermaCommand}"/>
         </StackPanel>
     </Grid>
 </Window>

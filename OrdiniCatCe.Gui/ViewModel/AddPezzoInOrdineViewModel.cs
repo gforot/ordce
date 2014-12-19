@@ -3,6 +3,7 @@ using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using OrdiniCatCe.Gui.Converters;
 using OrdiniCatCe.Gui.Db;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
@@ -122,6 +123,79 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
         #endregion
 
+        #region Ordinato
+        private const string _ordinatoPrpName = "Ordinato";
+        private bool _ordinato;
+
+        public bool Ordinato
+        {
+            get
+            {
+                return _ordinato;
+            }
+            set
+            {
+                _ordinato = value;
+                RaisePropertyChanged(_ordinatoPrpName);
+            }
+        }
+        #endregion
+
+        #region Arrivato
+        private const string _arrivatoPrpName = "Arrivato";
+        private bool _arrivato;
+
+        public bool Arrivato
+        {
+            get
+            {
+                return _arrivato;
+            }
+            set
+            {
+                _arrivato = value;
+                RaisePropertyChanged(_arrivatoPrpName);
+            }
+        }
+        #endregion
+
+        #region Ritirato
+        private const string _ritiratoPrpName = "Ritirato";
+        private bool _ritirato;
+
+        public bool Ritirato
+        {
+            get
+            {
+                return _ritirato;
+            }
+            set
+            {
+                _ritirato = value;
+                RaisePropertyChanged(_ritiratoPrpName);
+            }
+        }
+        #endregion
+
+        #region Mancante
+        private const string _mancantePrpName = "Mancante";
+        private bool _mancante;
+
+        public bool Mancante
+        {
+            get
+            {
+                return _mancante;
+            }
+            set
+            {
+                _mancante = value;
+                RaisePropertyChanged(_mancantePrpName);
+            }
+        }
+        #endregion
+
+
         public RelayCommand AnnullaCommand { get; private set; }
         public RelayCommand ConfermaCommand { get; private set; }
 
@@ -132,6 +206,10 @@ namespace OrdiniCatCe.Gui.ViewModel
             Descrizione = string.Empty;
             Marca = null;
             Fornitore = null;
+            Mancante = false;
+            Arrivato = false;
+            Ritirato = false;
+            Ordinato = false;
         }
 
         private void Init()
@@ -165,6 +243,10 @@ namespace OrdiniCatCe.Gui.ViewModel
             pezzo.PrezzoVendita = PrezzoVendita;
             pezzo.IdFornitore = Fornitore.Id;
             pezzo.IdMarca = Marca.Id;
+            pezzo.Ordinato = Ordinato;
+            pezzo.Arrivato = Arrivato;
+            pezzo.Ritirato = Ritirato;
+            pezzo.Mancante = Mancante;
 
             if (!DbManager.AddPezzo(pezzo, out errorMessage))
             {

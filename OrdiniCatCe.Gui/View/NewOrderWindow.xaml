@@ -71,9 +71,9 @@
             </StackPanel>
         </Border>
         <Border x:Name="brdButtons" Margin="10">
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Annulla" ToolTip="Annulla l'inserimento." Command="{Binding AnnullaCommand}"/>
-                <Button Content="Conferma e Continua" ToolTip="Conferma i dati della testata e continua ad inserire i dettagli." Command="{Binding ConfermaCommand}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource 75ButtonsStyle}" Content="Annulla" ToolTip="Annulla l'inserimento." Command="{Binding AnnullaCommand}"/>
+                <Button Style="{StaticResource 150ButtonsStyle}" Content="Conferma e Continua" ToolTip="Conferma i dati della testata e continua ad inserire i dettagli." Command="{Binding ConfermaCommand}"/>
                 <TextBlock Text="{Binding ErrorMessage}" FontWeight="Bold" FontSize="14" Foreground="#FFEE0E0E" ></TextBlock>
             </StackPanel>
         </Border>
