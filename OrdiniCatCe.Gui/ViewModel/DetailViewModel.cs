@@ -507,9 +507,14 @@ namespace OrdiniCatCe.Gui.ViewModel
         private void AddPezzo()
         {
             //apro maschera di inserimento pezzo.
+            if (_id < 0)
+            {
+                return;
+            }
+
             
             AddPezzoInOrdineWindow wnd = new AddPezzoInOrdineWindow();
-            ServiceLocator.Current.GetInstance<AddPezzoInOrdineViewModel>().Setup();
+            ServiceLocator.Current.GetInstance<AddPezzoInOrdineViewModel>().Setup(_id);
             wnd.ShowDialog();
 
             if (wnd.MyDialogResult)

@@ -147,13 +147,21 @@ namespace OrdiniCatCe.Gui.Db
 
         public static bool AddPezzo(PezziInOrdine pezzo, out string errorMessage)
         {
-            errorMessage = string.Empty;
-            using (OrdiniEntities db = new OrdiniEntities())
+            try
             {
-                //TODO: Controllare esistenza dell'ordine.
-                db.PezziInOrdine.Add(pezzo);
-                db.SaveChanges();
-                return true;
+                errorMessage = string.Empty;
+                using (OrdiniEntities db = new OrdiniEntities())
+                {
+                    //TODO: Controllare esistenza dell'ordine.
+                    db.PezziInOrdine.Add(pezzo);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+                return false;
             }
         }
 

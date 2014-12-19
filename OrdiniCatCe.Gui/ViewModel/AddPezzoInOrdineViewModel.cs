@@ -13,6 +13,7 @@ namespace OrdiniCatCe.Gui.ViewModel
 {
     public class AddPezzoInOrdineViewModel : DialogViewModelBase
     {
+        private int _idRigaOrdine;
 
         public ObservableCollection<Marche> Marche { get; private set; }
         public ObservableCollection<Fornitori> Fornitori { get; private set; }
@@ -195,6 +196,11 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
         #endregion
 
+        public void Setup(int idRigaOrdine)
+        {
+            Setup();
+            _idRigaOrdine = idRigaOrdine;
+        }
 
         public override void Setup()
         {
@@ -242,6 +248,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             pezzo.Arrivato = Arrivato;
             pezzo.Ritirato = Ritirato;
             pezzo.Mancante = Mancante;
+            pezzo.IdRichiestaOrdine = _idRigaOrdine;
 
             if (!DbManager.AddPezzo(pezzo, out errorMessage))
             {
