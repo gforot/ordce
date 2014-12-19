@@ -506,14 +506,16 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         private void AddPezzo()
         {
-            PezziInOrdine daAggiungere = new PezziInOrdine();
-            daAggiungere.Arrivato = false;
-            daAggiungere.Mancante = false;
-            daAggiungere.IdRichiestaOrdine = _id;
-            daAggiungere.Description = "Nuovo pezzo";
-            if (DbManager.AddPezzo(daAggiungere))
+            //apro maschera di inserimento pezzo.
+            
+            AddPezzoInOrdineWindow wnd = new AddPezzoInOrdineWindow();
+            ServiceLocator.Current.GetInstance<AddPezzoInOrdineViewModel>().Setup();
+            wnd.ShowDialog();
+
+            if (wnd.MyDialogResult)
             {
-                Pezzi.Add(daAggiungere);
+                //devo aggiornare la lista di pezzi.
+                Pezzi.Add(wnd.AddedPezzo);
             }
         }
 

@@ -129,6 +129,8 @@
     <Compile Include="Converters\BackgroundConverter.cs" />
     <Compile Include="Converters\ButtonEnabledConverter.cs" />
     <Compile Include="Converters\EnumBooleanConverter.cs" />
+    <Compile Include="Converters\FornitoreConverter.cs" />
+    <Compile Include="Converters\MarcaConverter.cs" />
     <Compile Include="Converters\ObjectToEnabledConverter.cs" />
     <Compile Include="Converters\OrdinatoBackgroundConverter.cs" />
     <Compile Include="Converters\RitiratoBackgroundConverter.cs" />
@@ -137,6 +139,7 @@
     <Compile Include="Db\DbManager.cs" />
     <Compile Include="Messages\AddFornitoreMessage.cs" />
     <Compile Include="Messages\AddMarcaMessage.cs" />
+    <Compile Include="Messages\AddPezzoMessage.cs" />
     <Compile Include="Messages\AddRigaOrdineMessage.cs" />
     <Compile Include="Messages\DetailWindowMessage.cs" />
     <Compile Include="Messages\ErrorMessageMessage.cs" />
@@ -147,7 +150,9 @@
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\FornitoriCollection.cs" />
+    <Compile Include="Model\FornitoriCustom.cs" />
     <Compile Include="Model\MarcheCollection.cs" />
+    <Compile Include="Model\MarcheCustom.cs" />
     <Compile Include="Model\ModalitaDiAvviso.cs">
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
@@ -158,6 +163,7 @@
     <Compile Include="ViewModel\AddAnagraficaItemViewModelBase.cs" />
     <Compile Include="ViewModel\AddFornitoreViewModel.cs" />
     <Compile Include="ViewModel\AddMarcaViewModel.cs" />
+    <Compile Include="ViewModel\AddPezzoInOrdineViewModel.cs" />
     <Compile Include="ViewModel\AnagraficaFornitoreViewModel.cs" />
     <Compile Include="ViewModel\AnagraficaMarcheViewModel.cs" />
     <Compile Include="ViewModel\NewOrderViewModel.cs" />
@@ -191,6 +197,9 @@
     <Compile Include="View\AddMarcaWindow.xaml.cs">
       <DependentUpon>AddMarcaWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddPezzoInOrdineWindow.xaml.cs">
+      <DependentUpon>AddPezzoInOrdineWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AnagraficaFornitoreWindow.xaml.cs">
       <DependentUpon>AnagraficaFornitoreWindow.xaml</DependentUpon>
     </Compile>
@@ -220,6 +229,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddMarcaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddPezzoInOrdineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

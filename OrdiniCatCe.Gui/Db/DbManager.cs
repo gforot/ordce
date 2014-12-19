@@ -145,8 +145,9 @@ namespace OrdiniCatCe.Gui.Db
             }
         }
 
-        public static bool AddPezzo(PezziInOrdine pezzo)
+        public static bool AddPezzo(PezziInOrdine pezzo, out string errorMessage)
         {
+            errorMessage = string.Empty;
             using (OrdiniEntities db = new OrdiniEntities())
             {
                 //TODO: Controllare esistenza dell'ordine.

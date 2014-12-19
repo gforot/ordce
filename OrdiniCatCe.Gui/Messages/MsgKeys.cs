@@ -26,6 +26,9 @@ namespace OrdiniCatCe.Gui.Messages
         public const string DeleteKey = "Delete";
         public const string MarcaAddedKey = "MarcaAdded";
         public const string FornitoreAddedKey = "FornitoreAdded";
+        public const string ShowErrorMessageOnAddPezzoKey = "ShowErrorMessageOnAddPezzo";
+        public const string ConfirmAddPezzoKey = "ConfirmAddPezzo";
+        public const string CancelAddPezzoKey = "CancelAddPezzo";
 
 
         public const string NewOrderWindowCancelKey = "NewOrderWindowCancel";

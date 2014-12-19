@@ -6,11 +6,25 @@
         DataContext="{Binding DetailViewModel, Source={StaticResource Locator}}"
         Title="Dettaglio Ordine" Style="{StaticResource wndStyle}" MinWidth="800" Width="819.463" Height="648.739" WindowStartupLocation="CenterScreen">
     <Window.Resources>
+        <converters:MarcaConverter x:Key="marcaConverter" />
+        <converters:FornitoreConverter x:Key="fornitoreConverter" />
+
         <DataTemplate x:Key="orderedItemTemplate" >
-            <StackPanel>
-                <TextBlock Text="{Binding Description}"></TextBlock>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding IdMarca, Converter={StaticResource marcaConverter}}" />
+                    <TextBlock Text="{Binding Codice}" />
+                    <TextBlock Text="{Binding Description}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding IdFornitore, Converter={StaticResource fornitoreConverter}}" />
+                    <TextBlock Text="{Binding PrezzoAcquisto}" />
+                    <TextBlock Text="{Binding PrezzoVendita}" />
+                </StackPanel>
             </StackPanel>
         </DataTemplate>
+
+
         
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="6"></Setter>
