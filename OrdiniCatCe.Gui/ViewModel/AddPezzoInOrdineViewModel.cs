@@ -11,7 +11,7 @@ using OrdiniCatCe.Gui.Model;
 
 namespace OrdiniCatCe.Gui.ViewModel
 {
-    public class AddPezzoInOrdineViewModel : ViewModelBase
+    public class AddPezzoInOrdineViewModel : DialogViewModelBase
     {
 
         public ObservableCollection<Marche> Marche { get; private set; }
@@ -196,10 +196,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         #endregion
 
 
-        public RelayCommand AnnullaCommand { get; private set; }
-        public RelayCommand ConfermaCommand { get; private set; }
-
-        internal void Setup()
+        public override void Setup()
         {
             //sbiancare tutto
             Codice = string.Empty;
@@ -222,10 +219,8 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
 
         public AddPezzoInOrdineViewModel()
+            : base()
         {
-            AnnullaCommand = new RelayCommand(Annulla);
-            ConfermaCommand = new RelayCommand(Conferma, () => CanConferma);
-
             Init();
 
 
@@ -233,7 +228,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             Messenger.Default.Register<AddFornitoreMessage>(this, MsgKeys.FornitoreAddedKey, OnFornitoreAdded);
         }
 
-        private void Conferma()
+        public override void Conferma()
         {
             string errorMessage;
             PezziInOrdine pezzo = new PezziInOrdine();
@@ -258,12 +253,12 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
-        public void Annulla()
+        public override void Annulla()
         {
             Messenger.Default.Send(new MessageBase(), MsgKeys.CancelAddPezzoKey);
         }
 
-        public bool CanConferma
+        public override bool CanConferma
         {
             get
             {

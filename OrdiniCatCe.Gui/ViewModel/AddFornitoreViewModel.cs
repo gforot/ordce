@@ -7,7 +7,7 @@ using OrdiniCatCe.Gui.Model;
 
 namespace OrdiniCatCe.Gui.ViewModel
 {
-    public class AddFornitoreViewModel : AddAnagraficaItemViewModelBase
+    public class AddFornitoreViewModel : DialogViewModelBase
     {
         private const string _namePrpName = "Name";
         private string _name;

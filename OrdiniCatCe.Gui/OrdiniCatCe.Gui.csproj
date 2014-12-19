@@ -160,12 +160,12 @@
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Validation\EMailValidator.cs" />
-    <Compile Include="ViewModel\AddAnagraficaItemViewModelBase.cs" />
     <Compile Include="ViewModel\AddFornitoreViewModel.cs" />
     <Compile Include="ViewModel\AddMarcaViewModel.cs" />
     <Compile Include="ViewModel\AddPezzoInOrdineViewModel.cs" />
     <Compile Include="ViewModel\AnagraficaFornitoreViewModel.cs" />
     <Compile Include="ViewModel\AnagraficaMarcheViewModel.cs" />
+    <Compile Include="ViewModel\DialogViewModelBase.cs" />
     <Compile Include="ViewModel\NewOrderViewModel.cs" />
     <Compile Include="View\AddFornitoreWindow.xaml.cs">
       <DependentUpon>AddFornitoreWindow.xaml</DependentUpon>
