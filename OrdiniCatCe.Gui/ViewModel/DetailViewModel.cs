@@ -453,6 +453,8 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         public RelayCommand AddPezzoCommand { get; private set; }
 
+        public RelayCommand<PezziInOrdine> UpdatePezzoCommand { get; private set; }
+
         public DetailViewModel()
         {
             AnnullaCommand = new RelayCommand(Annulla);
@@ -460,6 +462,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             CreaFornitoreCommand = new RelayCommand(CreaFornitore);
             CreaMarcaCommand = new RelayCommand(CreaMarca);
             AddPezzoCommand = new RelayCommand(AddPezzo);
+            UpdatePezzoCommand = new RelayCommand<PezziInOrdine>(UpdatePezzo);
 
             //todo: trasformarlo in message per inizializzare Marche
             Init();
@@ -504,6 +507,31 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
+        private void UpdatePezzo(PezziInOrdine pezzo)
+        {
+            //
+            ServiceLocator.Current.GetInstance<AddPezzoInOrdineViewModel>().Setup(pezzo);
+            AddPezzoInOrdineWindow wnd = new AddPezzoInOrdineWindow();
+            
+            wnd.ShowDialog();
+
+            if (wnd.MyDialogResult)
+            {
+                RefreshPezzi();
+            }
+
+        }
+
+        private void RefreshPezzi()
+        {
+            Pezzi.Clear();
+
+            foreach (PezziInOrdine p in DbManager.GetPezziByIdRichiesta(_id))
+            {
+                Pezzi.Add(p);
+            }
+        }
+
         private void AddPezzo()
         {
             //apro maschera di inserimento pezzo.
@@ -512,9 +540,9 @@ namespace OrdiniCatCe.Gui.ViewModel
                 return;
             }
 
-            
-            AddPezzoInOrdineWindow wnd = new AddPezzoInOrdineWindow();
             ServiceLocator.Current.GetInstance<AddPezzoInOrdineViewModel>().Setup(_id);
+            AddPezzoInOrdineWindow wnd = new AddPezzoInOrdineWindow();
+           
             wnd.ShowDialog();
 
             if (wnd.MyDialogResult)

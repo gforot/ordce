@@ -1,9 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using OrdiniCatCe.Gui.Converters;
 using OrdiniCatCe.Gui.Db;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
@@ -15,22 +12,22 @@ namespace OrdiniCatCe.Gui.ViewModel
     {
         private int _idRigaOrdine;
 
+        private PezziInOrdine _pezzo;
+
         public ObservableCollection<Marche> Marche { get; private set; }
         public ObservableCollection<Fornitori> Fornitori { get; private set; }
 
         #region Codice
         private const string _codicePrpName = "Codice";
-        private string _codice;
-
         public string Codice
         {
             get
             {
-                return _codice;
+                return _pezzo.Codice;
             }
             set
             {
-                _codice = value;
+                _pezzo.Codice = value;
                 RaisePropertyChanged(_codicePrpName);
             }
         }
@@ -38,17 +35,15 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #region Descrizione
         private const string _descrizionePrpName = "Descrizione";
-        private string _descrizione;
-
         public string Descrizione
         {
             get
             {
-                return _descrizione;
+                return _pezzo.Description;
             }
             set
             {
-                _descrizione = value;
+                _pezzo.Description = value;
                 RaisePropertyChanged(_descrizionePrpName);
             }
         }
@@ -56,17 +51,16 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #region PrezzoAcquisto
         private const string _prezzoAcqPrpName = "PrezzoAcquisto";
-        private decimal _prezzoAcq;
 
-        public decimal PrezzoAcquisto
+        public decimal? PrezzoAcquisto
         {
             get
             {
-                return _prezzoAcq;
+                return _pezzo.PrezzoAcquisto;
             }
             set
             {
-                _prezzoAcq = value;
+                _pezzo.PrezzoAcquisto = value;
                 RaisePropertyChanged(_prezzoAcqPrpName);
             }
         }
@@ -74,17 +68,16 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #region PrezzoVendita
         private const string _prezzoVenPrpName = "PrezzoVendita";
-        private decimal _prezzoVen;
 
-        public decimal PrezzoVendita
+        public decimal? PrezzoVendita
         {
             get
             {
-                return _prezzoVen;
+                return _pezzo.PrezzoVendita;
             }
             set
             {
-                _prezzoVen = value;
+                _pezzo.PrezzoVendita = value;
                 RaisePropertyChanged(_prezzoVenPrpName);
             }
         }
@@ -126,17 +119,15 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #region Ordinato
         private const string _ordinatoPrpName = "Ordinato";
-        private bool _ordinato;
-
-        public bool Ordinato
+        public bool? Ordinato
         {
             get
             {
-                return _ordinato;
+                return _pezzo.Ordinato;
             }
             set
             {
-                _ordinato = value;
+                _pezzo.Ordinato = value;
                 RaisePropertyChanged(_ordinatoPrpName);
             }
         }
@@ -144,17 +135,16 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #region Arrivato
         private const string _arrivatoPrpName = "Arrivato";
-        private bool _arrivato;
 
-        public bool Arrivato
+        public bool? Arrivato
         {
             get
             {
-                return _arrivato;
+                return _pezzo.Arrivato;
             }
             set
             {
-                _arrivato = value;
+                _pezzo.Arrivato = value;
                 RaisePropertyChanged(_arrivatoPrpName);
             }
         }
@@ -162,17 +152,15 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #region Ritirato
         private const string _ritiratoPrpName = "Ritirato";
-        private bool _ritirato;
-
-        public bool Ritirato
+        public bool? Ritirato
         {
             get
             {
-                return _ritirato;
+                return _pezzo.Ritirato;
             }
             set
             {
-                _ritirato = value;
+                _pezzo.Ritirato = value;
                 RaisePropertyChanged(_ritiratoPrpName);
             }
         }
@@ -180,17 +168,15 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #region Mancante
         private const string _mancantePrpName = "Mancante";
-        private bool _mancante;
-
-        public bool Mancante
+        public bool? Mancante
         {
             get
             {
-                return _mancante;
+                return _pezzo.Mancante;
             }
             set
             {
-                _mancante = value;
+                _pezzo.Mancante = value;
                 RaisePropertyChanged(_mancantePrpName);
             }
         }
@@ -198,22 +184,23 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         public void Setup(int idRigaOrdine)
         {
-            Setup();
-            _idRigaOrdine = idRigaOrdine;
+            _pezzo = new PezziInOrdine();
+            _pezzo.IdRichiestaOrdine = idRigaOrdine;
+            _pezzo.Codice = string.Empty;
+            _pezzo.Description = string.Empty;
+            _pezzo.Mancante = false;
+            _pezzo.Arrivato = false;
+            _pezzo.Ordinato = false;
+            _pezzo.Ritirato = false;
+            _pezzo.PrezzoAcquisto = 0;
+            _pezzo.PrezzoVendita = 0;
         }
 
-        public override void Setup()
+        public void Setup(PezziInOrdine pezzoDaModificare)
         {
-            //sbiancare tutto
-            Codice = string.Empty;
-            Descrizione = string.Empty;
-            Marca = null;
-            Fornitore = null;
-            Mancante = false;
-            Arrivato = false;
-            Ritirato = false;
-            Ordinato = false;
+            _pezzo = pezzoDaModificare;
         }
+
 
         private void Init()
         {
@@ -237,26 +224,13 @@ namespace OrdiniCatCe.Gui.ViewModel
         public override void Conferma()
         {
             string errorMessage;
-            PezziInOrdine pezzo = new PezziInOrdine();
-            pezzo.Codice = Codice;
-            pezzo.Description = Descrizione;
-            pezzo.PrezzoAcquisto = PrezzoAcquisto;
-            pezzo.PrezzoVendita = PrezzoVendita;
-            pezzo.IdFornitore = Fornitore.Id;
-            pezzo.IdMarca = Marca.Id;
-            pezzo.Ordinato = Ordinato;
-            pezzo.Arrivato = Arrivato;
-            pezzo.Ritirato = Ritirato;
-            pezzo.Mancante = Mancante;
-            pezzo.IdRichiestaOrdine = _idRigaOrdine;
-
-            if (!DbManager.AddPezzo(pezzo, out errorMessage))
+            if (!DbManager.AddPezzo(_pezzo, out errorMessage))
             {
                 Messenger.Default.Send(new ErrorMessageMessage(errorMessage), MsgKeys.ShowErrorMessageOnAddPezzoKey);
             }
             else//se tutto va bene mando messaggio di Conferma
             {
-                Messenger.Default.Send(new AddPezzoMessage(pezzo), MsgKeys.ConfirmAddPezzoKey);
+                Messenger.Default.Send(new AddPezzoMessage(_pezzo), MsgKeys.ConfirmAddPezzoKey);
             }
         }
 
@@ -283,6 +257,11 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             Fornitori.Add(message.Fornitore);
             Fornitore = message.Fornitore;
+        }
+
+        public override void Setup()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

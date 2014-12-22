@@ -129,6 +129,7 @@
     <Compile Include="Converters\BackgroundConverter.cs" />
     <Compile Include="Converters\ButtonEnabledConverter.cs" />
     <Compile Include="Converters\EnumBooleanConverter.cs" />
+    <Compile Include="Converters\ForegroundConverter.cs" />
     <Compile Include="Converters\FornitoreConverter.cs" />
     <Compile Include="Converters\MarcaConverter.cs" />
     <Compile Include="Converters\ObjectToEnabledConverter.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Model\PezziInOrdine.cs">
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\PezziInOrdineCustom.cs" />
     <Compile Include="Validation\EMailValidator.cs" />
     <Compile Include="ViewModel\AddFornitoreViewModel.cs" />
     <Compile Include="ViewModel\AddMarcaViewModel.cs" />

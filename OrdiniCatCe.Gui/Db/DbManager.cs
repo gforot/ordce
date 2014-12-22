@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web.UI.WebControls;
 using GalaSoft.MvvmLight.Messaging;
@@ -129,6 +132,12 @@ namespace OrdiniCatCe.Gui.Db
             }
         }
 
+        public static List<PezziInOrdine> GetPezziByIdRichiesta(int id)
+        {
+            RichiesteOrdine ro = GetRichiestaOrdine(id);
+            return ro == null ? new List<PezziInOrdine>() : ro.PezziInOrdine.ToList();
+        }
+
         public static Fornitori GetFornitore(int idFornitore)
         {
             using (OrdiniEntities db = new OrdiniEntities())
@@ -145,6 +154,21 @@ namespace OrdiniCatCe.Gui.Db
             }
         }
 
+        public static bool ExistsPezzo(PezziInOrdine pezzo)
+        {
+            try
+            {
+                using (OrdiniEntities db = new OrdiniEntities())
+                {
+                    return db.PezziInOrdine.Contains(pezzo);
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public static bool AddPezzo(PezziInOrdine pezzo, out string errorMessage)
         {
             try
@@ -152,8 +176,11 @@ namespace OrdiniCatCe.Gui.Db
                 errorMessage = string.Empty;
                 using (OrdiniEntities db = new OrdiniEntities())
                 {
-                    //TODO: Controllare esistenza dell'ordine.
-                    db.PezziInOrdine.Add(pezzo);
+                    db.Entry(pezzo).State = pezzo.Id == 0 ?
+                           EntityState.Added :
+                           EntityState.Modified; 
+
+                    //db.PezziInOrdine.Add(pezzo);
                     db.SaveChanges();
                     return true;
                 }

@@ -1,7 +1,7 @@
 ﻿<Window x:Class="OrdiniCatCe.Gui.View.AddPezzoInOrdineWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Aggiungi Pezzo" Height="215" Width="693" Style="{StaticResource wndStyle}"
+        Title="Aggiungi Pezzo" Height="200" Width="693" Style="{StaticResource wndStyle}"
         DataContext="{Binding AddPezzoInOrdineViewModel, Source={StaticResource Locator}}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,11 +15,11 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition  Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -33,9 +33,9 @@
         <TextBlock Text="Fornitore" Grid.Row="1" Grid.Column="4" />
         <ComboBox SelectedValue="{Binding Fornitore}" DisplayMemberPath="Name" ItemsSource="{Binding Fornitori}" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="3" OpacityMask="Black" />
 
-        <TextBlock Text="Prezzo Acquisto" Grid.Row="2" Grid.Column="0" />
+        <TextBlock Text="Prezzo Acq." Grid.Row="2" Grid.Column="0" />
         <TextBox Text="{Binding PrezzoAcquisto, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" />
-        <TextBlock Text="Prezzo Vendita" Grid.Row="2" Grid.Column="4" />
+        <TextBlock Text="Prezzo Vend." Grid.Row="2" Grid.Column="4" />
         <TextBox Text="{Binding PrezzoVendita, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="3" />
 
         <TextBlock Text="Ordinato" Grid.Row="3" Grid.Column="0" />

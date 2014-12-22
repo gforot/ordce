@@ -8,20 +8,22 @@
     <Window.Resources>
         <converters:MarcaConverter x:Key="marcaConverter" />
         <converters:FornitoreConverter x:Key="fornitoreConverter" />
+        <converters:ForegroundConverter x:Key="foregroundConverter" />
 
         <DataTemplate x:Key="orderedItemTemplate" >
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding IdMarca, Converter={StaticResource marcaConverter}}" />
-                    <TextBlock Text="{Binding Codice}" />
-                    <TextBlock Text="{Binding Description}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding IdFornitore, Converter={StaticResource fornitoreConverter}}" />
-                    <TextBlock Text="{Binding PrezzoAcquisto}" />
-                    <TextBlock Text="{Binding PrezzoVendita}" />
-                </StackPanel>
-            </StackPanel>
+            <Border BorderBrush="LightSlateGray" BorderThickness="1" CornerRadius="2" HorizontalAlignment="Stretch">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Foreground="{Binding Mancante, Converter={StaticResource foregroundConverter}}" Text="{Binding Codice}" />
+                    <TextBlock Foreground="{Binding Mancante, Converter={StaticResource foregroundConverter}}" Grid.Column="1" Text="{Binding Description}" />
+                    <Button Grid.Column="2" Content="Modifica" Command="{Binding RelativeSource=
+                        {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}, Path= DataContext.UpdatePezzoCommand}" CommandParameter="{Binding}"></Button>
+                </Grid>
+            </Border>
         </DataTemplate>
 
 
@@ -117,7 +119,7 @@
         <!-- Contiene la Listbox con tutti i pezzi ordinati -->
         <Border x:Name="brdPezzi">
             <StackPanel Orientation="Vertical">
-                <ListBox Height="140" x:Name="lbOrderedItems" ItemsSource="{Binding Pezzi}" ItemTemplate="{StaticResource orderedItemTemplate}" />
+                <ListBox Height="140" x:Name="lbOrderedItems" ItemsSource="{Binding Pezzi}" HorizontalContentAlignment="Stretch" ItemTemplate="{StaticResource orderedItemTemplate}" />
                 <Button Content="Aggiungi Pezzo" Command="{Binding AddPezzoCommand}" Style="{StaticResource 150ButtonsStyle}"/>
             </StackPanel>
         </Border>
