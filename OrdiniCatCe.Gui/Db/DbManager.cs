@@ -44,6 +44,26 @@ namespace OrdiniCatCe.Gui.Db
             return addOk;
         }
 
+        public static List<RichiesteOrdine> GetRichiesteOrdineAttive()
+        {
+            return GetAllRichiesteOrdines(false);
+        }
+
+        public static List<RichiesteOrdine> GetRichiesteOrdineStoricizzate()
+        {
+            return GetAllRichiesteOrdines(true);
+        }
+    
+
+        private static List<RichiesteOrdine> GetAllRichiesteOrdines(bool storicizzate)
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                IQueryable<RichiesteOrdine> richieste = db.RichiesteOrdine.Where(ro => ro.Storicizzata == storicizzate);
+                return richieste.ToList();
+            }
+        } 
+
 
         public static void AddRigaOrdine(RichiesteOrdine richiestaOrdine)
         {

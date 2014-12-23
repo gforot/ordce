@@ -4,6 +4,7 @@ namespace OrdiniCatCe.Gui.Messages
     {
         public const string CancelKey = "Cancel";
         public const string ConfirmKey = "Confirm";
+        public const string StoricizzaKey = "Storicizza";
         public const string AddRigaOrdineKey = "AddRigaOrdine";
         public const string AddMarcaKey = "AddMarca";
         public const string AddFornitoreKey = "AddFornitore";

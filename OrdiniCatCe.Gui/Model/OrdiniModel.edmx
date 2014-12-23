@@ -82,6 +82,7 @@
           <Property Name="RicevutaCaparra" Type="bit" Nullable="false" />
           <Property Name="Caparra" Type="money" />
           <Property Name="DataCaparra" Type="datetime" />
+          <Property Name="Storicizzata" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_IdFornitore">
           <End Role="Fornitori" Type="OrdiniModel.Store.Fornitori" Multiplicity="0..1" />
@@ -206,6 +207,7 @@
           <Property Type="Decimal" Name="Caparra" Precision="19" Scale="4" />
           <Property Type="DateTime" Name="DataCaparra" Precision="3" />
           <NavigationProperty Name="PezziInOrdine" Relationship="OrdiniModel.FK_RichiesteOrdine1" FromRole="RichiesteOrdine" ToRole="PezziInOrdine" />
+          <Property Type="Boolean" Name="Storicizzata" Nullable="false" />
         </EntityType>
         <Association Name="FK_IdFornitore">
           <End Type="OrdiniModel.Fornitori" Role="Fornitori" Multiplicity="0..1" />
@@ -294,6 +296,7 @@
           <EntitySetMapping Name="RichiesteOrdine">
             <EntityTypeMapping TypeName="OrdiniModel.RichiesteOrdine">
               <MappingFragment StoreEntitySet="RichiesteOrdine">
+                <ScalarProperty Name="Storicizzata" ColumnName="Storicizzata" />
                 <ScalarProperty Name="DataCaparra" ColumnName="DataCaparra" />
                 <ScalarProperty Name="Caparra" ColumnName="Caparra" />
                 <ScalarProperty Name="RicevutaCaparra" ColumnName="RicevutaCaparra" />

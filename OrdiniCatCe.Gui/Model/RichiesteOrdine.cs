@@ -41,6 +41,7 @@ namespace OrdiniCatCe.Gui.Model
         public bool RicevutaCaparra { get; set; }
         public Nullable<decimal> Caparra { get; set; }
         public Nullable<System.DateTime> DataCaparra { get; set; }
+        public bool Storicizzata { get; set; }
     
         public virtual ICollection<PezziInOrdine> PezziInOrdine { get; set; }
     }

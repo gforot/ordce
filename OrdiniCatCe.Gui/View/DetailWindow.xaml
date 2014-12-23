@@ -228,6 +228,7 @@
             <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource 75ButtonsStyle}" Content="Annulla" Command="{Binding AnnullaCommand}"/>
                 <Button Style="{StaticResource 75ButtonsStyle}" Content="Conferma" Command="{Binding ConfermaCommand}"/>
+                <Button Style="{StaticResource 150ButtonsStyle}" Content="Manda in storico" Command="{Binding StoricizzaCommand}"/>
                 <TextBlock Text="{Binding ErrorMessage}" FontWeight="Bold" FontSize="14" Foreground="#FFEE0E0E" ></TextBlock>
             </StackPanel>
         </Border>

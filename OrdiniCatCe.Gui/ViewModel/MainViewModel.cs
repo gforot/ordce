@@ -131,18 +131,12 @@ namespace OrdiniCatCe.Gui.ViewModel
 
             _righeOrdine = new ObservableCollection<RichiesteOrdine>();
 
-            // Code runs "for real"
-            using (OrdiniEntities db = new OrdiniEntities())
+            
+            foreach (RichiesteOrdine ro in DbManager.GetRichiesteOrdineAttive())
             {
-                //foreach (RichiesteOrdine ro in db.RichiesteOrdine.Include("Fornitori").Include("Marche").ToList())
-                //{
-                //    _righeOrdine.Add(ro);  
-                //} 
-                foreach (RichiesteOrdine ro in db.RichiesteOrdine.ToList())
-                {
-                    _righeOrdine.Add(ro);
-                } 
-            }
+                _righeOrdine.Add(ro);
+            } 
+            
 
             RigheOrdine = CollectionViewSource.GetDefaultView(_righeOrdine);
             RigheOrdine.Filter = Filter;
@@ -253,14 +247,10 @@ namespace OrdiniCatCe.Gui.ViewModel
         private void UpdateRigheOrdineFromDb()
         {
             _righeOrdine.Clear();
-
-            // Code runs "for real"
-            using (OrdiniEntities db = new OrdiniEntities())
+            foreach (RichiesteOrdine ro in DbManager.GetRichiesteOrdineAttive())
             {
-                foreach (RichiesteOrdine ro in db.RichiesteOrdine.Include("Fornitori").Include("Marche").ToList())
-                {
-                    _righeOrdine.Add(ro);
-                }
+
+                _righeOrdine.Add(ro);
             }
         }
 
@@ -439,6 +429,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             target.Caparra = source.Caparra;
             target.DataCaparra = source.DataCaparra;
             target.RicevutaCaparra = source.RicevutaCaparra;
+            target.Storicizzata = source.Storicizzata;
         }
 
         private bool Filter(object obj)

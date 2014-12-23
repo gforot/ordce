@@ -33,8 +33,15 @@ namespace OrdiniCatCe.Gui.View
 
             Messenger.Default.Register<MessageBase>(this, MsgKeys.CancelKey, OnCancelRequested);
             Messenger.Default.Register<MessageBase>(this, MsgKeys.ConfirmKey, OnConfirmRequested);
+            Messenger.Default.Register<MessageBase>(this, MsgKeys.StoricizzaKey, OnStoricizzaRequested);
 
             MyDialogResult = false;
+        }
+
+        private void OnStoricizzaRequested(MessageBase obj)
+        {
+            MyDialogResult = true;
+            this.Close();
         }
 
         private void OnConfirmRequested(MessageBase obj)

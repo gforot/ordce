@@ -5,12 +5,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity.Migrations.Model;
 using System.Linq;
+using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media.TextFormatting;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
+using OrdiniCatCe.Gui.Constants;
 using OrdiniCatCe.Gui.Db;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
@@ -425,6 +427,23 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #endregion
 
+        #region Storicizzato
+        private const string _storicizzatoPrpName = "Storicizzato";
+        private bool _storicizzato;
+        public bool Storicizzato
+        {
+            get
+            {
+                return _storicizzato;
+            }
+            set
+            {
+                _storicizzato = value;
+                RaisePropertyChanged(_storicizzatoPrpName);
+            }
+        }
+        #endregion
+
 
         private const string _errorMessagePrpName = "ErrorMessage";
         private string _errorMessage;
@@ -446,6 +465,7 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         public RelayCommand AnnullaCommand { get; private set; }
         public RelayCommand ConfermaCommand { get; private set; }
+        public RelayCommand StoricizzaCommand { get; private set; }
 
         //nuovi comandi per creazione Marca e Fornitore
         public RelayCommand CreaMarcaCommand { get; private set; }
@@ -463,6 +483,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             CreaMarcaCommand = new RelayCommand(CreaMarca);
             AddPezzoCommand = new RelayCommand(AddPezzo);
             UpdatePezzoCommand = new RelayCommand<PezziInOrdine>(UpdatePezzo);
+            StoricizzaCommand = new RelayCommand(Storicizza);
 
             //todo: trasformarlo in message per inizializzare Marche
             Init();
@@ -495,6 +516,19 @@ namespace OrdiniCatCe.Gui.ViewModel
         private void Annulla()
         {
             Messenger.Default.Send<MessageBase>(new MessageBase(), MsgKeys.CancelKey);
+        }
+
+        private void Storicizza()
+        {
+            //richiedo se l'utente è sicuro.
+            MessageBoxResult result = Xceed.Wpf.Toolkit.MessageBox.Show(null, "", AppConstants.ApplicationName, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    Storicizzato = true;
+                    Messenger.Default.Send(new MessageBase(), MsgKeys.StoricizzaKey);
+                    break;
+            }
         }
 
         private bool CanConferma
@@ -671,7 +705,8 @@ namespace OrdiniCatCe.Gui.ViewModel
                        Ordinato = Ordinato,
                        DataCaparra = DataCaparra,
                        Caparra = Caparra,
-                       RicevutaCaparra = RicevutoCaparra
+                       RicevutaCaparra = RicevutoCaparra,
+                       Storicizzata = Storicizzato
                    };
         }
 
