@@ -316,13 +316,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             if (message.RigaOrdine != null)
             {
-                using (OrdiniEntities db = new OrdiniEntities())
-                {
-                    RichiesteOrdine toUpdate = db.RichiesteOrdine.First(ordine => ordine.Id == message.RigaOrdine.Id);
-                    db.RichiesteOrdine.Remove(toUpdate);
-                    db.SaveChanges();
-                    UpdateRigheOrdineFromDb();
-                }
+                DbManager.RemoveRigaOrdine(message.RigaOrdine.Id);
             }
         }
 

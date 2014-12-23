@@ -212,5 +212,30 @@ namespace OrdiniCatCe.Gui.Db
             }
         }
 
+        public static bool RemoveRigaOrdine(int idOrdine)
+        {
+            try
+            {
+                using (OrdiniEntities db = new OrdiniEntities())
+                {
+                    List<PezziInOrdine> pezzi = GetPezziByIdRichiesta(idOrdine);
+                    foreach (PezziInOrdine p in pezzi)
+                    {
+                        db.PezziInOrdine.Attach(p);
+                        db.PezziInOrdine.Remove(p);
+                        
+                    }
+                    RichiesteOrdine toDelete = GetRichiestaOrdine(idOrdine);
+                    db.RichiesteOrdine.Remove(toDelete);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
     }
 }
