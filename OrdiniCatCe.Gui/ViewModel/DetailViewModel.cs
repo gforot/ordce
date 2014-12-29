@@ -444,6 +444,23 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
         #endregion
 
+        #region IsNew
+        private const string _isNewPrpName = "IsNew";
+        private bool _isNew;
+        public bool IsNew
+        {
+            get
+            {
+                return _isNew;
+            }
+            set
+            {
+                _isNew = value;
+                RaisePropertyChanged(_isNewPrpName);
+            }
+        }
+        #endregion
+
 
         private const string _errorMessagePrpName = "ErrorMessage";
         private string _errorMessage;
@@ -710,8 +727,9 @@ namespace OrdiniCatCe.Gui.ViewModel
                    };
         }
 
-        internal void Setup(RichiesteOrdine richiesteOrdine)
+        internal void Setup(RichiesteOrdine richiesteOrdine, bool isnew)
         {
+            IsNew = isnew;
             if (richiesteOrdine == null)
             {
                 SetupDefaultValues();

@@ -95,7 +95,7 @@ namespace OrdiniCatCe.Gui
             {
                 return;
             }
-            ServiceLocator.Current.GetInstance<DetailViewModel>().Setup(ro);
+            ServiceLocator.Current.GetInstance<DetailViewModel>().Setup(ro, false);
 
             DetailWindow wnd = new DetailWindow();
             wnd.ShowDialog();

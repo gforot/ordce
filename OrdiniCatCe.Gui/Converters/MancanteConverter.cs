@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
 
-
 namespace OrdiniCatCe.Gui.Converters
 {
-    public class ForegroundConverter : IValueConverter
+    public class MancanteConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

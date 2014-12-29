@@ -127,10 +127,13 @@
     <Compile Include="Converters\ArrivatoBackgroundConverter.cs" />
     <Compile Include="Converters\AvvisatoBackgroundConverter.cs" />
     <Compile Include="Converters\BackgroundConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverterInverted.cs" />
     <Compile Include="Converters\ButtonEnabledConverter.cs" />
     <Compile Include="Converters\EnumBooleanConverter.cs" />
     <Compile Include="Converters\ForegroundConverter.cs" />
     <Compile Include="Converters\FornitoreConverter.cs" />
+    <Compile Include="Converters\MancanteConverter.cs" />
     <Compile Include="Converters\MarcaConverter.cs" />
     <Compile Include="Converters\ObjectToEnabledConverter.cs" />
     <Compile Include="Converters\OrdinatoBackgroundConverter.cs" />
@@ -226,6 +229,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MyResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddFornitoreWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

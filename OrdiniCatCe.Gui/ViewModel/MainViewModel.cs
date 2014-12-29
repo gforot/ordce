@@ -260,7 +260,7 @@ namespace OrdiniCatCe.Gui.ViewModel
 
             //apertura dettaglio
             DetailWindow detailWindow = new DetailWindow();
-            ServiceLocator.Current.GetInstance<DetailViewModel>().Setup(msg.RigaOrdine);
+            ServiceLocator.Current.GetInstance<DetailViewModel>().Setup(msg.RigaOrdine, true);
             detailWindow.ShowDialog();
         }
 

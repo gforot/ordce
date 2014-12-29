@@ -8,18 +8,19 @@
     <Window.Resources>
         <converters:MarcaConverter x:Key="marcaConverter" />
         <converters:FornitoreConverter x:Key="fornitoreConverter" />
-        <converters:ForegroundConverter x:Key="foregroundConverter" />
+        <converters:MancanteConverter x:Key="mancanteConverter" />
+        <converters:BoolToVisibilityConverterInverted x:Key="boolToVisibilityConverterInverted" />
 
         <DataTemplate x:Key="orderedItemTemplate" >
             <Border BorderBrush="LightSlateGray" BorderThickness="1" CornerRadius="2" HorizontalAlignment="Stretch">
-                <Grid>
+                <Grid Background="{Binding Mancante, Converter={StaticResource mancanteConverter}}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="3*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Foreground="{Binding Mancante, Converter={StaticResource foregroundConverter}}" Text="{Binding Codice}" />
-                    <TextBlock Foreground="{Binding Mancante, Converter={StaticResource foregroundConverter}}" Grid.Column="1" Text="{Binding Description}" />
+                    <TextBlock Text="{Binding Codice}" />
+                    <TextBlock Grid.Column="1" Text="{Binding Description}" />
                     <Button Grid.Column="2" Content="Modifica" Command="{Binding RelativeSource=
                         {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}, Path= DataContext.UpdatePezzoCommand}" CommandParameter="{Binding}"></Button>
                 </Grid>
@@ -228,7 +229,7 @@
             <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource 75ButtonsStyle}" Content="Annulla" Command="{Binding AnnullaCommand}"/>
                 <Button Style="{StaticResource 75ButtonsStyle}" Content="Conferma" Command="{Binding ConfermaCommand}"/>
-                <Button Style="{StaticResource 150ButtonsStyle}" Content="Manda in storico" Command="{Binding StoricizzaCommand}"/>
+                <Button Visibility="{Binding IsNew, Converter={StaticResource boolToVisibilityConverterInverted}}" Style="{StaticResource 150ButtonsStyle}" Content="Manda in storico" Command="{Binding StoricizzaCommand}"/>
                 <TextBlock Text="{Binding ErrorMessage}" FontWeight="Bold" FontSize="14" Foreground="#FFEE0E0E" ></TextBlock>
             </StackPanel>
         </Border>
