@@ -34,9 +34,7 @@ namespace OrdiniCatCe.Gui.Model
         public string Cognome { get; set; }
         public string Localita { get; set; }
         public string NumeroCivico { get; set; }
-        public bool Ritirato { get; set; }
         public Nullable<System.DateTime> DataRichiesta { get; set; }
-        public bool Ordinato { get; set; }
         public bool RicevutaCaparra { get; set; }
         public Nullable<decimal> Caparra { get; set; }
         public Nullable<System.DateTime> DataCaparra { get; set; }

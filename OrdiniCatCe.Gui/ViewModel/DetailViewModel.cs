@@ -245,23 +245,6 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #endregion
 
-        #region Ritirato
-        private const string _ritiratoPrpName = "Ritirato";
-        private bool _ritirato;
-        public bool Ritirato
-        {
-            get
-            {
-                return _ritirato;
-            }
-            set
-            {
-                _ritirato = value;
-                RaisePropertyChanged(_ritiratoPrpName);
-            }
-        }
-        #endregion
-
         #region DataRitirato
         private const string _dataRitiratoPrpName = "DataRitirato";
         private System.DateTime? _dataRitirato;
@@ -329,23 +312,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 _idMarca = value;
                 RaisePropertyChanged(_idMarcaPrpName);
-            }
-        }
-        #endregion
-
-        #region Ordinato
-        private const string _ordinatoPrpName = "Ordinato";
-        private bool _ordinato;
-        public bool Ordinato
-        {
-            get
-            {
-                return _ordinato;
-            }
-            set
-            {
-                _ordinato = value;
-                RaisePropertyChanged(_ordinatoPrpName);
             }
         }
         #endregion
@@ -631,30 +597,6 @@ namespace OrdiniCatCe.Gui.ViewModel
                 return false;
             }
 
-            if (Ritirato && DataRitirato == null)
-            {
-                errorMessage = "Pezzo ritirato ma data di ritiro non impostata";
-                return false;
-            }
-
-            if (!Ritirato && DataRitirato != null)
-            {
-                errorMessage = "Pezzo non ritirato ma data di ritiro impostata";
-                return false;
-            }
-
-            if (Ordinato && DataOrdinato == null)
-            {
-                errorMessage = "Pezzo ordinato ma data di ordine non impostata";
-                return false;
-            }
-
-            if (!Ordinato && DataOrdinato != null)
-            {
-                errorMessage = "Pezzo non ordinato ma data di ordine impostata";
-                return false;
-            }
-
             if (this.Pezzi.Count <= 0)
             {
                 errorMessage = "Inserire almeno un pezzo da ordinare";
@@ -687,8 +629,6 @@ namespace OrdiniCatCe.Gui.ViewModel
                        Localita = Localita,
                        NumeroCivico = NumeroCivico,
                        ModalitàAvviso = ModalitaAvviso,
-                       Ritirato = Ritirato,
-                       Ordinato = Ordinato,
                        DataCaparra = DataCaparra,
                        Caparra = Caparra,
                        RicevutaCaparra = RicevutoCaparra,
@@ -729,8 +669,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.DataAvvisato= null;
             this.DataRitirato = null;
             this.ModalitaAvviso = ModalitaDiAvviso.NonDefinito;
-            this.Ritirato = false;
-            this.Ordinato = false;
             this.DataCaparra = null;
             this.Caparra = null;
             this.RicevutoCaparra = false;
@@ -756,8 +694,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.DataRichiesta = richiestaOrdine.DataRichiesta;
             this.DataRitirato = richiestaOrdine.DataRitirato;
             this.ModalitaAvviso = richiestaOrdine.ModalitàAvviso;
-            this.Ritirato = richiestaOrdine.Ritirato;
-            this.Ordinato = richiestaOrdine.Ordinato;
             this.DataCaparra = richiestaOrdine.DataCaparra;
             this.Caparra = richiestaOrdine.Caparra;
             this.RicevutoCaparra = richiestaOrdine.RicevutaCaparra;

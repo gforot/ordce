@@ -57,9 +57,7 @@
           <Property Name="Cognome" Type="nvarchar" MaxLength="100" />
           <Property Name="Localita" Type="nvarchar" MaxLength="100" />
           <Property Name="NumeroCivico" Type="nvarchar" MaxLength="100" />
-          <Property Name="Ritirato" Type="bit" Nullable="false" />
           <Property Name="DataRichiesta" Type="datetime" />
-          <Property Name="Ordinato" Type="bit" Nullable="false" />
           <Property Name="RicevutaCaparra" Type="bit" Nullable="false" />
           <Property Name="Caparra" Type="money" />
           <Property Name="DataCaparra" Type="datetime" />
@@ -150,9 +148,7 @@
           <Property Type="String" Name="Cognome" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Localita" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="NumeroCivico" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="Ritirato" Nullable="false" />
           <Property Type="DateTime" Name="DataRichiesta" Precision="3" />
-          <Property Type="Boolean" Name="Ordinato" Nullable="false" />
           <Property Type="Boolean" Name="RicevutaCaparra" Nullable="false" />
           <Property Type="Decimal" Name="Caparra" Precision="19" Scale="4" />
           <Property Type="DateTime" Name="DataCaparra" Precision="3" />
@@ -250,9 +246,7 @@
                 <ScalarProperty Name="DataCaparra" ColumnName="DataCaparra" />
                 <ScalarProperty Name="Caparra" ColumnName="Caparra" />
                 <ScalarProperty Name="RicevutaCaparra" ColumnName="RicevutaCaparra" />
-                <ScalarProperty Name="Ordinato" ColumnName="Ordinato" />
                 <ScalarProperty Name="DataRichiesta" ColumnName="DataRichiesta" />
-                <ScalarProperty Name="Ritirato" ColumnName="Ritirato" />
                 <ScalarProperty Name="NumeroCivico" ColumnName="NumeroCivico" />
                 <ScalarProperty Name="Localita" ColumnName="Localita" />
                 <ScalarProperty Name="Cognome" ColumnName="Cognome" />

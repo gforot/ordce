@@ -11,14 +11,6 @@ namespace OrdiniCatCe.Gui.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value is RichiesteOrdine)
-            {
-                RichiesteOrdine ro = value as RichiesteOrdine;
-                if (ro.Ordinato && ro.Avvisato && !ro.Ritirato)
-                {
-                    return new SolidColorBrush(AppColors.NextActionColor);
-                }
-            }
             return new SolidColorBrush(AppColors.EnabledButtonColor);
         }
 

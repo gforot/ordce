@@ -15,17 +15,9 @@ namespace OrdiniCatCe.Gui.Converters
             {
                 RichiesteOrdine ro = value as RichiesteOrdine;
 
-                if (!ro.Ordinato)
-                {
-                    return new SolidColorBrush(AppColors.OrdinatoRowBackground);                  
-                }
                 if (ro.Avvisato)
                 {
                     return new SolidColorBrush(AppColors.AvvisatoRowBackground);
-                }
-                if (ro.Ritirato)
-                {
-                    return new SolidColorBrush(AppColors.RitiratoRowBackground);
                 }
             }
 

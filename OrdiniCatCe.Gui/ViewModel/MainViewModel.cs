@@ -123,8 +123,6 @@ namespace OrdiniCatCe.Gui.ViewModel
 
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.UpdateRigaOrdineKey, OnUpdateRigaOrdineToDbRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetAvvisatoKey, OnUpdateAvvisatoRequested);
-            Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetRitiratoKey, OnUpdateRitiratoRequested);
-            Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetOrdinatoKey, OnUpdateOrdinatoRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.DeleteKey, OnDeleteRequested);
             Messenger.Default.Register<AddRigaOrdineMessage>(this, MsgKeys.NewOrderWindowConfirmKey, OnRigaOrdineAddedToDb);
 
@@ -281,21 +279,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
-        private void OnUpdateOrdinatoRequested(UpdateRigaOrdineMessage message)
-        {
-            if (message.RigaOrdine != null)
-            {
-                using (OrdiniEntities db = new OrdiniEntities())
-                {
-                    RichiesteOrdine toUpdate = db.RichiesteOrdine.First(ordine => ordine.Id == message.RigaOrdine.Id);
-                    toUpdate.Ordinato = true;
-                    toUpdate.DataOrdinato = DateTime.Now;
-                    db.SaveChanges();
-                    UpdateRigheOrdineFromDb();
-                }
-            }
-        }
-
         private void OnDeleteRequested(UpdateRigaOrdineMessage message)
         {
             if (message.RigaOrdine != null)
@@ -319,20 +302,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
-        private void OnUpdateRitiratoRequested(UpdateRigaOrdineMessage message)
-        {
-            if (message.RigaOrdine != null)
-            {
-                using (OrdiniEntities db = new OrdiniEntities())
-                {
-                    RichiesteOrdine toUpdate = db.RichiesteOrdine.First(ordine => ordine.Id == message.RigaOrdine.Id);
-                    toUpdate.Ritirato = true;
-                    toUpdate.DataRitirato = DateTime.Now;
-                    db.SaveChanges();
-                    UpdateRigheOrdineFromDb();
-                }
-            }
-        }
 
         private void AddOrdine()
         {
@@ -401,8 +370,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             target.Modalit‡Avviso = source.Modalit‡Avviso;
             target.Nome = source.Nome;
             target.NumeroCivico = source.NumeroCivico;
-            target.Ordinato = source.Ordinato;
-            target.Ritirato = source.Ritirato;
             target.Telefono = source.Telefono;
             target.Caparra = source.Caparra;
             target.DataCaparra = source.DataCaparra;
@@ -442,7 +409,8 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         private bool FilterByRitirati(RichiesteOrdine rOrdine)
         {
-            return ViewRitirati || !rOrdine.Ritirato;
+            //return ViewRitirati || !rOrdine.Ritirato;
+            return ViewRitirati;
         }
 
         private bool FilterByName(RichiesteOrdine rOrdine)
