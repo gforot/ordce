@@ -33,6 +33,10 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             get
             {
+                if (_view.IsEmpty)
+                {
+                    return string.Empty;
+                }
                 return CurrentFornitore.Name;
             }
             set
@@ -45,6 +49,10 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             get
             {
+                if (_view.IsEmpty)
+                {
+                    return string.Empty;
+                }
                 return CurrentFornitore.Telefono;
             }
             set
@@ -57,6 +65,10 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             get
             {
+                if (_view.IsEmpty)
+                {
+                    return string.Empty;
+                }
                 return CurrentFornitore.Email;
             }
             set
@@ -109,6 +121,10 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             get
             {
+                if (_view.IsEmpty)
+                {
+                    return false;
+                }
                 return true;
             }
         }
@@ -117,6 +133,10 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             get
             {
+                if (_view.IsEmpty)
+                {
+                    return false;
+                }
                 int total = (_view.SourceCollection as List<Fornitori>).Count();
                 return _view.CurrentPosition < total - 1;
             }
@@ -126,6 +146,10 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             get
             {
+                if (_view.IsEmpty)
+                {
+                    return false;
+                }
                 return _view.CurrentPosition > 0;
             }
         }

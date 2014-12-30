@@ -124,6 +124,7 @@
     <Compile Include="Checks.cs" />
     <Compile Include="Constants\AppColors.cs" />
     <Compile Include="Constants\AppConstants.cs" />
+    <Compile Include="Constants\Texts.cs" />
     <Compile Include="Converters\ArrivatoBackgroundConverter.cs" />
     <Compile Include="Converters\AvvisatoBackgroundConverter.cs" />
     <Compile Include="Converters\BackgroundConverter.cs" />
@@ -368,6 +369,9 @@
       <ProductName>SQL Server Compact 4.0 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

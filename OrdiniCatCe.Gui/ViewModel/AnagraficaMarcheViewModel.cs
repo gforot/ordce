@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using OrdiniCatCe.Gui.Db;
 using OrdiniCatCe.Gui.Model;
+using OrdiniCatCe.Gui.Constants;
 
 
 namespace OrdiniCatCe.Gui.ViewModel
@@ -29,10 +30,26 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
+        public string Message
+        {
+            get
+            {
+                if (_view.IsEmpty)
+                {
+                    return Texts.NoMarche;
+                }
+                return string.Empty;
+            }
+        }
+
         public string Name
         {
             get
             {
+                if (_view.IsEmpty)
+                {
+                    return string.Empty;
+                }
                 return CurrentMarca.Nome;
             }
             set
@@ -85,6 +102,10 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             get
             {
+                if (_view.IsEmpty)
+                {
+                    return false;
+                }
                 return true;
             }
         }
@@ -93,6 +114,10 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             get
             {
+                if (_view.IsEmpty)
+                {
+                    return false;
+                }
                 int total = (_view.SourceCollection as IEnumerable<Marche>).Count();
                 return _view.CurrentPosition < total - 1;
             }
@@ -102,6 +127,10 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             get
             {
+                if (_view.IsEmpty)
+                {
+                    return false;
+                }
                 return _view.CurrentPosition > 0;
             }
         }
