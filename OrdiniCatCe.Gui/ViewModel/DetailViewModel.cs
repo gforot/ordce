@@ -333,23 +333,6 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
         #endregion
 
-        #region Arrivato
-        private const string _arrivatoPrpName = "Arrivato";
-        private bool _arrivato;
-        public bool Arrivato
-        {
-            get
-            {
-                return _arrivato;
-            }
-            set
-            {
-                _arrivato = value;
-                RaisePropertyChanged(_arrivatoPrpName);
-            }
-        }
-        #endregion
-
         #region Ordinato
         private const string _ordinatoPrpName = "Ordinato";
         private bool _ordinato;
@@ -648,19 +631,6 @@ namespace OrdiniCatCe.Gui.ViewModel
                 return false;
             }
 
-
-            if (Arrivato && DataArrivato == null)
-            {
-                errorMessage = "Pezzo arrivato ma data di arrivo non impostata";
-                return false;
-            }
-
-            if (!Arrivato && DataArrivato != null)
-            {
-                errorMessage = "Pezzo non arrivato ma data di arrivo impostata";
-                return false;
-            }
-
             if (Ritirato && DataRitirato == null)
             {
                 errorMessage = "Pezzo ritirato ma data di ritiro non impostata";
@@ -718,7 +688,6 @@ namespace OrdiniCatCe.Gui.ViewModel
                        NumeroCivico = NumeroCivico,
                        ModalitàAvviso = ModalitaAvviso,
                        Ritirato = Ritirato,
-                       Arrivato = Arrivato,
                        Ordinato = Ordinato,
                        DataCaparra = DataCaparra,
                        Caparra = Caparra,
@@ -762,7 +731,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.ModalitaAvviso = ModalitaDiAvviso.NonDefinito;
             this.Ritirato = false;
             this.Ordinato = false;
-            this.Arrivato = false;
             this.DataCaparra = null;
             this.Caparra = null;
             this.RicevutoCaparra = false;
@@ -790,7 +758,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.ModalitaAvviso = richiestaOrdine.ModalitàAvviso;
             this.Ritirato = richiestaOrdine.Ritirato;
             this.Ordinato = richiestaOrdine.Ordinato;
-            this.Arrivato = richiestaOrdine.Arrivato;
             this.DataCaparra = richiestaOrdine.DataCaparra;
             this.Caparra = richiestaOrdine.Caparra;
             this.RicevutoCaparra = richiestaOrdine.RicevutaCaparra;

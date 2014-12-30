@@ -14,7 +14,7 @@ namespace OrdiniCatCe.Gui.Converters
             if (value is RichiesteOrdine)
             {
                 RichiesteOrdine ro = value as RichiesteOrdine;
-                if (ro.Ordinato && ro.Arrivato && ro.Avvisato && !ro.Ritirato)
+                if (ro.Ordinato && ro.Avvisato && !ro.Ritirato)
                 {
                     return new SolidColorBrush(AppColors.NextActionColor);
                 }

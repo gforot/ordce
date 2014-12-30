@@ -124,7 +124,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.UpdateRigaOrdineKey, OnUpdateRigaOrdineToDbRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetAvvisatoKey, OnUpdateAvvisatoRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetRitiratoKey, OnUpdateRitiratoRequested);
-            Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetArrivatoKey, OnUpdateArrivatoRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetOrdinatoKey, OnUpdateOrdinatoRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.DeleteKey, OnDeleteRequested);
             Messenger.Default.Register<AddRigaOrdineMessage>(this, MsgKeys.NewOrderWindowConfirmKey, OnRigaOrdineAddedToDb);
@@ -279,21 +278,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 db.Fornitori.Add(message.Fornitore);
                 db.SaveChanges();
-            }
-        }
-
-        private void OnUpdateArrivatoRequested(UpdateRigaOrdineMessage message)
-        {
-            if (message.RigaOrdine != null)
-            {
-                using (OrdiniEntities db = new OrdiniEntities())
-                {
-                    RichiesteOrdine toUpdate = db.RichiesteOrdine.First(ordine => ordine.Id == message.RigaOrdine.Id);
-                    toUpdate.Arrivato = true;
-                    toUpdate.DataArrivato = DateTime.Now;
-                    db.SaveChanges();
-                    UpdateRigheOrdineFromDb();
-                }
             }
         }
 

@@ -23,11 +23,6 @@ namespace OrdiniCatCe.Gui.Converters
                 {
                     return new SolidColorBrush(AppColors.AvvisatoRowBackground);
                 }
-                else if (ro.Arrivato)
-                {
-                    //arrivato e non avvisato
-                    return new SolidColorBrush(AppColors.ArrivatoRowBackground);
-                }
                 if (ro.Ritirato)
                 {
                     return new SolidColorBrush(AppColors.RitiratoRowBackground);

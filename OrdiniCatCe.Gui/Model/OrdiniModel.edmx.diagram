@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0710e10116734472b320390011d7610e" Name="Diagram1" ZoomLevel="15">
+      <Diagram DiagramId="0710e10116734472b320390011d7610e" Name="Diagram1" ZoomLevel="77">
         <AssociationConnector Association="OrdiniModel.FK_RichiesteOrdine" />
         <EntityTypeShape EntityType="OrdiniModel.Fornitori" Width="1.5" PointX="1.0921112844218086" PointY="11.395722483934705" />
         <EntityTypeShape EntityType="OrdiniModel.Marche" Width="1.5" PointX="7.6621055918103576" PointY="2.8162600709201118" />
         <EntityTypeShape EntityType="OrdiniModel.PezziInOrdine" Width="1.5" PointX="9.4181075847792" PointY="19.673569613915667" />
-        <EntityTypeShape EntityType="OrdiniModel.RichiesteOrdine" Width="1.5" PointX="10.814410523890707" PointY="28.311062840889704" />
+        <EntityTypeShape EntityType="OrdiniModel.RichiesteOrdine" Width="12.625" PointX="10.875" PointY="28.25" />
         <AssociationConnector Association="OrdiniModel.FK_IdFornitore" />
         <AssociationConnector Association="OrdiniModel.FK_IdMarca" />
         <AssociationConnector Association="OrdiniModel.FK_RichiesteOrdine1" />
