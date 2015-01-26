@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.Resources>
-            <converters:BackgroundConverter x:Key="backgroundConverter" />
+            <converters:RowBackgroundConverter x:Key="backgroundConverter" />
             <converters:ButtonEnabledConverter x:Key="buttonEnabledConverter" />
             <converters:ValidEMailConverter x:Key="validEMailConverter" />
             <converters:AvvisatoBackgroundConverter x:Key="avvisatoBackgroundConverter" />
@@ -87,51 +87,6 @@
                 <DataGridTextColumn Header="Data Richiesta" Binding="{Binding DataRichiesta, StringFormat={}{0:dd/MM/yyyy}, ConverterCulture=it-IT}"  IsReadOnly="True" />
                 <DataGridCheckBoxColumn Header="Avvisato" Binding="{Binding Avvisato}" IsReadOnly="True"/>
                 <DataGridCheckBoxColumn Header="Ritirato" Binding="{Binding Ritirato}" IsReadOnly="True" />
-
-                <!-- Ordinato -->
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Background="{Binding Converter={StaticResource ordinatoBackgroundConverter}}" IsEnabled="{Binding Ordinato, Converter={StaticResource buttonEnabledConverter}}" Click="SetOrdinato_OnClick">
-                                <Image ToolTip="Ordinato" Source="Images/fax_machine.png" Width="16" Height="16"  />
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-                <!-- Arrivato -->
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Background="{Binding Converter={StaticResource arrivatoBackgroundConverter}}" IsEnabled="{Binding Arrivato, Converter={StaticResource buttonEnabledConverter}}" Click="SetArrivato_OnClick">
-                                <Image ToolTip="Arrivato"  Source="Images/package.png" Width="16" Height="16"  />
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-                <!-- Avvisato -->
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Background="{Binding Converter={StaticResource avvisatoBackgroundConverter}}" IsEnabled="{Binding Avvisato, Converter={StaticResource buttonEnabledConverter}}" Click="SetAvvisato_OnClick">
-                                <Image ToolTip="Avvisato"  Source="Images/user_mobilephone.png" Width="16" Height="16"  />
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-                <!-- Ritirato -->
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Background="{Binding Converter={StaticResource ritiratoBackgroundConverter}}" IsEnabled="{Binding Ritirato, Converter={StaticResource buttonEnabledConverter}}" Click="SetRitirato_OnClick">
-                                <Image ToolTip="Ritirato" Source="Images/moneybag_euro.png" Width="16" Height="16"  />
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
 
                 <!-- Cancella -->
                 <DataGridTemplateColumn>

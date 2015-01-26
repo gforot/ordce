@@ -202,7 +202,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
 
             RichiesteOrdine ro = new RichiesteOrdine();
-            ro.Avvisato = false;
             ro.Storicizzata = false;
             ro.RicevutaCaparra = false;
             ro.Nome = Nome;

@@ -11,13 +11,6 @@ namespace OrdiniCatCe.Gui.Messages
         public const string AddMarcaToDbKey = "AddMarcaToDb";
         public const string AddFornitoreToDbKey = "AddFornitoreToDb";
         public const string UpdateRigaOrdineKey = "UpdateRigaOrdine";
-        public const string SetAvvisatoKey = "SetAvvisato";
-        public const string SetArrivatoKey = "SetArrivato";
-        public const string SetRitiratoKey = "SetRitirato";
-        public const string InitKey = "Init";
-        public const string CancelAnagraficaKey = "CancelAnagrafica";
-        public const string ConfirmAnagraficaKey = "ConfirmAnagrafica";
-        public const string SetOrdinatoKey = "SetOrdinato";
         public const string CancelAddFornitoreKey = "CancelAddFornitore";
         public const string ConfirmAddFornitoreKey = "ConfirmAddFornitore";
         public const string CancelAddMarcaKey = "CancelAddMarca";

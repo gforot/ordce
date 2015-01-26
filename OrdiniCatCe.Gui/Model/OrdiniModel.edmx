@@ -33,16 +33,21 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="Arrivato" Type="bit" />
-          <Property Name="Mancante" Type="bit" />
+          <Property Name="Arrivato" Type="bit" Nullable="false" />
+          <Property Name="Mancante" Type="bit" Nullable="false" />
           <Property Name="IdRichiestaOrdine" Type="int" Nullable="false" />
           <Property Name="Codice" Type="nvarchar" MaxLength="100" />
           <Property Name="PrezzoAcquisto" Type="money" />
           <Property Name="PrezzoVendita" Type="money" />
-          <Property Name="Ordinato" Type="bit" />
-          <Property Name="Ritirato" Type="bit" />
+          <Property Name="Ordinato" Type="bit" Nullable="false" />
+          <Property Name="Ritirato" Type="bit" Nullable="false" />
           <Property Name="IdMarca" Type="int" />
           <Property Name="IdFornitore" Type="int" />
+          <Property Name="Avvisato" Type="bit" Nullable="false" />
+          <Property Name="DataAvvisato" Type="datetime" />
+          <Property Name="DataOrdinato" Type="datetime" />
+          <Property Name="DataArrivato" Type="nvarchar" MaxLength="100" />
+          <Property Name="DataRitirato" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="RichiesteOrdine">
           <Key>
@@ -52,12 +57,7 @@
           <Property Name="Telefono" Type="nvarchar" MaxLength="100" />
           <Property Name="EMail" Type="nvarchar" MaxLength="100" />
           <Property Name="Cellulare" Type="nvarchar" MaxLength="100" />
-          <Property Name="Avvisato" Type="bit" Nullable="false" />
-          <Property Name="DataAvvisato" Type="datetime" />
-          <Property Name="DataOrdinato" Type="datetime" />
-          <Property Name="DataArrivato" Type="datetime" />
           <Property Name="ModalitàAvviso" Type="int" />
-          <Property Name="DataRitirato" Type="datetime" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="nvarchar" MaxLength="100" />
           <Property Name="Cognome" Type="nvarchar" MaxLength="100" />
@@ -115,19 +115,24 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Description" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="Arrivato" />
-          <Property Type="Boolean" Name="Mancante" />
+          <Property Type="Boolean" Name="Arrivato" Nullable="false" />
+          <Property Type="Boolean" Name="Mancante" Nullable="false" />
           <Property Type="Int32" Name="IdRichiestaOrdine" Nullable="false" />
           <Property Type="String" Name="Codice" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="PrezzoAcquisto" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="PrezzoVendita" Precision="19" Scale="4" />
-          <Property Type="Boolean" Name="Ordinato" />
-          <Property Type="Boolean" Name="Ritirato" />
+          <Property Type="Boolean" Name="Ordinato" Nullable="false" />
+          <Property Type="Boolean" Name="Ritirato" Nullable="false" />
           <Property Type="Int32" Name="IdMarca" />
           <Property Type="Int32" Name="IdFornitore" />
           <NavigationProperty Name="Fornitori" Relationship="OrdiniModel.FK_IdFornitore" FromRole="PezziInOrdine" ToRole="Fornitori" />
           <NavigationProperty Name="Marche" Relationship="OrdiniModel.FK_IdMarca" FromRole="PezziInOrdine" ToRole="Marche" />
           <NavigationProperty Name="RichiesteOrdine" Relationship="OrdiniModel.FK_RichiesteOrdine1" FromRole="PezziInOrdine" ToRole="RichiesteOrdine" />
+          <Property Type="Boolean" Name="Avvisato" Nullable="false" />
+          <Property Type="DateTime" Name="DataAvvisato" Precision="3" />
+          <Property Type="DateTime" Name="DataOrdinato" Precision="3" />
+          <Property Type="String" Name="DataArrivato" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DataRitirato" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="RichiesteOrdine">
           <Key>
@@ -137,12 +142,7 @@
           <Property Type="String" Name="Telefono" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="EMail" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Cellulare" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="Avvisato" Nullable="false" />
-          <Property Type="DateTime" Name="DataAvvisato" Precision="3" />
-          <Property Type="DateTime" Name="DataOrdinato" Precision="3" />
-          <Property Type="DateTime" Name="DataArrivato" Precision="3" />
           <Property Type="OrdiniModel.ModalitaDiAvviso" Name="ModalitàAvviso" />
-          <Property Type="DateTime" Name="DataRitirato" Precision="3" />
           <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Nome" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Cognome" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -224,6 +224,11 @@
           <EntitySetMapping Name="PezziInOrdine">
             <EntityTypeMapping TypeName="OrdiniModel.PezziInOrdine">
               <MappingFragment StoreEntitySet="PezziInOrdine">
+                <ScalarProperty Name="DataRitirato" ColumnName="DataRitirato" />
+                <ScalarProperty Name="DataArrivato" ColumnName="DataArrivato" />
+                <ScalarProperty Name="DataOrdinato" ColumnName="DataOrdinato" />
+                <ScalarProperty Name="DataAvvisato" ColumnName="DataAvvisato" />
+                <ScalarProperty Name="Avvisato" ColumnName="Avvisato" />
                 <ScalarProperty Name="IdFornitore" ColumnName="IdFornitore" />
                 <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
                 <ScalarProperty Name="Ritirato" ColumnName="Ritirato" />
@@ -252,12 +257,7 @@
                 <ScalarProperty Name="Cognome" ColumnName="Cognome" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="DataRitirato" ColumnName="DataRitirato" />
                 <ScalarProperty Name="ModalitàAvviso" ColumnName="ModalitàAvviso" />
-                <ScalarProperty Name="DataArrivato" ColumnName="DataArrivato" />
-                <ScalarProperty Name="DataOrdinato" ColumnName="DataOrdinato" />
-                <ScalarProperty Name="DataAvvisato" ColumnName="DataAvvisato" />
-                <ScalarProperty Name="Avvisato" ColumnName="Avvisato" />
                 <ScalarProperty Name="Cellulare" ColumnName="Cellulare" />
                 <ScalarProperty Name="EMail" ColumnName="EMail" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />

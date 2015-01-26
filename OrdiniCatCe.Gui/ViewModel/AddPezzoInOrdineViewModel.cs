@@ -119,7 +119,7 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #region Ordinato
         private const string _ordinatoPrpName = "Ordinato";
-        public bool? Ordinato
+        public bool Ordinato
         {
             get
             {
@@ -136,7 +136,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         #region Arrivato
         private const string _arrivatoPrpName = "Arrivato";
 
-        public bool? Arrivato
+        public bool Arrivato
         {
             get
             {
@@ -152,7 +152,7 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #region Ritirato
         private const string _ritiratoPrpName = "Ritirato";
-        public bool? Ritirato
+        public bool Ritirato
         {
             get
             {
@@ -168,7 +168,7 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #region Mancante
         private const string _mancantePrpName = "Mancante";
-        public bool? Mancante
+        public bool Mancante
         {
             get
             {

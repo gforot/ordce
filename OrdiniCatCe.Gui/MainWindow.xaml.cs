@@ -110,55 +110,6 @@ namespace OrdiniCatCe.Gui
 
         }
 
-        private void SetAvvisato_OnClick(object sender, RoutedEventArgs e)
-        {
-            RichiesteOrdine richiestaOrdine = GetRichiestaOrdineFromSenderOfButtonClick(sender);
-            if (richiestaOrdine == null)
-            {
-                return;
-            }
-            Messenger.Default.Send<UpdateRigaOrdineMessage>(
-                                                new UpdateRigaOrdineMessage(richiestaOrdine),
-                                                MsgKeys.SetAvvisatoKey);
-
-        }
-
-        private void SetRitirato_OnClick(object sender, RoutedEventArgs e)
-        {
-            RichiesteOrdine richiestaOrdine = GetRichiestaOrdineFromSenderOfButtonClick(sender);
-            if (richiestaOrdine == null)
-            {
-                return;
-            }
-            Messenger.Default.Send<UpdateRigaOrdineMessage>(
-                                                new UpdateRigaOrdineMessage(richiestaOrdine),
-                                                MsgKeys.SetRitiratoKey);
-        }
-
-        //SetOrdinato_OnClick
-        private void SetOrdinato_OnClick(object sender, RoutedEventArgs e)
-        {
-            RichiesteOrdine richiestaOrdine = GetRichiestaOrdineFromSenderOfButtonClick(sender);
-            if (richiestaOrdine == null)
-            {
-                return;
-            }
-            Messenger.Default.Send<UpdateRigaOrdineMessage>(
-                                                new UpdateRigaOrdineMessage(richiestaOrdine),
-                                                MsgKeys.SetOrdinatoKey);
-        }
-
-        private void SetArrivato_OnClick(object sender, RoutedEventArgs e)
-        {
-            RichiesteOrdine richiestaOrdine = GetRichiestaOrdineFromSenderOfButtonClick(sender);
-            if (richiestaOrdine == null)
-            {
-                return;
-            }
-            Messenger.Default.Send<UpdateRigaOrdineMessage>(
-                                                new UpdateRigaOrdineMessage(richiestaOrdine),
-                                                MsgKeys.SetArrivatoKey);
-        }
 
         private RichiesteOrdine GetRichiestaOrdineFromSenderOfButtonClick(object sender)
         {

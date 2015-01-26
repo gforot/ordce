@@ -122,7 +122,6 @@ namespace OrdiniCatCe.Gui.ViewModel
 
 
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.UpdateRigaOrdineKey, OnUpdateRigaOrdineToDbRequested);
-            Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.SetAvvisatoKey, OnUpdateAvvisatoRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.DeleteKey, OnDeleteRequested);
             Messenger.Default.Register<AddRigaOrdineMessage>(this, MsgKeys.NewOrderWindowConfirmKey, OnRigaOrdineAddedToDb);
 
@@ -287,22 +286,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
-        private void OnUpdateAvvisatoRequested(UpdateRigaOrdineMessage message)
-        {
-            if (message.RigaOrdine != null)
-            {
-                using (OrdiniEntities db = new OrdiniEntities())
-                {
-                    RichiesteOrdine toUpdate = db.RichiesteOrdine.First(ordine => ordine.Id == message.RigaOrdine.Id);
-                    toUpdate.Avvisato = true;
-                    toUpdate.DataAvvisato = DateTime.Now;
-                    db.SaveChanges();
-                    UpdateRigheOrdineFromDb();
-                }
-            }
-        }
-
-
         private void AddOrdine()
         {
             Messenger.Default.Send(new MessageBase(), MsgKeys.AddRigaOrdineKey);
@@ -357,13 +340,8 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         private static void CopyAllProperties(RichiesteOrdine source, RichiesteOrdine target)
         {
-            target.Avvisato = source.Avvisato;
             target.Cellulare = source.Cellulare;
             target.Cognome = source.Cognome;
-            target.DataArrivato = source.DataArrivato;
-            target.DataAvvisato = source.DataAvvisato;
-            target.DataOrdinato = source.DataOrdinato;
-            target.DataRitirato = source.DataRitirato;
             target.EMail = source.EMail;
             target.Indirizzo = source.Indirizzo;
             target.Localita = source.Localita;
