@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
 using OrdiniCatCe.Gui.Db;
@@ -182,6 +183,87 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
         #endregion
 
+        #region Avvisato
+        private const string _avvisatoPrpName = "Avvisato";
+
+        public bool Avvisato
+        {
+            get
+            {
+                return _pezzo.Avvisato;
+            }
+            set
+            {
+                _pezzo.Avvisato = value;
+                RaisePropertyChanged(_avvisatoPrpName);
+            }
+        }
+        #endregion
+
+        #region DataOrdinato
+        private const string _dataOrdinatoPrpName = "DataOrdinato";
+        public DateTime? DataOrdinato
+        {
+            get
+            {
+                return _pezzo.DataOrdinato;
+            }
+            set
+            {
+                _pezzo.DataOrdinato = value;
+                RaisePropertyChanged(_dataOrdinatoPrpName);
+            }
+        }
+        #endregion
+
+        #region DataArrivato
+        private const string _dataArrivatoPrpName = "DataArrivato";
+        public DateTime? DataArrivato
+        {
+            get
+            {
+                return _pezzo.DataArrivato;
+            }
+            set
+            {
+                _pezzo.DataArrivato = value;
+                RaisePropertyChanged(_dataArrivatoPrpName);
+            }
+        }
+        #endregion
+
+        #region DataRitirato
+        private const string _dataRitiratoPrpName = "DataRitirato";
+        public DateTime? DataRitirato
+        {
+            get
+            {
+                return _pezzo.DataRitirato;
+            }
+            set
+            {
+                _pezzo.DataRitirato = value;
+                RaisePropertyChanged(_dataRitiratoPrpName);
+            }
+        }
+        #endregion
+
+        #region DataAvvisato
+        private const string _dataAvvisatoPrpName = "DataAvvisato";
+        public DateTime? DataAvvisato
+        {
+            get
+            {
+                return _pezzo.DataAvvisato;
+            }
+            set
+            {
+                _pezzo.DataAvvisato = value;
+                RaisePropertyChanged(_dataAvvisatoPrpName);
+            }
+        }
+        #endregion
+
         public void Setup(int idRigaOrdine)
         {
             _pezzo = new PezziInOrdine();
@@ -194,6 +276,10 @@ namespace OrdiniCatCe.Gui.ViewModel
             _pezzo.Ritirato = false;
             _pezzo.PrezzoAcquisto = 0;
             _pezzo.PrezzoVendita = 0;
+            _pezzo.DataArrivato = null;
+            _pezzo.DataAvvisato = null;
+            _pezzo.DataRitirato = null;
+            _pezzo.DataOrdinato = null;
         }
 
         public void Setup(PezziInOrdine pezzoDaModificare)

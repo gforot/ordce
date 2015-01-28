@@ -29,8 +29,8 @@ namespace OrdiniCatCe.Gui.Model
         public bool Avvisato { get; set; }
         public Nullable<System.DateTime> DataAvvisato { get; set; }
         public Nullable<System.DateTime> DataOrdinato { get; set; }
-        public string DataArrivato { get; set; }
-        public string DataRitirato { get; set; }
+        public Nullable<System.DateTime> DataArrivato { get; set; }
+        public Nullable<System.DateTime> DataRitirato { get; set; }
     
         public virtual Fornitori Fornitori { get; set; }
         public virtual Marche Marche { get; set; }

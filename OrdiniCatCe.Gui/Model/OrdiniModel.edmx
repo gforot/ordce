@@ -46,8 +46,8 @@
           <Property Name="Avvisato" Type="bit" Nullable="false" />
           <Property Name="DataAvvisato" Type="datetime" />
           <Property Name="DataOrdinato" Type="datetime" />
-          <Property Name="DataArrivato" Type="nvarchar" MaxLength="100" />
-          <Property Name="DataRitirato" Type="nvarchar" MaxLength="100" />
+          <Property Name="DataArrivato" Type="datetime" />
+          <Property Name="DataRitirato" Type="datetime" />
         </EntityType>
         <EntityType Name="RichiesteOrdine">
           <Key>
@@ -131,8 +131,8 @@
           <Property Type="Boolean" Name="Avvisato" Nullable="false" />
           <Property Type="DateTime" Name="DataAvvisato" Precision="3" />
           <Property Type="DateTime" Name="DataOrdinato" Precision="3" />
-          <Property Type="String" Name="DataArrivato" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="DataRitirato" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DataArrivato" Nullable="true" Precision="3" />
+          <Property Type="DateTime" Name="DataRitirato" Nullable="true" Precision="3" />
         </EntityType>
         <EntityType Name="RichiesteOrdine">
           <Key>
