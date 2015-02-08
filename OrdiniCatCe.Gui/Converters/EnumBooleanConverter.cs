@@ -19,8 +19,9 @@ namespace OrdiniCatCe.Gui.Converters
 
             if (Enum.IsDefined(value.GetType(), value) == false)
                 return DependencyProperty.UnsetValue;
+            Type t = value.GetType();
 
-            object parameterValue = Enum.Parse(value.GetType(), parameterString);
+            object parameterValue = Enum.Parse(t, parameterString);
 
             return parameterValue.Equals(value);
         }

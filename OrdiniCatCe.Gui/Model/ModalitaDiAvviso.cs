@@ -16,6 +16,6 @@ namespace OrdiniCatCe.Gui.Model
         NonDefinito = -1,
         Telefono = 0,
         EMail = 1,
-        Cellulare = 2
+        Segreteria = 2
     }
 }

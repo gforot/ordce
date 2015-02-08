@@ -210,6 +210,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             ro.EMail = EMail;
             ro.Indirizzo = Indirizzo;
             ro.Telefono = Telefono;
+            ro.ModalitàAvviso = ModalitaDiAvviso.NonDefinito;
             ro.DataRichiesta = DateTime.Now;
             DbManager.AddRigaOrdine(ro);
             //riga aggiunta nel DB

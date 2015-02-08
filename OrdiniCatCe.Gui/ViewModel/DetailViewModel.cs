@@ -245,9 +245,9 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #region ModalitaAvviso
         private const string _modalitaAvvisoPrpName = "ModalitaAvviso";
-        private ModalitaDiAvviso? _modalitaAvviso;
+        private ModalitaDiAvviso _modalitaAvviso;
 
-        public ModalitaDiAvviso? ModalitaAvviso
+        public ModalitaDiAvviso ModalitaAvviso
         {
             get
             {
