@@ -5,6 +5,8 @@ using GalaSoft.MvvmLight.Messaging;
 using OrdiniCatCe.Gui.Db;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
+using GalaSoft.MvvmLight.Command;
+using OrdiniCatCe.Gui.View;
 
 
 namespace OrdiniCatCe.Gui.ViewModel
@@ -14,6 +16,9 @@ namespace OrdiniCatCe.Gui.ViewModel
         private int _idRigaOrdine;
 
         private PezziInOrdine _pezzo;
+
+        public RelayCommand AddMarcaCommand { get; private set; }
+        public RelayCommand AddFornitoreCommand { get; private set; }
 
         public ObservableCollection<Marche> Marche { get; private set; }
         public ObservableCollection<Fornitori> Fornitori { get; private set; }
@@ -301,10 +306,22 @@ namespace OrdiniCatCe.Gui.ViewModel
             : base()
         {
             Init();
-
-
+            
+            //Commands
+            this.AddFornitoreCommand = new RelayCommand(AddFornitore);
+            this.AddMarcaCommand = new RelayCommand(AddMarca);
             Messenger.Default.Register<AddMarcaMessage>(this, MsgKeys.MarcaAddedKey, OnMarcaAdded);
             Messenger.Default.Register<AddFornitoreMessage>(this, MsgKeys.FornitoreAddedKey, OnFornitoreAdded);
+        }
+
+        private void AddMarca()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AddFornitore()
+        {
+            throw new NotImplementedException();
         }
 
         public override void Conferma()
