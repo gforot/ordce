@@ -3,6 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Aggiungi Pezzo" Height="266" Width="660" Style="{StaticResource wndStyle}"
         DataContext="{Binding AddPezzoInOrdineViewModel, Source={StaticResource Locator}}">
+    <Window.Resources>
+        <Style x:Key="addMarcaFornitoreBtnStyle" TargetType="Button">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -34,10 +39,10 @@
         <TextBox Text="{Binding Descrizione, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="3" />
 
         <TextBlock Text="Marca" Grid.Row="1" Grid.Column="0" />
-        <Button Grid.Row="1" Grid.Column="1" Content="Crea Marca" Command="{Binding AddMarcaCommand}" /> 
+        <Button Grid.Row="1" Grid.Column="1" Content="Crea Marca" Command="{Binding AddMarcaCommand}" Style="{StaticResource addMarcaFornitoreBtnStyle}" /> 
         <ComboBox SelectedValue="{Binding Marca}" DisplayMemberPath="Nome" ItemsSource="{Binding Marche}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" OpacityMask="Black" />
         <TextBlock Text="Fornitore" Grid.Row="1" Grid.Column="4" />
-        <Button Grid.Row="1" Grid.Column="5" Content="Crea Fornitore" Command="{Binding AddFornitoreCommand}" />
+        <Button Grid.Row="1" Grid.Column="5" Content="Crea Fornitore" Command="{Binding AddFornitoreCommand}" Style="{StaticResource addMarcaFornitoreBtnStyle}" />
         <ComboBox SelectedValue="{Binding Fornitore}" DisplayMemberPath="Name" ItemsSource="{Binding Fornitori}" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" OpacityMask="Black" />
 
         <TextBlock Text="Prezzo Acq." Grid.Row="2" Grid.Column="0" />

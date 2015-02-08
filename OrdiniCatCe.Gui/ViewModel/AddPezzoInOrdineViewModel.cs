@@ -316,12 +316,14 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         private void AddMarca()
         {
-            throw new NotImplementedException();
+            AddMarcaWindow wnd = new AddMarcaWindow();
+            wnd.ShowDialog();
         }
 
         private void AddFornitore()
         {
-            throw new NotImplementedException();
+            AddFornitoreWindow wnd = new AddFornitoreWindow();
+            wnd.ShowDialog();
         }
 
         public override void Conferma()
