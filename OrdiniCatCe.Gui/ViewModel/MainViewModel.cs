@@ -82,30 +82,12 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
-        private const string _viewRitiratiPrpName = "ViewRitirati";
-        private bool _viewRitirati;
-
-        public bool ViewRitirati
-        {
-            get
-            {
-                return _viewRitirati;
-            }
-            set
-            {
-                _viewRitirati = value;
-                RaisePropertyChanged(_viewRitiratiPrpName);
-                RigheOrdine.Refresh();
-            }
-        }
-
         private readonly ObservableCollection<RichiesteOrdine> _righeOrdine;
 
         public ICollectionView RigheOrdine { get; private set; }
 
         public MainViewModel()
         {
-            _viewRitirati = false;
             _nameFilter = string.Empty;
             AddOrdineCommand = new RelayCommand(AddOrdine);
             AddMarcaCommand = new RelayCommand(AddMarca);
@@ -363,33 +345,10 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
 
             RichiesteOrdine rOrdine = obj as RichiesteOrdine;
-            return FilterByName(rOrdine) && 
-                FilterByCognome(rOrdine) && 
-                FilterByRitirati(rOrdine) &&
-                FilterByFornitore(rOrdine);
+            return FilterByName(rOrdine) &&
+                   FilterByCognome(rOrdine);
         }
 
-        private bool FilterByFornitore(RichiesteOrdine rOrdine)
-        {
-            if (string.IsNullOrEmpty(FornitoreFilter))
-            {
-                return true;
-            }
-            return true;
-            //[TODO] tradurre usando nuova struttura DB
-            //if (string.IsNullOrEmpty(rOrdine.Fornitori.Name))
-            //{
-            //    return false;
-            //}
-
-            //return rOrdine.Fornitori.Name.ToLower().Contains(FornitoreFilter.ToLower());
-        }
-
-        private bool FilterByRitirati(RichiesteOrdine rOrdine)
-        {
-            //return ViewRitirati || !rOrdine.Ritirato;
-            return ViewRitirati;
-        }
 
         private bool FilterByName(RichiesteOrdine rOrdine)
         {

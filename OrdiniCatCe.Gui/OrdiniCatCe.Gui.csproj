@@ -165,6 +165,7 @@
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PezziInOrdineCustom.cs" />
+    <Compile Include="Model\RichiesteOrdineCustom.cs" />
     <Compile Include="Validation\EMailValidator.cs" />
     <Compile Include="ViewModel\AddFornitoreViewModel.cs" />
     <Compile Include="ViewModel\AddMarcaViewModel.cs" />

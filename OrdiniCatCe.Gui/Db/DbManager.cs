@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.UI.WebControls;
 using GalaSoft.MvvmLight.Messaging;
@@ -59,7 +60,7 @@ namespace OrdiniCatCe.Gui.Db
         {
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                IQueryable<RichiesteOrdine> richieste = db.RichiesteOrdine.Where(ro => ro.Storicizzata == storicizzate);
+                IQueryable<RichiesteOrdine> richieste = db.RichiesteOrdine.Include("PezziInOrdine").Where(ro => ro.Storicizzata == storicizzate);
                 return richieste.ToList();
             }
         } 

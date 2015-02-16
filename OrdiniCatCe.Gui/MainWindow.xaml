@@ -4,11 +4,7 @@
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="Gestione Ordini" Height="800" Width="1000" Style="{StaticResource wndStyle}">
-
     <Grid Background="Transparent">
-
-
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -24,7 +20,9 @@
             <converters:ArrivatoBackgroundConverter x:Key="arrivatoBackgroundConverter" />
             <converters:RitiratoBackgroundConverter x:Key="ritiratoBackgroundConverter" />
             <converters:OrdinatoBackgroundConverter x:Key="ordinatoBackgroundConverter" />
-
+            <Style TargetType="Button" x:Key="eraserButtonStyle">
+                <Setter Property="Margin" Value="5"></Setter>
+            </Style>
         </Grid.Resources>
 
         <Menu IsMainMenu="True">
@@ -40,30 +38,27 @@
 
             <TextBlock Margin="2" Text="Cognome"/>
             <TextBox Text="{Binding CognomeFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
-            <Button Command="{Binding ClearCognomeFilterCommand}" >
+            <Button Command="{Binding ClearCognomeFilterCommand}" Style="{StaticResource eraserButtonStyle}" >
                 <Image Source="Images/eraser2.png" Width="16" Height="16"  />
             </Button>
 
             <TextBlock Text="Nome" Margin="10,2,2,2"></TextBlock>
             <TextBox Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
-            <Button Command="{Binding ClearNomeFilterCommand}" >
+            <Button Command="{Binding ClearNomeFilterCommand}" Style="{StaticResource eraserButtonStyle}">
                 <Image Source="Images/eraser2.png" Width="16" Height="16"  />
             </Button>
 
             <TextBlock Margin="10,2,2,2" Text="Fornitore"/>
             <TextBox Text="{Binding FornitoreFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
-            <Button Command="{Binding ClearFornitoreFilterCommand}" >
+            <Button Style="{StaticResource eraserButtonStyle}"  Command="{Binding ClearFornitoreFilterCommand}" >
                 <Image Source="Images/eraser2.png" Width="16" Height="16"  />
             </Button>
-            
-            <Button Margin="20,5"  Command="{Binding ClearFiltersCommand}" >
+
+            <Button Command="{Binding ClearFiltersCommand}" Style="{StaticResource eraserButtonStyle}" >
                 <Image Source="Images/eraser2.png" Width="16" Height="16"  />
             </Button>
-            
-            <TextBlock Text="Visualizza Ritirati"></TextBlock>
-            <CheckBox IsChecked="{Binding ViewRitirati}"></CheckBox>
-            
-            
+
+
         </StackPanel>
         <DataGrid x:Name="grid" CanUserAddRows="false" CanUserDeleteRows="False" AutoGenerateColumns="False"
                   ItemsSource="{Binding RigheOrdine}" Grid.Row="3"
