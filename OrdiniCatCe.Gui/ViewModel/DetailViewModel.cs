@@ -404,7 +404,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         private void Storicizza()
         {
             //richiedo se l'utente è sicuro.
-            MessageBoxResult result = MessageBox.Show(null, "", AppConstants.ApplicationName, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show(null, Texts.ConfermaStoricizzazione, AppConstants.ApplicationName, MessageBoxButton.YesNo, MessageBoxImage.Question);
             switch (result)
             {
                 case MessageBoxResult.Yes:
