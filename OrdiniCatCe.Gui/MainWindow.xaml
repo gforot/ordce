@@ -38,24 +38,24 @@
 
             <TextBlock Margin="2" Text="Cognome"/>
             <TextBox Text="{Binding CognomeFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
-            <Button Command="{Binding ClearCognomeFilterCommand}" Style="{StaticResource eraserButtonStyle}" >
+            <Button Command="{Binding ClearCognomeFilterCommand}" Style="{StaticResource eraserButtonStyle}" ToolTip="Svuota Filtro Cognome" >
                 <Image Source="Images/eraser2.png" Width="16" Height="16"  />
             </Button>
 
             <TextBlock Text="Nome" Margin="10,2,2,2"></TextBlock>
             <TextBox Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
             <Button Command="{Binding ClearNomeFilterCommand}" Style="{StaticResource eraserButtonStyle}">
-                <Image Source="Images/eraser2.png" Width="16" Height="16"  />
+                <Image Source="Images/eraser2.png" Width="16" Height="16" ToolTip="Svuota Filtro Nome"  />
             </Button>
 
             <TextBlock Margin="10,2,2,2" Text="Fornitore"/>
             <TextBox Text="{Binding FornitoreFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
             <Button Style="{StaticResource eraserButtonStyle}"  Command="{Binding ClearFornitoreFilterCommand}" >
-                <Image Source="Images/eraser2.png" Width="16" Height="16"  />
+                <Image Source="Images/eraser2.png" Width="16" Height="16" ToolTip="Svuota Filtro Fornitore"  />
             </Button>
 
             <Button Command="{Binding ClearFiltersCommand}" Style="{StaticResource eraserButtonStyle}" >
-                <Image Source="Images/eraser2.png" Width="16" Height="16"  />
+                <Image Source="Images/eraser2.png" Width="16" Height="16" ToolTip="Svuota tutti i filtri"  />
             </Button>
 
 
