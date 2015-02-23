@@ -515,7 +515,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         internal RichiesteOrdine CreateRigaOrdine()
         {
             //la riga è già stata creata
-            return new RichiesteOrdine()
+            return new RichiesteOrdine
                    {
                        Id = _id,
                        Cognome = Cognome,
@@ -561,9 +561,9 @@ namespace OrdiniCatCe.Gui.ViewModel
             Localita = string.Empty;
             NumeroCivico = string.Empty;
             Cellulare = string.Empty;
-            DataRichiesta = DateTime.Now;
+            DataRichiesta = DateTime.Today;
             ModalitaAvviso = ModalitaDiAvviso.NonDefinito;
-            DataCaparra = null;
+            DataCaparra = DateTime.Today;
             Caparra = null;
             RicevutoCaparra = false;
 

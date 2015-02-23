@@ -15,5 +15,6 @@ namespace OrdiniCatCe.Gui.Model
                 return PezziInOrdine != null && PezziInOrdine.Any(p => p.Mancante);
             }
         }
+
     }
 }

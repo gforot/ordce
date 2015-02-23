@@ -210,8 +210,9 @@ namespace OrdiniCatCe.Gui.ViewModel
             ro.EMail = EMail;
             ro.Indirizzo = Indirizzo;
             ro.Telefono = Telefono;
+            ro.DataCaparra = DateTime.Today;
+            ro.DataRichiesta = DateTime.Today;
             ro.ModalitàAvviso = ModalitaDiAvviso.NonDefinito;
-            ro.DataRichiesta = DateTime.Now;
             DbManager.AddRigaOrdine(ro);
             //riga aggiunta nel DB
             //ora bisogna aprire il dettaglio ordine per l'inserimento dei pezzi.
