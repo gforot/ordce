@@ -19,6 +19,7 @@
             <converters:AvvisatoBackgroundConverter x:Key="avvisatoBackgroundConverter" />
             <converters:ArrivatoBackgroundConverter x:Key="arrivatoBackgroundConverter" />
             <converters:RitiratoBackgroundConverter x:Key="ritiratoBackgroundConverter" />
+            <converters:VisualizzaStoricoTextConverter x:Key="visualizzaStoricoTextConverter" />
             <converters:OrdinatoBackgroundConverter x:Key="ordinatoBackgroundConverter" />
             <Style TargetType="Button" x:Key="eraserButtonStyle">
                 <Setter Property="Margin" Value="5"></Setter>
@@ -31,6 +32,9 @@
                 <MenuItem Header="Nuova Marca" Command="{Binding AddMarcaCommand}"></MenuItem>
                 <MenuItem Header="Fornitori" Command="{Binding AnagraficaFornitoriCommand}"></MenuItem>
                 <MenuItem Header="Marche" Command="{Binding AnagraficaMarcheCommand}"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Storico">
+                <MenuItem Header="{Binding VisualizzaStorico, Converter={StaticResource visualizzaStoricoTextConverter}}" Command="{Binding ViewStoricoCommand}"></MenuItem>
             </MenuItem>
         </Menu>
         <TextBlock Grid.Row="1"  Text="Gestione Ordini" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="22"  Padding="0,5,0,5"></TextBlock>

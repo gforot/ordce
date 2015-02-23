@@ -6,8 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Web.UI;
-using System.Windows;
 using System.Windows.Data;
+using System.Windows.Documents;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -33,6 +33,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         public RelayCommand AnagraficaFornitoriCommand { get; private set; }
         public RelayCommand AnagraficaMarcheCommand { get; private set; }
         public RelayCommand OrdinaCommand { get; private set; }
+        public RelayCommand ViewStoricoCommand { get; private set; }
 
         private const string _nameFilterPrpName="NameFilter";
         private string _nameFilter;
@@ -47,6 +48,22 @@ namespace OrdiniCatCe.Gui.ViewModel
                 _nameFilter = value;
                 RaisePropertyChanged(_nameFilterPrpName);
                 RigheOrdine.Refresh();
+            }
+        }
+
+        private const string _visualizzaStoricoPrpName = "VisualizzaStorico";
+        private bool _visualizzaStorico;
+        public bool VisualizzaStorico
+        {
+            get
+            {
+                return _visualizzaStorico;
+            }
+            set
+            {
+                _visualizzaStorico = value;
+                RaisePropertyChanged(_visualizzaStoricoPrpName);
+                UpdateRigheOrdineFromDb();
             }
         }
 
@@ -99,6 +116,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             AnagraficaFornitoriCommand = new RelayCommand(AnagraficaFornitori);
             AnagraficaMarcheCommand = new RelayCommand(AnagraficaMarche);
             OrdinaCommand = new RelayCommand(Ordina);
+            ViewStoricoCommand = new RelayCommand(ViewStorico);
             Messenger.Default.Register<AddMarcaMessage>(this, MsgKeys.AddMarcaToDbKey, OnAddMarcaToDbRequested);
             Messenger.Default.Register<AddFornitoreMessage>(this, MsgKeys.AddFornitoreToDbKey, OnAddFornitoreToDbRequested);
 
@@ -113,7 +131,9 @@ namespace OrdiniCatCe.Gui.ViewModel
             foreach (RichiesteOrdine ro in DbManager.GetRichiesteOrdineAttive())
             {
                 _righeOrdine.Add(ro);
-            } 
+            }
+
+            VisualizzaStorico = false;
             
 
             RigheOrdine = CollectionViewSource.GetDefaultView(_righeOrdine);
@@ -222,10 +242,18 @@ namespace OrdiniCatCe.Gui.ViewModel
             
         }
 
+        private void ViewStorico()
+        {
+            this.VisualizzaStorico = !VisualizzaStorico;
+        }
+
         private void UpdateRigheOrdineFromDb()
         {
             _righeOrdine.Clear();
-            foreach (RichiesteOrdine ro in DbManager.GetRichiesteOrdineAttive())
+
+            List<RichiesteOrdine> rOrdines = VisualizzaStorico ? DbManager.GetRichiesteOrdineStoricizzate() : DbManager.GetRichiesteOrdineAttive();
+
+            foreach (RichiesteOrdine ro in rOrdines)
             {
 
                 _righeOrdine.Add(ro);
