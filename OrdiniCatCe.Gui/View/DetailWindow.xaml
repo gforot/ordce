@@ -13,6 +13,15 @@
 
         <DataTemplate x:Key="orderedItemTemplate" >
             <Border BorderBrush="LightSlateGray" BorderThickness="1" CornerRadius="2" HorizontalAlignment="Stretch">
+                <Border.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Codice}"></TextBlock>
+                            <TextBlock Text="{Binding Description}"></TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Border.ToolTip>
+                
                 <Grid Background="{Binding Mancante, Converter={StaticResource mancanteConverter}}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
