@@ -123,6 +123,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="behavior\TextBoxInputBehavior.cs" />
     <Compile Include="Checks.cs" />
     <Compile Include="Constants\AppColors.cs" />
     <Compile Include="Constants\AppConstants.cs" />
