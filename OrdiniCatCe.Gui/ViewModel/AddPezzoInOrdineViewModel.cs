@@ -101,6 +101,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             set
             {
                 _marca = value;
+                _pezzo.IdMarca = _marca.Id;
                 RaisePropertyChanged(_marcaPrpName);
             }
         }
@@ -118,6 +119,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             set
             {
                 _fornitore = value;
+                _pezzo.IdFornitore = _fornitore.Id;
                 RaisePropertyChanged(_fornitorePrpName);
             }
         }
@@ -285,11 +287,21 @@ namespace OrdiniCatCe.Gui.ViewModel
             _pezzo.DataAvvisato = null;
             _pezzo.DataRitirato = null;
             _pezzo.DataOrdinato = null;
+            _pezzo.IdFornitore = null;
+            _pezzo.IdMarca = null;
         }
 
         public void Setup(PezziInOrdine pezzoDaModificare)
         {
             _pezzo = pezzoDaModificare;
+            if (_pezzo.IdFornitore.HasValue)
+            {
+                Fornitore = Fornitori.FirstOrDefault(f => f.Id == _pezzo.IdFornitore.Value);
+            }
+            if (_pezzo.IdMarca.HasValue)
+            {
+                Marca = Marche.FirstOrDefault(m => m.Id == _pezzo.IdMarca.Value);
+            }
         }
 
 
