@@ -10,15 +10,78 @@
         <converters:FornitoreConverter x:Key="fornitoreConverter" />
         <converters:MancanteConverter x:Key="mancanteConverter" />
         <converters:BoolToVisibilityConverterInverted x:Key="boolToVisibilityConverterInverted" />
+        <converters:YesNoConverter x:Key="yesNoConverter" />
+        <converters:DatetimeIfExistsConverter x:Key="datetimeIfExistsConverter"></converters:DatetimeIfExistsConverter>
 
         <DataTemplate x:Key="orderedItemTemplate" >
-            <Border BorderBrush="LightSlateGray" BorderThickness="1" CornerRadius="2" HorizontalAlignment="Stretch">
+            <Border Height="Auto" BorderBrush="LightSlateGray" BorderThickness="1" CornerRadius="2" HorizontalAlignment="Stretch">
                 <Border.ToolTip>
                     <ToolTip>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Codice}"></TextBlock>
-                            <TextBlock Text="{Binding Description}"></TextBlock>
-                        </StackPanel>
+                        <Grid Background="{Binding Mancante, Converter={StaticResource mancanteConverter}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold" Text="{Binding Codice}"></TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="1" FontWeight="Bold" Text="{Binding Description}"></TextBlock>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Marca}"></TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Fornitore}"></TextBlock>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding PrezzoAcquisto}"></TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PrezzoVendita}"></TextBlock>
+
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding Ordinato, StringFormat=Ordinato : {0}, Converter={StaticResource yesNoConverter}}" />
+                            <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding Arrivato, StringFormat=Arrivato : {0}, Converter={StaticResource yesNoConverter}}" />
+                            <TextBlock Grid.Row="5" Grid.Column="0" Text="{Binding Avvisato, StringFormat=Avvisato : {0}, Converter={StaticResource yesNoConverter}}" />
+                            <TextBlock Grid.Row="6" Grid.Column="0" Text="{Binding Ritirato, StringFormat=Avvisato : {0}, Converter={StaticResource yesNoConverter}}" />
+
+                            <TextBlock Grid.Row="3" Grid.Column="1" >
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource datetimeIfExistsConverter}">
+                                        <Binding Path="Ordinato"></Binding>
+                                        <Binding Path="DataOrdinato"></Binding>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="4" Grid.Column="1" >
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource datetimeIfExistsConverter}">
+                                        <Binding Path="Arrivato"></Binding>
+                                        <Binding Path="DataArrivato"></Binding>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="5" Grid.Column="1" >
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource datetimeIfExistsConverter}">
+                                        <Binding Path="Avvisato"></Binding>
+                                        <Binding Path="DataAvvisato"></Binding>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="6" Grid.Column="1" >
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource datetimeIfExistsConverter}">
+                                        <Binding Path="Ritirato"></Binding>
+                                        <Binding Path="DataRitirato"></Binding>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+
+                        </Grid>
                     </ToolTip>
                 </Border.ToolTip>
                 

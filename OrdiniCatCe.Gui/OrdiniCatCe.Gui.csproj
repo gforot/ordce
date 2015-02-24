@@ -130,6 +130,7 @@
     <Compile Include="Constants\Texts.cs" />
     <Compile Include="Converters\ArrivatoBackgroundConverter.cs" />
     <Compile Include="Converters\AvvisatoBackgroundConverter.cs" />
+    <Compile Include="Converters\DatetimeIfExistsConverter.cs" />
     <Compile Include="Converters\RowBackgroundConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverterInverted.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Converters\TextboxBackgroundConverter.cs" />
     <Compile Include="Converters\ValidEMailConverter.cs" />
     <Compile Include="Converters\VisualizzaStoricoTextConverter.cs" />
+    <Compile Include="Converters\YesNoConverter.cs" />
     <Compile Include="Db\DbManager.cs" />
     <Compile Include="Messages\AddFornitoreMessage.cs" />
     <Compile Include="Messages\AddMarcaMessage.cs" />
