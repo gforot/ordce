@@ -60,7 +60,9 @@ namespace OrdiniCatCe.Gui.Db
         {
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                IQueryable<RichiesteOrdine> richieste = db.RichiesteOrdine.Include("PezziInOrdine").Where(ro => ro.Storicizzata == storicizzate);
+                //IQueryable<RichiesteOrdine> richieste = db.RichiesteOrdine.Include("PezziInOrdine").Where(ro => ro.Storicizzata == storicizzate);
+
+                IQueryable<RichiesteOrdine> richieste = db.RichiesteOrdine.Include(ordine => ordine.PezziInOrdine).Include(ordine => ordine.PezziInOrdine.Select(p => p.Marche)).Include(ordine => ordine.PezziInOrdine.Select(p => p.Fornitori)).Where(ro => ro.Storicizzata == storicizzate);
                 return richieste.ToList();
             }
         } 
@@ -79,7 +81,9 @@ namespace OrdiniCatCe.Gui.Db
         {
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                return db.RichiesteOrdine.Include("PezziInOrdine").FirstOrDefault(ro => ro.Id == id);
+                return db.RichiesteOrdine.Include(ro => ro.PezziInOrdine).Include(ordine => ordine.PezziInOrdine.Select(p => p.Marche)).Include(ordine => ordine.PezziInOrdine.Select(p => p.Fornitori)).FirstOrDefault(ro => ro.Id == id);
+
+                //db.RichiesteOrdine.Include(ordine => ordine.PezziInOrdine).Include(ordine => ordine.PezziInOrdine.Select(p => p.Marche)).Include(ordine => ordine.PezziInOrdine.Select(p => p.Fornitori)).Where(ro => ro.Storicizzata == storicizzate);
             }
         }
 

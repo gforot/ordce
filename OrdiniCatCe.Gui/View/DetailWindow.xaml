@@ -34,8 +34,8 @@
                             <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold" Text="{Binding Codice}"></TextBlock>
                             <TextBlock Grid.Row="0" Grid.Column="1" FontWeight="Bold" Text="{Binding Description}"></TextBlock>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Marca}"></TextBlock>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Fornitore}"></TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Marche}"></TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Fornitori}"></TextBlock>
 
                             <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding PrezzoAcquisto}"></TextBlock>
                             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PrezzoVendita}"></TextBlock>
