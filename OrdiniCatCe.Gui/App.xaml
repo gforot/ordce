@@ -10,6 +10,9 @@
         <Style TargetType="Button" BasedOn="{StaticResource btnStyle}" x:Key="75ButtonsStyle">
             <Setter Property="Width" Value="75"></Setter>
         </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource btnStyle}" x:Key="100ButtonsStyle">
+            <Setter Property="Width" Value="100"></Setter>
+        </Style>
         <Style TargetType="Button" BasedOn="{StaticResource btnStyle}" x:Key="150ButtonsStyle">
             <Setter Property="Width" Value="150"></Setter>
         </Style>
