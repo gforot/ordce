@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Data;
 using System.Windows.Media;
+using OrdiniCatCe.Gui.Constants;
 using OrdiniCatCe.Gui.Model;
 
 
@@ -16,7 +17,7 @@ namespace OrdiniCatCe.Gui.Converters
 
                 if (ro.ContainsPezzoMancante)
                 {
-                    return new SolidColorBrush(Color.FromArgb(150, 255, 0, 125));
+                    return new SolidColorBrush(AppColors.HighlightProblemBackColor);
                 }
             }
 

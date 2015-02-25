@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
+using OrdiniCatCe.Gui.Constants;
+
 
 namespace OrdiniCatCe.Gui.Converters
 {
@@ -18,7 +20,7 @@ namespace OrdiniCatCe.Gui.Converters
                 bool? mancante = (bool?)value;
                 if (mancante.HasValue && mancante.Value)
                 {
-                    return new SolidColorBrush(Colors.OrangeRed);
+                    return new SolidColorBrush(AppColors.HighlightProblemBackColor);
                 }
             }
             return new SolidColorBrush(Colors.Transparent);
