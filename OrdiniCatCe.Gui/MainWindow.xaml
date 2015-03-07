@@ -13,6 +13,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.Resources>
+            <converters:ContattoConverter x:Key="contattoConverter" />
             <converters:RowBackgroundConverter x:Key="backgroundConverter" />
             <converters:ButtonEnabledConverter x:Key="buttonEnabledConverter" />
             <converters:ValidEMailConverter x:Key="validEMailConverter" />
@@ -77,15 +78,12 @@
                 <DataGridTextColumn Header="Cognome"  Binding="{Binding Cognome}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Nome"  Binding="{Binding Nome}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Indirizzo" Binding="{Binding Indirizzo}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Città" Binding="{Binding Localita}" IsReadOnly="True" />
                 <!--<DataGridTextColumn Header="Marca" Binding="{Binding Marche.Nome}" IsReadOnly="True" />-->
                 <!--<DataGridTextColumn Header="Descrizione" Binding="{Binding Descrizione}" IsReadOnly="True" />-->
-                <DataGridTextColumn Header="Telefono"  Binding="{Binding Telefono}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Contatto"  Binding="{Binding Converter={StaticResource contattoConverter}}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Modalita" Binding="{Binding ModalitàAvviso}" IsReadOnly="True" />
-                <!--<DataGridTextColumn Header="Fornitore" Binding="{Binding Fornitori.Name}"  IsReadOnly="True" />-->
-                <!--<DataGridTextColumn Header="Data Richiesta" Binding="{Binding DataRichiesta, StringFormat={}{0:dd/MM/yyyy hh:mm tt}, ConverterCulture=it-IT}"  IsReadOnly="True" />-->
                 <DataGridTextColumn Header="Data Richiesta" Binding="{Binding DataRichiesta, StringFormat={}{0:dd/MM/yyyy}, ConverterCulture=it-IT}"  IsReadOnly="True" />
-                <DataGridCheckBoxColumn Header="Avvisato" Binding="{Binding Avvisato}" IsReadOnly="True"/>
-                <DataGridCheckBoxColumn Header="Ritirato" Binding="{Binding Ritirato}" IsReadOnly="True" />
 
                 <!-- Cancella -->
                 <DataGridTemplateColumn>
