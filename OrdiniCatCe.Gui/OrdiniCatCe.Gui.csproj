@@ -132,6 +132,7 @@
     <Compile Include="Converters\AvvisatoBackgroundConverter.cs" />
     <Compile Include="Converters\ContattoConverter.cs" />
     <Compile Include="Converters\DatetimeIfExistsConverter.cs" />
+    <Compile Include="Converters\NofConverter.cs" />
     <Compile Include="Converters\RowBackgroundConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverterInverted.cs" />

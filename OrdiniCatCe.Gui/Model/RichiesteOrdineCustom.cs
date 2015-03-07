@@ -16,5 +16,12 @@ namespace OrdiniCatCe.Gui.Model
             }
         }
 
+        public int NumberOfPezzi
+        {
+            get
+            {
+                return PezziInOrdine == null ? 0 : PezziInOrdine.Count;
+            }
+        }
     }
 }
