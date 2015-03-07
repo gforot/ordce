@@ -136,6 +136,15 @@ namespace OrdiniCatCe.Gui.ViewModel
             set
             {
                 _pezzo.Ordinato = value;
+
+                if (value)
+                {
+                    DataOrdinato = DateTime.Now;
+                }
+                else
+                {
+                    DataOrdinato = null;
+                }
                 RaisePropertyChanged(_ordinatoPrpName);
             }
         }
@@ -153,6 +162,18 @@ namespace OrdiniCatCe.Gui.ViewModel
             set
             {
                 _pezzo.Arrivato = value;
+
+                if (value)
+                {
+                    DataArrivato = DateTime.Now;
+                }
+                else
+                {
+                    DataArrivato = null;
+                }
+                
+                
+
                 RaisePropertyChanged(_arrivatoPrpName);
             }
         }
@@ -169,6 +190,16 @@ namespace OrdiniCatCe.Gui.ViewModel
             set
             {
                 _pezzo.Ritirato = value;
+
+                if (value)
+                {
+                    DataRitirato = DateTime.Now;
+                }
+                else
+                {
+                    DataRitirato = null;
+                }
+
                 RaisePropertyChanged(_ritiratoPrpName);
             }
         }
@@ -202,6 +233,16 @@ namespace OrdiniCatCe.Gui.ViewModel
             set
             {
                 _pezzo.Avvisato = value;
+
+                if (value)
+                {
+                    DataAvvisato = DateTime.Now;
+                }
+                else
+                {
+                    DataAvvisato = null;
+                }
+
                 RaisePropertyChanged(_avvisatoPrpName);
             }
         }

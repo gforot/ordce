@@ -299,6 +299,10 @@ namespace OrdiniCatCe.Gui.ViewModel
                     Caparra = null;
                     DataCaparra = null;
                 }
+                else
+                {
+                    DataCaparra = DateTime.Now;
+                }
 
                 RaisePropertyChanged(_ricevutoCaparraPrpName);
             }
