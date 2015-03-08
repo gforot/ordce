@@ -14,9 +14,9 @@
         <converters:DatetimeIfExistsConverter x:Key="datetimeIfExistsConverter"></converters:DatetimeIfExistsConverter>
 
         <DataTemplate x:Key="orderedItemTemplate" >
-            <Border Height="Auto" BorderBrush="LightSlateGray" BorderThickness="1" CornerRadius="2" HorizontalAlignment="Stretch">
+            <Border ToolTipService.ShowDuration="15000" Height="Auto" BorderBrush="LightSlateGray" BorderThickness="1" CornerRadius="2" HorizontalAlignment="Stretch">
                 <Border.ToolTip>
-                    <ToolTip>
+                    <ToolTip >
                         <Grid Background="{Binding Mancante, Converter={StaticResource mancanteConverter}}">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
@@ -43,7 +43,7 @@
                             <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding Ordinato, StringFormat=Ordinato : {0}, Converter={StaticResource yesNoConverter}}" />
                             <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding Arrivato, StringFormat=Arrivato : {0}, Converter={StaticResource yesNoConverter}}" />
                             <TextBlock Grid.Row="5" Grid.Column="0" Text="{Binding Avvisato, StringFormat=Avvisato : {0}, Converter={StaticResource yesNoConverter}}" />
-                            <TextBlock Grid.Row="6" Grid.Column="0" Text="{Binding Ritirato, StringFormat=Avvisato : {0}, Converter={StaticResource yesNoConverter}}" />
+                            <TextBlock Grid.Row="6" Grid.Column="0" Text="{Binding Ritirato, StringFormat=Ritirato : {0}, Converter={StaticResource yesNoConverter}}" />
 
                             <TextBlock Grid.Row="3" Grid.Column="1" >
                                 <TextBlock.Text>
