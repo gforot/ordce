@@ -26,6 +26,8 @@
                                 <RowDefinition />
                                 <RowDefinition />
                                 <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -81,6 +83,8 @@
                                 </TextBlock.Text>
                             </TextBlock>
 
+                            <TextBlock Grid.Row="7" Grid.Column="0" Text="{Binding Sprovvisto, StringFormat=Sprovvisto : {0}, Converter={StaticResource yesNoConverter}}" />
+                            <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding FuoriStock, StringFormat=FuoriStock : {0}, Converter={StaticResource yesNoConverter}}" />
                         </Grid>
                     </ToolTip>
                 </Border.ToolTip>
@@ -88,12 +92,14 @@
                 <Grid Background="{Binding Mancante, Converter={StaticResource mancanteConverter}}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="{Binding Codice}" />
                     <TextBlock Grid.Column="1" Text="{Binding Description}" />
-                    <Button Grid.Column="2" Content="Modifica" Command="{Binding RelativeSource=
+                    <TextBlock Grid.Column="2" Text="{Binding Fornitori.Name}" />
+                    <Button Grid.Column="3" Content="Modifica" Command="{Binding RelativeSource=
                         {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}, Path= DataContext.UpdatePezzoCommand}" CommandParameter="{Binding}"></Button>
                 </Grid>
             </Border>

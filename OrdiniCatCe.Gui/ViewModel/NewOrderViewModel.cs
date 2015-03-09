@@ -187,8 +187,10 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             get
             {
+                string tmpStr;
                 return !string.IsNullOrEmpty(this.Nome) &&
-                       !string.IsNullOrEmpty(this.Cognome);
+                       !string.IsNullOrEmpty(this.Cognome) && 
+                       Check(out tmpStr);
             }
         }
 
