@@ -205,18 +205,34 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
         #endregion
 
-        #region Mancante
-        private const string _mancantePrpName = "Mancante";
-        public bool Mancante
+        #region Sprovvisto
+        private const string _sprovvistoPrpName = "Sprovvisto";
+        public bool Sprovvisto
         {
             get
             {
-                return _pezzo.Mancante;
+                return _pezzo.Sprovvisto;
             }
             set
             {
-                _pezzo.Mancante = value;
-                RaisePropertyChanged(_mancantePrpName);
+                _pezzo.Sprovvisto = value;
+                RaisePropertyChanged(_sprovvistoPrpName);
+            }
+        }
+        #endregion
+
+        #region FuoriStock
+        private const string _fuoriStockPrpName = "FuoriStock";
+        public bool FuoriStock
+        {
+            get
+            {
+                return _pezzo.FuoriStock;
+            }
+            set
+            {
+                _pezzo.FuoriStock = value;
+                RaisePropertyChanged(_fuoriStockPrpName);
             }
         }
         #endregion
@@ -318,7 +334,8 @@ namespace OrdiniCatCe.Gui.ViewModel
             _pezzo.IdRichiestaOrdine = idRigaOrdine;
             _pezzo.Codice = string.Empty;
             _pezzo.Description = string.Empty;
-            _pezzo.Mancante = false;
+            _pezzo.Sprovvisto = false;
+            _pezzo.FuoriStock = false;
             _pezzo.Arrivato = false;
             _pezzo.Ordinato = false;
             _pezzo.Ritirato = false;

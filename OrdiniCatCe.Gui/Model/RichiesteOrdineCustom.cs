@@ -8,11 +8,11 @@ namespace OrdiniCatCe.Gui.Model
         /// <summary>
         /// Torna true se esiste almeno un pezzo mancante.
         /// </summary>
-        public bool ContainsPezzoMancante
+        public bool ContainsPezzoSprovvisto
         {
             get
             {
-                return PezziInOrdine != null && PezziInOrdine.Any(p => p.Mancante);
+                return PezziInOrdine != null && PezziInOrdine.Any(p => p.Sprovvisto);
             }
         }
 

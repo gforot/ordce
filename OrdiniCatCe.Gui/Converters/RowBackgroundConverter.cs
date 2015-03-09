@@ -15,7 +15,7 @@ namespace OrdiniCatCe.Gui.Converters
             {
                 RichiesteOrdine ro = value as RichiesteOrdine;
 
-                if (ro.ContainsPezzoMancante)
+                if (ro.ContainsPezzoSprovvisto)
                 {
                     return new SolidColorBrush(AppColors.HighlightProblemBackColor);
                 }

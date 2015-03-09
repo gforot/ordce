@@ -31,9 +31,13 @@ namespace OrdiniCatCe.Gui.Converters
                     case "ritirati":
                         n = ro.PezziInOrdine.Where(p => p.Ritirato).Count();
                         break;
-                    case "mancanti":
-                        n = ro.PezziInOrdine.Where(p => p.Mancante).Count();
+                    case "sprovvisti":
+                        n = ro.PezziInOrdine.Where(p => p.Sprovvisto).Count();
                         break;
+                    case "fuoristock":
+                        n = ro.PezziInOrdine.Where(p => p.FuoriStock).Count();
+                        break;
+
                 }
 
                 return string.Format("{0}/{1}", n, ro.NumberOfPezzi);

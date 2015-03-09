@@ -90,8 +90,8 @@
                 <DataGridTextColumn Header="Arrivati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Arrivati}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Avvisati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Avvisati}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Ritirati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Ritirati}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Mancanti" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Mancanti}" IsReadOnly="True" />
-                
+                <DataGridTextColumn Header="Sprovvisti" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Sprovvisti}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Fuori Stock" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Fuoristock}" IsReadOnly="True" />
                 <!-- Cancella -->
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>

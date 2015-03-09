@@ -17,7 +17,6 @@ namespace OrdiniCatCe.Gui.Model
         public int Id { get; set; }
         public string Description { get; set; }
         public bool Arrivato { get; set; }
-        public bool Mancante { get; set; }
         public int IdRichiestaOrdine { get; set; }
         public string Codice { get; set; }
         public Nullable<decimal> PrezzoAcquisto { get; set; }
@@ -31,6 +30,8 @@ namespace OrdiniCatCe.Gui.Model
         public Nullable<System.DateTime> DataOrdinato { get; set; }
         public Nullable<System.DateTime> DataArrivato { get; set; }
         public Nullable<System.DateTime> DataRitirato { get; set; }
+        public bool FuoriStock { get; set; }
+        public bool Sprovvisto { get; set; }
     
         public virtual Fornitori Fornitori { get; set; }
         public virtual Marche Marche { get; set; }
