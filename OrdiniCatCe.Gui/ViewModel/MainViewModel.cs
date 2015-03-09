@@ -15,6 +15,7 @@ using Microsoft.Practices.ServiceLocation;
 using OrdiniCatCe.Gui.Db;
 using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
+using OrdiniCatCe.Gui.Utils.Logging;
 using OrdiniCatCe.Gui.View;
 
 
