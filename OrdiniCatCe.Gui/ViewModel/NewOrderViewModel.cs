@@ -210,6 +210,8 @@ namespace OrdiniCatCe.Gui.ViewModel
             ro.Cognome = Cognome;
             ro.Cellulare = Cellulare;
             ro.EMail = EMail;
+            ro.NumeroCivico = NumeroCivico;
+            ro.Localita = Localita;
             ro.Indirizzo = Indirizzo;
             ro.Telefono = Telefono;
             ro.DataCaparra = DateTime.Today;
