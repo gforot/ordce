@@ -73,8 +73,10 @@
         <TextBlock Text="Ritirato" Grid.Row="4" Grid.Column="4" />
         <CheckBox IsChecked="{Binding Ritirato}"  Grid.Row="4" Grid.Column="5" />
         <DatePicker SelectedDate="{Binding DataRitirato}" Grid.Row="4" Grid.Column="6" Grid.ColumnSpan="2" />
-        <TextBlock Text="Mancante" Grid.Row="5" Grid.Column="0" />
-        <CheckBox IsChecked="{Binding Mancante}" Grid.Row="5" Grid.Column="1" />
+        <TextBlock Text="Sprovvisto" Grid.Row="5" Grid.Column="0" />
+        <CheckBox IsChecked="{Binding Sprovvisto}" Grid.Row="5" Grid.Column="1" />
+        <TextBlock Text="Fuori Stock" Grid.Row="5" Grid.Column="2" />
+        <CheckBox IsChecked="{Binding FuoriStock}" Grid.Row="5" Grid.Column="3" />
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="8">
             <Button Style="{StaticResource 75ButtonsStyle}" Content="Esci" Command="{Binding AnnullaCommand}"/>
