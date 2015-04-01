@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
-        Title="Gestione Ordini" Height="800" Width="1000" Style="{StaticResource wndStyle}">
+        Title="Gestione Ordini" Height="800" Width="1000" Style="{StaticResource wndStyle}" WindowState="Maximized">
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
