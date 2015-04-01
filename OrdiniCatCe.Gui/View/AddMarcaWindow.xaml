@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding AddMarcaViewModel, Source={StaticResource Locator}}"
-        Title="Nuova Marca" MinHeight="100" MaxHeight="180" MinWidth="280" MaxWidth="500" Style="{StaticResource wndStyle}" Height="90" Width="261">
+        Title="Nuova Marca" MinHeight="130" MaxHeight="180" MinWidth="350" MaxWidth="500" Style="{StaticResource wndStyle}" Height="130" Width="350">
     <Grid>
         <Grid.Resources>
             <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
