@@ -18,9 +18,14 @@
         </Grid.ColumnDefinitions>
         <Grid.Resources>
 
-            <Style TargetType="Button" BasedOn="{StaticResource 100ButtonsStyle}">
+            <Style TargetType="Button" BasedOn="{StaticResource 150ButtonsStyle}" x:Key="200Style">
+                <Setter Property="Background" Value="LemonChiffon" />
+                <Setter Property="Width" Value="200"></Setter>
+            </Style>
+            <Style TargetType="Button" BasedOn="{StaticResource 150ButtonsStyle}" x:Key="150Style">
                 <Setter Property="Background" Value="LemonChiffon" />
             </Style>
+            <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
             <converters:ContattoConverter x:Key="contattoConverter" />
             <converters:RowBackgroundConverter x:Key="backgroundConverter" />
             <converters:ButtonEnabledConverter x:Key="buttonEnabledConverter" />
@@ -31,6 +36,7 @@
             <converters:VisualizzaStoricoTextConverter x:Key="visualizzaStoricoTextConverter" />
             <converters:OrdinatoBackgroundConverter x:Key="ordinatoBackgroundConverter" />
             <converters:NofConverter x:Key="nofConverter" />
+            <converters:StoricoBackgroundConverter x:Key="storicoBackgroundConverter"></converters:StoricoBackgroundConverter>
             <Style TargetType="Button" x:Key="eraserButtonStyle">
                 <Setter Property="Margin" Value="5"></Setter>
             </Style>
@@ -51,9 +57,11 @@
             </MenuItem>
         </Menu>
 
-        <Border x:Name="brdActions" Grid.Row="1" Grid.ColumnSpan="2" Margin="5" CornerRadius="2" BorderThickness="3" BorderBrush="LightBlue">
+        <Border Background="{Binding VisualizzaStorico, Converter={StaticResource storicoBackgroundConverter}}" Grid.Row="1" Grid.ColumnSpan="2" Margin="5" CornerRadius="2" BorderThickness="3" BorderBrush="LightBlue">
             <StackPanel Orientation="Horizontal" >
-                <Button Content="NuovoOrdine" Command="{Binding AddOrdineCommand}" />
+                <Button Content="Nuovo Ordine" Command="{Binding AddOrdineCommand}" Style="{StaticResource 150Style}" />
+                <Button Content="{Binding VisualizzaStorico, Converter={StaticResource visualizzaStoricoTextConverter}}" Style="{StaticResource 200Style}" Command="{Binding ViewStoricoCommand}" />
+                <Label Content="STORICO" FontSize="26" FontWeight="Bold" Visibility="{Binding VisualizzaStorico, Converter={StaticResource boolToVisibilityConverter}}"></Label>
             </StackPanel>
         </Border>
         <StackPanel x:Name="FiltersPanel" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">

@@ -145,6 +145,7 @@
     <Compile Include="Converters\ObjectToEnabledConverter.cs" />
     <Compile Include="Converters\OrdinatoBackgroundConverter.cs" />
     <Compile Include="Converters\RitiratoBackgroundConverter.cs" />
+    <Compile Include="Converters\StoricoBackgroundConverter.cs" />
     <Compile Include="Converters\TextboxBackgroundConverter.cs" />
     <Compile Include="Converters\ValidEMailConverter.cs" />
     <Compile Include="Converters\VisualizzaStoricoTextConverter.cs" />
