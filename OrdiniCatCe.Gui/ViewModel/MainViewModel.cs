@@ -269,6 +269,14 @@ namespace OrdiniCatCe.Gui.ViewModel
             DetailWindow detailWindow = new DetailWindow();
             ServiceLocator.Current.GetInstance<DetailViewModel>().Setup(msg.RigaOrdine, true);
             detailWindow.ShowDialog();
+
+            if (detailWindow.MyDialogResult)
+            {
+                //update
+                Messenger.Default.Send<UpdateRigaOrdineMessage>(
+                                                                new UpdateRigaOrdineMessage(detailWindow.CreateRigaOrdine()),
+                                                                MsgKeys.UpdateRigaOrdineKey);
+            }
         }
 
         private void OnAddMarcaToDbRequested(AddMarcaMessage message)
