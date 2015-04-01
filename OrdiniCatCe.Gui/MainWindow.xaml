@@ -61,7 +61,7 @@
             <StackPanel Orientation="Horizontal" >
                 <Button Content="Nuovo Ordine" Command="{Binding AddOrdineCommand}" Style="{StaticResource 150Style}" />
                 <Button Content="{Binding VisualizzaStorico, Converter={StaticResource visualizzaStoricoTextConverter}}" Style="{StaticResource 200Style}" Command="{Binding ViewStoricoCommand}" />
-                <Label Content="STORICO" FontSize="26" FontWeight="Bold" Visibility="{Binding VisualizzaStorico, Converter={StaticResource boolToVisibilityConverter}}"></Label>
+                <Label Content="STORICO" FontSize="26" FontWeight="Bold" Visibility="{Binding VisualizzaStorico, Converter={StaticResource boolToVisibilityConverter}}" Foreground="#FFFF4656"/>
             </StackPanel>
         </Border>
         <StackPanel x:Name="FiltersPanel" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
@@ -92,6 +92,7 @@
         </StackPanel>
         <DataGrid x:Name="grid" CanUserAddRows="false" CanUserDeleteRows="False" AutoGenerateColumns="False"
                   ItemsSource="{Binding RigheOrdine}" Grid.Row="3" Grid.ColumnSpan="2"
+                  Background="{Binding VisualizzaStorico, Converter={StaticResource storicoBackgroundConverter}}"
                   >
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">

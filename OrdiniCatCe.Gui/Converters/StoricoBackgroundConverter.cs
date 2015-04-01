@@ -13,7 +13,7 @@ namespace OrdiniCatCe.Gui.Converters
         {
             if((value is bool) && ((bool)value))
             {
-                return new SolidColorBrush(Colors.Blue);
+                return new SolidColorBrush(Colors.LightBlue);
             }
             return new SolidColorBrush(Colors.Transparent);
         }
