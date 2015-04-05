@@ -321,6 +321,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="todo.txt" />
     <Content Include="x64\sqlceer40EN.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

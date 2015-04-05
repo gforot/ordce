@@ -1,0 +1,8 @@
+﻿1)Anagrafica Marche:
+	- allargare la finestra
+	- controllare la cancellazione dell'oggetto che non è permessa. (eccezione)
+	STESSO COMPORTAMENTO IN ANAGRAFICA FORNITORI
+2) Inserimento di 2 clienti:
+	-rimane memorizzato l'indirizzo e la modalità di avviso del cliente precedente.
+3) Gestione della modalità di avviso:
+	- possibilità di segnare + di una modalità: passare a checkbox
