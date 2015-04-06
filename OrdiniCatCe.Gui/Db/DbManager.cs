@@ -133,29 +133,92 @@ namespace OrdiniCatCe.Gui.Db
         {
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                Fornitori f = GetFornitore(id);
-                if (f == null)
+                bool oldValidateOnSaveEnabled = db.Configuration.ValidateOnSaveEnabled;
+
+                try
                 {
-                    return;
+                    db.Configuration.ValidateOnSaveEnabled = false;
+                    var fornitore = new Fornitori() { Id = id };
+
+                    db.Fornitori.Attach(fornitore);
+                    db.Entry(fornitore).State = EntityState.Deleted;
+                    db.SaveChanges();
                 }
-                db.Fornitori.Remove(f);
-                db.SaveChanges();
+                finally
+                {
+                    db.Configuration.ValidateOnSaveEnabled = oldValidateOnSaveEnabled;
+                }
             }
         }
+
+        //public static void RemoveFornitore(int id)
+        //{
+        //    using (OrdiniEntities db = new OrdiniEntities())
+        //    {
+        //        Fornitori f = GetFornitore(id);
+        //        if (f == null)
+        //        {
+        //            return;
+        //        }
+        //        db.Fornitori.Remove(f);
+        //        db.SaveChanges();
+        //    }
+        //}
+
+        //public static void RemoveMarca(int id)
+        //{
+        //    using (OrdiniEntities db = new OrdiniEntities())
+        //    {
+        //        Marche m = GetMarca(id);
+        //        if (m == null)
+        //        {
+        //            return;
+        //        }
+        //        db.Marche.Remove(m);
+        //        db.SaveChanges();
+        //    }
+        //}
 
         public static void RemoveMarca(int id)
         {
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                Marche m = GetMarca(id);
-                if (m == null)
+                bool oldValidateOnSaveEnabled = db.Configuration.ValidateOnSaveEnabled;
+
+                try
                 {
-                    return;
+                    db.Configuration.ValidateOnSaveEnabled = false;
+                    var marca = new Marche() { Id = id };
+
+                    db.Marche.Attach(marca);
+                    db.Entry(marca).State = EntityState.Deleted;
+                    db.SaveChanges();
                 }
-                db.Marche.Remove(m);
-                db.SaveChanges();
+                finally
+                {
+                    db.Configuration.ValidateOnSaveEnabled = oldValidateOnSaveEnabled;
+                }
             }
+
         }
+
+
+        /*bool oldValidateOnSaveEnabled = localDb.Configuration.ValidateOnSaveEnabled;
+
+try
+{
+  localDb.Configuration.ValidateOnSaveEnabled = false;
+
+  var customer = new Customer { CustomerId = id };
+
+  localDb.Customers.Attach(customer);
+  localDb.Entry(customer).State = EntityState.Deleted;
+  localDb.SaveChanges();
+}
+finally
+{
+  localDb.Configuration.ValidateOnSaveEnabled = oldValidateOnSaveEnabled;
+}*/
 
         public static List<PezziInOrdine> GetPezziByIdRichiesta(int id)
         {
@@ -168,6 +231,22 @@ namespace OrdiniCatCe.Gui.Db
             using (OrdiniEntities db = new OrdiniEntities())
             {
                 return db.Fornitori.First(f => f.Id == idFornitore);
+            }
+        }
+
+        public static List<Fornitori> GetFornitori()
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                return db.Fornitori.ToList();
+            }
+        }
+
+        public static List<Marche> GetMarche()
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                return db.Marche.ToList();
             }
         }
 

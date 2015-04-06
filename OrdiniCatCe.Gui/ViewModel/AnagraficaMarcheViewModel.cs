@@ -67,6 +67,11 @@ namespace OrdiniCatCe.Gui.ViewModel
             DeleteCommand = new RelayCommand(Delete, () => CanDelete);
         }
 
+        private void UpdateListOfMarche()
+        {
+            _view = CollectionViewSource.GetDefaultView(DbManager.GetMarche());
+        }
+
         private void MoveNext()
         {
             if (CanMoveNext)
@@ -88,6 +93,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         private void Delete()
         {
             DbManager.RemoveMarca(CurrentMarca.Id);
+            UpdateListOfMarche();
             if (CanMovePrevoious)
             {
                 MovePrevious();

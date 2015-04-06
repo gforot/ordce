@@ -13,7 +13,7 @@ namespace OrdiniCatCe.Gui.ViewModel
 {
     public class AnagraficaFornitoreViewModel : ViewModelBase
     {
-        private readonly ICollectionView _view;
+        private ICollectionView _view;
 
         public FornitoriCollection Fornitori { get; set; }
 
@@ -107,6 +107,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         private void Delete()
         {
             DbManager.RemoveFornitore(CurrentFornitore.Id);
+            UpdateListOfFornitori();
             if (CanMovePrevoious)
             {
                 MovePrevious();
@@ -115,6 +116,11 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 MoveNext();
             }
+        }
+
+        private void UpdateListOfFornitori()
+        {
+            _view = CollectionViewSource.GetDefaultView(DbManager.GetFornitori());
         }
 
         private bool CanDelete
