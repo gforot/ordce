@@ -25,6 +25,7 @@
             <Style TargetType="Button" BasedOn="{StaticResource 150ButtonsStyle}" x:Key="150Style">
                 <Setter Property="Background" Value="LemonChiffon" />
             </Style>
+            <converters:ModalitaAvvisoConverter x:Key="modalitaAvvisoConverter" />
             <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
             <converters:ContattoConverter x:Key="contattoConverter" />
             <converters:RowBackgroundConverter x:Key="backgroundConverter" />
@@ -108,7 +109,7 @@
                 <!--<DataGridTextColumn Header="Marca" Binding="{Binding Marche.Nome}" IsReadOnly="True" />-->
                 <!--<DataGridTextColumn Header="Descrizione" Binding="{Binding Descrizione}" IsReadOnly="True" />-->
                 <DataGridTextColumn Header="Contatto"  Binding="{Binding Converter={StaticResource contattoConverter}}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Modalita" Binding="{Binding ModalitàAvviso}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Modalita" Binding="{Binding ModalitàAvviso, Converter={StaticResource modalitaAvvisoConverter}}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Data Richiesta" Binding="{Binding DataRichiesta, StringFormat={}{0:dd/MM/yyyy}, ConverterCulture=it-IT}"  IsReadOnly="True" />
                 <DataGridTextColumn Header="N Pezzi" Binding="{Binding NumberOfPezzi}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Ordinati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Ordinati}" IsReadOnly="True" />

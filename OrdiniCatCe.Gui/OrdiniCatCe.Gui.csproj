@@ -132,6 +132,7 @@
     <Compile Include="Converters\AvvisatoBackgroundConverter.cs" />
     <Compile Include="Converters\ContattoConverter.cs" />
     <Compile Include="Converters\DatetimeIfExistsConverter.cs" />
+    <Compile Include="Converters\ModalitaAvvisoConverter.cs" />
     <Compile Include="Converters\NofConverter.cs" />
     <Compile Include="Converters\RowBackgroundConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Model\RichiesteOrdineCustom.cs" />
     <Compile Include="Utils\Logging\LogFile.cs" />
     <Compile Include="Utils\Logging\LogHelper.cs" />
+    <Compile Include="Utils\Utilities.cs" />
     <Compile Include="Validation\EMailValidator.cs" />
     <Compile Include="ViewModel\AddFornitoreViewModel.cs" />
     <Compile Include="ViewModel\AddMarcaViewModel.cs" />

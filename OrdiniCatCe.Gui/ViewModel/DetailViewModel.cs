@@ -12,6 +12,7 @@ using OrdiniCatCe.Gui.Messages;
 using OrdiniCatCe.Gui.Model;
 using OrdiniCatCe.Gui.View;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
+using OrdiniCatCe.Gui.Utils;
 
 
 namespace OrdiniCatCe.Gui.ViewModel
@@ -327,10 +328,7 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         private void UpdateComponentsFromModalitaAvviso()
         {
-            _avvisatoCellulare = ((((OrdiniCatCe.Gui.Model.ModalitaAvviso)ModalitaAvviso) & OrdiniCatCe.Gui.Model.ModalitaAvviso.Cellulare) == OrdiniCatCe.Gui.Model.ModalitaAvviso.Cellulare);
-            _avvisatoTelefono = ((((OrdiniCatCe.Gui.Model.ModalitaAvviso)ModalitaAvviso) & OrdiniCatCe.Gui.Model.ModalitaAvviso.Telefono) == OrdiniCatCe.Gui.Model.ModalitaAvviso.Telefono);
-            _avvisatoEMail = ((((OrdiniCatCe.Gui.Model.ModalitaAvviso)ModalitaAvviso) & OrdiniCatCe.Gui.Model.ModalitaAvviso.EMail) == OrdiniCatCe.Gui.Model.ModalitaAvviso.EMail);
-
+            Utilities.ParseModalitaAvviso(ModalitaAvviso, out _avvisatoTelefono, out _avvisatoCellulare, out _avvisatoEMail);
             RaisePropertyChanged(_avvisatoCellularePrpName);
             RaisePropertyChanged(_avvisatoEMailPrpName);
             RaisePropertyChanged(_avvisatoTelefonoPrpName);
