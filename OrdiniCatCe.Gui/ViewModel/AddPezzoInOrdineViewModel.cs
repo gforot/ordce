@@ -101,7 +101,10 @@ namespace OrdiniCatCe.Gui.ViewModel
             set
             {
                 _marca = value;
-                _pezzo.IdMarca = _marca.Id;
+                if (_marca != null)
+                {
+                    _pezzo.IdMarca = _marca.Id;
+                }
                 RaisePropertyChanged(_marcaPrpName);
             }
         }
@@ -119,7 +122,10 @@ namespace OrdiniCatCe.Gui.ViewModel
             set
             {
                 _fornitore = value;
-                _pezzo.IdFornitore = _fornitore.Id;
+                if (_fornitore != null)
+                {
+                    _pezzo.IdFornitore = _fornitore.Id;
+                }
                 RaisePropertyChanged(_fornitorePrpName);
             }
         }
@@ -347,6 +353,8 @@ namespace OrdiniCatCe.Gui.ViewModel
             _pezzo.DataOrdinato = null;
             _pezzo.IdFornitore = null;
             _pezzo.IdMarca = null;
+            Marca = null;
+            Fornitore = null;
         }
 
         public void Setup(PezziInOrdine pezzoDaModificare)
