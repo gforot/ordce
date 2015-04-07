@@ -23,7 +23,7 @@ namespace OrdiniCatCe.Gui.Model
         public string Telefono { get; set; }
         public string EMail { get; set; }
         public string Cellulare { get; set; }
-        public ModalitaDiAvviso ModalitàAvviso { get; set; }
+        public int ModalitàAvviso { get; set; }
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Cognome { get; set; }

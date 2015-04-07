@@ -244,10 +244,11 @@ namespace OrdiniCatCe.Gui.ViewModel
         #endregion
 
         #region ModalitaAvviso
+        private bool _updateModalitaAvvisoComponents = true;
         private const string _modalitaAvvisoPrpName = "ModalitaAvviso";
-        private ModalitaDiAvviso _modalitaAvviso;
+        private Int32 _modalitaAvviso;
 
-        public ModalitaDiAvviso ModalitaAvviso
+        public Int32 ModalitaAvviso
         {
             get
             {
@@ -256,10 +257,115 @@ namespace OrdiniCatCe.Gui.ViewModel
             set
             {
                 _modalitaAvviso = value;
+
+                if (_updateModalitaAvvisoComponents)
+                {
+                    UpdateComponentsFromModalitaAvviso();
+                }
+
                 RaisePropertyChanged(_modalitaAvvisoPrpName);
             }
         }
         #endregion
+
+        #region AvvisatoTelefono
+        private const string _avvisatoTelefonoPrpName = "AvvisatoTelefono";
+        private bool _avvisatoTelefono;
+
+        public bool AvvisatoTelefono
+        {
+            get
+            {
+                return _avvisatoTelefono;
+            }
+            set
+            {
+                _avvisatoTelefono = value;
+                UpdateModalitaAvviso();
+                RaisePropertyChanged(_avvisatoTelefonoPrpName);
+            }
+        } 
+        #endregion
+
+        #region AvvisatoCellulare
+        private const string _avvisatoCellularePrpName = "AvvisatoCellulare";
+        private bool _avvisatoCellulare;
+
+        public bool AvvisatoCellulare
+        {
+            get
+            {
+                return _avvisatoCellulare;
+            }
+            set
+            {
+                _avvisatoCellulare = value;
+                UpdateModalitaAvviso();
+                RaisePropertyChanged(_avvisatoCellularePrpName);
+            }
+        } 
+        #endregion
+
+        #region AvvisatoEMail
+        private const string _avvisatoEMailPrpName = "AvvisatoEMail";
+        private bool _avvisatoEMail;
+
+        public bool AvvisatoEMail
+        {
+            get
+            {
+                return _avvisatoEMail;
+            }
+            set
+            {
+                _avvisatoEMail = value;
+                UpdateModalitaAvviso();
+                RaisePropertyChanged(_avvisatoEMailPrpName);
+            }
+        } 
+        #endregion
+
+        private void UpdateComponentsFromModalitaAvviso()
+        {
+            _avvisatoCellulare = ((((OrdiniCatCe.Gui.Model.ModalitaAvviso)ModalitaAvviso) & OrdiniCatCe.Gui.Model.ModalitaAvviso.Cellulare) == OrdiniCatCe.Gui.Model.ModalitaAvviso.Cellulare);
+            _avvisatoTelefono = ((((OrdiniCatCe.Gui.Model.ModalitaAvviso)ModalitaAvviso) & OrdiniCatCe.Gui.Model.ModalitaAvviso.Telefono) == OrdiniCatCe.Gui.Model.ModalitaAvviso.Telefono);
+            _avvisatoEMail = ((((OrdiniCatCe.Gui.Model.ModalitaAvviso)ModalitaAvviso) & OrdiniCatCe.Gui.Model.ModalitaAvviso.EMail) == OrdiniCatCe.Gui.Model.ModalitaAvviso.EMail);
+
+            RaisePropertyChanged(_avvisatoCellularePrpName);
+            RaisePropertyChanged(_avvisatoEMailPrpName);
+            RaisePropertyChanged(_avvisatoTelefonoPrpName);
+        }
+
+        private void UpdateModalitaAvviso()
+        {
+            int modalitaAvviso = 0;
+
+            if (_avvisatoTelefono)
+            {
+                modalitaAvviso += (int)OrdiniCatCe.Gui.Model.ModalitaAvviso.Telefono;
+            }
+            if (_avvisatoCellulare)
+            {
+                modalitaAvviso += (int)OrdiniCatCe.Gui.Model.ModalitaAvviso.Cellulare;
+            }
+            if (_avvisatoEMail)
+            {
+                modalitaAvviso += (int)OrdiniCatCe.Gui.Model.ModalitaAvviso.EMail;
+            }
+
+            try
+            {
+                _updateModalitaAvvisoComponents = false;
+                ModalitaAvviso = modalitaAvviso;
+            }
+            finally
+            {
+                _updateModalitaAvvisoComponents = true;
+            }
+        }
+
+
+
 
         #region IdMarca
         private const string _idMarcaPrpName = "IdMarca";
@@ -566,7 +672,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             NumeroCivico = string.Empty;
             Cellulare = string.Empty;
             DataRichiesta = DateTime.Today;
-            ModalitaAvviso = ModalitaDiAvviso.NonDefinito;
+            ModalitaAvviso = 0;
             DataCaparra = DateTime.Today;
             Caparra = null;
             RicevutoCaparra = false;

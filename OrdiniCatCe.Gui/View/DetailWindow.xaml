@@ -251,20 +251,18 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
-                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Modalità Avviso" Grid.Row="1" Grid.Column="0"></TextBlock>
-                <RadioButton Grid.Row="1" Grid.Column="1" IsChecked="{Binding Path=ModalitaAvviso, Converter={StaticResource enumBooleanConverter}, ConverterParameter=NonDefinito}">Non Definito</RadioButton>
-                <RadioButton Grid.Row="1" Grid.Column="2" IsChecked="{Binding Path=ModalitaAvviso, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Telefono}">Telefono</RadioButton>
-                <RadioButton Grid.Row="1" Grid.Column="3" IsChecked="{Binding Path=ModalitaAvviso, Converter={StaticResource enumBooleanConverter}, ConverterParameter=EMail}">EMail</RadioButton>
-                <RadioButton Grid.Row="1" Grid.Column="4" IsChecked="{Binding Path=ModalitaAvviso, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Segreteria}">Segreteria</RadioButton>
+                <TextBlock Text="Modalità Avviso" Grid.Column="0"></TextBlock>
+                
+                <CheckBox Grid.Column="1" Content="Telefono" IsChecked="{Binding AvvisatoTelefono}" />
+                <CheckBox Grid.Column="2" Content="Cellulare" IsChecked="{Binding AvvisatoCellulare}"/>
+                <CheckBox Grid.Column="3" Content="EMail" IsChecked="{Binding AvvisatoEMail}"/>
             </Grid>
         </Border>
         <Border x:Name="brdRitirato" >

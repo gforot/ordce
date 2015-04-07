@@ -167,6 +167,7 @@
     <Compile Include="Model\FornitoriCustom.cs" />
     <Compile Include="Model\MarcheCollection.cs" />
     <Compile Include="Model\MarcheCustom.cs" />
+    <Compile Include="Model\ModalitaAvviso.cs" />
     <Compile Include="Model\ModalitaDiAvviso.cs">
       <DependentUpon>OrdiniModel.tt</DependentUpon>
     </Compile>
