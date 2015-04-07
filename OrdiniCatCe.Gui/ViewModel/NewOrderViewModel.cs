@@ -289,6 +289,9 @@ namespace OrdiniCatCe.Gui.ViewModel
             EMail = string.Empty;
             Telefono = string.Empty;
             Cellulare = string.Empty;
+            Indirizzo = string.Empty;
+            Localita = string.Empty;
+            NumeroCivico = string.Empty;
         }
     }
 }
