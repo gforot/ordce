@@ -15,9 +15,9 @@ namespace OrdiniCatCe.Gui.Converters
             int modAvvisoInt = (int)value;
             string rVal = string.Empty;
 
-            bool avvEmail, avvTel, avvCell;
+            bool avvEmail, avvTel, avvCell, avvSegr;
 
-            OrdiniCatCe.Gui.Utils.Utilities.ParseModalitaAvviso(modAvvisoInt, out avvTel, out avvCell, out avvEmail);
+            OrdiniCatCe.Gui.Utils.Utilities.ParseModalitaAvviso(modAvvisoInt, out avvTel, out avvCell, out avvEmail, out avvSegr);
 
             if (avvCell)
             {
@@ -30,6 +30,10 @@ namespace OrdiniCatCe.Gui.Converters
             if (avvEmail)
             {
                 rVal = string.Concat(rVal, "Email ");
+            }
+            if (avvSegr)
+            {
+                rVal = string.Concat(rVal, "Segreteria ");
             }
 
             if (rVal.Length > 0)

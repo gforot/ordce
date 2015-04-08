@@ -251,6 +251,7 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -258,11 +259,12 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Modalità Avviso" Grid.Column="0"></TextBlock>
-                
-                <CheckBox Grid.Column="1" Content="Telefono" IsChecked="{Binding AvvisatoTelefono}" />
-                <CheckBox Grid.Column="2" Content="Cellulare" IsChecked="{Binding AvvisatoCellulare}"/>
-                <CheckBox Grid.Column="3" Content="EMail" IsChecked="{Binding AvvisatoEMail}"/>
+                <TextBlock Text="Modalità Avviso" Grid.ColumnSpan="4" HorizontalAlignment="Center"></TextBlock>
+
+                <CheckBox Grid.Row="1" Grid.Column="0" Content="Telefono" IsChecked="{Binding AvvisatoTelefono}" />
+                <CheckBox Grid.Row="1" Grid.Column="1" Content="Cellulare" IsChecked="{Binding AvvisatoCellulare}"/>
+                <CheckBox Grid.Row="1" Grid.Column="2" Content="EMail" IsChecked="{Binding AvvisatoEMail}"/>
+                <CheckBox Grid.Row="1" Grid.Column="3" Content="Segreteria" IsChecked="{Binding AvvisatoSegreteria}"/>
             </Grid>
         </Border>
         <Border x:Name="brdRitirato" >

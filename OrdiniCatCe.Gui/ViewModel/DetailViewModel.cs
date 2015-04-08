@@ -326,12 +326,32 @@ namespace OrdiniCatCe.Gui.ViewModel
         } 
         #endregion
 
+        #region AvvisatoSegreteria
+        private const string _avvisatoSegreteriaPrpName = "AvvisatoSegreteria";
+        private bool _avvisatoSegreteria;
+
+        public bool AvvisatoSegreteria
+        {
+            get
+            {
+                return _avvisatoSegreteria;
+            }
+            set
+            {
+                _avvisatoSegreteria = value;
+                UpdateModalitaAvviso();
+                RaisePropertyChanged(_avvisatoSegreteriaPrpName);
+            }
+        }
+        #endregion
+
         private void UpdateComponentsFromModalitaAvviso()
         {
-            Utilities.ParseModalitaAvviso(ModalitaAvviso, out _avvisatoTelefono, out _avvisatoCellulare, out _avvisatoEMail);
+            Utilities.ParseModalitaAvviso(ModalitaAvviso, out _avvisatoTelefono, out _avvisatoCellulare, out _avvisatoEMail, out _avvisatoSegreteria);
             RaisePropertyChanged(_avvisatoCellularePrpName);
             RaisePropertyChanged(_avvisatoEMailPrpName);
             RaisePropertyChanged(_avvisatoTelefonoPrpName);
+            RaisePropertyChanged(_avvisatoSegreteriaPrpName);
         }
 
         private void UpdateModalitaAvviso()
@@ -349,6 +369,10 @@ namespace OrdiniCatCe.Gui.ViewModel
             if (_avvisatoEMail)
             {
                 modalitaAvviso += (int)OrdiniCatCe.Gui.Model.ModalitaAvviso.EMail;
+            }
+            if (_avvisatoSegreteria)
+            {
+                modalitaAvviso += (int)OrdiniCatCe.Gui.Model.ModalitaAvviso.Segreteria;
             }
 
             try

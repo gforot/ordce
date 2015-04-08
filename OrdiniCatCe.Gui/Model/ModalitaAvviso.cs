@@ -8,5 +8,6 @@ namespace OrdiniCatCe.Gui.Model
         Telefono = 1,
         Cellulare = 2,
         EMail = 4,
+        Segreteria = 8,
     }
 }
