@@ -698,6 +698,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             DataCaparra = DateTime.Today;
             Caparra = null;
             RicevutoCaparra = false;
+            Storicizzato = false;
 
             Pezzi.Clear();
         }
@@ -718,7 +719,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             DataCaparra = richiestaOrdine.DataCaparra;
             Caparra = richiestaOrdine.Caparra;
             RicevutoCaparra = richiestaOrdine.RicevutaCaparra;
-
+            Storicizzato = richiestaOrdine.Storicizzata;
             Pezzi.Clear();
             foreach (var p in richiestaOrdine.PezziInOrdine)
             {
