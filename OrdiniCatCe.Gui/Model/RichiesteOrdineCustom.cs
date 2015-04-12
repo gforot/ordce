@@ -23,5 +23,13 @@ namespace OrdiniCatCe.Gui.Model
                 return PezziInOrdine == null ? 0 : PezziInOrdine.Count;
             }
         }
+
+        public bool ContainsPezzoArrivatoButNotAvvisato
+        {
+            get
+            {
+                return PezziInOrdine != null && PezziInOrdine.Any(p => (p.Arrivato && (!p.Avvisato)));
+            }
+        }
     }
 }

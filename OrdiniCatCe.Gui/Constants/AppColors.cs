@@ -19,6 +19,8 @@ namespace OrdiniCatCe.Gui.Constants
 
         public static Color HighlightProblemBackColor;
 
+        public static Color ArrivatoButNotAvvisatoColor;
+
         static AppColors()
         {
             OrdinatoRowBackground = Colors.Orange;
@@ -40,6 +42,7 @@ namespace OrdiniCatCe.Gui.Constants
             EnabledButtonColor.A = _alpha;
 
             HighlightProblemBackColor = Color.FromArgb(125, 255, 150, 10);
+            ArrivatoButNotAvvisatoColor = Color.FromArgb(125, 255, 0, 0);
         }
     }
 }

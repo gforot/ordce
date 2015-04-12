@@ -106,7 +106,8 @@
                 <DataGridTextColumn Header="N Pezzi" Binding="{Binding NumberOfPezzi}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Ordinati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Ordinati}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Arrivati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Arrivati}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Avvisati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Avvisati}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Avvisati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Avvisati}" IsReadOnly="True" >
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Ritirati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Ritirati}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Sprovvisti" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Sprovvisti}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Fuori Stock" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Fuoristock}" IsReadOnly="True" />

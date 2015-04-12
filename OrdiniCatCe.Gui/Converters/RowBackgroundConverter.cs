@@ -15,6 +15,11 @@ namespace OrdiniCatCe.Gui.Converters
             {
                 RichiesteOrdine ro = value as RichiesteOrdine;
 
+                if (ro.ContainsPezzoArrivatoButNotAvvisato)
+                {
+                    return new SolidColorBrush(AppColors.ArrivatoButNotAvvisatoColor);
+                }
+
                 if (ro.ContainsPezzoSprovvisto)
                 {
                     return new SolidColorBrush(AppColors.HighlightProblemBackColor);
