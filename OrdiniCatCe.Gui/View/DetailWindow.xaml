@@ -13,12 +13,13 @@
         <converters:MancanteConverter x:Key="mancanteConverter" />
         <converters:DatetimeIfExistsConverter x:Key="datetimeIfExistsConverter"></converters:DatetimeIfExistsConverter>
         <converters:RowBackgroundConverter x:Key="backgroundConverter" />
+        <converters:RowForegroundConverter x:Key="foregroundConverter" />
 
         <DataTemplate x:Key="orderedItemTemplate" >
             <Border ToolTipService.ShowDuration="15000" Height="Auto" BorderBrush="LightSlateGray" BorderThickness="1" CornerRadius="2" HorizontalAlignment="Stretch">
                 <Border.ToolTip>
                     <ToolTip >
-                        <Grid Background="{Binding ., Converter={StaticResource backgroundConverter}}">
+                        <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition />
@@ -89,17 +90,17 @@
                         </Grid>
                     </ToolTip>
                 </Border.ToolTip>
-                
-                <Grid Background="{Binding Mancante, Converter={StaticResource mancanteConverter}}">
+
+                <Grid Background="{Binding ., Converter={StaticResource backgroundConverter}}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding Codice}" />
-                    <TextBlock Grid.Column="1" Text="{Binding Description}" />
-                    <TextBlock Grid.Column="2" Text="{Binding Fornitori.Name}" />
+                    <TextBlock Text="{Binding Codice}" Foreground="{Binding ., Converter={StaticResource foregroundConverter}}"/>
+                    <TextBlock Grid.Column="1" Text="{Binding Description}" Foreground="{Binding ., Converter={StaticResource foregroundConverter}}"/>
+                    <TextBlock Grid.Column="2" Text="{Binding Fornitori.Name}" Foreground="{Binding ., Converter={StaticResource foregroundConverter}}"/>
                     <Button Grid.Column="3" Content="Modifica" Command="{Binding RelativeSource=
                         {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}, Path= DataContext.UpdatePezzoCommand}" CommandParameter="{Binding}"></Button>
                 </Grid>

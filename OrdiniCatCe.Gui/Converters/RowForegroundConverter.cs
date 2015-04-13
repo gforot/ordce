@@ -17,19 +17,37 @@ namespace OrdiniCatCe.Gui.Converters
                 if (ro.ContainsPezzoNotOrdinato)
                 {
                     return defaultColor;
-                }
-
-                if (ro.ContainsPezzoArrivatoButNotAvvisato)
+                } 
+                else if (ro.ContainsPezzoArrivatoButNotAvvisato)
                 {
                     return defaultColor;
                 }
-
-                if (ro.ContainsPezzoOrdinatoButNotArrivato)
+                else if (ro.ContainsPezzoOrdinatoButNotArrivato)
                 {
                     return new SolidColorBrush(Colors.White); 
                 }
+                else if (ro.ContainsPezzoSprovvisto)
+                {
+                    return defaultColor;
+                }
+            }
+            else if (value is PezziInOrdine)
+            {
+                PezziInOrdine po = value as PezziInOrdine;
 
-                if (ro.ContainsPezzoSprovvisto)
+                if (!po.Ordinato)
+                {
+                    return defaultColor;
+                }
+                else if (po.IsArrivatoButNotAvvisato)
+                {
+                    return defaultColor;
+                }
+                else if (po.IsOrdinatoButNotArrivato)
+                {
+                    return new SolidColorBrush(Colors.White);
+                }
+                else if (po.Sprovvisto)
                 {
                     return defaultColor;
                 }
