@@ -18,32 +18,72 @@ namespace OrdiniCatCe.Gui.Converters
 
                 if (ro.ContainsPezzoNotOrdinato)
                 {
-                    //imageHeight = (int)Application.Current.Resources["ImageHeight"];
-                    SolidColorBrush notOrdinatoColor = (SolidColorBrush)Application.Current.Resources["notOrdinatoColor"];
-                    return notOrdinatoColor;
+                    return GetNotOrdinatoColor();
                 }
-
-                if (ro.ContainsPezzoArrivatoButNotAvvisato)
+                else if (ro.ContainsPezzoArrivatoButNotAvvisato)
                 {
-                    SolidColorBrush arrivatoButNotAvvisatoColor = (SolidColorBrush)Application.Current.Resources["arrivatoButNotAvvisatoColor"];
-                    return arrivatoButNotAvvisatoColor;
+                    return GetArrivatoButNotAvvisatoColor();
                 }
-
-                if (ro.ContainsPezzoOrdinatoButNotArrivato)
+                else if (ro.ContainsPezzoOrdinatoButNotArrivato)
                 {
-                    SolidColorBrush ordinatoButNotArrivatoColor = (SolidColorBrush)Application.Current.Resources["ordinatoButNotArrivatoColor"];
-                    return ordinatoButNotArrivatoColor;
+                    return GetOrdinatoButNotArrivatoColor();
                 }
-
-                if (ro.ContainsPezzoSprovvisto)
+                else if (ro.ContainsPezzoSprovvisto)
                 {
-                    SolidColorBrush sprovvistoColor = (SolidColorBrush)Application.Current.Resources["sprovvistoColor"];
-                    return sprovvistoColor;
+                    return GetSprovvistoColor();
+                }
+            }
+            else if (value is PezziInOrdine)
+            {
+                PezziInOrdine po = value as PezziInOrdine;
+
+                if (!po.Ordinato)
+                {
+                    return GetNotOrdinatoColor();
+                }
+                else if (po.IsArrivatoButNotAvvisato)
+                {
+                    return GetArrivatoButNotAvvisatoColor();
+                }
+                else if (po.IsOrdinatoButNotArrivato)
+                {
+                    return GetOrdinatoButNotArrivatoColor();
+                }
+                else if (po.Sprovvisto)
+                {
+                    return GetSprovvistoColor();
                 }
             }
 
             return new SolidColorBrush(Colors.Transparent);
         }
+
+        private static SolidColorBrush GetNotOrdinatoColor()
+        {
+            return GetWarningColorByKey("notOrdinatoColor");
+        }
+
+        private static SolidColorBrush GetArrivatoButNotAvvisatoColor()
+        {
+            return GetWarningColorByKey("arrivatoButNotAvvisatoColor");
+        }
+
+        private static SolidColorBrush GetSprovvistoColor()
+        {
+            return GetWarningColorByKey("sprovvistoColor");
+        }
+
+        private static SolidColorBrush GetOrdinatoButNotArrivatoColor()
+        {
+            return GetWarningColorByKey("ordinatoButNotArrivatoColor");
+        }
+
+        private static SolidColorBrush GetWarningColorByKey(string colorKey)
+        {
+            return (SolidColorBrush)Application.Current.Resources[colorKey];
+        }
+
+
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

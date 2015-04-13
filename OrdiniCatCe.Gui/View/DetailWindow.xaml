@@ -12,12 +12,13 @@
         <converters:YesNoConverter x:Key="yesNoConverter" />
         <converters:MancanteConverter x:Key="mancanteConverter" />
         <converters:DatetimeIfExistsConverter x:Key="datetimeIfExistsConverter"></converters:DatetimeIfExistsConverter>
+        <converters:RowBackgroundConverter x:Key="backgroundConverter" />
 
         <DataTemplate x:Key="orderedItemTemplate" >
             <Border ToolTipService.ShowDuration="15000" Height="Auto" BorderBrush="LightSlateGray" BorderThickness="1" CornerRadius="2" HorizontalAlignment="Stretch">
                 <Border.ToolTip>
                     <ToolTip >
-                        <Grid Background="{Binding Mancante, Converter={StaticResource mancanteConverter}}">
+                        <Grid Background="{Binding ., Converter={StaticResource backgroundConverter}}">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition />
