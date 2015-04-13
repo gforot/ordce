@@ -3,6 +3,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using OrdiniCatCe.Gui.Constants;
 using OrdiniCatCe.Gui.Model;
+using System.Windows;
 
 
 namespace OrdiniCatCe.Gui.Converters
@@ -17,17 +18,21 @@ namespace OrdiniCatCe.Gui.Converters
 
                 if (ro.ContainsPezzoNotOrdinato)
                 {
-                    return new SolidColorBrush(AppColors.NotOrdinatoColor);
+                    //imageHeight = (int)Application.Current.Resources["ImageHeight"];
+                    SolidColorBrush notOrdinatoColor = (SolidColorBrush)Application.Current.Resources["notOrdinatoColor"];
+                    return notOrdinatoColor;
                 }
 
                 if (ro.ContainsPezzoArrivatoButNotAvvisato)
                 {
-                    return new SolidColorBrush(AppColors.ArrivatoButNotAvvisatoColor);
+                    SolidColorBrush arrivatoButNotAvvisatoColor = (SolidColorBrush)Application.Current.Resources["arrivatoButNotAvvisatoColor"];
+                    return arrivatoButNotAvvisatoColor;
                 }
 
                 if (ro.ContainsPezzoOrdinatoButNotArrivato)
                 {
-                    return new SolidColorBrush(AppColors.OrdinatoButNotArrivatoColor);
+                    SolidColorBrush ordinatoButNotArrivatoColor = (SolidColorBrush)Application.Current.Resources["ordinatoButNotArrivatoColor"];
+                    return ordinatoButNotArrivatoColor;
                 }
 
                 if (ro.ContainsPezzoSprovvisto)
