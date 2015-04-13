@@ -28,7 +28,23 @@ namespace OrdiniCatCe.Gui.Model
         {
             get
             {
-                return PezziInOrdine != null && PezziInOrdine.Any(p => (p.Arrivato && (!p.Avvisato)));
+                return PezziInOrdine != null && PezziInOrdine.Any(p => p.IsArrivatoButNotAvvisato);
+            }
+        }
+
+        public bool ContainsPezzoOrdinatoButNotArrivato
+        {
+            get
+            {
+                return PezziInOrdine != null && PezziInOrdine.Any(p => p.IsOrdinatoButNotArrivato);
+            }
+        }
+
+        public bool ContainsPezzoNotOrdinato
+        {
+            get
+            {
+                return PezziInOrdine != null && PezziInOrdine.Any(p => !p.Ordinato);
             }
         }
     }

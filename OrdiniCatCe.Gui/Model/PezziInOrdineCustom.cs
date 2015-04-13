@@ -10,5 +10,19 @@
             }
             return (obj as PezziInOrdine).Id == Id;
         }
+
+        public bool IsArrivatoButNotAvvisato
+        {
+            get { return Arrivato && (!Avvisato); }
+        }
+
+        public bool IsOrdinatoButNotArrivato
+        {
+            get { return Ordinato && (!Arrivato); }
+        }
+
+
+
+
     }
 }

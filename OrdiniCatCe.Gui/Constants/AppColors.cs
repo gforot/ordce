@@ -20,6 +20,8 @@ namespace OrdiniCatCe.Gui.Constants
         public static Color HighlightProblemBackColor;
 
         public static Color ArrivatoButNotAvvisatoColor;
+        public static Color OrdinatoButNotArrivatoColor;
+        public static Color NotOrdinatoColor;
 
         static AppColors()
         {
@@ -41,8 +43,14 @@ namespace OrdiniCatCe.Gui.Constants
             EnabledButtonColor = Colors.MediumAquamarine;
             EnabledButtonColor.A = _alpha;
 
-            HighlightProblemBackColor = Color.FromArgb(125, 255, 150, 10);
-            ArrivatoButNotAvvisatoColor = Color.FromArgb(125, 255, 0, 0);
+            HighlightProblemBackColor = Colors.RosyBrown;
+            HighlightProblemBackColor.A = 125;
+            ArrivatoButNotAvvisatoColor = Colors.Orange;
+            ArrivatoButNotAvvisatoColor.A = 125;
+            OrdinatoButNotArrivatoColor = Colors.Yellow;
+            OrdinatoButNotArrivatoColor.A = 125;
+            NotOrdinatoColor = Colors.Red;
+            NotOrdinatoColor.A = 125;
         }
     }
 }
