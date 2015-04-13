@@ -20,15 +20,13 @@
         <Grid.Resources>
             <converters:ModalitaAvvisoConverter x:Key="modalitaAvvisoConverter" />
             <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+            <converters:BoolToVisibilityConverterInverted x:Key="boolToVisibilityConverterInverted" />
             <converters:ContattoConverter x:Key="contattoConverter" />
             <converters:RowBackgroundConverter x:Key="backgroundConverter" />
+            <converters:RowForegroundConverter x:Key="foregroundConverter" />
             <converters:ButtonEnabledConverter x:Key="buttonEnabledConverter" />
             <converters:ValidEMailConverter x:Key="validEMailConverter" />
-            <converters:AvvisatoBackgroundConverter x:Key="avvisatoBackgroundConverter" />
-            <converters:ArrivatoBackgroundConverter x:Key="arrivatoBackgroundConverter" />
-            <converters:RitiratoBackgroundConverter x:Key="ritiratoBackgroundConverter" />
             <converters:VisualizzaStoricoTextConverter x:Key="visualizzaStoricoTextConverter" />
-            <converters:OrdinatoBackgroundConverter x:Key="ordinatoBackgroundConverter" />
             <converters:NofConverter x:Key="nofConverter" />
             <converters:StoricoBackgroundConverter x:Key="storicoBackgroundConverter"></converters:StoricoBackgroundConverter>
             <Style TargetType="Button" x:Key="eraserButtonStyle">
@@ -44,6 +42,7 @@
             <Style TargetType="TextBlock" x:Key="legendaTextStyle">
                 <Setter Property="Margin" Value="3"></Setter>
                 <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
             </Style>
 
         </Grid.Resources>
@@ -73,12 +72,15 @@
                 <Rectangle Width="15" Height="15" Fill="{x:Static appColors:AppColors.OrdinatoButNotArrivatoColor}" />
                 <Rectangle Width="15" Height="15" Fill="{x:Static appColors:AppColors.ArrivatoButNotAvvisatoColor}" />-->
 
-                <Rectangle Fill="{StaticResource notOrdinatoColor}" Style="{StaticResource rectangleStyle}" />
-                <TextBlock Style="{StaticResource legendaTextStyle}" Text="Da Ordinare!!" Foreground="{StaticResource notOrdinatoColor}" />
-                <Rectangle Fill="{StaticResource ordinatoButNotArrivatoColor}" Style="{StaticResource rectangleStyle}" />
-                <TextBlock Style="{StaticResource legendaTextStyle}" Text="Ordinato, non arrivato" Foreground="{StaticResource ordinatoButNotArrivatoColor}" />
-                <Rectangle Fill="{StaticResource arrivatoButNotAvvisatoColor}" Style="{StaticResource rectangleStyle}" />
-                <TextBlock Style="{StaticResource legendaTextStyle}" Text="Da Avvisare!!" Foreground="{StaticResource arrivatoButNotAvvisatoColor}" />
+                <Rectangle Fill="{StaticResource notOrdinatoColor}" Style="{StaticResource rectangleStyle}" Visibility="{Binding VisualizzaStorico, Converter={StaticResource boolToVisibilityConverterInverted}}" />
+                <TextBlock Style="{StaticResource legendaTextStyle}" Text="Da Ordinare!!" Foreground="{StaticResource notOrdinatoColor}"  Visibility="{Binding VisualizzaStorico, Converter={StaticResource boolToVisibilityConverterInverted}}" />
+                <Rectangle Fill="{StaticResource ordinatoButNotArrivatoColor}" Style="{StaticResource rectangleStyle}" Visibility="{Binding VisualizzaStorico, Converter={StaticResource boolToVisibilityConverterInverted}}"  />
+                <TextBlock Style="{StaticResource legendaTextStyle}" Text="Ordinato, non arrivato" Foreground="{StaticResource ordinatoButNotArrivatoColor}"  Visibility="{Binding VisualizzaStorico, Converter={StaticResource boolToVisibilityConverterInverted}}" />
+                <Rectangle Fill="{StaticResource arrivatoButNotAvvisatoColor}" Style="{StaticResource rectangleStyle}" Visibility="{Binding VisualizzaStorico, Converter={StaticResource boolToVisibilityConverterInverted}}"  />
+                <TextBlock Style="{StaticResource legendaTextStyle}" Text="Da Avvisare!!" Foreground="{StaticResource arrivatoButNotAvvisatoColor}" Visibility="{Binding VisualizzaStorico, Converter={StaticResource boolToVisibilityConverterInverted}}"  />
+                <Rectangle Fill="{StaticResource sprovvistoColor}" Style="{StaticResource rectangleStyle}" Visibility="{Binding VisualizzaStorico, Converter={StaticResource boolToVisibilityConverterInverted}}"  />
+                <TextBlock Style="{StaticResource legendaTextStyle}" Text="Sprovvisto" Foreground="{StaticResource sprovvistoColor}" Visibility="{Binding VisualizzaStorico, Converter={StaticResource boolToVisibilityConverterInverted}}"  />
+
             </StackPanel>
         </Border>
         <StackPanel x:Name="FiltersPanel" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
@@ -115,6 +117,9 @@
                 <Style TargetType="DataGridRow">
                     <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self},
                 Path=Item, Converter={StaticResource backgroundConverter}}"/>
+                    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self},
+                Path=Item, Converter={StaticResource foregroundConverter}}"/>
+
                 </Style>
             </DataGrid.RowStyle>
             <DataGrid.Columns>

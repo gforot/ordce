@@ -8,9 +8,9 @@
     <Window.Resources>
         <converters:MarcaConverter x:Key="marcaConverter" />
         <converters:FornitoreConverter x:Key="fornitoreConverter" />
-        <converters:MancanteConverter x:Key="mancanteConverter" />
         <converters:BoolToVisibilityConverterInverted x:Key="boolToVisibilityConverterInverted" />
         <converters:YesNoConverter x:Key="yesNoConverter" />
+        <converters:MancanteConverter x:Key="mancanteConverter" />
         <converters:DatetimeIfExistsConverter x:Key="datetimeIfExistsConverter"></converters:DatetimeIfExistsConverter>
 
         <DataTemplate x:Key="orderedItemTemplate" >

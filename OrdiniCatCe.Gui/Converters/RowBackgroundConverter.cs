@@ -37,7 +37,8 @@ namespace OrdiniCatCe.Gui.Converters
 
                 if (ro.ContainsPezzoSprovvisto)
                 {
-                    return new SolidColorBrush(AppColors.HighlightProblemBackColor);
+                    SolidColorBrush sprovvistoColor = (SolidColorBrush)Application.Current.Resources["sprovvistoColor"];
+                    return sprovvistoColor;
                 }
             }
 

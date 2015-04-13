@@ -125,13 +125,11 @@
     </ApplicationDefinition>
     <Compile Include="behavior\TextBoxInputBehavior.cs" />
     <Compile Include="Checks.cs" />
-    <Compile Include="Constants\AppColors.cs" />
     <Compile Include="Constants\AppConstants.cs" />
     <Compile Include="Constants\Texts.cs" />
-    <Compile Include="Converters\ArrivatoBackgroundConverter.cs" />
-    <Compile Include="Converters\AvvisatoBackgroundConverter.cs" />
     <Compile Include="Converters\ContattoConverter.cs" />
     <Compile Include="Converters\DatetimeIfExistsConverter.cs" />
+    <Compile Include="Converters\MancanteConverter.cs" />
     <Compile Include="Converters\ModalitaAvvisoConverter.cs" />
     <Compile Include="Converters\NofConverter.cs" />
     <Compile Include="Converters\RowBackgroundConverter.cs" />
@@ -141,11 +139,9 @@
     <Compile Include="Converters\EnumBooleanConverter.cs" />
     <Compile Include="Converters\ForegroundConverter.cs" />
     <Compile Include="Converters\FornitoreConverter.cs" />
-    <Compile Include="Converters\MancanteConverter.cs" />
     <Compile Include="Converters\MarcaConverter.cs" />
     <Compile Include="Converters\ObjectToEnabledConverter.cs" />
-    <Compile Include="Converters\OrdinatoBackgroundConverter.cs" />
-    <Compile Include="Converters\RitiratoBackgroundConverter.cs" />
+    <Compile Include="Converters\RowForegroundConverter.cs" />
     <Compile Include="Converters\StoricoBackgroundConverter.cs" />
     <Compile Include="Converters\TextboxBackgroundConverter.cs" />
     <Compile Include="Converters\ValidEMailConverter.cs" />
