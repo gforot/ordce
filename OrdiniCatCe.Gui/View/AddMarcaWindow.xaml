@@ -3,7 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding AddMarcaViewModel, Source={StaticResource Locator}}"
-        Title="Nuova Marca" MinHeight="130" MaxHeight="180" MinWidth="350" MaxWidth="500" Style="{StaticResource wndStyle}" Height="130" Width="350">
+        Title="Nuova Marca" MinHeight="115" MaxHeight="180" MinWidth="280" MaxWidth="650" Style="{StaticResource wndStyle}" Height="90" Width="459">
+    <Window.Resources>
+        <ResourceDictionary Source="/OrdiniCatCe.Gui;component/MyResources.xaml">
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.Resources>
             <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
@@ -30,12 +34,12 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Foreground="{Binding Name, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <TextBox Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  />
+        <TextBlock Foreground="{Binding Name, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource addAnagraficaItemTextBlockStyle}" />
+        <TextBox Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, FallbackValue=Moulinex}" Style="{StaticResource addAnagraficaItemTextBoxStyle}" />
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
             <Button Style="{StaticResource 75ButtonsStyle}" Content="Esci" Command="{Binding AnnullaCommand}"/>
-            <Button Style="{StaticResource 75ButtonsStyle}" Content="Inserisci" Command="{Binding ConfermaCommand}"/>
+            <Button Style="{StaticResource 150ButtonsStyle}" Content="Inserisci" Command="{Binding ConfermaCommand}"/>
         </StackPanel>
     </Grid>
 </Window>

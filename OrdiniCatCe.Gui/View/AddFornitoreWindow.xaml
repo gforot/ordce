@@ -3,7 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding AddFornitoreViewModel, Source={StaticResource Locator}}"
-        Title="Nuovo Fornitore" MinHeight="180" MaxHeight="250" MinWidth="280" MaxWidth="650" Height="200.611" Width="467.175" Style="{StaticResource wndStyle}">
+        Title="Nuovo Fornitore" MinHeight="180" MaxHeight="250" MinWidth="280" MaxWidth="650" Height="200" Width="465" Style="{StaticResource wndStyle}">
+    <Window.Resources>
+        <ResourceDictionary Source="/OrdiniCatCe.Gui;component/MyResources.xaml">
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.Resources>
             <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
@@ -33,18 +37,18 @@
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Foreground="{Binding Name, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome" Grid.Row="0" Grid.Column="0" />
-        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" />
+        <TextBlock Foreground="{Binding Name, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome" Style="{StaticResource addAnagraficaItemTextBlockStyle}" />
+        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, FallbackValue=Mapelli Giovanni}" Grid.Column="1" Style="{StaticResource addAnagraficaItemTextBoxStyle}"/>
 
-        <TextBlock Text="EMail" Grid.Row="1" Grid.Column="0" />
-        <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" />
+        <TextBlock Text="EMail" Grid.Row="1" Grid.Column="0" Style="{StaticResource addAnagraficaItemTextBlockStyle}" />
+        <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Style="{StaticResource addAnagraficaItemTextBoxStyle}"/>
 
-        <TextBlock Text="Telefono" Grid.Row="2" Grid.Column="0" />
-        <TextBox Text="{Binding Telefono, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" />
+        <TextBlock Text="Telefono" Grid.Row="2" Grid.Column="0" Style="{StaticResource addAnagraficaItemTextBlockStyle}" />
+        <TextBox Text="{Binding Telefono, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Style="{StaticResource addAnagraficaItemTextBoxStyle}"/>
 
         <StackPanel HorizontalAlignment="Center"  Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
             <Button Style="{StaticResource 75ButtonsStyle}" Content="Annulla" Command="{Binding AnnullaCommand}"/>
-            <Button Style="{StaticResource 75ButtonsStyle}" Content="Conferma" Command="{Binding ConfermaCommand}"/>
+            <Button Style="{StaticResource 150ButtonsStyle}" Content="Conferma" Command="{Binding ConfermaCommand}"/>
         </StackPanel>
     </Grid>
 </Window>
