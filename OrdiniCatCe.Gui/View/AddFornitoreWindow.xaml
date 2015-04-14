@@ -8,7 +8,8 @@
         <ResourceDictionary Source="/OrdiniCatCe.Gui;component/MyResources.xaml">
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Border Style="{StaticResource brdStyle}">
+        <Grid>
         <Grid.Resources>
             <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
             <Style TargetType="StackPanel">
@@ -51,4 +52,5 @@
             <Button Style="{StaticResource 150ButtonsStyle}" Content="Conferma" Command="{Binding ConfermaCommand}"/>
         </StackPanel>
     </Grid>
+    </Border>
 </Window>

@@ -2,6 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
         Title="Anagrafica Marche" Height="130" MinHeight="130" MaxWidth="450" Width="430" Style="{StaticResource wndStyle}">
     <Window.Resources>
         <ResourceDictionary>
@@ -11,44 +14,46 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid IsEnabled="{Binding CurrentMarca, Converter={StaticResource objToEnabledConverter}}">
-        <Grid.Resources>
-            <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
-            <Style TargetType="StackPanel">
-                <Setter Property="Margin" Value="3"></Setter>
-            </Style>
-            <Style TargetType="TextBlock">
-                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="FontWeight" Value="Bold"></Setter>
-                <Setter Property="FontSize" Value="16"></Setter>
-                <Setter Property="Margin" Value="3"></Setter>
-            </Style>
-            <Style TargetType="TextBox">
-                <Setter Property="Margin" Value="3"></Setter>
-                <Setter Property="FontSize" Value="16"></Setter>
-            </Style>
-        </Grid.Resources>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="3*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-        </Grid.RowDefinitions>
+    <Border Style="{StaticResource brdStyle}">
+        <Grid IsEnabled="{Binding CurrentMarca, Converter={StaticResource objToEnabledConverter}}">
+            <Grid.Resources>
+                <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Margin" Value="3"></Setter>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                    <Setter Property="FontSize" Value="16"></Setter>
+                    <Setter Property="Margin" Value="3"></Setter>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" Value="3"></Setter>
+                    <Setter Property="FontSize" Value="16"></Setter>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <TextBlock Foreground="{Binding Name, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome" Style="{StaticResource addAnagraficaItemTextBlockStyle}" />
-        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource addAnagraficaItemTextBoxStyle}" Grid.Column="1" />
+            <TextBlock Foreground="{Binding Name, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome" Style="{StaticResource addAnagraficaItemTextBlockStyle}" />
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource addAnagraficaItemTextBoxStyle}" Grid.Column="1" />
 
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-            <TextBlock Text="{Binding Message}"></TextBlock>
-        </StackPanel>
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+                <TextBlock Text="{Binding Message}"></TextBlock>
+            </StackPanel>
 
-        <StackPanel HorizontalAlignment="Center" Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5">
-            <Button x:Name="previousCommand" Command="{Binding PreviousCommand}" Style="{StaticResource 75ButtonsStyle}" Content="&lt;"/>
-            <Button x:Name="nextCommand" Command="{Binding NextCommand}" Style="{StaticResource 75ButtonsStyle}" Content="&gt;"/>
-            <Button x:Name="deleteCommand" Command="{Binding DeleteCommand}" Style="{StaticResource 75ButtonsStyle}">X</Button>
-        </StackPanel>
-    </Grid>
+            <StackPanel HorizontalAlignment="Center" Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5">
+                <Button x:Name="previousCommand" Command="{Binding PreviousCommand}" Style="{StaticResource anagraficaItemButton}" Content="&lt;"/>
+                <Button x:Name="nextCommand" Command="{Binding NextCommand}" Style="{StaticResource anagraficaItemButton}" Content="&gt;"/>
+                <Button x:Name="deleteCommand" Command="{Binding DeleteCommand}" Style="{StaticResource anagraficaItemButton}">X</Button>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>

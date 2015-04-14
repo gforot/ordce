@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
-        Title="Anagrafica Fornitori" Height="204" MinHeight="200" MaxWidth="450" Width="500"  Style="{StaticResource wndStyle}">
+        Title="Anagrafica Fornitori" Height="204" MinHeight="200" MaxWidth="450" Width="450"  Style="{StaticResource wndStyle}">
     <Window.Resources>
         <ResourceDictionary>
             <converters:ObjectToEnabledConverter x:Key="objToEnabledConverter" />
@@ -11,50 +11,51 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid IsEnabled="{Binding CurrentFornitore, Converter={StaticResource objToEnabledConverter}}">
-        <Grid.Resources>
-            <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
-            <Style TargetType="StackPanel">
-                <Setter Property="Margin" Value="3"></Setter>
-            </Style>
-            <Style TargetType="TextBlock">
-                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="FontWeight" Value="Bold"></Setter>
-                <Setter Property="FontSize" Value="16"></Setter>
-                <Setter Property="Margin" Value="3"></Setter>
-            </Style>
-            <Style TargetType="TextBox">
-                <Setter Property="Margin" Value="3"></Setter>
-                <Setter Property="FontSize" Value="16"></Setter>
-            </Style>
-        </Grid.Resources>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="55*"></ColumnDefinition>
-            <ColumnDefinition Width="70*"></ColumnDefinition>
-            <ColumnDefinition Width="96*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition ></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-        </Grid.RowDefinitions>
+    <Border Style="{StaticResource brdStyle}">
+        <Grid IsEnabled="{Binding CurrentFornitore, Converter={StaticResource objToEnabledConverter}}">
+            <Grid.Resources>
+                <converters:TextboxBackgroundConverter x:Key="textboxBackgroundConverter"></converters:TextboxBackgroundConverter>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Margin" Value="3"></Setter>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                    <Setter Property="FontSize" Value="16"></Setter>
+                    <Setter Property="Margin" Value="3"></Setter>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" Value="3"></Setter>
+                    <Setter Property="FontSize" Value="16"></Setter>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="55*"></ColumnDefinition>
+                <ColumnDefinition Width="70*"></ColumnDefinition>
+                <ColumnDefinition Width="96*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition ></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <TextBlock Foreground="{Binding Name, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome" Style="{StaticResource addAnagraficaItemTextBlockStyle}"/>
-        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" Style="{StaticResource addAnagraficaItemTextBoxStyle}" Grid.ColumnSpan="2"/>
+            <TextBlock Foreground="{Binding Name, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome" Style="{StaticResource addAnagraficaItemTextBlockStyle}"/>
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" Style="{StaticResource addAnagraficaItemTextBoxStyle}" Grid.ColumnSpan="2"/>
 
-        <TextBlock Text="EMail" Grid.Row="1" Style="{StaticResource addAnagraficaItemTextBlockStyle}" />
-        <TextBox Text="{Binding EMail, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Style="{StaticResource addAnagraficaItemTextBoxStyle}" Grid.ColumnSpan="2"/>
+            <TextBlock Text="EMail" Grid.Row="1" Style="{StaticResource addAnagraficaItemTextBlockStyle}" />
+            <TextBox Text="{Binding EMail, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Style="{StaticResource addAnagraficaItemTextBoxStyle}" Grid.ColumnSpan="2"/>
 
-        <TextBlock Text="Telefono" Grid.Row="2"  Style="{StaticResource addAnagraficaItemTextBlockStyle}" />
-        <TextBox Text="{Binding Telefono, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Style="{StaticResource addAnagraficaItemTextBoxStyle}" Grid.ColumnSpan="2" />
+            <TextBlock Text="Telefono" Grid.Row="2"  Style="{StaticResource addAnagraficaItemTextBlockStyle}" />
+            <TextBox Text="{Binding Telefono, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Style="{StaticResource addAnagraficaItemTextBoxStyle}" Grid.ColumnSpan="2" />
 
-        <StackPanel HorizontalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="94,5">
-            <Button Style="{StaticResource anagraficaItemButton}" x:Name="previousCommand" Command="{Binding PreviousCommand}" Content="&lt;"/>
-            <Button Style="{StaticResource anagraficaItemButton}" x:Name="nextCommand" Command="{Binding NextCommand}" Content="&gt;"/>
-            <Button Style="{StaticResource anagraficaItemButton}" x:Name="deleteCommand" Command="{Binding DeleteCommand}" Content="X"/>
-        </StackPanel>
-    </Grid>
-
+            <StackPanel HorizontalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="94,5">
+                <Button Style="{StaticResource anagraficaItemButton}" x:Name="previousCommand" Command="{Binding PreviousCommand}" Content="&lt;"/>
+                <Button Style="{StaticResource anagraficaItemButton}" x:Name="nextCommand" Command="{Binding NextCommand}" Content="&gt;"/>
+                <Button Style="{StaticResource anagraficaItemButton}" x:Name="deleteCommand" Command="{Binding DeleteCommand}" Content="X"/>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>
