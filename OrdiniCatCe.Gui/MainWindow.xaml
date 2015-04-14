@@ -5,6 +5,7 @@
         xmlns:appColors="clr-namespace:OrdiniCatCe.Gui.Constants"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="Gestione Ordini" MinHeight="500" MinWidth="680" Height="800" Width="1000" Style="{StaticResource wndStyle}" WindowState="Maximized">
+    <Border Style="{StaticResource brdStyle}">
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -175,4 +176,5 @@
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
+    </Border>
 </Window>
