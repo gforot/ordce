@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 
 namespace OrdiniCatCe.Gui.Model
@@ -46,6 +47,11 @@ namespace OrdiniCatCe.Gui.Model
             {
                 return PezziInOrdine != null && PezziInOrdine.Any(p => !p.Ordinato);
             }
+        }
+
+        public bool ContainsPezzoOfFornitore(string fornitore)
+        {
+            return PezziInOrdine != null && PezziInOrdine.Any(p => (p.Fornitori != null) && (p.Fornitori.Name.Contains(fornitore)));
         }
     }
 }

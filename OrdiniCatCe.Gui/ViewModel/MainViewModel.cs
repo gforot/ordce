@@ -383,7 +383,19 @@ namespace OrdiniCatCe.Gui.ViewModel
 
             RichiesteOrdine rOrdine = obj as RichiesteOrdine;
             return FilterByName(rOrdine) &&
-                   FilterByCognome(rOrdine);
+                   FilterByCognome(rOrdine) &&
+                   FilterByFornitore(rOrdine);
+        }
+
+        private bool FilterByFornitore(RichiesteOrdine rOrdine)
+        {
+            if (string.IsNullOrEmpty(FornitoreFilter))
+            {
+                return true;
+            }
+
+            return rOrdine.ContainsPezzoOfFornitore(FornitoreFilter);
+            return true;
         }
 
 
