@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 
 
 namespace OrdiniCatCe.Gui.Model
@@ -51,7 +53,7 @@ namespace OrdiniCatCe.Gui.Model
 
         public bool ContainsPezzoOfFornitore(string fornitore)
         {
-            return PezziInOrdine != null && PezziInOrdine.Any(p => (p.Fornitori != null) && (p.Fornitori.Name.Contains(fornitore)));
+            return PezziInOrdine != null && PezziInOrdine.Any(p => ((p.Fornitori != null) && (Thread.CurrentThread.CurrentCulture.CompareInfo.IndexOf(p.Fornitori.Name, fornitore, CompareOptions.IgnoreCase)>=0)));
         }
     }
 }
