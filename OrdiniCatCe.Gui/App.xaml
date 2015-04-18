@@ -3,8 +3,8 @@
         
         <SolidColorBrush x:Key="notOrdinatoColor" Color="Red" Opacity="0.7" />
         <SolidColorBrush x:Key="ordinatoButNotArrivatoColor" Color="Blue" Opacity="0.7" />
-        <SolidColorBrush x:Key="arrivatoButNotAvvisatoColor" Color="Yellow" Opacity="0.7" />
-        <SolidColorBrush x:Key="sprovvistoColor" Color="#FFF7AF15" Opacity="0.7" />
+        <SolidColorBrush x:Key="arrivatoButNotAvvisatoColor" Color="DarkOrange" Opacity="0.7" />
+        <SolidColorBrush x:Key="sprovvistoColor" Color="Purple" Opacity="0.7" />
         
         <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:OrdiniCatCe.Gui.ViewModel" />
         <Style TargetType="Button" x:Key="btnStyle">
