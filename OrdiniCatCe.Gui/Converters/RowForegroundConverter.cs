@@ -14,7 +14,11 @@ namespace OrdiniCatCe.Gui.Converters
             {
                 RichiesteOrdine ro = value as RichiesteOrdine;
 
-                if (ro.ContainsPezzoNotOrdinato)
+                if (ro.ContainsPezzoSprovvisto)
+                {
+                    return defaultColor;
+                }
+                else if (ro.ContainsPezzoNotOrdinato)
                 {
                     return defaultColor;
                 } 
@@ -26,16 +30,17 @@ namespace OrdiniCatCe.Gui.Converters
                 {
                     return new SolidColorBrush(Colors.White); 
                 }
-                else if (ro.ContainsPezzoSprovvisto)
-                {
-                    return defaultColor;
-                }
+
             }
             else if (value is PezziInOrdine)
             {
                 PezziInOrdine po = value as PezziInOrdine;
 
-                if (!po.Ordinato)
+                if (po.Sprovvisto)
+                {
+                    return defaultColor;
+                }
+                else if (!po.Ordinato)
                 {
                     return defaultColor;
                 }
@@ -47,10 +52,7 @@ namespace OrdiniCatCe.Gui.Converters
                 {
                     return new SolidColorBrush(Colors.White);
                 }
-                else if (po.Sprovvisto)
-                {
-                    return defaultColor;
-                }
+
             }
 
             return defaultColor;
