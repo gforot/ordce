@@ -17,19 +17,36 @@ namespace OrdiniCatCe.Gui.Converters
                 string par = parameter as string;
                 RichiesteOrdine ro = value as RichiesteOrdine;
                 int n = 0;
+                DateTime? date = null;
                 switch (par.ToLower())
                 {
                     case "ordinati":
                         n = ro.PezziInOrdine.Where(p => p.Ordinato).Count();
+                        if (n > 0)
+                        {
+                            date = ro.PezziInOrdine.First(p => p.Ordinato).DataOrdinato;
+                        }
                         break;
                     case "arrivati":
                         n = ro.PezziInOrdine.Where(p => p.Arrivato).Count();
+                        if (n > 0)
+                        {
+                            date = ro.PezziInOrdine.First(p => p.Arrivato).DataArrivato;
+                        }
                         break;
                     case "avvisati":
                         n = ro.PezziInOrdine.Where(p => p.Avvisato).Count();
+                        if (n > 0)
+                        {
+                            date = ro.PezziInOrdine.First(p => p.Avvisato).DataAvvisato;
+                        }
                         break;
                     case "ritirati":
                         n = ro.PezziInOrdine.Where(p => p.Ritirato).Count();
+                        if (n > 0)
+                        {
+                            date = ro.PezziInOrdine.First(p => p.Ritirato).DataRitirato;
+                        }
                         break;
                     case "sprovvisti":
                         n = ro.PezziInOrdine.Where(p => p.Sprovvisto).Count();
@@ -39,8 +56,14 @@ namespace OrdiniCatCe.Gui.Converters
                         break;
 
                 }
-
-                return string.Format("{0}/{1}", n, ro.NumberOfPezzi);
+                if (date == null)
+                {
+                    return string.Format("{0}/{1}", n, ro.NumberOfPezzi);
+                }
+                else
+                {
+                    return string.Format("{0}/{1}{3}{2}", n, ro.NumberOfPezzi, date.Value.ToString("dd-MM-yyyy"), Environment.NewLine);
+                }
             }
 
             return string.Empty;

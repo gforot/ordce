@@ -133,11 +133,38 @@
                 <DataGridTextColumn Header="Modalita" Binding="{Binding ModalitàAvviso, Converter={StaticResource modalitaAvvisoConverter}}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Data Richiesta" Binding="{Binding DataRichiesta, StringFormat={}{0:dd/MM/yyyy}, ConverterCulture=it-IT}"  IsReadOnly="True" />
                 <DataGridTextColumn Header="N Pezzi" Binding="{Binding NumberOfPezzi}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Ordinati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Ordinati}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Arrivati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Arrivati}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Avvisati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Avvisati}" IsReadOnly="True" >
+                <DataGridTextColumn Header="Ordinati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Ordinati}" IsReadOnly="True">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Ritirati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Ritirati}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Arrivati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Arrivati}" IsReadOnly="True" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Avvisati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Avvisati}" IsReadOnly="True" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Ritirati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Ritirati}" IsReadOnly="True" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Sprovvisti" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Sprovvisti}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Fuori Stock" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Fuoristock}" IsReadOnly="True" />
                 <!-- Cancella -->
