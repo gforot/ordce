@@ -60,6 +60,9 @@
             <MenuItem Header="_Storico">
                 <MenuItem Header="{Binding VisualizzaStorico, Converter={StaticResource visualizzaStoricoTextConverter}}" Command="{Binding ViewStoricoCommand}"></MenuItem>
             </MenuItem>
+            <MenuItem Header="_Vista per fornitore">
+                <MenuItem Header="Visualizza per fornitore" Command="{Binding ViewPerFornitoreCommand}"></MenuItem>
+            </MenuItem>
         </Menu>
 
         <Border Background="{Binding VisualizzaStorico, Converter={StaticResource storicoBackgroundConverter}}" Grid.Row="1" Grid.ColumnSpan="2" Margin="5" CornerRadius="2" BorderThickness="3" BorderBrush="LightBlue">

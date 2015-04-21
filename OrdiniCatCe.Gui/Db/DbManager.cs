@@ -45,6 +45,17 @@ namespace OrdiniCatCe.Gui.Db
             return addOk;
         }
 
+
+        public static List<RichiesteOrdine> GetRichiesteOrdineAttiveByFornitore(int idFornitore)
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                List<RichiesteOrdine> attive = GetRichiesteOrdineAttive();
+
+                return attive.Where(r=>r.ContainsPezzoOfFornitoreById(idFornitore)).ToList();
+            }
+        }
+
         public static List<RichiesteOrdine> GetRichiesteOrdineAttive()
         {
             return GetAllRichiesteOrdines(false);
@@ -54,6 +65,7 @@ namespace OrdiniCatCe.Gui.Db
         {
             return GetAllRichiesteOrdines(true);
         }
+
     
 
         private static List<RichiesteOrdine> GetAllRichiesteOrdines(bool storicizzate)
@@ -225,6 +237,16 @@ finally
             RichiesteOrdine ro = GetRichiestaOrdine(id);
             return ro == null ? new List<PezziInOrdine>() : ro.PezziInOrdine.ToList();
         }
+
+
+        public static List<PezziInOrdine> GetPezziByIdFornitore(int idFornitore)
+        {
+            using (OrdiniEntities db = new OrdiniEntities())
+            {
+                return db.PezziInOrdine.Include(p => p.Marche).Where(p => (p.IdFornitore.HasValue) && (p.IdFornitore.Value == idFornitore)).ToList();
+            }
+        }
+
 
         public static Fornitori GetFornitore(int idFornitore)
         {

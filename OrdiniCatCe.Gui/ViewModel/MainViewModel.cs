@@ -35,6 +35,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         public RelayCommand AnagraficaMarcheCommand { get; private set; }
         public RelayCommand OrdinaCommand { get; private set; }
         public RelayCommand ViewStoricoCommand { get; private set; }
+        public RelayCommand ViewPerFornitoreCommand { get; private set; }
 
         private const string _nameFilterPrpName="NameFilter";
         private string _nameFilter;
@@ -117,6 +118,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             AnagraficaFornitoriCommand = new RelayCommand(AnagraficaFornitori);
             AnagraficaMarcheCommand = new RelayCommand(AnagraficaMarche);
             OrdinaCommand = new RelayCommand(Ordina);
+            ViewPerFornitoreCommand = new RelayCommand(ViewPerFornitore);
             ViewStoricoCommand = new RelayCommand(ViewStorico);
             Messenger.Default.Register<AddMarcaMessage>(this, MsgKeys.AddMarcaToDbKey, OnAddMarcaToDbRequested);
             Messenger.Default.Register<AddFornitoreMessage>(this, MsgKeys.AddFornitoreToDbKey, OnAddFornitoreToDbRequested);
@@ -241,6 +243,13 @@ namespace OrdiniCatCe.Gui.ViewModel
                 }
             }
             
+        }
+
+        private void ViewPerFornitore()
+        {
+            ServiceLocator.Current.GetInstance<FornitoriViewModel>().Setup();
+            FornitoriWindow wnd = new FornitoriWindow();
+            wnd.ShowDialog();
         }
 
         private void ViewStorico()

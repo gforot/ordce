@@ -55,5 +55,10 @@ namespace OrdiniCatCe.Gui.Model
         {
             return PezziInOrdine != null && PezziInOrdine.Any(p => ((p.Fornitori != null) && (Thread.CurrentThread.CurrentCulture.CompareInfo.IndexOf(p.Fornitori.Name, fornitore, CompareOptions.IgnoreCase)>=0)));
         }
+
+        public bool ContainsPezzoOfFornitoreById(int idFornitore)
+        {
+            return PezziInOrdine != null && PezziInOrdine.Any(p => p.IdFornitore == idFornitore);
+        }
     }
 }
