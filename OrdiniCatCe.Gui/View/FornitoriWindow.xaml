@@ -7,6 +7,34 @@
     <Window.Resources>
         <converters:RowBackgroundConverter x:Key="backgroundConverter" />
         <converters:RowForegroundConverter x:Key="foregroundConverter" />
+        
+        <DataTemplate x:Key="lbItemTemplate">
+            <Border Margin="5" BorderThickness="1" BorderBrush="Black" 
+                    Background="LightYellow" CornerRadius="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Codice" />
+                    <TextBlock Grid.Column="1" Text="{Binding Codice}" />
+                    <TextBlock Grid.Column="2" Text="Description" />
+                    <TextBlock Grid.Column="3" Text="{Binding Description}" />
+                    <TextBlock Grid.Row="1" Text="Marca" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Marche}" />
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding PrezzoAcquisto}" />
+                    <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding PrezzoVendita}" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+        
     </Window.Resources>
     <StackPanel Orientation="Vertical">
         <Border CornerRadius="5" BorderBrush="DarkOrange" BorderThickness="2">
@@ -30,7 +58,6 @@
             </StackPanel>
         </Border>
         <StackPanel Name="gridPanel" Margin="5">
-            
             <DataGrid x:Name="grid" CanUserAddRows="false" CanUserDeleteRows="False" AutoGenerateColumns="False"
                   ItemsSource="{Binding PezziInOrdine}" >
                 <DataGrid.RowStyle>
@@ -61,6 +88,11 @@
                     <DataGridCheckBoxColumn Header="Sprovvisto" Binding="{Binding Sprovvisto}" IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
+        </StackPanel>
+        <StackPanel Name="listboxPanel" Margin="5" Visibility="Collapsed">
+            <ListBox ItemTemplate="{StaticResource lbItemTemplate}" ItemsSource="{Binding PezziInOrdine}" HorizontalContentAlignment="Stretch" >
+                
+            </ListBox>
         </StackPanel>
     </StackPanel>
 </Window>
