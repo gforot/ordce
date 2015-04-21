@@ -404,7 +404,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
 
             return rOrdine.ContainsPezzoOfFornitore(FornitoreFilter);
-            return true;
         }
 
 

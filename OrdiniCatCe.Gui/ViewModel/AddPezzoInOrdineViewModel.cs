@@ -13,8 +13,6 @@ namespace OrdiniCatCe.Gui.ViewModel
 {
     public class AddPezzoInOrdineViewModel : DialogViewModelBase
     {
-        private int _idRigaOrdine;
-
         private PezziInOrdine _pezzo;
 
         public RelayCommand AddMarcaCommand { get; private set; }

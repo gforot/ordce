@@ -1,8 +1,13 @@
 ﻿<Window x:Class="OrdiniCatCe.Gui.View.FornitoriWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding FornitoriViewModel, Source={StaticResource Locator}}"
         Title="Vista per fornitori" Style="{StaticResource wndStyle}"  WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <converters:RowBackgroundConverter x:Key="backgroundConverter" />
+        <converters:RowForegroundConverter x:Key="foregroundConverter" />
+    </Window.Resources>
     <StackPanel Orientation="Vertical">
         <Border CornerRadius="5" BorderBrush="DarkOrange" BorderThickness="2">
             <StackPanel Name="fornitoriPanel">
@@ -28,6 +33,16 @@
             
             <DataGrid x:Name="grid" CanUserAddRows="false" CanUserDeleteRows="False" AutoGenerateColumns="False"
                   ItemsSource="{Binding PezziInOrdine}" >
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self},
+                Path=Item, Converter={StaticResource backgroundConverter}}"/>
+                        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self},
+                Path=Item, Converter={StaticResource foregroundConverter}}"/>
+                    </Style>
+                </DataGrid.RowStyle>
+
+
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Codice"  Binding="{Binding Codice}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Description"  Binding="{Binding Description}" IsReadOnly="True"/>
