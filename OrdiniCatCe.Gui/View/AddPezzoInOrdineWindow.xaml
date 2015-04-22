@@ -3,11 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:behavior="clr-namespace:OrdiniCatCe.Gui.behavior"
-        Title="Aggiungi Pezzo" Height="266" Width="837" Style="{StaticResource wndStyle}"
-        DataContext="{Binding AddPezzoInOrdineViewModel, Source={StaticResource Locator}}">
+        Title="Aggiungi Pezzo" Style="{StaticResource wndStyle}"
+        DataContext="{Binding AddPezzoInOrdineViewModel, Source={StaticResource Locator}}"
+        MinWidth="900" MinHeight="370"
+        Width="950" Height="370">
     <Window.Resources>
         <Style x:Key="addMarcaFornitoreBtnStyle" TargetType="Button">
             <Setter Property="Margin" Value="5" />
+        </Style>
+        <Style TargetType="FrameworkElement" x:Key="baseStyle">
+            <Setter Property="Margin" Value="{StaticResource myMargin}" />
+        </Style>
+        <Style TargetType="DatePicker" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
+        </Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
     </Window.Resources>
     <Grid>
@@ -41,11 +60,11 @@
         <TextBox Text="{Binding Descrizione, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="3" />
 
         <TextBlock Text="Marca" Grid.Row="1" Grid.Column="0" />
-        <Button Grid.Row="1" Grid.Column="1" Content="Crea Marca" Command="{Binding AddMarcaCommand}" Style="{StaticResource addMarcaFornitoreBtnStyle}" /> 
+        <Button Grid.Row="1" Grid.Column="1" Content="Nuova" Command="{Binding AddMarcaCommand}" Style="{StaticResource 75ButtonsStyle}" /> 
         <ComboBox SelectedValue="{Binding Marca}" DisplayMemberPath="Nome" ItemsSource="{Binding Marche}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" OpacityMask="Black" />
         <TextBlock Text="Fornitore" Grid.Row="1" Grid.Column="4" />
-        <Button Grid.Row="1" Grid.Column="5" Content="Crea Fornitore" Command="{Binding AddFornitoreCommand}" Style="{StaticResource addMarcaFornitoreBtnStyle}" />
-        <ComboBox SelectedValue="{Binding Fornitore}" DisplayMemberPath="Name" ItemsSource="{Binding Fornitori}" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" OpacityMask="Black" />
+        <Button Grid.Row="1" Grid.Column="5" Content="Nuovo" Command="{Binding AddFornitoreCommand}" Style="{StaticResource 75ButtonsStyle}" />
+        <ComboBox SelectedValue="{Binding Fornitore}" DisplayMemberPath="Name" ItemsSource="{Binding Fornitori}" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" OpacityMask="Black" Margin="10,7,5,6" />
 
         <TextBlock Text="Prezzo Acq." Grid.Row="2" Grid.Column="0" />
         <TextBox Text="{Binding PrezzoAcquisto}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" >
@@ -80,7 +99,7 @@
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="8">
             <Button Style="{StaticResource 75ButtonsStyle}" Content="Esci" Command="{Binding AnnullaCommand}"/>
-            <Button Style="{StaticResource 75ButtonsStyle}" Content="{Binding ConfermaButtonContent, FallbackValue=Modifica}" Command="{Binding ConfermaCommand}"/>
+            <Button Style="{StaticResource 150ButtonsStyle}" Content="{Binding ConfermaButtonContent, FallbackValue=Modifica}" Command="{Binding ConfermaCommand}"/>
         </StackPanel>
     </Grid>
 </Window>

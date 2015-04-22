@@ -1,6 +1,16 @@
-<Application x:Class="OrdiniCatCe.Gui.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" StartupUri="MainWindow.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006" DispatcherUnhandledException="Application_DispatcherUnhandledException">
+<Application x:Class="OrdiniCatCe.Gui.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             StartupUri="MainWindow.xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             d1p1:Ignorable="d" 
+             xmlns:core="clr-namespace:System;assembly=mscorlib"
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             DispatcherUnhandledException="Application_DispatcherUnhandledException">
     <Application.Resources>
-        
+        <Thickness x:Key="myMargin" Bottom="5" Left="5" Right="5" Top="5" />
+        <core:Double x:Key="myFontSize">18</core:Double>
+        <SolidColorBrush x:Key="groupBoxBorderBrush" Color="Maroon" Opacity="0.7" />
         <SolidColorBrush x:Key="notOrdinatoColor" Color="Red" Opacity="0.7" />
         <SolidColorBrush x:Key="ordinatoButNotArrivatoColor" Color="Blue" Opacity="0.7" />
         <SolidColorBrush x:Key="arrivatoButNotAvvisatoColor" Color="DarkOrange" Opacity="0.7" />
@@ -11,7 +21,7 @@
             <Setter Property="Margin" Value="5"></Setter>
             <Setter Property="Background" Value="LemonChiffon" />
             <Setter Property="BorderThickness" Value="2"></Setter>
-            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="FontSize" Value="{StaticResource myFontSize}"></Setter>
             
             
             <Setter Property="Template">

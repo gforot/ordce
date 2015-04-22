@@ -5,6 +5,14 @@
         DataContext="{Binding FornitoriViewModel, Source={StaticResource Locator}}"
         Title="Vista per fornitori" Style="{StaticResource wndStyle}"  WindowStartupLocation="CenterOwner">
     <Window.Resources>
+        <Style TargetType="GroupBox">
+            <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
+        </Style>
+
         <converters:RowBackgroundConverter x:Key="backgroundConverter" />
         <converters:RowForegroundConverter x:Key="foregroundConverter" />
         
@@ -37,7 +45,7 @@
         
     </Window.Resources>
     <StackPanel Orientation="Vertical">
-        <Border CornerRadius="5" BorderBrush="DarkOrange" BorderThickness="2">
+        <GroupBox Header="Fornitore" BorderBrush="{StaticResource groupBoxBorderBrush}" BorderThickness="1">
             <StackPanel Name="fornitoriPanel">
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
@@ -56,7 +64,7 @@
                     <TextBlock Text="{Binding FTelefono, FallbackValue=03185564756}" />
                 </StackPanel>
             </StackPanel>
-        </Border>
+        </GroupBox>
         <StackPanel Name="gridPanel" Margin="5">
             <DataGrid x:Name="grid" CanUserAddRows="false" CanUserDeleteRows="False" AutoGenerateColumns="False"
                   ItemsSource="{Binding PezziInOrdine}" >

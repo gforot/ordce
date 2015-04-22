@@ -4,7 +4,9 @@
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         xmlns:model="clr-namespace:OrdiniCatCe.Gui.Model"
         DataContext="{Binding DetailViewModel, Source={StaticResource Locator}}"
-        Title="Dettaglio Ordine" Style="{StaticResource wndStyle}" MinWidth="800" Width="917.97" Height="659.187" WindowStartupLocation="CenterScreen">
+        Title="Dettaglio Ordine" Style="{StaticResource wndStyle}"  WindowStartupLocation="CenterScreen"
+        Height="800" MinHeight="650"
+        >
     <Window.Resources>
         <converters:MarcaConverter x:Key="marcaConverter" />
         <converters:FornitoreConverter x:Key="fornitoreConverter" />
@@ -107,28 +109,47 @@
             </Border>
         </DataTemplate>
 
-
-
-        <Style TargetType="TextBox">
-            <Setter Property="Margin" Value="6"></Setter>
+        <Style TargetType="FrameworkElement" x:Key="baseStyle">
+            <Setter Property="Margin" Value="{StaticResource myMargin}" />
         </Style>
-        <Style TargetType="Border">
+
+        <Style TargetType="TextBlock" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
+        </Style>
+        
+        <Style TargetType="TextBox" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
+        </Style>
+        <Style TargetType="Border" BasedOn="{StaticResource baseStyle}">
             <Setter Property="BorderBrush" Value="Chartreuse" />
             <Setter Property="CornerRadius" Value="5"></Setter>
             <Setter Property="Margin" Value="4"></Setter>
             <Setter Property="BorderThickness" Value="1"></Setter>
         </Style>
-        <Style TargetType="Button">
+        <Style TargetType="Button" BasedOn="{StaticResource baseStyle}">
             <Setter Property="Margin" Value="6"></Setter>
             <Setter Property="Background" Value="WhiteSmoke"></Setter>
         </Style>
 
-        <Style TargetType="DatePicker">
-            <Setter Property="Margin" Value="4"></Setter>
+        <Style TargetType="DatePicker" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
         </Style>
 
-        <Style TargetType="ComboBox">
-            <Setter Property="Margin" Value="4"></Setter>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
+        </Style>
+
+        <Style TargetType="GroupBox" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="{StaticResource groupBoxBorderBrush}" />
+         </Style>
+        <Style TargetType="CheckBox" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
+        </Style>
+        <Style TargetType="ListBox" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
         </Style>
     </Window.Resources>
     <StackPanel>
@@ -149,7 +170,7 @@
                 </StackPanel>
             </ControlTemplate>
         </StackPanel.Resources>
-        <Border x:Name="brdCliente" >
+        <GroupBox x:Name="grpCliente" Header="Anagrafica" FontSize="16" FontWeight="Bold">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -167,20 +188,17 @@
 
                 <!-- Riga 1: NOME COGNOME -->
                 <TextBlock Foreground="{Binding Cognome, Converter={StaticResource textboxBackgroundConverter}}" Text="Cognome *" Grid.Column="0" Grid.Row="0" />
-                <TextBox Text="{Binding Cognome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" />
+                <TextBox Text="{Binding Cognome, UpdateSourceTrigger=PropertyChanged, FallbackValue=Rota}" Grid.Column="1" Grid.Row="0" />
 
                 <TextBlock Foreground="{Binding Nome, Converter={StaticResource textboxBackgroundConverter}}" Grid.Row="0" Grid.Column="2" Text="Nome *" />
-                <TextBox  Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="0" />
-
-
-
+                <TextBox  Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged, FallbackValue=Andrea}" Grid.Column="3" Grid.Row="0" />
 
                 <!-- Riga 2: indirizzo -->
                 <TextBlock Text="Indirizzo" Grid.Row="1" Grid.Column="0"></TextBlock>
-                <TextBox Text="{Binding Indirizzo, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" />
+                <TextBox Text="{Binding Indirizzo, UpdateSourceTrigger=PropertyChanged, FallbackValue=Via Balassi 44}" Grid.Row="1" Grid.Column="1" />
 
                 <TextBlock Text="Località" Grid.Row="1" Grid.Column="2"></TextBlock>
-                <TextBox Text="{Binding Localita, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3" />
+                <TextBox Text="{Binding Localita, UpdateSourceTrigger=PropertyChanged, FallbackValue=Galbiate}" Grid.Row="1" Grid.Column="3" />
 
                 <TextBlock Text="Civico" Grid.Row="1" Grid.Column="4"></TextBlock>
                 <TextBox Text="{Binding NumeroCivico, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="5" />
@@ -196,15 +214,15 @@
                 <TextBlock Text="Cellulare +" Grid.Row="2" Grid.Column="4" ></TextBlock>
                 <TextBox Text="{Binding Cellulare, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="5" />
             </Grid>
-        </Border>
+        </GroupBox>
         <!-- Contiene la Listbox con tutti i pezzi ordinati -->
-        <Border x:Name="brdPezzi">
+        <GroupBox x:Name="brdPezzi" Header="Pezzi">
             <StackPanel Orientation="Vertical">
-                <ListBox Height="140" x:Name="lbOrderedItems" ItemsSource="{Binding Pezzi}" HorizontalContentAlignment="Stretch" ItemTemplate="{StaticResource orderedItemTemplate}" />
+                <ListBox Height="160" x:Name="lbOrderedItems" ItemsSource="{Binding Pezzi}" HorizontalContentAlignment="Stretch" ItemTemplate="{StaticResource orderedItemTemplate}" />
                 <Button Content="Aggiungi Pezzo" Command="{Binding AddPezzoCommand}" Style="{StaticResource 150ButtonsStyle}"/>
             </StackPanel>
-        </Border>
-        <Border x:Name="brdPezzo">
+        </GroupBox>
+        <GroupBox x:Name="brdPezzo" Header="Generiche">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -239,55 +257,39 @@
                     <TextBlock Foreground="{Binding Fornitore, Converter={StaticResource textboxBackgroundConverter}}" Text="Fornitore *" />
                     <Button Content="Nuovo Fornitore" Command="{Binding CreaFornitoreCommand}" />
                 </StackPanel>-->
-                <TextBlock Text="Data Richiesta" Grid.Row="4" Grid.Column="0"></TextBlock>
+                <TextBlock FontWeight="Bold" Text="Data Richiesta" Grid.Row="4" Grid.Column="0"></TextBlock>
                 <!--StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="4"-->
-                <TextBlock Text="Cauzione" Grid.Row="5" Grid.Column="0"></TextBlock>
+                <TextBlock FontWeight="Bold" Text="Cauzione" Grid.Row="5" Grid.Column="0"></TextBlock>
                 <CheckBox IsChecked="{Binding RicevutoCaparra, Mode=TwoWay}" Grid.Row="5" Grid.Column="1"></CheckBox>
                 <TextBox Text="{Binding Caparra}" Grid.Row="5" Grid.Column="2"></TextBox>
                 <DatePicker SelectedDate="{Binding DataCaparra}" Grid.Row="5" Grid.Column="3" />
                 <!--/StackPanel-->
                 <DatePicker SelectedDate="{Binding DataRichiesta}" Grid.Row="4" Grid.Column="1" />
             </Grid>
-        </Border>
-        <Border x:Name="brdOrdine">
+        </GroupBox>
+        <GroupBox x:Name="brdOrdine" Header="Modalità Avviso">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Modalità Avviso" Grid.ColumnSpan="4" HorizontalAlignment="Center"></TextBlock>
-
-                <CheckBox Grid.Row="1" Grid.Column="0" Content="Telefono" IsChecked="{Binding AvvisatoTelefono}" />
-                <CheckBox Grid.Row="1" Grid.Column="1" Content="Cellulare" IsChecked="{Binding AvvisatoCellulare}"/>
-                <CheckBox Grid.Row="1" Grid.Column="2" Content="EMail" IsChecked="{Binding AvvisatoEMail}"/>
-                <CheckBox Grid.Row="1" Grid.Column="3" Content="Segreteria" IsChecked="{Binding AvvisatoSegreteria}"/>
+                <CheckBox Content="Telefono" IsChecked="{Binding AvvisatoTelefono}" />
+                <CheckBox Grid.Column="1" Content="Cellulare" IsChecked="{Binding AvvisatoCellulare}"/>
+                <CheckBox Grid.Column="2" Content="EMail" IsChecked="{Binding AvvisatoEMail}"/>
+                <CheckBox Grid.Column="3" Content="Segreteria" IsChecked="{Binding AvvisatoSegreteria}"/>
             </Grid>
-        </Border>
-        <Border x:Name="brdRitirato" >
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-            </Grid>
-        </Border>
-        <Border x:Name="brdButtons" >
+        </GroupBox>
+        <GroupBox x:Name="brdButtons" Header="Operazioni" >
             <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource 75ButtonsStyle}" Content="Annulla" Command="{Binding AnnullaCommand}"/>
                 <Button Style="{StaticResource 100ButtonsStyle}" Content="{Binding ConfermaButtonContent, FallbackValue=Modifica}" Command="{Binding ConfermaCommand}"/>
                 <Button Visibility="{Binding IsNew, Converter={StaticResource boolToVisibilityConverterInverted}}" Style="{StaticResource 150ButtonsStyle}" Content="Manda in storico" Command="{Binding StoricizzaCommand}"/>
                 <TextBlock Text="{Binding ErrorMessage}" FontWeight="Bold" FontSize="14" Foreground="#FFEE0E0E" ></TextBlock>
             </StackPanel>
-        </Border>
-        <Border x:Name="brdHelp">
+        </GroupBox>
+        <GroupBox x:Name="brdHelp" Header="Info">
             <StackPanel Orientation="Horizontal">
                 <Image Margin="4"  Width="24" Height="24" Source="../Images/information2.png"></Image>
                 <StackPanel Orientation="Vertical">
@@ -300,6 +302,6 @@
                     </TextBlock>
                 </StackPanel>
             </StackPanel>
-        </Border>
+        </GroupBox>
     </StackPanel>
 </Window>
