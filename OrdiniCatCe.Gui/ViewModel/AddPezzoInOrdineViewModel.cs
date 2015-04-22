@@ -21,6 +21,26 @@ namespace OrdiniCatCe.Gui.ViewModel
         public ObservableCollection<Marche> Marche { get; private set; }
         public ObservableCollection<Fornitori> Fornitori { get; private set; }
 
+
+        #region Conferma Button Content
+        private const string _confermaButtonContentOnNewPezzo = "Inserisci";
+        private const string _confermaButtonContentOnUpdatePezzo = "Modifica";
+        private string _confermaButtonContent;
+        private const string _confermaButtonKey = "ConfermaButtonContent";
+        public string ConfermaButtonContent
+        {
+            get
+            {
+                return _confermaButtonContent;
+            }
+            set
+            {
+                _confermaButtonContent = value;
+                RaisePropertyChanged(_confermaButtonKey);
+            }
+        } 
+        #endregion
+
         #region Codice
         private const string _codicePrpName = "Codice";
         public string Codice
@@ -102,6 +122,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                 if (_marca != null)
                 {
                     _pezzo.IdMarca = _marca.Id;
+                    _pezzo.Marche = _marca;
                 }
                 RaisePropertyChanged(_marcaPrpName);
             }
@@ -123,6 +144,7 @@ namespace OrdiniCatCe.Gui.ViewModel
                 if (_fornitore != null)
                 {
                     _pezzo.IdFornitore = _fornitore.Id;
+                    _pezzo.Fornitori = _fornitore;
                 }
                 RaisePropertyChanged(_fornitorePrpName);
             }
@@ -353,6 +375,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             _pezzo.IdMarca = null;
             Marca = null;
             Fornitore = null;
+            ConfermaButtonContent = _confermaButtonContentOnNewPezzo;
         }
 
         public void Setup(PezziInOrdine pezzoDaModificare)
@@ -366,6 +389,8 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 Marca = Marche.FirstOrDefault(m => m.Id == _pezzo.IdMarca.Value);
             }
+
+            ConfermaButtonContent = _confermaButtonContentOnUpdatePezzo;
         }
 
 

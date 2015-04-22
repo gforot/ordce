@@ -80,7 +80,7 @@
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="8">
             <Button Style="{StaticResource 75ButtonsStyle}" Content="Esci" Command="{Binding AnnullaCommand}"/>
-            <Button Style="{StaticResource 75ButtonsStyle}" Content="Inserisci" Command="{Binding ConfermaCommand}"/>
+            <Button Style="{StaticResource 75ButtonsStyle}" Content="{Binding ConfermaButtonContent, FallbackValue=Modifica}" Command="{Binding ConfermaCommand}"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -82,6 +82,25 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
+        #region Conferma Button Content
+        private const string _confermaButtonContentOnNewRichiesta = "Inserisci";
+        private const string _confermaButtonContentOnUpdateRichiesta = "Modifica";
+        private string _confermaButtonContent;
+        private const string _confermaButtonKey = "ConfermaButtonContent";
+        public string ConfermaButtonContent
+        {
+            get
+            {
+                return _confermaButtonContent;
+            }
+            set
+            {
+                _confermaButtonContent = value;
+                RaisePropertyChanged(_confermaButtonKey);
+            }
+        }
+        #endregion
+
         #region Nome
         private const string _nomePrpName = "Nome";
         private string _nome;
@@ -677,6 +696,15 @@ namespace OrdiniCatCe.Gui.ViewModel
             else
             {
                 SetupValuesFromRichiestaOrdine(richiesteOrdine);
+            }
+
+            if (IsNew)
+            {
+                ConfermaButtonContent = _confermaButtonContentOnNewRichiesta;
+            }
+            else
+            {
+                ConfermaButtonContent = _confermaButtonContentOnUpdateRichiesta;
             }
 
             ErrorMessage = string.Empty;

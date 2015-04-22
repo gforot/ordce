@@ -71,6 +71,8 @@
 
 
                 <DataGrid.Columns>
+                    <DataGridTextColumn Header="Cognome"  Binding="{Binding RichiesteOrdine.Cognome}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Nome"  Binding="{Binding RichiesteOrdine.Nome}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Codice"  Binding="{Binding Codice}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Description"  Binding="{Binding Description}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Marca" Binding="{Binding Marche}" IsReadOnly="True" />

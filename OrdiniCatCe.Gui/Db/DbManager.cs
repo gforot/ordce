@@ -243,7 +243,7 @@ finally
         {
             using (OrdiniEntities db = new OrdiniEntities())
             {
-                return db.PezziInOrdine.Include(p => p.Marche).Where(p => (p.IdFornitore.HasValue) && (p.IdFornitore.Value == idFornitore)).ToList();
+                return db.PezziInOrdine.Include(p => p.Marche).Include(p => p.RichiesteOrdine).Where(p => (p.IdFornitore.HasValue) && (p.IdFornitore.Value == idFornitore)).ToList();
             }
         }
 
@@ -302,11 +302,16 @@ finally
                 errorMessage = string.Empty;
                 using (OrdiniEntities db = new OrdiniEntities())
                 {
-                    db.Entry(pezzo).State = pezzo.Id == 0 ?
-                           EntityState.Added :
-                           EntityState.Modified; 
+                    if (pezzo.Id == 0)
+                    {
+                        db.Entry(pezzo).State = EntityState.Added;
+                    }
+                    else
+                    {
+                        PezziInOrdine oldInstance = db.PezziInOrdine.FirstOrDefault(p => p.Id == pezzo.Id);
+                        db.Entry(oldInstance).CurrentValues.SetValues(pezzo);
+                    }
 
-                    //db.PezziInOrdine.Add(pezzo);
                     db.SaveChanges();
                     return true;
                 }
