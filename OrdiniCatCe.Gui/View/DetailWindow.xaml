@@ -115,6 +115,7 @@
 
         <Style TargetType="TextBlock" BasedOn="{StaticResource baseStyle}">
             <Setter Property="FontSize" Value="{StaticResource myFontSize2}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
 
         <Style TargetType="TextBox" BasedOn="{StaticResource baseStyle}">
@@ -148,6 +149,7 @@
         </Style>
         <Style TargetType="CheckBox" BasedOn="{StaticResource baseStyle}">
             <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
         <Style TargetType="ListBox" BasedOn="{StaticResource baseStyle}">
             <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
@@ -232,7 +234,7 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <TextBlock FontWeight="Bold" Text="Data Richiesta" Grid.Column="0"></TextBlock>
+                <TextBlock FontWeight="Bold" Text="Data Richiesta" />
                 <DatePicker SelectedDate="{Binding DataRichiesta}" Grid.Column="1" />
                 <CheckBox IsChecked="{Binding RicevutoCaparra, Mode=TwoWay}" Margin="6,3,3,3" VerticalAlignment="Center" VerticalContentAlignment="Center" Content="Cauzione" Grid.Column="2"></CheckBox>
                 <TextBox Text="{Binding Caparra}" Grid.Column="3" ></TextBox>

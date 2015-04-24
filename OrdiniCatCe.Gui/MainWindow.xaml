@@ -30,7 +30,7 @@
             <converters:NofConverter x:Key="nofConverter" />
             <converters:StoricoBackgroundConverter x:Key="storicoBackgroundConverter"></converters:StoricoBackgroundConverter>
             <Style TargetType="Button" x:Key="eraserButtonStyle">
-                <Setter Property="Margin" Value="5"></Setter>
+                <Setter Property="Margin" Value="3,5"></Setter>
             </Style>
 
             <Style TargetType="Rectangle" x:Key="rectangleStyle">
@@ -106,7 +106,7 @@
                 <Image Source="Images/eraser2.png" Width="16" Height="16" ToolTip="Svuota Filtro Fornitore"  />
             </Button>
 
-            <Button Command="{Binding ClearFiltersCommand}" Style="{StaticResource eraserButtonStyle}" >
+            <Button Command="{Binding ClearFiltersCommand}" Style="{StaticResource eraserButtonStyle}" Margin="30,5,5,5"  >
                 <Image Source="Images/eraser2.png" Width="16" Height="16" ToolTip="Svuota tutti i filtri"  />
             </Button>
 
