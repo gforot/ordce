@@ -5,7 +5,7 @@
         xmlns:model="clr-namespace:OrdiniCatCe.Gui.Model"
         DataContext="{Binding DetailViewModel, Source={StaticResource Locator}}"
         Title="Dettaglio Ordine" Style="{StaticResource wndStyle}"  WindowStartupLocation="CenterScreen"
-        Height="800" MinHeight="650"
+        MinHeight="650" MinWidth="800" WindowState="Maximized"
         >
     <Window.Resources>
         <converters:MarcaConverter x:Key="marcaConverter" />
@@ -114,9 +114,9 @@
         </Style>
 
         <Style TargetType="TextBlock" BasedOn="{StaticResource baseStyle}">
-            <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
+            <Setter Property="FontSize" Value="{StaticResource myFontSize2}" />
         </Style>
-        
+
         <Style TargetType="TextBox" BasedOn="{StaticResource baseStyle}">
             <Setter Property="FontWeight" Value="Normal" />
             <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
@@ -141,10 +141,11 @@
         </Style>
 
         <Style TargetType="GroupBox" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="Margin" Value="2" />
             <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="BorderBrush" Value="{StaticResource groupBoxBorderBrush}" />
-         </Style>
+        </Style>
         <Style TargetType="CheckBox" BasedOn="{StaticResource baseStyle}">
             <Setter Property="FontSize" Value="{StaticResource myFontSize}" />
         </Style>
@@ -218,53 +219,25 @@
         <!-- Contiene la Listbox con tutti i pezzi ordinati -->
         <GroupBox x:Name="brdPezzi" Header="Pezzi">
             <StackPanel Orientation="Vertical">
-                <ListBox Height="160" x:Name="lbOrderedItems" ItemsSource="{Binding Pezzi}" HorizontalContentAlignment="Stretch" ItemTemplate="{StaticResource orderedItemTemplate}" />
+                <ListBox Height="140" x:Name="lbOrderedItems" ItemsSource="{Binding Pezzi}" HorizontalContentAlignment="Stretch" ItemTemplate="{StaticResource orderedItemTemplate}" />
                 <Button Content="Aggiungi Pezzo" Command="{Binding AddPezzoCommand}" Style="{StaticResource 150ButtonsStyle}"/>
             </StackPanel>
         </GroupBox>
         <GroupBox x:Name="brdPezzo" Header="Generiche">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <!--<StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
-                    <TextBlock Foreground="{Binding Marca, Converter={StaticResource textboxBackgroundConverter}}" Text="Marca *" />
-                    <Button Content="Nuova Marca" Command="{Binding CreaMarcaCommand}" />
-                </StackPanel>-->
-                <!--<TextBlock Text="Codice" Grid.Column="2" Grid.Row="0" />
-                <TextBlock Foreground="{Binding Descrizione, Converter={StaticResource textboxBackgroundConverter}}" Text="Descrizione *" Grid.Row="1" Grid.Column="0"></TextBlock>
-                <TextBlock Text="Prezzo di Costo" Grid.Row="2" Grid.Column="0"></TextBlock>
-                <TextBlock Text="Prezzo di Vendita" Grid.Row="2" Grid.Column="2"></TextBlock>-->
-                <!--<StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
-                    <TextBlock Foreground="{Binding Fornitore, Converter={StaticResource textboxBackgroundConverter}}" Text="Fornitore *" />
-                    <Button Content="Nuovo Fornitore" Command="{Binding CreaFornitoreCommand}" />
-                </StackPanel>-->
-                <TextBlock FontWeight="Bold" Text="Data Richiesta" Grid.Row="4" Grid.Column="0"></TextBlock>
-                <!--StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="4"-->
-                <TextBlock FontWeight="Bold" Text="Cauzione" Grid.Row="5" Grid.Column="0"></TextBlock>
-                <CheckBox IsChecked="{Binding RicevutoCaparra, Mode=TwoWay}" Grid.Row="5" Grid.Column="1"></CheckBox>
-                <TextBox Text="{Binding Caparra}" Grid.Row="5" Grid.Column="2"></TextBox>
-                <DatePicker SelectedDate="{Binding DataCaparra}" Grid.Row="5" Grid.Column="3" />
-                <!--/StackPanel-->
-                <DatePicker SelectedDate="{Binding DataRichiesta}" Grid.Row="4" Grid.Column="1" />
+                <TextBlock FontWeight="Bold" Text="Data Richiesta" Grid.Column="0"></TextBlock>
+                <DatePicker SelectedDate="{Binding DataRichiesta}" Grid.Column="1" />
+                <CheckBox IsChecked="{Binding RicevutoCaparra, Mode=TwoWay}" Margin="6,3,3,3" VerticalAlignment="Center" VerticalContentAlignment="Center" Content="Cauzione" Grid.Column="2"></CheckBox>
+                <TextBox Text="{Binding Caparra}" Grid.Column="3" ></TextBox>
+                <DatePicker SelectedDate="{Binding DataCaparra}" Grid.Column="4" />
+                
             </Grid>
         </GroupBox>
         <GroupBox x:Name="brdOrdine" Header="Modalità Avviso">
@@ -285,7 +258,7 @@
             <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource 75ButtonsStyle}" Content="Annulla" Command="{Binding AnnullaCommand}"/>
                 <Button Style="{StaticResource 100ButtonsStyle}" Content="{Binding ConfermaButtonContent, FallbackValue=Modifica}" Command="{Binding ConfermaCommand}"/>
-                <Button Visibility="{Binding IsNew, Converter={StaticResource boolToVisibilityConverterInverted}}" Style="{StaticResource 150ButtonsStyle}" Content="Manda in storico" Command="{Binding StoricizzaCommand}"/>
+                <Button Visibility="{Binding IsNew, Converter={StaticResource boolToVisibilityConverterInverted}}" Style="{StaticResource 200ButtonsStyle}" Content="Manda in storico" Command="{Binding StoricizzaCommand}"/>
                 <TextBlock Text="{Binding ErrorMessage}" FontWeight="Bold" FontSize="14" Foreground="#FFEE0E0E" ></TextBlock>
             </StackPanel>
         </GroupBox>

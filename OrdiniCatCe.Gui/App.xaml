@@ -10,6 +10,8 @@
     <Application.Resources>
         <Thickness x:Key="myMargin" Bottom="5" Left="5" Right="5" Top="5" />
         <core:Double x:Key="myFontSize">18</core:Double>
+        <core:Double x:Key="myFontSize2">16</core:Double>
+        
         <SolidColorBrush x:Key="groupBoxBorderBrush" Color="Maroon" Opacity="0.7" />
         <SolidColorBrush x:Key="notOrdinatoColor" Color="Red" Opacity="0.7" />
         <SolidColorBrush x:Key="ordinatoButNotArrivatoColor" Color="Blue" Opacity="0.7" />
