@@ -44,7 +44,7 @@ namespace OrdiniCatCe.Gui.Utils.Logging
                 {
                     throw;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                 }
             }

@@ -107,7 +107,11 @@ namespace OrdiniCatCe.Gui
                                                                 new UpdateRigaOrdineMessage(wnd.CreateRigaOrdine()),
                                                                 MsgKeys.UpdateRigaOrdineKey);
             }
-
+            else
+            {
+                //update
+                Messenger.Default.Send<MessageBase>(null, MsgKeys.UpdateRigheOrdineKey);
+            }
         }
 
 

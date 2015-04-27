@@ -125,6 +125,7 @@ namespace OrdiniCatCe.Gui.ViewModel
 
 
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.UpdateRigaOrdineKey, OnUpdateRigaOrdineToDbRequested);
+            Messenger.Default.Register<MessageBase>(this, MsgKeys.UpdateRigheOrdineKey, OnUpdateRigheOrdineToDbRequested);
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.DeleteKey, OnDeleteRequested);
             Messenger.Default.Register<AddRigaOrdineMessage>(this, MsgKeys.NewOrderWindowConfirmKey, OnRigaOrdineAddedToDb);
 
@@ -353,7 +354,10 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
-            
+        private void OnUpdateRigheOrdineToDbRequested(MessageBase m)
+        {
+            UpdateRigheOrdineFromDb();
+        }
 
         private void OnUpdateRigaOrdineToDbRequested(UpdateRigaOrdineMessage message)
         {
