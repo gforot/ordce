@@ -99,12 +99,15 @@
                         <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="{Binding Codice}" Foreground="{Binding ., Converter={StaticResource foregroundConverter}}"/>
                     <TextBlock Grid.Column="1" Text="{Binding Description}" Foreground="{Binding ., Converter={StaticResource foregroundConverter}}"/>
                     <TextBlock Grid.Column="2" Text="{Binding Fornitori.Name}" Foreground="{Binding ., Converter={StaticResource foregroundConverter}}"/>
                     <Button Grid.Column="3" Content="Modifica" Command="{Binding RelativeSource=
-                        {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}, Path= DataContext.UpdatePezzoCommand}" CommandParameter="{Binding}"></Button>
+                        {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}, Path=DataContext.UpdatePezzoCommand}" CommandParameter="{Binding}"></Button>
+                    <Button Grid.Column="4" Content="Elimina" Command="{Binding RelativeSource=
+                        {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}, Path=DataContext.RemovePezzoCommand}" CommandParameter="{Binding}"></Button>
                 </Grid>
             </Border>
         </DataTemplate>

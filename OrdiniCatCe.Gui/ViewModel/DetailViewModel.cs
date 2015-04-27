@@ -31,6 +31,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             CreaMarcaCommand = new RelayCommand(CreaMarca);
             AddPezzoCommand = new RelayCommand(AddPezzo);
             UpdatePezzoCommand = new RelayCommand<PezziInOrdine>(UpdatePezzo);
+            RemovePezzoCommand = new RelayCommand<PezziInOrdine>(RemovePezzo);
             StoricizzaCommand = new RelayCommand(Storicizza);
 
             //todo: trasformarlo in message per inizializzare Marche
@@ -71,6 +72,8 @@ namespace OrdiniCatCe.Gui.ViewModel
         public RelayCommand AddPezzoCommand { get; private set; }
 
         public RelayCommand<PezziInOrdine> UpdatePezzoCommand { get; private set; }
+
+        public RelayCommand<PezziInOrdine> RemovePezzoCommand { get; private set; }
 
         private bool CanConferma
         {
@@ -578,6 +581,24 @@ namespace OrdiniCatCe.Gui.ViewModel
                 RefreshPezzi();
             }
         }
+
+        private void RemovePezzo(PezziInOrdine pezzo)
+        {
+            //richiedo se l'utente è sicuro.
+            MessageBoxResult result = MessageBox.Show(null, Texts.ConfermaCancellazionePezzo, AppConstants.ApplicationName, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    break;
+                default:
+                    return;
+            }
+
+            //se l'utente ha confermato la rimozione, cancello il pezzo.
+            DbManager.RemovePezzo(pezzo);
+            RefreshPezzi();
+        }
+
 
         private void RefreshPezzi()
         {

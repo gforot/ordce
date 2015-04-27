@@ -348,5 +348,23 @@ finally
             }
         }
 
+        public static bool RemovePezzo(PezziInOrdine p)
+        {
+            try
+            {
+                using (OrdiniEntities db = new OrdiniEntities())
+                {
+                    db.PezziInOrdine.Attach(p);
+                    db.PezziInOrdine.Remove(p);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
     }
 }
