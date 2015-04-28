@@ -312,6 +312,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             if (message.RigaOrdine != null)
             {
                 DbManager.RemoveRigaOrdine(message.RigaOrdine.Id);
+                UpdateRigheOrdineFromDb();
             }
         }
 
