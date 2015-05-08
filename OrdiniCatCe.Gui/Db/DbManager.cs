@@ -329,14 +329,16 @@ finally
             {
                 using (OrdiniEntities db = new OrdiniEntities())
                 {
-                    List<PezziInOrdine> pezzi = GetPezziByIdRichiesta(idOrdine);
+                    RichiesteOrdine toDelete = db.RichiesteOrdine.First(ro => ro.Id == idOrdine);
+                    List<PezziInOrdine> pezzi = db.PezziInOrdine.Where(p => p.IdRichiestaOrdine == idOrdine).ToList();
+
                     foreach (PezziInOrdine p in pezzi)
                     {
                         db.PezziInOrdine.Attach(p);
                         db.PezziInOrdine.Remove(p);
-                        
                     }
-                    RichiesteOrdine toDelete = GetRichiestaOrdine(idOrdine);
+
+                    db.RichiesteOrdine.Attach(toDelete);
                     db.RichiesteOrdine.Remove(toDelete);
                     db.SaveChanges();
                     return true;
