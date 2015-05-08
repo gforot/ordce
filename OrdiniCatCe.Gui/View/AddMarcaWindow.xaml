@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:OrdiniCatCe.Gui.Converters"
         DataContext="{Binding AddMarcaViewModel, Source={StaticResource Locator}}"
-        Title="Nuova Marca" MinHeight="115" MaxHeight="180" MinWidth="280" MaxWidth="650" Style="{StaticResource wndStyle}" Height="90" Width="459">
+        Title="Nuova Marca" MinHeight="140" MaxHeight="180" MinWidth="280" MaxWidth="650" Style="{StaticResource wndStyle}" Height="140" Width="459">
     <Window.Resources>
         <ResourceDictionary Source="/OrdiniCatCe.Gui;component/MyResources.xaml">
         </ResourceDictionary>
