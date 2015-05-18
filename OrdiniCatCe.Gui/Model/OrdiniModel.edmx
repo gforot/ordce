@@ -156,6 +156,9 @@
           <Property Type="DateTime" Name="DataCaparra" Precision="3" />
           <NavigationProperty Name="PezziInOrdine" Relationship="OrdiniModel.FK_RichiesteOrdine1" FromRole="RichiesteOrdine" ToRole="PezziInOrdine" />
           <Property Type="Boolean" Name="Storicizzata" Nullable="false" />
+          <Property Name="Note1" Type="String" MaxLength="100" FixedLength="false" Nullable="true" Unicode="true" />
+          <Property Name="Note2" Type="String" Nullable="true" Unicode="true" MaxLength="100" FixedLength="false" />
+          <Property Name="Note3" Type="String" MaxLength="100" FixedLength="false" Nullable="true" Unicode="true" />
         </EntityType>
         <Association Name="FK_IdFornitore">
           <End Type="OrdiniModel.Fornitori" Role="Fornitori" Multiplicity="0..1" />
