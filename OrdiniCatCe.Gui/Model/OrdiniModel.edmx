@@ -69,6 +69,9 @@
           <Property Name="Caparra" Type="money" />
           <Property Name="DataCaparra" Type="datetime" />
           <Property Name="Storicizzata" Type="bit" Nullable="false" />
+          <Property Name="Note1" Type="nvarchar" MaxLength="100" />
+          <Property Name="Note2" Type="nvarchar" MaxLength="100" />
+          <Property Name="Note3" Type="nvarchar" MaxLength="100" />
         </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -144,7 +147,7 @@
           <Property Type="String" Name="Telefono" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="EMail" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Cellulare" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="ModalitàAvviso" Nullable="false" />
+          <Property Type="Int32" Name="ModalitàAvviso" />
           <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Nome" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Cognome" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -156,6 +159,9 @@
           <Property Type="DateTime" Name="DataCaparra" Precision="3" />
           <NavigationProperty Name="PezziInOrdine" Relationship="OrdiniModel.FK_RichiesteOrdine1" FromRole="RichiesteOrdine" ToRole="PezziInOrdine" />
           <Property Type="Boolean" Name="Storicizzata" Nullable="false" />
+          <Property Type="String" Name="Note1" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Note2" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Note3" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_IdFornitore">
           <End Type="OrdiniModel.Fornitori" Role="Fornitori" Multiplicity="0..1" />
@@ -250,6 +256,9 @@
           <EntitySetMapping Name="RichiesteOrdine">
             <EntityTypeMapping TypeName="OrdiniModel.RichiesteOrdine">
               <MappingFragment StoreEntitySet="RichiesteOrdine">
+                <ScalarProperty Name="Note3" ColumnName="Note3" />
+                <ScalarProperty Name="Note2" ColumnName="Note2" />
+                <ScalarProperty Name="Note1" ColumnName="Note1" />
                 <ScalarProperty Name="Storicizzata" ColumnName="Storicizzata" />
                 <ScalarProperty Name="DataCaparra" ColumnName="DataCaparra" />
                 <ScalarProperty Name="Caparra" ColumnName="Caparra" />
