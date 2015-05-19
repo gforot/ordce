@@ -349,6 +349,9 @@ namespace OrdiniCatCe.Gui.ViewModel
             Indirizzo = string.Empty;
             Localita = string.Empty;
             NumeroCivico = string.Empty;
+            Note1 = string.Empty;
+            Note2 = string.Empty;
+            Note3 = string.Empty;
         }
     }
 }
