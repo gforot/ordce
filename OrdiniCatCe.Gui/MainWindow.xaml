@@ -203,7 +203,8 @@
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Sprovvisti" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Sprovvisti}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Fuori Stock" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Fuoristock}" IsReadOnly="True" />
-
+                <DataGridTextColumn Header="Nota1" Binding="{Binding Note1}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Nota2" Binding="{Binding Note2}" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

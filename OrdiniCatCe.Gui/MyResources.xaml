@@ -3,17 +3,17 @@
     <SolidColorBrush x:Name="mancanteBackground" x:Key="mancanteBackground"></SolidColorBrush>
     
     <Style x:Key="addAnagraficaItemTextBlockStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontSize" Value="18" />
         <Setter Property="Margin" Value="2" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
     <Style x:Key="addAnagraficaItemTextBoxStyle" TargetType="TextBox">
-        <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontSize" Value="20" />
         <Setter Property="Margin" Value="2" />
     </Style>
 
     <Style x:Key="anagraficaItemButton" TargetType="Button" BasedOn="{StaticResource 75ButtonsStyle}">
-        <Setter Property="FontSize" Value="22" />
-        <Setter Property="Height" Value="30" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Height" Value="28" />
     </Style>
 </ResourceDictionary>
