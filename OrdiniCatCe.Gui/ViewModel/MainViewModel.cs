@@ -377,6 +377,9 @@ namespace OrdiniCatCe.Gui.ViewModel
             target.Cognome = source.Cognome;
             target.EMail = source.EMail;
             target.Indirizzo = source.Indirizzo;
+            target.Note1 = source.Note1;
+            target.Note2 = source.Note2;
+            target.Note3 = source.Note3;
             target.Localita = source.Localita;
             target.Modalit‡Avviso = source.Modalit‡Avviso;
             target.Nome = source.Nome;

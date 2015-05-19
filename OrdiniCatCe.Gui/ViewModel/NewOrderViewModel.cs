@@ -109,6 +109,60 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #endregion
 
+        #region Note1
+        private const string _note1PrpName = "Note1";
+        private string _note1;
+        public string Note1
+        {
+            get
+            {
+                return _note1;
+            }
+            set
+            {
+                _note1 = value;
+                RaisePropertyChanged(_note1PrpName);
+            }
+        }
+
+        #endregion
+
+        #region Note2
+        private const string _note2PrpName = "Note2";
+        private string _note2;
+        public string Note2
+        {
+            get
+            {
+                return _note2;
+            }
+            set
+            {
+                _note2 = value;
+                RaisePropertyChanged(_note2PrpName);
+            }
+        }
+
+        #endregion
+
+        #region Note3
+        private const string _note3PrpName = "Note3";
+        private string _note3;
+        public string Note3
+        {
+            get
+            {
+                return _note3;
+            }
+            set
+            {
+                _note3 = value;
+                RaisePropertyChanged(_note3PrpName);
+            }
+        }
+
+        #endregion
+
         #region Localita
         private const string _localitaPrpName = "Localita";
         private string _localita;
@@ -213,6 +267,9 @@ namespace OrdiniCatCe.Gui.ViewModel
             ro.NumeroCivico = NumeroCivico;
             ro.Localita = Localita;
             ro.Indirizzo = Indirizzo;
+            ro.Note1 = Note1;
+            ro.Note2 = Note2;
+            ro.Note3 = Note3;
             ro.Telefono = Telefono;
             ro.DataCaparra = DateTime.Today;
             ro.DataRichiesta = DateTime.Today;
