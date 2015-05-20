@@ -304,6 +304,8 @@ finally
                 {
                     if (pezzo.Id == 0)
                     {
+                        //su questa chiamata vengono aggiunti  sia il Fornitore che la Marca
+                        //controllare perchè succede.
                         db.Entry(pezzo).State = EntityState.Added;
                     }
                     else
