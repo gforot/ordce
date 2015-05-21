@@ -306,6 +306,8 @@ finally
                     {
                         //su questa chiamata vengono aggiunti  sia il Fornitore che la Marca
                         //controllare perchè succede.
+                        db.Entry(pezzo.Marche).State = EntityState.Unchanged;
+                        db.Entry(pezzo.Fornitori).State = EntityState.Unchanged;
                         db.Entry(pezzo).State = EntityState.Added;
                     }
                     else
