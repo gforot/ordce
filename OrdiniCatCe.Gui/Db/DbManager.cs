@@ -372,5 +372,61 @@ finally
             }
         }
 
+
+        internal static void UpdateRigaOrdine(RichiesteOrdine richiesteOrdine)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool UpdateRigaOrdine(RichiesteOrdine rigaOrdine, out string errorMessage)
+        {
+            try
+            {
+                errorMessage = string.Empty;
+                using (OrdiniEntities db = new OrdiniEntities())
+                {
+                    //recupero la riga
+                    RichiesteOrdine toUpdate = db.RichiesteOrdine.First(ro => ro.Id == rigaOrdine.Id);
+                    if (toUpdate != null)
+                    {
+                        CopyAllProperties(rigaOrdine, toUpdate);
+
+                        foreach(PezziInOrdine p in toUpdate.PezziInOrdine)
+                        {
+                            db.Entry(p).State = EntityState.Unchanged;
+                            db.Entry(p.Marche).State = EntityState.Unchanged;
+                            db.Entry(p.Fornitori).State = EntityState.Unchanged;
+                        }
+                        db.SaveChanges();
+                    }
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                errorMessage = ex.Message;
+                return false;
+            }
+        }
+
+        private static void CopyAllProperties(RichiesteOrdine source, RichiesteOrdine target)
+        {
+            target.Cellulare = source.Cellulare;
+            target.Cognome = source.Cognome;
+            target.EMail = source.EMail;
+            target.Indirizzo = source.Indirizzo;
+            target.Note1 = source.Note1;
+            target.Note2 = source.Note2;
+            target.Note3 = source.Note3;
+            target.Localita = source.Localita;
+            target.ModalitàAvviso = source.ModalitàAvviso;
+            target.Nome = source.Nome;
+            target.NumeroCivico = source.NumeroCivico;
+            target.Telefono = source.Telefono;
+            target.Caparra = source.Caparra;
+            target.DataCaparra = source.DataCaparra;
+            target.RicevutaCaparra = source.RicevutaCaparra;
+            target.Storicizzata = source.Storicizzata;
+        }
     }
 }

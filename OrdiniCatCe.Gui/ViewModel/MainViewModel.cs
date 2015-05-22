@@ -120,8 +120,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             OrdinaCommand = new RelayCommand(Ordina);
             ViewPerFornitoreCommand = new RelayCommand(ViewPerFornitore);
             ViewStoricoCommand = new RelayCommand(ViewStorico);
-            Messenger.Default.Register<AddMarcaMessage>(this, MsgKeys.AddMarcaToDbKey, OnAddMarcaToDbRequested);
-            Messenger.Default.Register<AddFornitoreMessage>(this, MsgKeys.AddFornitoreToDbKey, OnAddFornitoreToDbRequested);
 
 
             Messenger.Default.Register<UpdateRigaOrdineMessage>(this, MsgKeys.UpdateRigaOrdineKey, OnUpdateRigaOrdineToDbRequested);
@@ -258,12 +256,13 @@ namespace OrdiniCatCe.Gui.ViewModel
             this.VisualizzaStorico = !VisualizzaStorico;
         }
 
+        /// <summary>
+        /// Recupera dal DB le righe ordine.
+        /// </summary>
         private void UpdateRigheOrdineFromDb()
         {
             _righeOrdine.Clear();
-
             List<RichiesteOrdine> rOrdines = VisualizzaStorico ? DbManager.GetRichiesteOrdineStoricizzate() : DbManager.GetRichiesteOrdineAttive();
-
             foreach (RichiesteOrdine ro in rOrdines)
             {
 
@@ -289,23 +288,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
-        private void OnAddMarcaToDbRequested(AddMarcaMessage message)
-        {
-            using (OrdiniEntities db = new OrdiniEntities())
-            {
-                db.Marche.Add(message.Marca);
-                db.SaveChanges();
-            }
-        }
 
-        private void OnAddFornitoreToDbRequested(AddFornitoreMessage message)
-        {
-            using (OrdiniEntities db = new OrdiniEntities())
-            {
-                db.Fornitori.Add(message.Fornitore);
-                db.SaveChanges();
-            }
-        }
 
         private void OnDeleteRequested(UpdateRigaOrdineMessage message)
         {
@@ -362,34 +345,19 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         private void OnUpdateRigaOrdineToDbRequested(UpdateRigaOrdineMessage message)
         {
-            using (OrdiniEntities db = new OrdiniEntities())
-            {
-                RichiesteOrdine ro = db.RichiesteOrdine.First(r => r.Id == message.RigaOrdine.Id);
-                CopyAllProperties(message.RigaOrdine, ro);
-                int updated = db.SaveChanges();
-                UpdateRigheOrdineFromDb();
-            }
+            string errorMessage;
+            DbManager.UpdateRigaOrdine(message.RigaOrdine, out errorMessage);
+            UpdateRigheOrdineFromDb();
+            //using (OrdiniEntities db = new OrdiniEntities())
+            //{
+            //    RichiesteOrdine ro = db.RichiesteOrdine.First(r => r.Id == message.RigaOrdine.Id);
+            //    CopyAllProperties(message.RigaOrdine, ro);
+            //    int updated = db.SaveChanges();
+            //    UpdateRigheOrdineFromDb();
+            //}
         }
 
-        private static void CopyAllProperties(RichiesteOrdine source, RichiesteOrdine target)
-        {
-            target.Cellulare = source.Cellulare;
-            target.Cognome = source.Cognome;
-            target.EMail = source.EMail;
-            target.Indirizzo = source.Indirizzo;
-            target.Note1 = source.Note1;
-            target.Note2 = source.Note2;
-            target.Note3 = source.Note3;
-            target.Localita = source.Localita;
-            target.Modalit‡Avviso = source.Modalit‡Avviso;
-            target.Nome = source.Nome;
-            target.NumeroCivico = source.NumeroCivico;
-            target.Telefono = source.Telefono;
-            target.Caparra = source.Caparra;
-            target.DataCaparra = source.DataCaparra;
-            target.RicevutaCaparra = source.RicevutaCaparra;
-            target.Storicizzata = source.Storicizzata;
-        }
+        
 
         private bool Filter(object obj)
         {
