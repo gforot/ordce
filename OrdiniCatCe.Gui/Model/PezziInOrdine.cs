@@ -32,6 +32,7 @@ namespace OrdiniCatCe.Gui.Model
         public Nullable<System.DateTime> DataRitirato { get; set; }
         public bool FuoriStock { get; set; }
         public bool Sprovvisto { get; set; }
+        public Nullable<int> Quantita { get; set; }
     
         public virtual Fornitori Fornitori { get; set; }
         public virtual Marche Marche { get; set; }

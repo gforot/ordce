@@ -49,6 +49,7 @@
           <Property Name="DataRitirato" Type="datetime" />
           <Property Name="FuoriStock" Type="bit" Nullable="false" />
           <Property Name="Sprovvisto" Type="bit" Nullable="false" />
+          <Property Name="Quantita" Type="int" />
         </EntityType>
         <EntityType Name="RichiesteOrdine">
           <Key>
@@ -138,6 +139,7 @@
           <Property Type="DateTime" Name="DataRitirato" Nullable="true" Precision="3" />
           <Property Type="Boolean" Name="FuoriStock" Nullable="false" />
           <Property Type="Boolean" Name="Sprovvisto" Nullable="false" />
+          <Property Type="Int32" Name="Quantita" />
         </EntityType>
         <EntityType Name="RichiesteOrdine">
           <Key>
@@ -232,6 +234,7 @@
           <EntitySetMapping Name="PezziInOrdine">
             <EntityTypeMapping TypeName="OrdiniModel.PezziInOrdine">
               <MappingFragment StoreEntitySet="PezziInOrdine">
+                <ScalarProperty Name="Quantita" ColumnName="Quantita" />
                 <ScalarProperty Name="Sprovvisto" ColumnName="Sprovvisto" />
                 <ScalarProperty Name="FuoriStock" ColumnName="FuoriStock" />
                 <ScalarProperty Name="DataRitirato" ColumnName="DataRitirato" />

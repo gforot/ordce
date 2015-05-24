@@ -73,6 +73,22 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
         #endregion
 
+        #region Quantita
+        private const string _quantitaPrpName = "Quantita";
+        public int? Quantita
+        {
+            get
+            {
+                return _pezzo.Quantita;
+            }
+            set
+            {
+                _pezzo.Quantita = value;
+                RaisePropertyChanged(_quantitaPrpName);
+            }
+        }
+        #endregion
+
         #region PrezzoAcquisto
         private const string _prezzoAcqPrpName = "PrezzoAcquisto";
 
@@ -360,6 +376,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             _pezzo.IdRichiestaOrdine = idRigaOrdine;
             _pezzo.Codice = string.Empty;
             _pezzo.Description = string.Empty;
+            _pezzo.Quantita = 1;
             _pezzo.Sprovvisto = false;
             _pezzo.FuoriStock = false;
             _pezzo.Arrivato = false;
