@@ -8,9 +8,9 @@
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              DispatcherUnhandledException="Application_DispatcherUnhandledException">
     <Application.Resources>
-        <Thickness x:Key="myMargin" Bottom="5" Left="5" Right="5" Top="5" />
-        <core:Double x:Key="myFontSize">18</core:Double>
-        <core:Double x:Key="myFontSize2">16</core:Double>
+        <Thickness x:Key="myMargin" Bottom="2" Left="3" Right="3" Top="2" />
+        <core:Double x:Key="myFontSize">13</core:Double>
+        <core:Double x:Key="myFontSize2">11</core:Double>
         
         <SolidColorBrush x:Key="groupBoxBorderBrush" Color="Maroon" Opacity="0.7" />
         <SolidColorBrush x:Key="notOrdinatoColor" Color="Red" Opacity="0.7" />

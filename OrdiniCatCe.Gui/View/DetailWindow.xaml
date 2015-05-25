@@ -96,17 +96,19 @@
                 <Grid Background="{Binding ., Converter={StaticResource backgroundConverter}}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding Codice}" Foreground="{Binding ., Converter={StaticResource foregroundConverter}}"/>
-                    <TextBlock Grid.Column="1" Text="{Binding Description}" Foreground="{Binding ., Converter={StaticResource foregroundConverter}}"/>
-                    <TextBlock Grid.Column="2" Text="{Binding Fornitori.Name}" Foreground="{Binding ., Converter={StaticResource foregroundConverter}}"/>
-                    <Button Grid.Column="3" Content="Modifica" Command="{Binding RelativeSource=
+                    <TextBlock Text="{Binding Quantita}" Foreground="{Binding ., Converter={StaticResource foregroundConverter}}"/>
+                    <TextBlock Text="{Binding Codice}" Grid.Column="1" Foreground="{Binding ., Converter={StaticResource foregroundConverter}}"/>
+                    <TextBlock Grid.Column="2" Text="{Binding Description}" Foreground="{Binding ., Converter={StaticResource foregroundConverter}}"/>
+                    <TextBlock Grid.Column="3" Text="{Binding Fornitori.Name}" Foreground="{Binding ., Converter={StaticResource foregroundConverter}}"/>
+                    <Button Grid.Column="4" Content="Modifica" Command="{Binding RelativeSource=
                         {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}, Path=DataContext.UpdatePezzoCommand}" CommandParameter="{Binding}"></Button>
-                    <Button Grid.Column="4" Content="Elimina" Command="{Binding RelativeSource=
+                    <Button Grid.Column="5" Content="Elimina" Command="{Binding RelativeSource=
                         {RelativeSource FindAncestor, AncestorType={x:Type ListBox}}, Path=DataContext.RemovePezzoCommand}" CommandParameter="{Binding}"></Button>
                 </Grid>
             </Border>
@@ -244,7 +246,7 @@
                 </Grid.RowDefinitions>
                 <TextBlock FontWeight="Bold" Text="Data Richiesta" />
                 <DatePicker SelectedDate="{Binding DataRichiesta}" Grid.Column="1" />
-                <CheckBox IsChecked="{Binding RicevutoCaparra, Mode=TwoWay}" Margin="6,3,3,3" VerticalAlignment="Center" VerticalContentAlignment="Center" Content="Cauzione" Grid.Column="2"></CheckBox>
+                <CheckBox IsChecked="{Binding RicevutoCaparra, Mode=TwoWay}" Margin="3" VerticalAlignment="Center" VerticalContentAlignment="Center" Content="Cauzione" Grid.Column="2"></CheckBox>
                 <TextBox Text="{Binding Caparra}" Grid.Column="3" ></TextBox>
                 <DatePicker SelectedDate="{Binding DataCaparra}" Grid.Column="4" />
                 <TextBlock FontWeight="Bold" Text="Note 1:" Grid.Row="1" />

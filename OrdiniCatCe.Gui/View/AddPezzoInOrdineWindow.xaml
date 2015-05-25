@@ -53,9 +53,10 @@
             <!-- 6 Buttons -->
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
-        <TextBlock Text="Codice" Grid.Row="0" Grid.Column="0" />
-        <TextBox Text="{Binding Codice, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" />
+        <TextBlock Text="Quantità" Grid.Row="0" Grid.Column="0" />
+        <TextBox Text="{Binding Quantita, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" />
+        <TextBlock Text="Codice" Grid.Row="0" Grid.Column="2" />
+        <TextBox Text="{Binding Codice, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="1" />
         <TextBlock Text="Descrizione" Grid.Row="0" Grid.Column="4" />
         <TextBox Text="{Binding Descrizione, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="3" />
 
