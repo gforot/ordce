@@ -293,11 +293,11 @@
             <StackPanel Orientation="Horizontal">
                 <Image Margin="4"  Width="24" Height="24" Source="../Images/information2.png"></Image>
                 <StackPanel Orientation="Vertical">
-                    <TextBlock TextWrapping="Wrap" Width="667" HorizontalAlignment="Center" Margin="5,0,5,0" FontWeight="Bold" >
+                    <TextBlock TextWrapping="Wrap" Width="667" HorizontalAlignment="Center" Margin="5,0,5,0" FontWeight="SemiBold" >
                     I campi contrassegnati con * sono obbligatori. Se non vengono valorizzati non sarà
                     possibile confermare l'inserimento/modifica.
                     </TextBlock>
-                    <TextBlock TextWrapping="Wrap" Width="667" HorizontalAlignment="Center" Margin="1" FontWeight="Bold" >
+                    <TextBlock TextWrapping="Wrap" Width="667" HorizontalAlignment="Center" Margin="1" FontWeight="SemiBold" >
                     Dei campi contrassegnati con + ne va inserito almeno uno.
                     </TextBlock>
                 </StackPanel>
