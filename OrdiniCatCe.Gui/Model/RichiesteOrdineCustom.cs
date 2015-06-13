@@ -23,7 +23,15 @@ namespace OrdiniCatCe.Gui.Model
         {
             get
             {
-                return PezziInOrdine == null ? 0 : PezziInOrdine.Count;
+                if (PezziInOrdine == null) return 0;
+                int sum = 0;
+                foreach (PezziInOrdine p in PezziInOrdine)
+                {
+                    if (p.Quantita.HasValue)
+                    { sum += p.Quantita.Value; ; }
+                }
+
+                return sum;
             }
         }
 
