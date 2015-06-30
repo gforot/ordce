@@ -16,46 +16,47 @@ namespace OrdiniCatCe.Gui.Converters
             {
                 string par = parameter as string;
                 RichiesteOrdine ro = value as RichiesteOrdine;
-                int n = 0;
+                int? n = null;
                 DateTime? date = null;
                 switch (par.ToLower())
                 {
                     case "ordinati":
-                        n = ro.PezziInOrdine.Where(p => p.Ordinato).Count();
+                        n = ro.PezziInOrdine.Where(p => p.Ordinato).Sum(s => s.Quantita);
                         if (n > 0)
                         {
                             date = ro.PezziInOrdine.First(p => p.Ordinato).DataOrdinato;
                         }
                         break;
                     case "arrivati":
-                        n = ro.PezziInOrdine.Where(p => p.Arrivato).Count();
+                        n = ro.PezziInOrdine.Where(p => p.Arrivato).Sum(s => s.Quantita);
                         if (n > 0)
                         {
                             date = ro.PezziInOrdine.First(p => p.Arrivato).DataArrivato;
                         }
                         break;
                     case "avvisati":
-                        n = ro.PezziInOrdine.Where(p => p.Avvisato).Count();
+                        n = ro.PezziInOrdine.Where(p => p.Avvisato).Sum(s => s.Quantita);
                         if (n > 0)
                         {
                             date = ro.PezziInOrdine.First(p => p.Avvisato).DataAvvisato;
                         }
                         break;
                     case "ritirati":
-                        n = ro.PezziInOrdine.Where(p => p.Ritirato).Count();
+                        n = ro.PezziInOrdine.Where(p => p.Ritirato).Sum(s => s.Quantita);
                         if (n > 0)
                         {
                             date = ro.PezziInOrdine.First(p => p.Ritirato).DataRitirato;
                         }
                         break;
                     case "sprovvisti":
-                        n = ro.PezziInOrdine.Where(p => p.Sprovvisto).Count();
+                        n = ro.PezziInOrdine.Where(p => p.Sprovvisto).Sum(s=>s.Quantita);
                         break;
                     case "fuoristock":
-                        n = ro.PezziInOrdine.Where(p => p.FuoriStock).Count();
+                        n = ro.PezziInOrdine.Where(p => p.FuoriStock).Sum(s => s.Quantita);
                         break;
 
                 }
+                if (!n.HasValue) n = 0;
                 if (date == null)
                 {
                     return string.Format("{0}/{1}", n, ro.NumberOfPezzi);
