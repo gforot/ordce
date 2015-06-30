@@ -68,5 +68,11 @@ namespace OrdiniCatCe.Gui.Model
         {
             return PezziInOrdine != null && PezziInOrdine.Any(p => p.IdFornitore == idFornitore);
         }
+
+        public int GetNumberOf(Func<PezziInOrdine, bool> f)
+        {
+            int? rval = this.PezziInOrdine.Where(f).Sum(s => s.Quantita);
+            return rval.HasValue ? rval.Value : 0;
+        }
     }
 }
