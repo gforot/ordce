@@ -8,6 +8,16 @@ namespace OrdiniCatCe.Gui.Model
 {
     public partial class RichiesteOrdine
     {
+        public string FullName
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Nome)) return Cognome;
+                if (string.IsNullOrEmpty(Cognome)) return Nome;
+                return string.Format("{0} {1}",Nome, Cognome);
+            }
+        }
+
         /// <summary>
         /// Torna true se esiste almeno un pezzo mancante.
         /// </summary>
