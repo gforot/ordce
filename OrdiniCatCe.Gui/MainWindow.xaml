@@ -160,8 +160,8 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Nome"  Binding="{Binding FullName}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Indirizzo" Binding="{Binding Indirizzo}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Città" Binding="{Binding Localita}" IsReadOnly="True" />
+                <!--<DataGridTextColumn Header="Indirizzo" Binding="{Binding Indirizzo}" IsReadOnly="True" />-->
+                <!--<DataGridTextColumn Header="Città" Binding="{Binding Localita}" IsReadOnly="True" />-->
                 <!--<DataGridTextColumn Header="Marca" Binding="{Binding Marche.Nome}" IsReadOnly="True" />-->
                 <!--<DataGridTextColumn Header="Descrizione" Binding="{Binding Descrizione}" IsReadOnly="True" />-->
                 <DataGridTextColumn Header="Contatto"  Binding="{Binding Converter={StaticResource contattoConverter}}" IsReadOnly="True" />
