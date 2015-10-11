@@ -160,12 +160,13 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Nome"  Binding="{Binding FullName}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Nota1" Binding="{Binding Note1}" IsReadOnly="True" />
                 <!--<DataGridTextColumn Header="Indirizzo" Binding="{Binding Indirizzo}" IsReadOnly="True" />-->
                 <!--<DataGridTextColumn Header="Città" Binding="{Binding Localita}" IsReadOnly="True" />-->
                 <!--<DataGridTextColumn Header="Marca" Binding="{Binding Marche.Nome}" IsReadOnly="True" />-->
                 <!--<DataGridTextColumn Header="Descrizione" Binding="{Binding Descrizione}" IsReadOnly="True" />-->
                 <DataGridTextColumn Header="Contatto"  Binding="{Binding Converter={StaticResource contattoConverter}}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Modalita" Binding="{Binding ModalitàAvviso, Converter={StaticResource modalitaAvvisoConverter}}" IsReadOnly="True" />
+                <!--<DataGridTextColumn Header="Modalita" Binding="{Binding ModalitàAvviso, Converter={StaticResource modalitaAvvisoConverter}}" IsReadOnly="True" />-->
                 <DataGridTextColumn Header="Data Richiesta" Binding="{Binding DataRichiesta, StringFormat={}{0:dd/MM/yyyy}, ConverterCulture=it-IT}"  IsReadOnly="True" />
                 <DataGridTextColumn Header="N Pezzi" Binding="{Binding NumberOfPezzi}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Ordinati" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Ordinati}" IsReadOnly="True">
@@ -202,7 +203,7 @@
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Sprovvisti" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Sprovvisti}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Fuori Stock" Binding="{Binding Converter={StaticResource nofConverter}, ConverterParameter=Fuoristock}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Nota1" Binding="{Binding Note1}" IsReadOnly="True" />
+                
                 <DataGridTextColumn Header="Nota2" Binding="{Binding Note2}" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
