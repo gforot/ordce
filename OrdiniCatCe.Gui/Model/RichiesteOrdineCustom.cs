@@ -14,7 +14,7 @@ namespace OrdiniCatCe.Gui.Model
             {
                 if (string.IsNullOrEmpty(Nome)) return Cognome;
                 if (string.IsNullOrEmpty(Cognome)) return Nome;
-                return string.Format("{0} {1}",Nome, Cognome);
+                return string.Format("{0} {1}",Cognome, Nome);
             }
         }
 
