@@ -88,12 +88,6 @@
         </Border>
         <StackPanel x:Name="FiltersPanel" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
 
-            <TextBlock Margin="2" Text="Cognome"/>
-            <TextBox Text="{Binding CognomeFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
-            <Button Command="{Binding ClearCognomeFilterCommand}" Style="{StaticResource eraserButtonStyle}" ToolTip="Svuota Filtro Cognome" >
-                <Image Source="Images/eraser2.png" Width="16" Height="16"  />
-            </Button>
-
             <TextBlock Text="Nome" Margin="10,2,2,2"></TextBlock>
             <TextBox Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
             <Button Command="{Binding ClearNomeFilterCommand}" Style="{StaticResource eraserButtonStyle}">
@@ -159,7 +153,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Nome"  Binding="{Binding FullName}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Nome"  Binding="{Binding Nome}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Nota1" Binding="{Binding Note1}" IsReadOnly="True" />
                 <!--<DataGridTextColumn Header="Indirizzo" Binding="{Binding Indirizzo}" IsReadOnly="True" />-->
                 <!--<DataGridTextColumn Header="Città" Binding="{Binding Localita}" IsReadOnly="True" />-->

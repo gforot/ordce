@@ -80,7 +80,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             get
             {
                 return !string.IsNullOrEmpty(Nome) &&
-                       !string.IsNullOrEmpty(Cognome) &&
                        Pezzi.Count > 0;
             }
         }
@@ -118,24 +117,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 _nome = value;
                 RaisePropertyChanged(_nomePrpName);
-            }
-        }
-        #endregion
-
-        #region Cognome
-        private const string _cognomePrpName = "Cognome";
-        private string _cognome;
-
-        public string Cognome
-        {
-            get
-            {
-                return _cognome;
-            }
-            set
-            {
-                _cognome = value;
-                RaisePropertyChanged(_cognomePrpName);
             }
         }
         #endregion
@@ -744,7 +725,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             return new RichiesteOrdine
                    {
                        Id = _id,
-                       Cognome = Cognome,
                        Nome = Nome,
                        Cellulare = Cellulare,
                        Telefono = Telefono,
@@ -792,7 +772,6 @@ namespace OrdiniCatCe.Gui.ViewModel
         {
             _id = -1;
             Nome = string.Empty;
-            Cognome = string.Empty;
             Telefono = string.Empty;
             EMail = string.Empty;
             Indirizzo = string.Empty;
@@ -812,7 +791,6 @@ namespace OrdiniCatCe.Gui.ViewModel
         private void SetupValuesFromRichiestaOrdine(RichiesteOrdine richiestaOrdine)
         {
             _id = richiestaOrdine.Id;
-            Cognome = richiestaOrdine.Cognome;
             Nome = richiestaOrdine.Nome;
             Telefono = richiestaOrdine.Telefono;
             EMail = richiestaOrdine.EMail;

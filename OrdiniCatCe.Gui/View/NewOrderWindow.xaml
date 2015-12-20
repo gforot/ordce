@@ -25,12 +25,9 @@
                 </Grid.RowDefinitions>
 
                 <!-- Riga 1: NOME COGNOME -->
-                <TextBlock Foreground="{Binding Cognome, Converter={StaticResource textboxBackgroundConverter}}" Text="Cognome *" Grid.Column="0" Grid.Row="0" />
-                <TextBox Text="{Binding Cognome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" />
-
-                <TextBlock Foreground="{Binding Nome, Converter={StaticResource textboxBackgroundConverter}}" Grid.Row="0" Grid.Column="2" Text="Nome *" />
-                <TextBox  Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="0" />
-
+                
+                <TextBlock Foreground="{Binding Nome, Converter={StaticResource textboxBackgroundConverter}}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Nome e cognome *" FontWeight="SemiBold" />
+                <TextBox Margin="25,3,3,3" Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="0" />
 
 
 

@@ -29,7 +29,6 @@ namespace OrdiniCatCe.Gui.ViewModel
         public RelayCommand AddFornitoreCommand { get; private set; }
         public RelayCommand ClearFiltersCommand { get; private set; }
         public RelayCommand ClearNomeFilterCommand { get; private set; }
-        public RelayCommand ClearCognomeFilterCommand { get; private set; }
         public RelayCommand ClearFornitoreFilterCommand { get; private set; }
         public RelayCommand AnagraficaFornitoriCommand { get; private set; }
         public RelayCommand AnagraficaMarcheCommand { get; private set; }
@@ -69,22 +68,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
         }
 
-        private const string _cognomeFilterPrpName = "CognomeFilter";
-        private string _cognomeFilter;
-        public string CognomeFilter
-        {
-            get
-            {
-                return _cognomeFilter;
-            }
-            set
-            {
-                _cognomeFilter = value;
-                RaisePropertyChanged(_cognomeFilterPrpName);
-                RigheOrdine.Refresh();
-            }
-        }
-
         private const string _fornitoreFilterPrpName = "FornitoreFilter";
         private string _fornitoreFilter;
         public string FornitoreFilter
@@ -113,7 +96,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             AddFornitoreCommand = new RelayCommand(AddFornitore);
             ClearFiltersCommand = new RelayCommand(ClearFilters);
             ClearNomeFilterCommand = new RelayCommand(ClearNameFilter);
-            ClearCognomeFilterCommand = new RelayCommand(ClearCognomeFilter);
             ClearFornitoreFilterCommand = new RelayCommand(ClearFornitoreFilter);
             AnagraficaFornitoriCommand = new RelayCommand(AnagraficaFornitori);
             AnagraficaMarcheCommand = new RelayCommand(AnagraficaMarche);
@@ -145,13 +127,7 @@ namespace OrdiniCatCe.Gui.ViewModel
         private void ClearFilters()
         {
             ClearNameFilter();
-            ClearCognomeFilter();
             ClearFornitoreFilter();
-        }
-
-        private void ClearCognomeFilter()
-        {
-            CognomeFilter = string.Empty;
         }
 
         private void ClearNameFilter()
@@ -367,8 +343,7 @@ namespace OrdiniCatCe.Gui.ViewModel
             }
 
             RichiesteOrdine rOrdine = obj as RichiesteOrdine;
-            return FilterByName(rOrdine) &&
-                   FilterByCognome(rOrdine) &&
+            return FilterByFullName(rOrdine) &&
                    FilterByFornitore(rOrdine);
         }
 
@@ -383,34 +358,20 @@ namespace OrdiniCatCe.Gui.ViewModel
         }
 
 
-        private bool FilterByName(RichiesteOrdine rOrdine)
+        private bool FilterByFullName(RichiesteOrdine rOrdine)
         {
             if (string.IsNullOrEmpty(NameFilter))
             {
                 return true;
             }
 
-            if (string.IsNullOrEmpty(rOrdine.Nome))
+            if (string.IsNullOrEmpty(rOrdine.FullName))
             {
                 return false;
             }
 
-            return rOrdine.Nome.ToLower().Contains(NameFilter.ToLower());
+            return rOrdine.FullName.ToLower().Contains(NameFilter.ToLower());
         }
 
-        private bool FilterByCognome(RichiesteOrdine rOrdine)
-        {
-            if (string.IsNullOrEmpty(CognomeFilter))
-            {
-                return true;
-            }
-
-            if (string.IsNullOrEmpty(rOrdine.Cognome))
-            {
-                return false;
-            }
-
-            return rOrdine.Cognome.ToLower().Contains(CognomeFilter.ToLower());
-        }
     }
 }

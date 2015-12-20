@@ -198,12 +198,9 @@
                 </Grid.RowDefinitions>
 
                 <!-- Riga 1: NOME COGNOME -->
-                <TextBlock Foreground="{Binding Cognome, Converter={StaticResource textboxBackgroundConverter}}" Text="Cognome *" Grid.Column="0" Grid.Row="0" />
-                <TextBox Text="{Binding Cognome, UpdateSourceTrigger=PropertyChanged, FallbackValue=Rota}" Grid.Column="1" Grid.Row="0" />
-
-                <TextBlock Foreground="{Binding Nome, Converter={StaticResource textboxBackgroundConverter}}" Grid.Row="0" Grid.Column="2" Text="Nome *" />
-                <TextBox  Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged, FallbackValue=Andrea}" Grid.Column="3" Grid.Row="0" />
-
+                <TextBlock Foreground="{Binding Nome, Converter={StaticResource textboxBackgroundConverter}}" Text="Nome *" HorizontalAlignment="Left" Margin="3,4,0,4" Width="39" />
+                <TextBox  Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged, FallbackValue=AndreaRota}" Grid.Column="1" Grid.ColumnSpan="3" />
+                
                 <!-- Riga 2: indirizzo -->
                 <TextBlock Text="Indirizzo" Grid.Column="4" />
                 <TextBox Text="{Binding Indirizzo, UpdateSourceTrigger=PropertyChanged, FallbackValue=Via Balassi 44}" Grid.Column="5" Grid.ColumnSpan="3"  />

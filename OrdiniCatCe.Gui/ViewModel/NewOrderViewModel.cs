@@ -37,24 +37,6 @@ namespace OrdiniCatCe.Gui.ViewModel
 
         #endregion
 
-        #region Cognome
-        private const string _cognomePrpName = "Cognome";
-        private string _cognome;
-        public string Cognome
-        {
-            get
-            {
-                return _cognome;
-            }
-            set
-            {
-                _cognome = value;
-                RaisePropertyChanged(_cognomePrpName);
-            }
-        }
-
-        #endregion
-
         #region Telefono
         private const string _telefonoPrpName = "Telefono";
         private string _telefono;
@@ -243,7 +225,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             {
                 string tmpStr;
                 return !string.IsNullOrEmpty(this.Nome) &&
-                       !string.IsNullOrEmpty(this.Cognome) && 
                        Check(out tmpStr);
             }
         }
@@ -261,7 +242,6 @@ namespace OrdiniCatCe.Gui.ViewModel
             ro.Storicizzata = false;
             ro.RicevutaCaparra = false;
             ro.Nome = Nome;
-            ro.Cognome = Cognome;
             ro.Cellulare = Cellulare;
             ro.EMail = EMail;
             ro.NumeroCivico = NumeroCivico;
@@ -342,7 +322,6 @@ namespace OrdiniCatCe.Gui.ViewModel
         public void Setup()
         {
             Nome = string.Empty;
-            Cognome = string.Empty;
             EMail = string.Empty;
             Telefono = string.Empty;
             Cellulare = string.Empty;
